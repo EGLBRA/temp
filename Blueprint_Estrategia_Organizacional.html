@@ -1,0 +1,502 @@
+<!DOCTYPE html><html lang="pt-BR"><head><meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Blueprint de Execução · Estratégia Organizacional · Case Ressignificar um Produto de Previdência</title>
+<style>
+:root{--ink:#16181d;--bg:#f5f5f2;--mut:#6b7078;--ln:#e0e2e6;
+--z1:#B8801F;--z2:#1F6E8C;--z3:#6A2C6E;--z4:#5C7A33;--ac:#9B2062}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--ink);font-family:Inter,-apple-system,BlinkMacSystemFont,"Segoe UI",Helvetica,Arial,sans-serif;font-size:15px;line-height:1.62;-webkit-font-smoothing:antialiased}
+.wrap{max-width:1560px;margin:0 auto;padding:34px 26px 90px}
+a{color:inherit}
+.autor{font-size:10.5px;letter-spacing:.13em;text-transform:uppercase;color:#7b8087;font-weight:500;border-bottom:1px solid #d8dbe0;padding-bottom:12px;margin-bottom:20px}
+.autor b{color:var(--z3);font-weight:650}.autor .sep{color:#c3c6cb;padding:0 8px}
+.real{display:inline-block;background:var(--ink);color:#fff;font-size:10px;letter-spacing:.13em;text-transform:uppercase;font-weight:600;padding:4px 10px;border-radius:3px;margin-bottom:14px}
+h1{font-size:46px;line-height:1.03;margin:8px 0 0;letter-spacing:-.025em;font-weight:680}
+.sub{font-size:16.5px;color:#4a4f57;margin:14px 0 0}
+.head{border-bottom:3px solid var(--ink);padding-bottom:24px}
+.meta{display:flex;gap:30px;flex-wrap:wrap;margin-top:20px;font-size:12px;color:var(--mut)}
+.meta b{display:block;color:var(--ink);font-size:13px;font-weight:640;margin-top:3px}
+nav.anc{display:flex;gap:4px;flex-wrap:wrap;margin:22px 0 0}
+nav.anc a{text-decoration:none;background:#fff;border:1px solid var(--ln);border-radius:5px;padding:7px 12px;font-size:11.5px;color:#5a5f66}
+nav.anc a:hover{border-color:var(--ink)}
+section{margin-top:48px;scroll-margin-top:20px}
+h2{font-size:11.5px;letter-spacing:.16em;text-transform:uppercase;color:var(--ink);font-weight:650;margin:0 0 16px;padding-bottom:9px;border-bottom:2px solid var(--ink);display:flex;gap:12px;align-items:baseline}
+h2 .n{color:var(--ac)}
+h3{font-size:17px;margin:26px 0 10px;font-weight:640;letter-spacing:-.01em}
+p{margin:0 0 12px}
+.zleg{display:flex;gap:20px;flex-wrap:wrap;margin:24px 0 12px;font-size:12px;color:#4a4f57}
+.zleg span{display:flex;align-items:center;gap:8px}
+.zleg i{width:13px;height:13px;border-radius:3px;display:inline-block}
+.grid{display:grid;gap:5px;align-items:stretch;grid-template-columns:88px repeat(6,1fr)}
+.rowlabel{font-size:9.5px;letter-spacing:.1em;text-transform:uppercase;color:var(--mut);font-weight:600;display:flex;align-items:center;padding-right:8px;line-height:1.35;overflow-wrap:anywhere}
+.zbn{font-size:10px;letter-spacing:.14em;text-transform:uppercase;font-weight:600;padding:7px 12px;color:#fff;border-radius:4px;text-align:center}
+.chev{padding:15px 8px;color:#fff;font-weight:640;font-size:15px;text-align:center;border-radius:4px}
+.marco{background:var(--ink);color:#fff;border-radius:4px;padding:9px 6px;text-align:center;font-size:11px}
+.marco .flag{display:inline-block;font-weight:650;letter-spacing:.06em;margin-right:6px}
+.cellbox{background:#fff;border:1px solid var(--ln);border-radius:4px;padding:11px 12px;font-size:12px;line-height:1.5;color:#33373e}
+.cellbox b{display:block;font-size:9.5px;letter-spacing:.11em;text-transform:uppercase;color:#8a8f97;margin-bottom:6px;font-weight:650}
+.cellbox.hi{background:#fbfaf6;border-color:#d8d2c2}
+.cellbox.emp{background:#fdfaf2;border:1px dashed #d9b872;color:#5a5147}
+.cellbox.emp b{color:#9a7a1f}
+.cellbox.emp.ok{background:#fafbfa;border-style:solid;border-color:#dfe3dd;color:#7b8087}
+.cellbox.emp.ok b{color:#8a8f97}
+.cob{background:#fff;border:1px solid var(--ln);border-radius:4px;padding:10px 12px;text-align:center}
+.cob .p{font-size:22px;font-weight:700;letter-spacing:-.03em;line-height:1;font-variant-numeric:tabular-nums}
+.cob .bar{background:#eceef0;border-radius:3px;height:7px;overflow:hidden;margin-top:8px}
+.cob .bar i{display:block;height:100%}
+.cob .st{font-size:9.5px;letter-spacing:.09em;text-transform:uppercase;color:var(--mut);font-weight:600;margin-top:7px}
+.dia{width:12px;height:12px;transform:rotate(45deg);display:inline-block;border-radius:2px}
+.dia.off{background:transparent;border:1px solid #dcdfe4}
+.tcol{background:#fff;border:1px solid var(--ln);border-radius:4px;padding:9px 0;text-align:center}
+.tlcol{padding:10px 0}
+.counter{font-size:19px;font-weight:700;font-variant-numeric:tabular-nums;height:35px;display:flex;align-items:flex-end;justify-content:center;line-height:1}
+.drow{height:26px;display:flex;align-items:center;justify-content:center}
+.tl{font-size:11px;color:#4a4f57;height:26px;display:flex;align-items:center;justify-content:flex-end;padding-right:8px;text-align:right;line-height:1.2}
+.tl0{font-size:9.5px;letter-spacing:.1em;text-transform:uppercase;color:var(--mut);font-weight:600;height:35px;display:flex;align-items:flex-end;justify-content:flex-end;padding-right:8px}
+.disc{display:flex;align-items:center;gap:16px;background:linear-gradient(90deg,color-mix(in srgb,var(--c) 13%,#fff) 0%,#fff 78%);border:1px solid var(--ln);border-left:4px solid var(--c);border-radius:4px;padding:9px 14px;font-size:11.5px}
+.disc-bar{display:flex;align-items:center;gap:14px;margin-bottom:7px}
+.dn{width:180px;font-size:12px;color:#33373e;text-align:right;font-weight:500}
+.span{flex:1;color:#fff;font-size:11.5px;padding:8px 14px;border-radius:4px}
+table{width:100%;border-collapse:collapse;background:#fff;font-size:13px;border:1px solid var(--ln);border-radius:6px;overflow:hidden}
+thead th{background:var(--ink);color:#fff;text-align:left;padding:10px 12px;font-size:10.5px;letter-spacing:.08em;text-transform:uppercase;font-weight:600}
+td{padding:10px 12px;border-top:1px solid #edeef1;vertical-align:top}
+tbody tr:nth-child(even){background:#fafafa}
+.scroll{overflow-x:auto;border-radius:6px}
+.note{font-size:12.5px;color:var(--mut);margin-top:10px}
+.kpis{display:grid;grid-template-columns:repeat(auto-fit,minmax(170px,1fr));gap:10px}
+.kpi{background:#fff;border:1px solid var(--ln);border-radius:6px;padding:15px 16px;border-top:4px solid var(--z3)}
+.kpi .v{font-size:27px;font-weight:700;letter-spacing:-.03em;line-height:1.1;font-variant-numeric:tabular-nums}
+.kpi .l{font-size:11.5px;color:var(--mut);margin-top:6px;line-height:1.35}
+.wave{display:grid;grid-template-columns:56px 1fr;gap:15px;background:#fff;border:1px solid var(--ln);border-radius:7px;padding:17px 20px;margin-bottom:9px;border-left:4px solid var(--z4)}
+.wave .num{font-size:30px;font-weight:700;color:var(--z4);letter-spacing:-.04em;line-height:1}
+.wave .t{font-size:15.5px;font-weight:640;margin-bottom:5px}
+.wave .d{font-size:13px;color:#4a4f57}
+.wave .c{font-size:12px;color:var(--mut);margin-top:7px;padding-top:7px;border-top:1px dashed #e6e8eb}
+.wave .c b{color:var(--ink)}
+.story{background:#fff;border:1px solid var(--ln);border-radius:6px;padding:22px 26px}
+.story p:last-child{margin-bottom:0}
+.two{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+.quote{background:var(--ink);color:#f2f3f4;border-radius:7px;padding:24px 28px;margin:20px 0;font-size:17px;line-height:1.5}
+.quote .who{display:block;margin-top:12px;font-size:11.5px;letter-spacing:.1em;text-transform:uppercase;color:#9aa0a8;font-weight:600}
+.teoria{background:#fff;border:1px solid var(--ln);border-radius:6px;padding:18px 20px;border-left:4px solid var(--z2);margin-bottom:10px}
+.teoria .nm{font-size:15px;font-weight:650;margin-bottom:2px}
+.teoria .au{font-size:11px;letter-spacing:.09em;text-transform:uppercase;color:var(--mut);font-weight:600;margin-bottom:9px}
+.teoria .ap{font-size:13.5px;color:#3a3f47}
+.lente{background:#fff;border:1px solid var(--ln);border-radius:6px;padding:18px 20px;margin-bottom:10px;display:grid;grid-template-columns:1fr 76px;gap:18px;align-items:start}
+.lente .nm{font-size:15px;font-weight:650;margin-bottom:4px}
+.lente .pg{font-size:12.5px;color:var(--mut);font-style:italic;margin-bottom:9px}
+.lente .tx{font-size:13.5px;color:#3a3f47}
+.nota{text-align:center;background:#f7f7f4;border:1px solid var(--ln);border-radius:6px;padding:10px 6px}
+.nota .v{font-size:26px;font-weight:700;letter-spacing:-.03em;line-height:1;color:var(--z2)}
+.nota .l{font-size:9.5px;letter-spacing:.1em;text-transform:uppercase;color:var(--mut);font-weight:600;margin-top:5px}
+.foot{margin-top:56px;padding-top:20px;border-top:1px solid #d8dbe0;font-size:11.5px;color:var(--mut);display:flex;justify-content:space-between;gap:22px;flex-wrap:wrap}
+@media(max-width:1100px){.grid{grid-template-columns:1fr}.two{grid-template-columns:1fr}h1{font-size:32px}}
+@media print{body{background:#fff}nav.anc{display:none}section{break-inside:avoid}}
+.nda{background:#fbf7ec;border:1px solid #e4d9bd;border-left:4px solid #b8933f;border-radius:6px;padding:15px 18px;margin:20px 0 6px;font-size:12.5px;color:#4a4335;line-height:1.55}
+.nda b{display:block;font-size:10px;letter-spacing:.11em;text-transform:uppercase;color:#8a6d24;margin-bottom:6px}
+.discwrap{grid-column:2 / -1;display:flex;flex-direction:column;gap:5px}
+.disc{display:flex;align-items:center;gap:16px;background:linear-gradient(90deg,color-mix(in srgb,var(--c) 13%,#fff) 0%,#fff 78%);border:1px solid var(--ln);border-left:4px solid var(--c);border-radius:4px;padding:9px 14px;font-size:11.5px}
+.disc span{color:#5a6068}
+.disc b{flex:0 0 190px;font-size:12.5px;color:var(--ink);font-weight:650}
+.lst{white-space:nowrap;font-size:11.5px}
+.fgrid{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin-top:16px}
+.fgrp{background:#fff;border:1px solid var(--ln);border-top:3px solid var(--c);border-radius:6px;padding:14px 16px}
+.fgrp .fh{font-size:10px;letter-spacing:.11em;text-transform:uppercase;color:var(--c);font-weight:700;margin-bottom:9px}
+.fgrp ul{list-style:none;padding:0;margin:0}
+.fgrp li{padding:5px 0;border-top:1px solid #f0f1f3;font-size:12.5px;color:var(--ink);line-height:1.45}
+.fgrp li:first-child{border-top:0}
+.fgrp .au{font-size:10px;letter-spacing:.06em;text-transform:uppercase;color:var(--mut);font-weight:600}
+@media(max-width:900px){.fgrid{grid-template-columns:1fr}}
+</style></head><body><div class="wrap">
+
+<div class="autor">Eric Leite<span class="sep">·</span>Estratégia Organizacional<span class="sep">·</span>
+Case Ressignificar um Produto de Previdência<span class="sep">·</span><b>Blueprint de Execução</b></div>
+
+<header class="head">
+<div class="real">Caso real &middot; projeto em curso</div>
+<h1>Estratégia Organizacional</h1>
+<p class="sub">O roteiro de método percorrido fase a fase, com o que o programa executou, o que produziu
+e como cada entrega foi realizada.</p>
+<div class="meta">
+<div>Segmento<b>Previdência complementar, regimes aberto e fechado</b></div>
+<div>Objeto de desenho<b>Modelo operacional e modelo de negócio, integrados</b></div>
+<div>Momento 1<b>Design organizacional, out/2025 a jun/2026</b></div>
+<div>Momento 2<b>Pilotos em mercado, em curso</b></div>
+<div>Natureza<b>Ciclo contínuo de melhoria</b></div>
+</div>
+</header>
+
+<div class="nda"><b>Confidencialidade e proteção de dados</b>Este case relata um projeto real, executado em uma operação de previdência complementar. Por acordo de confidencialidade e em atenção à Lei Geral de Proteção de Dados, a empresa, as pessoas, os sistemas, os fornecedores e as unidades de negócio não são nomeados. Cifras aparecem apenas na ordem de grandeza, e elementos que permitiriam identificar a organização foram omitidos ou alterados. O método, a sequência de decisão, os artefatos e os achados são os do projeto.</div>
+<nav class="anc">
+<a href="#grade">Grade de execução</a><a href="#como">Como foi realizado</a><a href="#ondas">As 7 ondas</a>
+<a href="#cobertura">Padrão de cobertura</a><a href="#org">Transformação organizacional</a>
+<a href="#analise">Análise organizacional</a><a href="#neg">Transformação de negócio</a><a href="#fund">Fundamentação</a>
+</nav>
+
+<!-- ============================== GRADE -->
+<section id="grade"><h2><span class="n">01</span>A grade de execução</h2>
+<div class="zleg">
+<span><i style="background:var(--z1)"></i>Fundação</span>
+<span><i style="background:var(--z2)"></i>Evidência</span>
+<span><i style="background:var(--z3)"></i>Concepção</span>
+<span><i style="background:var(--z4)"></i>Ciclo permanente</span>
+</div>
+
+<div class="grid">
+<div class="rowlabel">Zonas</div>
+<div class="zbn" style="background:var(--z1)">Fundação</div>
+<div class="zbn" style="background:var(--z2)">Evidência</div>
+<div class="zbn" style="background:var(--z3)">Concepção</div>
+<div class="zbn" style="background:var(--z4);grid-column:span 3">Ciclo permanente</div>
+</div>
+
+<div class="grid" style="margin-top:5px">
+<div class="rowlabel">Fases</div>
+<div class="chev" style="background:var(--z1)">Conectar</div>
+<div class="chev" style="background:var(--z2)">Investigar</div>
+<div class="chev" style="background:var(--z3)">Modelar</div>
+<div class="chev" style="background:var(--z4)">Executar</div>
+<div class="chev" style="background:#4A6B2A">Aferir</div>
+<div class="chev" style="background:#3E5A22">Reorientar</div>
+</div>
+
+<div class="grid" style="margin-top:5px">
+<div class="rowlabel">Marcos</div>
+<div class="marco"><span class="flag">M0</span>Alinhamento</div>
+<div class="marco"><span class="flag">M1</span>Leitura de contexto</div>
+<div class="marco"><span class="flag">M2</span>Modelo aprovado</div>
+<div class="marco"><span class="flag">MR</span>Onda em operação &middot; fechado</div>
+<div class="marco"><span class="flag">MR</span>Ciclo aferido</div>
+<div class="marco"><span class="flag">MR</span>Rumo decidido</div>
+</div>
+
+<div class="grid" style="margin-top:5px">
+<div class="rowlabel">Atividades executadas</div>
+<div class="cellbox lst"><b>Conectar</b>· Ambição com a diretoria<br>· Perguntas centrais fixadas<br>· Restrições e apetite a risco<br>· Recorte de capacidades<br>· Mapa de interlocutores<br>· Gestão de expectativa<br>· Fora de escopo declarado<br>· Governança e ritos instalados</div>
+<div class="cellbox lst"><b>Investigar</b>· Índice de fontes aberto<br>· Varredura PESTEL<br>· Pesquisa por região<br>· Pesquisa por produto<br>· Varredura de futuros<br>· Entrevistas com clientes<br>· Entrevistas com as áreas<br>· Entrevistas de mercado<br>· Jobs to be done mapeados<br>· Diagnóstico semântico<br>· Ciclos causais<br>· Mapeamento as-is<br>· Volumetria de atividades<br>· Análise de oferta<br>· Experiência do cliente</div>
+<div class="cellbox lst"><b>Modelar</b>· Propósito e missão revistos<br>· Posicionamento definido<br>· Cenários por horizonte<br>· Planejamento reverso<br>· Ideação e cocriação<br>· Dinâmicas de integração<br>· Proposta de valor<br>· Jornadas evolutivas<br>· Modelagem de negócio<br>· Decisão de canal<br>· Modelo operacional alvo<br>· Revisão e criação de cargos<br>· Papéis e alçadas<br>· Meta-acordos definidos<br>· Capacidades desdobradas<br>· Projeção econômica<br>· Roadmap e backlog<br>· Ondas sequenciadas</div>
+<div class="cellbox lst"><b>Executar</b>· Implantação onda a onda<br>· Testes de mesa<br>· Validação com usuário<br>· Serviço mínimo viável<br>· MVP comercial em operação<br>· Piloto em praça<br>· Desenvolvimento por caso<br>· Capacitação e suporte<br>· Ritos em execução<br>· Cuidado com a equipe</div>
+<div class="cellbox lst"><b>Aferir</b>· Maturidade reaplicada<br>· Leitura contra a base<br>· Painel de métricas<br>· Custo por canal<br>· Hipótese verificada<br>· Adoção e reincidência<br>· Desvio contra projeção</div>
+<div class="cellbox lst"><b>Reorientar</b>· Revisita dos artefatos<br>· Divergências reconciliadas<br>· Perseverar ou pivotar<br>· Meta-acordos revisados<br>· Consolidação em padrão<br>· Transferência para a linha<br>· Onda seguinte liberada</div>
+</div>
+
+<div class="grid" style="margin-top:5px">
+<div class="rowlabel">Artefatos produzidos</div>
+<div class="cellbox hi lst"><b>Entregues</b>· Canvas do Programa<br>· Escopo e Frentes<br>· Perguntas Centrais<br>· Certezas e Suposições<br>· JTBD da Liderança<br>· Gestão de Expectativa<br>· Governança e Riscos<br>· Memorando e Executivo</div>
+<div class="cellbox hi lst"><b>Entregues</b>· Índice de Fontes<br>· Varredura PESTEL<br>· Anatomias e Panoramas<br>· Matriz de Produtos<br>· Radares e Sinais<br>· Motores de Mudança<br>· Desdobramento e Cruzamento<br>· Notícias e Reputação<br>· Mapa de Ecossistema<br>· Ecossistema de Soluções<br>· Entrevistas e Roteiros<br>· Jobs to be Done<br>· Diagnóstico Semântico<br>· Mapa de Dores<br>· Ciclos Causais<br>· Canvas Sistêmicos<br>· Diagrama Funcional<br>· Blueprints as-is<br>· SIPOC de Processos<br>· Volumetria e Cargos<br>· Business Model Canvas atual<br>· Matrizes CDE e CSD</div>
+<div class="cellbox hi lst"><b>Entregues</b>· Propósito e Missão<br>· Posicionamento<br>· Cenários H1, H2 e H3<br>· Planejamento Reverso<br>· Direcionadores Estratégicos<br>· Análise Estrutural MicMac<br>· Workshops de Cocriação<br>· Canvas de Proposta de Valor<br>· Jornadas Evolutivas<br>· Business Model Canvas alvo<br>· Análise Conceitual 5W2H<br>· Estratégia de Canais<br>· Funil Pirata<br>· Modelo Operacional Alvo<br>· Processos Evolutivos<br>· Blueprint Organizacional<br>· Ritos e Fluxo de Informação<br>· Cargos, Papéis e Incentivos<br>· Delegação, RACI e Alçadas<br>· Meta-acordos<br>· Capacidades e Iniciativas<br>· Roadmap e Backlog<br>· Plano de Mudança<br>· Roteiro de Teste de Mesa<br>· Business Case</div>
+<div class="cellbox hi lst"><b>Entregues</b>· Procedimentos Operacionais<br>· Serviço Mínimo Viável<br>· MVP Comercial<br>· Piloto Comercial<br>· Esteira de Casos<br>· Níveis de Serviço<br>· Ritos em Operação<br>· Backlog Corporativo</div>
+<div class="cellbox hi lst"><b>Entregues</b>· Linha de Base<br>· Régua de Maturidade<br>· Avaliação de Capacidade<br>· Painel de Métricas<br>· Painel Econômico<br>· Adoção e Reincidência<br>· Régua Externa de Mercado</div>
+<div class="cellbox hi lst"><b>Entregues</b>· Revisita de Contextos<br>· Divergências Reconciliadas<br>· Meta-acordos Revisados<br>· Padrões Consolidados<br>· Índice Mestre Versionado<br>· Termo de Transferência<br>· Backlog da Onda Seguinte</div>
+</div>
+<div class="grid" style="margin-top:5px">
+<div class="rowlabel">Em processo</div>
+<div class="cellbox emp ok"><b>Nada em aberto</b>Marco M0 fechado, com mandato ratificado pela nova diretoria</div>
+<div class="cellbox emp ok"><b>Nada em aberto</b>Marco M1 fechado, com diagnóstico consolidado e divergências reconciliadas</div>
+<div class="cellbox emp"><b>Em processo</b>· Direção estratégica, em dependência da revisão do mapa corporativo<br>· Proposta de valor a validar em campo</div>
+<div class="cellbox emp"><b>Em processo</b>· Piloto comercial do canal próprio, em campo<br>· Escala do piloto condicionada ao veredito</div>
+<div class="cellbox emp"><b>Em processo</b>· Fechamento do primeiro ciclo de aferição<br>· Distribuição do prazo de saída, e não a média<br>· Desvio entre projeção e realizado</div>
+<div class="cellbox emp"><b>Em processo</b>· Decisão de rumo do negócio, dependente da aferição<br>· Consolidação da onda seguinte</div>
+</div>
+
+<div class="grid" style="margin-top:5px">
+<div class="rowlabel">Cobertura da fase</div>
+<div class="cob"><div class="p" style="color:var(--z1)">100%</div><div class="bar"><i style="width:100%;background:var(--z1)"></i></div><div class="st">Concluída</div></div>
+<div class="cob"><div class="p" style="color:var(--z2)">100%</div><div class="bar"><i style="width:100%;background:var(--z2)"></i></div><div class="st">Concluída</div></div>
+<div class="cob"><div class="p" style="color:var(--z3)">100%</div><div class="bar"><i style="width:100%;background:var(--z3)"></i></div><div class="st">Concluída</div></div>
+<div class="cob"><div class="p" style="color:var(--z4)">95%</div><div class="bar"><i style="width:95%;background:var(--z4)"></i></div><div class="st">Piloto em campo</div></div>
+<div class="cob"><div class="p" style="color:#4A6B2A">60%</div><div class="bar"><i style="width:60%;background:#4A6B2A"></i></div><div class="st">Ciclo em curso</div></div>
+<div class="cob"><div class="p" style="color:#3E5A22">55%</div><div class="bar"><i style="width:55%;background:#3E5A22"></i></div><div class="st">1º giro feito</div></div>
+</div>
+
+<div class="grid" style="margin-top:5px">
+<div class="tlcol">
+<div class="tl0">Papéis</div>
+<div class="tl">Comercial</div>
+<div class="tl">Dados</div>
+<div class="tl">Design Org</div>
+<div class="tl">Estratégia</div>
+<div class="tl">Gestão de Projeto</div>
+<div class="tl">Produto</div>
+<div class="tl">Tecnologia</div>
+<div class="tl">UX / Pesquisa</div>
+</div>
+<div class="tcol"><div class="counter" style="color:var(--z1)">4</div>
+<div class="drow"><span class="dia off"></span></div>
+<div class="drow"><span class="dia off"></span></div>
+<div class="drow"><span class="dia" style="background:var(--z1)"></span></div>
+<div class="drow"><span class="dia" style="background:var(--z1)"></span></div>
+<div class="drow"><span class="dia" style="background:var(--z1)"></span></div>
+<div class="drow"><span class="dia" style="background:var(--z1)"></span></div>
+<div class="drow"><span class="dia off"></span></div>
+<div class="drow"><span class="dia off"></span></div></div>
+<div class="tcol"><div class="counter" style="color:var(--z2)">6</div>
+<div class="drow"><span class="dia off"></span></div>
+<div class="drow"><span class="dia" style="background:var(--z2)"></span></div>
+<div class="drow"><span class="dia" style="background:var(--z2)"></span></div>
+<div class="drow"><span class="dia" style="background:var(--z2)"></span></div>
+<div class="drow"><span class="dia" style="background:var(--z2)"></span></div>
+<div class="drow"><span class="dia" style="background:var(--z2)"></span></div>
+<div class="drow"><span class="dia off"></span></div>
+<div class="drow"><span class="dia" style="background:var(--z2)"></span></div></div>
+<div class="tcol"><div class="counter" style="color:var(--z3)">7</div>
+<div class="drow"><span class="dia" style="background:var(--z3)"></span></div>
+<div class="drow"><span class="dia off"></span></div>
+<div class="drow"><span class="dia" style="background:var(--z3)"></span></div>
+<div class="drow"><span class="dia" style="background:var(--z3)"></span></div>
+<div class="drow"><span class="dia" style="background:var(--z3)"></span></div>
+<div class="drow"><span class="dia" style="background:var(--z3)"></span></div>
+<div class="drow"><span class="dia" style="background:var(--z3)"></span></div>
+<div class="drow"><span class="dia" style="background:var(--z3)"></span></div></div>
+<div class="tcol"><div class="counter" style="color:var(--z4)">8</div>
+<div class="drow"><span class="dia" style="background:var(--z4)"></span></div>
+<div class="drow"><span class="dia" style="background:var(--z4)"></span></div>
+<div class="drow"><span class="dia" style="background:var(--z4)"></span></div>
+<div class="drow"><span class="dia" style="background:var(--z4)"></span></div>
+<div class="drow"><span class="dia" style="background:var(--z4)"></span></div>
+<div class="drow"><span class="dia" style="background:var(--z4)"></span></div>
+<div class="drow"><span class="dia" style="background:var(--z4)"></span></div>
+<div class="drow"><span class="dia" style="background:var(--z4)"></span></div></div>
+<div class="tcol"><div class="counter" style="color:#4A6B2A">6</div>
+<div class="drow"><span class="dia" style="background:#4A6B2A"></span></div>
+<div class="drow"><span class="dia" style="background:#4A6B2A"></span></div>
+<div class="drow"><span class="dia off"></span></div>
+<div class="drow"><span class="dia" style="background:#4A6B2A"></span></div>
+<div class="drow"><span class="dia" style="background:#4A6B2A"></span></div>
+<div class="drow"><span class="dia" style="background:#4A6B2A"></span></div>
+<div class="drow"><span class="dia" style="background:#4A6B2A"></span></div>
+<div class="drow"><span class="dia off"></span></div></div>
+<div class="tcol"><div class="counter" style="color:#3E5A22">6</div>
+<div class="drow"><span class="dia off"></span></div>
+<div class="drow"><span class="dia" style="background:#3E5A22"></span></div>
+<div class="drow"><span class="dia" style="background:#3E5A22"></span></div>
+<div class="drow"><span class="dia" style="background:#3E5A22"></span></div>
+<div class="drow"><span class="dia" style="background:#3E5A22"></span></div>
+<div class="drow"><span class="dia" style="background:#3E5A22"></span></div>
+<div class="drow"><span class="dia" style="background:#3E5A22"></span></div>
+<div class="drow"><span class="dia off"></span></div></div>
+</div>
+<div class="note">Ordem de entrada em operação não é ordem de início. As ondas 5 e 6 dependem de
+decisão de conselho e de trabalho atuarial, ambos de prazo longo, e por isso começaram antes de
+chegar a vez.</div>
+</section>
+
+
+
+<div class="grid" style="margin-top:14px">
+<div class="rowlabel">Disciplinas transversais</div>
+<div class="discwrap">
+<div class="disc" style="--c:var(--z1)"><b>Gestão de Risco</b><span>Nasce na fundação e é reavaliada a cada marco</span></div>
+<div class="disc" style="--c:var(--z2)"><b>Gestão de Projeto</b><span>Escopo, prazo e governança do próprio roteiro</span></div>
+<div class="disc" style="--c:var(--z3)"><b>Gestão de Mudança</b><span>Preparação dos afetados, do primeiro contato ao regime</span></div>
+<div class="disc" style="--c:var(--z4)"><b>Construção de Roadmap</b><span>Sequenciamento das entregas e das ondas</span></div>
+</div>
+</div>
+<div class="note">As quatro não são fases. Correm por baixo de todas elas e nunca encerram junto com uma fase, o que é a razão de o programa não ter data de encerramento técnico.</div>
+
+<!-- ============================== COMO -->
+<section id="como"><h2><span class="n">02</span>Como cada entrega foi realizada</h2>
+<p>O que segue detalha a execução dos itens de maior exigência do método, fase por fase.</p>
+
+<h3>Fundação</h3>
+<div class="scroll"><table><thead><tr><th>Entrega</th><th>Como foi realizada</th></tr></thead><tbody>
+<tr><td><b>Pergunta estratégica central</b></td><td>Formulada na sessão de ambição e fixada por escrito no Canvas do Programa: como um portfólio que perde estoque volta a crescer pela permanência, usando o canal de afinidade próprio, sem disputar varejo com grandes bancos. Ela passou a ser o critério de admissibilidade de toda frente: proposta que não responde a ela não entra no roteiro.</td></tr>
+<tr><td><b>Mandato reemitido após a troca de patrocínio</b></td><td>A transição de diretoria foi tratada como evento de governança. O mandato foi reapresentado ao novo patrocinador no primeiro rito de panorama, com o escopo, o fora de escopo e os oito riscos em contrato se/então relidos linha a linha, e ratificado na mesma sessão. A ata dessa ratificação é o documento que sustenta a autoridade do programa no Momento 2.</td></tr>
+<tr><td><b>Critérios de decisão acordados</b></td><td>Três réguas escritas e publicadas: permanência vale mais que captação, porque a receita é anuidade sobre estoque; nenhuma ativação de demanda antes de a saída operar dentro do desenho normativo; decisão desce por alçada escrita e não por acúmulo de aprovador.</td></tr>
+</tbody></table></div>
+
+<h3>Evidência</h3>
+<div class="scroll"><table><thead><tr><th>Entrega</th><th>Como foi realizada</th></tr></thead><tbody>
+<tr><td><b>Entrevistas com clientes e com profissionais</b></td><td>O bloco de escuta priorizou a ponta: conversas com participantes ativos, participantes que saíram e pessoas que avaliaram o produto e não contrataram, com foco no momento de resgate e no momento de decisão. As entrevistas com profissionais cobriram quem executa a operação nos dois regimes. A assimetria é deliberada: documento interno já respondia o que a operação faz, e o que faltava era a leitura de quem está do lado de fora.</td></tr>
+<tr><td><b>Entrevistas com não clientes</b></td><td>Realizadas dentro do bloco de 16, com o recorte de quem chegou a avaliar e não contratou. O achado que só essa escuta produz: a recusa raramente é de preço, é de compreensão. O produto perde na etapa de entendimento, antes de chegar à comparação de taxa.</td></tr>
+<tr><td><b>Dimensionamento do mercado endereçável</b></td><td>Fechado em três camadas: mercado total pela penetração setorial declarada em fonte pública, mercado servível pelo recorte de vínculo em que a casa tem direito de jogo, e mercado obtenível pela base de afinidade própria com histórico de relacionamento ativo. O resultado é o denominador que sustenta a decisão de canal.</td></tr>
+<tr><td><b>Jornada do participante do coletivo</b></td><td>Mapeada no blueprint da porta aberta coletiva, com 29 momentos em 7 etapas, do interesse ao relacionamento, incluindo as raias de ação do participante, da instituidora, do corretor e da averbadora. É a jornada que revelou que a experiência do vinculado começa na empresa e não nele, e que a adesão em lote produz um participante que não sabe que aderiu.</td></tr>
+</tbody></table></div>
+
+<h3>Concepção</h3>
+<div class="scroll"><table><thead><tr><th>Entrega</th><th>Como foi realizada</th></tr></thead><tbody>
+<tr><td><b>Proposta de valor por segmento</b></td><td>Construída a partir da matriz de funil de 5 etapas por 4 linhas de produto. Cada linha recebeu proposta própria, porque o gancho difere: no coletivo é contrapartida da empresa, no instituído é custo baixo com pertencimento, no individual é enquadramento fiscal com consultoria, e no canal próprio é confiança já existente. Quatro propostas, nenhuma média.</td></tr>
+<tr><td><b>Projeção econômica por alternativa</b></td><td>Três alternativas modeladas sobre a mesma base: manter o canal intermediado e ampliar remuneração, ativar canal próprio antes de corrigir a saída, e a sequência escolhida de corrigir a saída antes de ativar demanda. Cada uma com receita projetada sobre estoque, custo de aquisição e efeito sobre a captação líquida. A alternativa escolhida aceita adiar receita nova por dois a três ciclos, e esse custo está declarado.</td></tr>
+<tr><td><b>Segmentação de carteira</b></td><td>Estruturada por unidade de análise definida, com corte por valor de reserva, tempo de permanência e origem do vínculo. Cada quadrante recebeu ação própria: reter, aprofundar, reativar ou deixar seguir. É o que permite tratar de forma diferente o participante que decide e o que só é vinculado.</td></tr>
+<tr><td><b>Modelo de remuneração integrado</b></td><td>Desenhado para resolver a assimetria estrutural entre as portas. A lógica adotada premia permanência e não entrada: parcela do incentivo migra da originação para a manutenção de reserva, com janela de carência alinhada ao ponto em que o estoque passa a se pagar. É a resposta ao achado de que o mesmo intermediário que traz também porta para fora.</td></tr>
+<tr><td><b>Instância de aprovação do modelo</b></td><td>Definida no rito de validação quinzenal com a diretoria patrocinadora, com o marco M2 assinado em ata. A partir da entrada em operação, cada onda passa pelo mesmo rito antes de escalar, o que tira a autoavaliação do caminho crítico.</td></tr>
+</tbody></table></div>
+
+<h3>Ciclo</h3>
+<div class="scroll"><table><thead><tr><th>Entrega</th><th>Como foi realizada</th></tr></thead><tbody>
+<tr><td><b>Teste de mercado sobre a hipótese de maior risco</b></td><td>A hipótese de que a base de afinidade converte com custo baixo foi levada a campo numa praça única, com oferta coletiva digital e custo de aquisição medido contra o canal intermediado. O piloto tem critério de parada escrito: se a conversão não atingir o piso, a tese de canal se ajusta antes de qualquer escala.</td></tr>
+<tr><td><b>Operação comercial mínima do canal próprio</b></td><td>Montada com o essencial para o piloto rodar: oferta de adesão digital, régua de comunicação da entidade para o vinculado, roteiro de atendimento e ponto único de registro da demanda. Nada além do necessário para provar ou refutar a hipótese.</td></tr>
+<tr><td><b>Indicadores das ondas instrumentados</b></td><td>Cada onda recebeu par de indicadores: um de resultado e um de reincidência. O de reincidência foi instalado com corte no terceiro mês, porque é quando o comportamento antigo costuma voltar, e é o único indicador que separa adoção de sustentação.</td></tr>
+<tr><td><b>Procedimento das ondas publicado</b></td><td>O que o time passou a praticar virou procedimento escrito e publicado, com dono nomeado por bloco. Isso tira a operação do nível heroico, que é onde a avaliação de capacidade situava a maior parte dela.</td></tr>
+<tr><td><b>Plano de mudança por público de quem opera</b></td><td>Escrito por público e não por comunicado único. Para quem executa, o foco foi capacidade e clareza de alçada. Para a liderança intermediária, o foco foi o que ela deixa de decidir e o que passa a decidir. Para a ponta comercial, o foco foi o que sai da sua mesa e volta como tempo de venda.</td></tr>
+<tr><td><b>Custo do próprio programa registrado</b></td><td>Consolidado por natureza, separando o custo de condução, o custo de reforço de equipe e o custo de ferramenta, contra a capacidade instalada em contrapartida. É o número que permite ao conselho comparar o investido com o que mudou na operação.</td></tr>
+</tbody></table></div>
+<div class="note">A volumetria foi levantada no nível da atividade, e não do processo, porque a conta de volume por frequência por esforço unitário só fecha nessa granularidade. As atividades se agrupam nos processos mapeados em SIPOC, e é esse nível que permite afirmar que o especialista gasta tempo em tarefa de assistente.</div>
+</section>
+
+<!-- ============================== ONDAS -->
+<section id="ondas"><h2><span class="n">03</span>As 7 ondas</h2>
+<p>A sequência foi ordenada por risco, não por valor. A onda de maior valor potencial, o canal próprio,
+é a quinta da fila, porque levar volume novo a uma operação que falha na saída amplifica o problema em
+vez de resolvê-lo.</p>
+
+<div class="wave"><div class="num">0</div><div>
+<div class="t">Balcão único de consulta e triagem</div>
+<div class="d">Padronização de entrada, redução de retrabalho nas tarefas de registro e consulta, e primeira resposta organizada nas demandas que chegavam por canal informal.</div>
+<div class="c"><b>Por que primeiro:</b> interna, reversível, sem contato com cliente e sem dependência de desenvolvimento. &nbsp;·&nbsp; <b>Estado:</b> em regime, com o time operando sem a condução na sala.</div></div></div>
+
+<div class="wave"><div class="num">1</div><div>
+<div class="t">Nível de serviço de saída instrumentado ponta a ponta</div>
+<div class="d">Integração entre os dois sistemas que sustentam o resgate e medição do prazo real do pedido até o crédito em conta, contra o desenho normativo e não contra o teto de conformidade.</div>
+<div class="c"><b>Por que aqui:</b> ataca o processo que decide reputação, retenção e recompra. &nbsp;·&nbsp; <b>Estado:</b> em implantação, com prazo medido e publicado internamente.</div></div></div>
+
+<div class="wave"><div class="num">2</div><div>
+<div class="t">Régua de retenção e contato ativo de portabilidade</div>
+<div class="d">Industrialização do contato de saída, disparado por gatilho de processo e não por iniciativa individual. A retenção consultiva já funcionava; o que faltava era ela existir como processo.</div>
+<div class="c"><b>Por que aqui:</b> é o ganho mais barato do conjunto, porque a competência já existe na casa. &nbsp;·&nbsp; <b>Estado:</b> em implantação.</div></div></div>
+
+<div class="wave"><div class="num">3</div><div>
+<div class="t">Bloco Movimentação e Saída constituído</div>
+<div class="d">O bloco operacional dedicado à saída do dinheiro passa a existir com dono nomeado, alçada escrita e indicadores próprios, reunindo resgate, portabilidade, retenção e informe fiscal.</div>
+<div class="c"><b>Por que aqui:</b> sem dono de processo, as ondas 1 e 2 regridem. Aqui o redesenho de decisão consolida o de fluxo. &nbsp;·&nbsp; <b>Estado:</b> papéis propostos e em ratificação pelas áreas.</div></div></div>
+
+<div class="wave"><div class="num">4</div><div>
+<div class="t">Piloto do canal próprio em praça única</div>
+<div class="d">Conversão da base de afinidade em adesão, com oferta coletiva digital e custo de aquisição medido contra o canal intermediado. É o teste da hipótese de maior risco do negócio.</div>
+<div class="c"><b>Por que só agora:</b> depende de a saída operar dentro do desenho normativo. &nbsp;·&nbsp; <b>Estado:</b> em campo, no Momento 2.</div></div></div>
+
+<div class="wave"><div class="num">5</div><div>
+<div class="t">Grade de taxa competitiva e adesão automática na porta fechada</div>
+<div class="d">Uso da janela regulatória disponível para o segmento de vínculo, com cláusula em novos convênios e notificação prévia ao elegível.</div>
+<div class="c"><b>Ordem de início:</b> iniciada cedo, porque depende de decisão de conselho e tem prazo longo. Entra em operação na posição prevista. &nbsp;·&nbsp; <b>Estado:</b> em preparação de conselho.</div></div></div>
+
+<div class="wave"><div class="num">6</div><div>
+<div class="t">Esteira de renda e decumulação</div>
+<div class="d">Oferta ativa de conversão de reserva em renda, com simulador e múltiplos ciclos, nas duas portas. É o maior vazio do setor e o alvo de diferenciação de prazo mais longo.</div>
+<div class="c"><b>Ordem de início:</b> iniciada cedo pelo trabalho atuarial, que é o caminho crítico. &nbsp;·&nbsp; <b>Estado:</b> em modelagem técnica.</div></div></div>
+
+<div class="note">Ordem de entrada em operação não é ordem de início. As ondas 5 e 6 dependem de
+decisão de conselho e de trabalho atuarial, ambos de prazo longo, e por isso começaram antes de
+chegar a vez.</div>
+</section>
+
+<!-- ============================== COBERTURA -->
+<section id="cobertura"><h2><span class="n">04</span>O padrão de cobertura</h2>
+<div class="quote">O design organizacional foi concluído e as ondas entraram em operação. O que resta em
+processamento é o piloto comercial, e daqui para frente o relógio é o do negócio.<span class="who">Leitura do estágio</span></div>
+<div class="two">
+<div class="story"><h3 style="margin-top:0">O que está fechado</h3>
+<p>As quatro primeiras fases entregaram. A fundação fixou mandato e pergunta estratégica, a evidência
+produziu o retrato quantificado do estado atual, a concepção entregou o modelo operacional, o modelo de
+negócio e o roadmap, e a execução levou as ondas à operação real: o time opera sem a condução na sala,
+o bloco de saída existe com dono e alçada, e os procedimentos estão publicados.</p>
+<p>Os quatro artefatos que o método declara inegociáveis estão completos, e o marco de onda em
+operação fechou seu primeiro giro.</p></div>
+<div class="story"><h3 style="margin-top:0">O que segue processando</h3>
+<p>O que continua correndo é a ponta comercial: o piloto do canal próprio está em campo, e ele depende
+de ciclo de mercado para dar veredito. É a única frente do programa cujo prazo não é decidido dentro
+de casa.</p>
+<p>Numa operação cuja receita é anuidade sobre estoque, o efeito de uma mudança de retenção leva
+trimestres para aparecer no líquido. As fases de aferição e reorientação crescem devagar por natureza,
+e lê-las como atraso é confundir o relógio do projeto com o do negócio.</p></div>
+</div>
+<div class="kpis" style="margin-top:16px">
+<div class="kpi"><div class="v">4 de 6</div><div class="l">fases concluídas, incluindo a execução das ondas</div></div>
+<div class="kpi"><div class="v">4 de 4</div><div class="l">artefatos-âncora entregues</div></div>
+<div class="kpi"><div class="v">6 de 7</div><div class="l">ondas em operação ou implantação</div></div>
+<div class="kpi"><div class="v">1</div><div class="l">frente em processamento: o piloto comercial em campo</div></div>
+</div>
+</section>
+
+<!-- ============================== ORG -->
+<section id="org"><h2><span class="n">05</span>A transformação organizacional</h2>
+<p>O objeto de design foi o modelo operacional. O que mudou não é o organograma: é onde a decisão
+mora e em torno de que a operação se agrupa.</p>
+<div class="scroll"><table><thead><tr><th>Dimensão</th><th>Antes</th><th>Depois</th></tr></thead><tbody>
+<tr><td><b>Unidade de agrupamento</b></td><td>Áreas herdadas, com o mesmo processo cortado entre várias</td><td>Nove blocos operacionais agrupados por natureza da decisão, com um bloco criado para a saída do dinheiro</td></tr>
+<tr><td><b>Decisão</b></td><td>Sobe por acúmulo de aprovador. Portabilidade entre planos exigia cinco assinaturas em série</td><td>Matriz de delegação em sete níveis, com alçada escrita por tipo de assunto</td></tr>
+<tr><td><b>Papéis</b></td><td>Sete das doze áreas executoras sem cargo formal na estrutura</td><td>Responsabilidade declarada por processo, com dono, aprovador, consultado e informado</td></tr>
+<tr><td><b>Conhecimento</b></td><td>Na cabeça das pessoas. A dor mais citada nas entrevistas</td><td>Procedimento publicado, guia de integração e documento de acordos da equipe</td></tr>
+<tr><td><b>Gestão do dia a dia</b></td><td>Cadência informal, dependente de quem puxa</td><td>Sistema de gestão com 16 ritos, cada um com frequência, quórum, pauta, evidência e critério de satisfação</td></tr>
+<tr><td><b>Foco do tempo</b></td><td>70% do tempo comercial em operação, 30% em venda</td><td>Balcão único devolvendo o especialista à venda e à retenção consultiva</td></tr>
+</tbody></table></div>
+<p class="note">A distinção que sustenta tudo: fluxo de trabalho descreve como o trabalho acontece;
+gerenciamento da operação descreve como esse trabalho é conduzido. São dois desenhos diferentes, e a
+maior parte dos programas entrega só o primeiro.</p>
+</section>
+
+
+<!-- ============================== ANALISE ORG -->
+<section id="analise"><h2><span class="n">06</span>Análise organizacional: onde a estrutura ainda dói</h2>
+<p>O desenho entregou estrutura, papéis e governança. O que segue abaixo é a leitura do que ainda tensiona, organizada nas três camadas em que uma organização de fato funciona: a <b>estrutura</b> que a monta, o <b>cotidiano</b> que a vive e as <b>regras do jogo</b> que a governam. Cada tema traz o ponto de dor observado, a tensão que ele carrega e o aprofundamento que o programa produziu.</p>
+<h3 style="border-left:4px solid var(--z3);padding-left:12px">Estrutura</h3><p class="note" style="margin:0 0 10px">Como a organização está montada para entregar. É a camada que o desenho muda diretamente.</p><div class="scroll"><table><thead><tr><th style="width:16%">Tema</th><th style="width:26%">Ponto de dor</th><th style="width:26%">Tensão</th><th style="width:32%">Aprofundamento</th></tr></thead><tbody><tr><td><b>Capacidade operacional</b></td><td>Duas áreas de ponta concentram a maior parte do esforço e três pessoas na matriz respondem pelo operacional nacional.</td><td>Contratar resolve o sintoma; redesenhar a fronteira entre as áreas resolve a causa. As duas coisas competem pelo mesmo orçamento.</td><td>A volumetria mostrou que a carga não está distribuída por competência, e sim por quem atende primeiro. Capacidade aqui é desenho, antes de ser headcount.</td></tr><tr><td><b>Governança das demandas</b></td><td>A demanda entra por canal informal, não é registrada e por isso não é dimensionada.</td><td>Fechar o canal informal melhora o controle e piora a percepção de atendimento no curto prazo.</td><td>O balcão único foi desenhado para resolver os dois lados: registra sem tirar a velocidade que fez o canal informal virar o preferido.</td></tr><tr><td><b>Arquitetura de metas e incentivos</b></td><td>O incentivo premia a entrada e não a permanência, e o mesmo intermediário que traz também porta a reserva para fora.</td><td>Migrar incentivo da originação para a manutenção reduz a receita percebida do canal antes de aumentar o estoque retido.</td><td>Sem tocar em incentivo, todo redesenho de retenção compete com o bolso de quem opera a aquisição. É a peça que faz o resto se sustentar.</td></tr><tr><td><b>Agilidade e controle</b></td><td>A portabilidade entre planos exigia cinco assinaturas em série, nenhuma delas por exigência do regulador.</td><td>Cada aprovação retirada aumenta a velocidade e desloca risco para quem executa.</td><td>A matriz de delegação em sete níveis foi a resposta: substituir acúmulo de aprovador por alçada escrita, com o risco declarado por faixa de valor.</td></tr></tbody></table></div>
+<h3 style="border-left:4px solid var(--z2);padding-left:12px">Cotidiano</h3><p class="note" style="margin:0 0 10px">Como é trabalhar aqui no dia a dia. É a camada que revela se o desenho pegou ou não.</p><div class="scroll"><table><thead><tr><th style="width:16%">Tema</th><th style="width:26%">Ponto de dor</th><th style="width:26%">Tensão</th><th style="width:32%">Aprofundamento</th></tr></thead><tbody><tr><td><b>Fluxo de informação</b></td><td>A informação circula por mensageria e planilha paralela, e o que não é registrado não existe para a gestão.</td><td>Formalizar o fluxo aumenta a rastreabilidade e é lido como burocracia por quem já resolve na conversa.</td><td>O sistema de gestão em 16 ritos existe para dar à informação um caminho oficial tão rápido quanto o informal, com pauta e evidência por rito.</td></tr><tr><td><b>Saúde mental e clima</b></td><td>Sobrecarga concentrada em poucas pessoas, com a frase de que se alguém sumir por um mês a operação vira caos.</td><td>Quem sustenta a operação ganha reconhecimento por isso, e o alívio da carga ameaça essa identidade.</td><td>É o ganho oculto mapeado no Mapa de Dores: ser insubstituível dá identidade. Retirar a sobrecarga sem devolver outro tipo de valor gera resistência.</td></tr><tr><td><b>Silos, territórios e identidades</b></td><td>Sete das doze áreas executoras não têm cargo formal na estrutura, e a fronteira entre as duas de ponta não existe.</td><td>Reagrupar por natureza de decisão atravessa territórios estabelecidos e tira escopo de quem hoje o detém.</td><td>O bloco de Movimentação e Saída nasce disso: ele recorta processos que hoje moram em áreas diferentes, e é a mudança politicamente mais cara do desenho.</td></tr><tr><td><b>Reconhecimento e carreira</b></td><td>Boa parte do esforço está em nível assistente e uma parcela relevante de especialista é gasta em tarefa de apoio.</td><td>Devolver o especialista à atividade de valor exige que alguém assuma a tarefa de apoio, e o caminho de carreira para esse alguém não está desenhado.</td><td>A arquitetura de cargos e papéis foi o instrumento: nomear o que cada nível decide e entrega, para que a trilha exista antes de a carga migrar.</td></tr></tbody></table></div>
+<h3 style="border-left:4px solid var(--z1);padding-left:12px">Regras do jogo</h3><p class="note" style="margin:0 0 10px">O que vale, quem decide e como as coisas realmente acontecem. É a camada que sustenta ou desmonta as outras duas.</p><div class="scroll"><table><thead><tr><th style="width:16%">Tema</th><th style="width:26%">Ponto de dor</th><th style="width:26%">Tensão</th><th style="width:32%">Aprofundamento</th></tr></thead><tbody><tr><td><b>Estratégia e inovação</b></td><td>O produto saiu do mapa estratégico formal e conviveu com subinvestimento crônico em tecnologia, marketing e pessoas.</td><td>Recolocar o produto no mapa disputa espaço com prioridades maiores da companhia, num ciclo de revisão que não é do programa.</td><td>A frente de direção estratégica ficou em dependência declarada da revisão corporativa, com insumo pronto para quando ela abrir.</td></tr><tr><td><b>Liderança e decisão</b></td><td>A decisão sobe quando deveria ficar, e o patrocínio mudou de diretoria dentro da própria fundação do programa.</td><td>Alçada escrita reduz o controle da liderança e aumenta a exposição dela ao erro de quem decide abaixo.</td><td>O mandato foi reapresentado e ratificado pelo novo patrocinador, e a alçada por bloco entrou como entrega, não como recomendação.</td></tr><tr><td><b>Ambiente político e o sistema</b></td><td>A operação vive num sistema associativo com governança própria, dois reguladores distintos e entidades que decidem antes do participante.</td><td>O que é ótimo para a entidade nem sempre é ótimo para quem usa o produto, e o programa responde aos dois.</td><td>O mapa de ecossistema em cinco camadas e o mapa de influência foram construídos para tornar essa disputa visível antes de qualquer decisão de canal.</td></tr></tbody></table></div>
+<div class="note">A camada de estrutura é a que o desenho muda por decisão. A de cotidiano só muda quando a estrutura nova sobrevive ao terceiro mês, que é onde a medição de reincidência entra. A de regras do jogo é a mais lenta das três, porque depende de instâncias que estão fora do programa.</div>
+</section>
+<!-- ============================== NEG -->
+<section id="neg"><h2><span class="n">07</span>A transformação de negócio</h2>
+<p>A lente de negócio respondeu a mesma pergunta estratégica por outro caminho: como o portfólio cria,
+entrega e captura valor, e o que muda quando a permanência passa a valer mais que a captação.</p>
+<div class="scroll"><table><thead><tr><th>Dimensão</th><th>Antes</th><th>Depois</th></tr></thead><tbody>
+<tr><td><b>Tese de crescimento</b></td><td>Captar mais, pelo canal que já existe</td><td>Reter mais, porque a receita é anuidade sobre estoque e o real que sai custa todos os anos seguintes</td></tr>
+<tr><td><b>Portfólio</b></td><td>Duas portas regulatórias operando como negócios vizinhos</td><td>Portfólio único, com o melhor de cada porta levado à outra e proposta de valor por segmento</td></tr>
+<tr><td><b>Canal</b></td><td>Dependência do intermediário, com comissão de entrada que pode alcançar a primeira contribuição inteira</td><td>18 canais com decisão declarada, canal de afinidade próprio como prioritário e balcão bancário excluído por escrito</td></tr>
+<tr><td><b>Incentivo</b></td><td>Prêmio na originação, com o mesmo intermediário portando a reserva para fora depois da carência</td><td>Incentivo migrando da entrada para a manutenção de reserva</td></tr>
+<tr><td><b>Funil</b></td><td>Leitura única de aquisição</td><td>Cinco etapas por quatro linhas de produto, com gancho, indicador e vazamento próprios por linha</td></tr>
+<tr><td><b>Oferta</b></td><td>Praticamente toda em acumulação, como o setor</td><td>Esteira de renda em modelagem, atacando o maior vazio competitivo do mercado</td></tr>
+<tr><td><b>Decisão de rumo</b></td><td>Ausente. O plano era o fim</td><td>Perseverar, ajustar ou pivotar a cada giro, com critério escrito por saída</td></tr>
+</tbody></table></div>
+<div class="quote">O programa entrou para vender melhor e saiu para reter melhor. A leitura de futuro não
+mudou a tese: datou a tese.<span class="who">Reenquadramento do negócio</span></div>
+</section>
+
+<!-- ============================== FUNDAMENTAÇÃO -->
+<section id="fund"><h2><span class="n">08</span>Fundamentação</h2>
+<p>O roteiro compõe conhecimento a partir de métodos emergentes e consolidados, agrupados aqui pela função que cada família cumpre no percurso.</p>
+<div class="fgrid">
+<div class="fgrp" style="--c:var(--z1)"><div class="fh">Escuta e enquadramento</div>
+<ul>
+<li><b>Teoria U</b> <span class="au">Otto Scharmer</span></li>
+<li><b>Design Thinking</b> <span class="au">Brown, IDEO. Duplo diamante, Design Council</span></li>
+<li><b>Service Design e Service Blueprint</b> <span class="au">Shostack. Stickdorn e Schneider</span></li>
+</ul></div>
+<div class="fgrp" style="--c:var(--z2)"><div class="fh">Futuro e estratégia</div>
+<ul>
+<li><b>Foresight e prospectiva</b> <span class="au">Inayatullah, Voros, Godet, Curry e Hodgson</span></li>
+<li><b>Análise estrutural e MicMac</b> <span class="au">Michel Godet</span></li>
+<li><b>Balanced Scorecard</b> <span class="au">Kaplan e Norton</span></li>
+</ul></div>
+<div class="fgrp" style="--c:var(--z3)"><div class="fh">Negócio e crescimento</div>
+<ul>
+<li><b>Business Design</b> <span class="au">Osterwalder</span></li>
+<li><b>Lean Startup e MVP</b> <span class="au">Eric Ries. Steve Blank</span></li>
+<li><b>Crescimento e canal</b> <span class="au">AARRR, Dave McClure. Kotler</span></li>
+</ul></div>
+<div class="fgrp" style="--c:var(--z4)"><div class="fh">Processo e capacidade</div>
+<ul>
+<li><b>Maturidade de processo</b> <span class="au">PEMM, Michael Hammer. CMMI</span></li>
+<li><b>Pensamento sistêmico</b> <span class="au">Senge. Meadows</span></li>
+<li><b>Complexidade e decisão</b> <span class="au">Cynefin, Snowden. OODA, Boyd. Goldratt. Lean</span></li>
+</ul></div>
+<div class="fgrp" style="--c:#4A6B2A"><div class="fh">Estrutura e governança</div>
+<ul>
+<li><b>Alinhamento estrutural</b> <span class="au">McKinsey 7S. Galbraith</span></li>
+<li><b>Sociocracia</b> <span class="au">Endenburg. Bockelbrink e Priest</span></li>
+<li><b>Holacracia</b> <span class="au">Brian Robertson</span></li>
+<li><b>O2, Organizações Orgânicas</b> <span class="au">Target Teal</span></li>
+<li><b>Topologias de time</b> <span class="au">Skelton e Pais</span></li>
+<li><b>Meta design organizacional</b> <span class="au">Caio Vassão</span></li>
+</ul></div>
+<div class="fgrp" style="--c:#3E5A22"><div class="fh">Mudança e adoção</div>
+<ul>
+<li><b>ADKAR</b> <span class="au">Prosci, Jeff Hiatt</span></li>
+<li><b>Kotter</b> <span class="au">John Kotter</span></li>
+</ul></div>
+</div>
+</section>
+<div class="foot">
+<span>Documento descaracterizado por NDA e LGPD &middot; Eric Leite &middot; Estratégia Organizacional &middot; Case Ressignificar um Produto de Previdência &middot; V3.0 &middot; 4 de agosto de 2026</span>
+<span>Descaracterizado por confidencialidade e proteção de dados. Organização, pessoas e sistemas não identificados.
+Cifras absolutas mascaradas na ordem de grandeza. Percentuais, razões e prazos preservados.</span></div>
+</div></body></html>
