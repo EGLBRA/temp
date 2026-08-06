@@ -1,0 +1,1248 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Sistema de Ritos · Negócio Previdência</title>
+<style>
+:root{--verde:#0097B2;--estr:#5F6470;--tat:#0064BA;--oper:#0097B2;--gov:#2F2E79;
+ --fech:#253F8E;--abrt:#0097B2;--amb:#6b7280;
+ --ok:#253F8E;--vermelho:#B3261E;--azulc:#0064BA;
+ --tinta:#131212;--sec:#5a6068;--linha:#D6E1E5;--fundo:#F4F7F8;--papel:#fff}
+*{box-sizing:border-box}
+body{margin:0;font-family:"Segoe UI",system-ui,-apple-system,Helvetica,Arial,sans-serif;
+ color:var(--tinta);background:var(--fundo);font-size:15px;line-height:1.5}
+header{background:var(--verde);color:#fff;padding:18px 28px 0}
+header h1{margin:0;font-size:23px;font-weight:600}
+header h1 span{color:#B6E6EF;font-weight:300}
+nav{display:flex;gap:2px;flex-wrap:wrap;margin-top:14px}
+nav button{background:rgba(255,255,255,.12);color:#E8F7FA;border:0;border-radius:6px 6px 0 0;
+ padding:9px 18px;font-size:13.5px;cursor:pointer;font-family:inherit}
+nav button:hover{background:rgba(255,255,255,.24);color:#fff}
+nav button.on{background:var(--fundo);color:var(--verde);font-weight:600}
+main{padding:22px 28px 60px}
+h2{font-size:18px;margin:0 0 4px}
+.sub{color:var(--sec);font-size:13.5px;margin:0 0 16px;max-width:1080px}
+.painel{display:none}.painel.on{display:block}
+
+.barra{display:flex;gap:20px;align-items:center;flex-wrap:wrap;margin-bottom:12px}
+.grupo{display:flex;gap:6px;align-items:center;flex-wrap:wrap}
+.grupo>label{font-size:11px;text-transform:uppercase;letter-spacing:.7px;color:var(--sec);margin-right:2px}
+.grupo button{border:1px solid var(--linha);background:var(--papel);border-radius:20px;
+ padding:7px 15px;font-size:13px;cursor:pointer;font-family:inherit;color:var(--sec)}
+.grupo button.on{background:var(--verde);border-color:var(--verde);color:#fff;font-weight:600}
+.grupo .qtd{font-size:12px;opacity:.75;margin-left:6px}
+.zoom{display:flex;gap:8px;align-items:center;font-size:12.5px;color:var(--sec)}
+.zoom input{width:140px;accent-color:var(--verde)}
+.btfit{border:1px solid var(--linha);background:var(--papel);border-radius:20px;padding:6px 14px;
+ font-size:12.5px;cursor:pointer;font-family:inherit;color:var(--sec)}
+.btfit:hover{background:var(--verde);border-color:var(--verde);color:#fff}
+
+/* O palco é uma JANELA de tamanho fixo. A lona tem o tamanho JÁ ESCALADO do
+   diagrama, e é ela que dá a área de rolagem: transform:scale não altera a
+   caixa de layout, então sem a lona o pan não teria para onde ir.          */
+.palco{background:var(--papel);border:1px solid var(--linha);border-radius:10px;overflow:auto;
+ height:74vh;min-height:420px;cursor:grab;user-select:none;overscroll-behavior:contain;touch-action:none}
+.palco.arrastando{cursor:grabbing}
+.palco.arrastando .no{pointer-events:none}
+.lona{position:relative}
+.tela{position:absolute;top:0;left:0;transform-origin:0 0}
+/* ordem de pintura: faixa < seta < card < rótulo. Sem isto a faixa cobre a seta. */
+.tela svg{position:absolute;inset:0;pointer-events:none;z-index:1}
+.no{position:absolute;border:1px solid #d7dbe0;border-left:6px solid;border-radius:8px;background:#fff;
+ padding:10px 13px;font-family:inherit;cursor:pointer;text-align:left;z-index:2;
+ box-shadow:0 2px 5px rgba(0,0,0,.10);color:var(--tinta);overflow:hidden}
+.no:hover{box-shadow:0 5px 16px rgba(0,0,0,.24);z-index:9}
+.no b{display:block;font-weight:600;font-size:15px;line-height:1.15;padding-right:40px}
+.no small{display:block;color:var(--sec);font-size:12px;margin-top:5px;padding-left:38px}
+.no .cif{position:absolute;top:8px;right:11px;font-weight:700;color:var(--ok);letter-spacing:.5px;font-size:13px}
+.no .esc{position:absolute;bottom:10px;left:13px}
+.no .al{position:absolute;bottom:11px;right:12px;width:9px;height:9px;border-radius:50%;background:var(--vermelho)}
+.cifra{font-weight:700;color:var(--ok);letter-spacing:.5px}
+.faixa{position:absolute;border-top:1px dashed;border-bottom:1px dashed;z-index:0}
+.frot{position:absolute;font-size:15px;font-weight:700;letter-spacing:.4px;z-index:1}
+.fdesc{position:absolute;font-size:12px;color:var(--sec);line-height:1.4;z-index:1}
+.grot{position:absolute;font-size:11.5px;font-weight:700;letter-spacing:.6px;text-transform:uppercase;z-index:1}
+.gsep{position:absolute;border-left:1px dashed #9FB3D9;z-index:1}
+.ccab{position:absolute;font-size:13px;font-weight:700;letter-spacing:1px;color:#7d848c;
+ text-transform:uppercase;text-align:center;z-index:1}
+.aresta{fill:none;stroke:#5b626a;stroke-width:1.8}
+.aresta.gov{stroke:var(--fech)}
+.aresta.gva{stroke:var(--abrt)}
+.aresta.tra{stroke-dasharray:6 5}
+.rotcx{position:absolute;text-align:center;font-size:11.5px;line-height:1.25;color:#4d545c;z-index:3;
+ background:#fff;border:1px solid #e2e6ea;border-radius:5px;padding:3px 7px;pointer-events:none}
+.rotcx.gov{color:#2F2E79;border-color:#CBD6EC}
+.rotcx.gva{color:#0064BA;border-color:#C7E7ED}
+.bg{display:inline-block;border-radius:3px;color:#fff;font-size:10px;font-weight:700;
+ padding:1px 6px;letter-spacing:.4px}
+
+.wrap{overflow:auto;max-height:74vh;border:1px solid var(--linha);border-radius:10px;background:var(--papel)}
+table.bp{border-collapse:separate;border-spacing:0;font-size:12.5px;text-align:left}
+table.bp th,table.bp td{border-right:1px solid var(--linha);border-bottom:1px solid var(--linha);
+ padding:9px 11px;vertical-align:top;min-width:230px;max-width:250px;text-align:left}
+table.bp th.lab{position:sticky;left:0;background:#eef0f3;z-index:3;min-width:180px;max-width:180px;
+ font-size:12.5px;font-weight:700;vertical-align:middle;text-align:left}
+table.bp tr.mom td{position:sticky;top:0;z-index:2;color:#fff;font-weight:700;font-size:12.5px;cursor:pointer}
+table.bp tr.mom td:hover{filter:brightness(1.15)}
+table.bp tr.mom th.lab{position:sticky;top:0;left:0;z-index:4;background:#e2e5e9}
+td.ce{background:var(--estr)}td.ct{background:var(--tat)}td.co{background:var(--oper)}td.cg{background:var(--gov)}
+tr.leve td{background:#fafbfc;color:#404040}
+tr.fric td{background:#fdeeee;color:#8a2020}
+tr.boa td{background:#EEF3FB;color:#0064BA}
+tr.opor td{background:#EDF6F8;color:#253F8E}
+tr.flx td{background:#f7f8fa;color:#3c4249}
+tr.tpl td{background:#fbf8ff;color:#4b2a72}
+tr.custo td{background:#EDF6F8;font-weight:700;color:var(--ok);font-size:14px}
+table.bp td.expm{max-width:none;min-width:0;padding:12px 0 10px 0;background:#fff;overflow:visible}
+table.bp ul{margin:0;padding-left:16px}table.bp li{margin:2.5px 0}
+ul.part{list-style:none;padding-left:0}
+ul.part li{margin:3px 0;display:flex;gap:7px;align-items:baseline}
+ul.part li em{font-style:normal;flex:0 0 auto;font-size:12px}
+
+.cards{display:grid;grid-template-columns:repeat(auto-fill,minmax(345px,1fr));gap:14px}
+.card{background:var(--papel);border:1px solid var(--linha);border-left:5px solid;border-radius:9px;padding:15px 17px}
+.card h3{margin:0 0 3px;font-size:15px}
+.card .meta{color:var(--sec);font-size:12px;margin-bottom:9px}
+.card p{margin:0 0 8px;font-size:13.5px}
+.card ul{margin:0;padding-left:17px;font-size:13px;color:#3c4249}
+.tag{display:inline-block;background:#eef0f3;border:1px solid #e3e6ea;border-radius:4px;padding:3px 9px;
+ font-size:11.5px;color:var(--sec);margin:0 5px 5px 0;cursor:pointer;font-family:inherit}
+.tag:hover{background:var(--verde);border-color:var(--verde);color:#fff}
+
+.legbloco{background:var(--papel);border:1px solid var(--linha);border-radius:10px;padding:18px 20px;margin-bottom:16px}
+.legbloco h3{margin:0 0 3px;font-size:15px}
+.legbloco .meta{color:var(--sec);font-size:12.5px;margin-bottom:14px}
+.legrid{display:grid;grid-template-columns:repeat(auto-fill,minmax(250px,1fr));gap:14px}
+.legit{display:flex;gap:10px;align-items:flex-start}
+.legit b{font-weight:600;font-size:14px}
+.legit i{font-style:normal;color:var(--sec);font-size:12.5px;display:block;margin-top:1px}
+.sw{display:inline-block;width:14px;height:14px;border-radius:3px;flex:0 0 auto;margin-top:4px}
+.mk{font-size:16px;line-height:1.1;flex:0 0 auto;margin-top:1px}
+.nota{background:#fff8e6;border-left:4px solid var(--tat);padding:10px 13px;border-radius:0 6px 6px 0;
+ font-size:13px;color:#6b4c00;margin-top:14px}
+
+#fundo{display:none;position:fixed;inset:0;background:rgba(10,20,35,.42);z-index:40}
+#fundo.on{display:block}
+#gaveta{position:fixed;top:0;right:0;height:100%;width:min(600px,95vw);background:var(--papel);
+ z-index:50;transform:translateX(100%);transition:transform .22s ease;overflow-y:auto;
+ box-shadow:-6px 0 26px rgba(0,0,0,.22)}
+#gaveta.on{transform:translateX(0)}
+.gtopo{padding:22px 24px 20px;color:#fff;position:relative}
+.gtopo .tipo{font-size:11px;text-transform:uppercase;letter-spacing:1.1px;opacity:.85}
+.gtopo h3{margin:4px 0 0;font-size:20px;padding-right:34px}
+.gtopo .prop{font-size:13.5px;opacity:.94;margin-top:7px;max-width:470px}
+.ficha{border-top:1px solid rgba(255,255,255,.25);margin-top:14px;padding-top:12px;
+ display:grid;grid-template-columns:120px 1fr;gap:6px 14px;font-size:12.5px}
+.ficha dt{opacity:.72;text-transform:uppercase;font-size:10px;letter-spacing:.7px;padding-top:2px}
+.ficha dd{margin:0}
+.gbody{padding:20px 24px 50px}
+.gsec{margin-bottom:17px}
+.gsec h4{margin:0 0 5px;font-size:10.5px;text-transform:uppercase;letter-spacing:.9px;color:var(--sec)}
+.gsec h4 .cifra{font-size:12px;margin-left:8px;letter-spacing:1px}
+.gsec h4 .cifra em{font-style:normal;color:var(--sec);font-weight:400;letter-spacing:0;margin-left:4px}
+.gsec p{margin:0;font-size:14px}
+.gsec ul{margin:0;padding-left:17px;font-size:14px}
+.gsec li{margin:3px 0}
+.cx{padding:10px 13px;border-radius:7px;font-size:13.5px}
+.cx ul{margin:0;padding-left:17px}
+.cx.f{background:#fdeeee;color:#8a2020}
+.cx.b{background:#EEF3FB;color:#0064BA}
+.cx.o{background:#EDF6F8;color:#253F8E}
+.alerta{background:#fdeeee;border-left:4px solid var(--vermelho);padding:9px 12px;border-radius:0 6px 6px 0;
+ font-size:12.5px;color:#8a2020;margin-top:8px}
+.fechar{position:absolute;top:16px;right:18px;background:rgba(255,255,255,.22);border:0;color:#fff;
+ width:29px;height:29px;border-radius:50%;cursor:pointer;font-size:16px;line-height:1}
+footer{background:var(--verde);color:#CDEBF1;padding:13px 28px;font-size:11.5px;text-align:right}
+@media print{nav,.barra,#gaveta,#fundo{display:none}.wrap{max-height:none}}
+</style>
+</head>
+<body>
+<header>
+  <h1><span>|</span> Sistema de Ritos · Negócio Previdência</h1>
+  <nav>
+    <button class="on" data-p="mapa">Mapa</button>
+    <button data-p="estrutura">Estrutura</button>
+    <button data-p="legenda">Legenda</button>
+    <button data-p="camadas">Camadas</button>
+    <button data-p="gov">Governança</button>
+  </nav>
+</header>
+
+<div style="background:#EFF7F9;border:1px dashed #0097B2;border-radius:6px;
+ padding:12px 18px;margin:0 28px;font-size:12.5px;color:#33474D;line-height:1.6">
+ <b style="color:#253F8E;text-transform:uppercase;letter-spacing:.12em;font-size:10px;display:block;margin-bottom:5px">Confidencialidade e proteção de dados</b>
+ Case de portfólio. Por acordo de confidencialidade e em atenção à Lei Geral de Proteção de Dados,
+ a empresa, as pessoas, os sistemas, os fornecedores, os reguladores e as unidades de negócio não são
+ nomeados, e nenhuma cifra financeira é apresentada. O método, a estrutura de decisão e os achados são os do projeto.</div>
+<main>
+
+<section id="p-mapa" class="painel on">
+  <h2>Mapa do fluxo de informação</h2>
+  <div class="barra">
+    <div class="grupo" id="visoes"></div>
+    <div class="grupo" id="portas"></div>
+    <div class="zoom"><label>Zoom</label><input type="range" id="z" min="20" max="140" value="55"><span id="zv">55%</span>
+      <button id="fit" class="btfit" title="Encaixar o diagrama inteiro">Encaixar</button>
+      <span style="font-size:11px;opacity:.8">ou use o volante do mouse</span></div>
+  </div>
+  <div class="palco"><div class="lona" id="lona"><div class="tela" id="tela"></div></div></div>
+</section>
+
+<section id="p-estrutura" class="painel">
+  <h2>Estrutura</h2>
+  <div class="barra">
+    <div class="grupo" id="visoes3"></div>
+    <div class="grupo" id="portas3"></div>
+  </div>
+  <div class="wrap"><table class="bp" id="bp"></table></div>
+</section>
+
+<section id="p-legenda" class="painel">
+  <h2>Legenda</h2>
+  <div id="leg"></div>
+</section>
+
+<section id="p-camadas" class="painel">
+  <h2>As camadas</h2>
+  <div class="barra">
+    <div class="grupo" id="visoes2"></div>
+    <div class="grupo" id="portas2"></div>
+  </div>
+  <div class="cards" id="cam"></div>
+</section>
+
+<section id="p-gov" class="painel">
+  <h2>Governança: duas portas, dois regimes</h2>
+  <div class="cards" id="gov"></div>
+</section>
+</main>
+
+<footer>CASE DE PORTFÓLIO &nbsp;|&nbsp; CONTEÚDO DESCARACTERIZADO &nbsp;|&nbsp; RESSIGNIFICAR PREVIDÊNCIA &nbsp;|&nbsp; V1.0</footer>
+
+<div id="fundo"></div>
+<aside id="gaveta"><div class="gtopo" id="gtopo"><button class="fechar">&times;</button>
+  <div class="tipo" id="gtipo"></div><h3 id="gnome"></h3><div class="prop" id="gprop"></div>
+  <dl class="ficha" id="gficha"></dl></div><div class="gbody" id="gbody"></div></aside>
+
+<script>
+const COR={"Estratégico":"#5F6470","Tático":"#0064BA","Operacional":"#0097B2","Governança":"#2F2E79"};
+const CLS={"Estratégico":"e","Tático":"t","Operacional":"o","Governança":"g"};
+const ESCP={Fechada:{s:"F",c:"#0097B2"},Aberta:{s:"A",c:"#0064BA"},Ambas:{s:"A+F",c:"#6b7280"}};
+const MK={C:"🔵",K:"⚫",O:"🔘",N:"⚪"};
+const CICLOS=["Anual","Semestral","Trimestral","Mensal","Semanal","Diário"];
+const COLX={Anual:450,Semestral:950,Trimestral:1450,Mensal:1950,Semanal:2450,"Diário":2950};
+const CCABY=285;
+
+/* ---------------- CUSTO DO RITO ----------------
+   A cifra mede o CUSTO DA SALA POR SESSÃO: quem senta, quantos são e por quanto tempo.
+   custo da sessão = Σ(cabeças × senioridade × modo de participação) × horas
+   Conselho e diretoria pesam muito mais que execução, e sala cheia pesa por cabeça.   */
+const MODO={C:1,K:.25,O:.5,N:0};
+const CAB={"Grupo de trabalho":6,"Conselheiros deliberativos":12,"Conselheiros fiscais":3,
+ "Diretoria Executiva":3,"Conselho Fiscal":3,"Superintendência":1};
+const OCOR={"Diário":220,"Semanal":46,"Mensal":12,"Trimestral":4,"Semestral":2,"Anual":1,"a confirmar":4};
+function peso(q){
+  if(/Conselheir|Superintendência|Diretor|Presidente/.test(q))return 10;
+  if(/Gerência|AETQ|ARPB|Superintendente/.test(q))return 6;
+  if(/Coordenação|Compliance|Jurídico|Comercial|Relacionamento|Facilitador|Atuária|Auditoria|BPO|Gestores|Custódia|Decisor|Comunicação|Finanças|Canal externoa|Subscrição/.test(q))return 3;
+  return 1.5;
+}
+function horas(d){
+  if(/1 dia/.test(d))return 8;
+  if(/3h \+ 4h/.test(d))return 7;
+  if(/a confirmar/.test(d))return 2;
+  const m=d.match(/(\d+)h(?:(\d+))?/); if(m)return +m[1]+(m[2]?+m[2]/60:0);
+  const s=d.match(/(\d+)\s*min/); return s?+s[1]/60:1;
+}
+const FAIXA=[[0,"$"],[12,"$$"],[35,"$$$"],[100,"$$$$"]];
+function custo(r){
+  const sala=r.part.reduce((a,[q,m])=>a+(CAB[q]||1)*peso(q)*MODO[m],0);
+  const h=horas(r.dur), ses=OCOR[r.ciclo]||4, sessao=sala*h;
+  let f="$"; FAIXA.forEach(([lim,s])=>{if(sessao>=lim)f=s;});
+  return {sessao:Math.round(sessao),cifra:f,sessoes:ses,h,ano:Math.round(sessao*ses)};
+}
+const CUSTOTXT={"$":"baixo","$$":"moderado","$$$":"alto","$$$$":"muito alto"};
+
+const R=[
+/* ---------- GOVERNANÇA DA FECHADA ---------- */
+{id:"cdel",n:"Conselho Deliberativo",c:"Governança",e:"Fechada",ciclo:"a confirmar",x:450,y:140,niv:1,tipo:"Deliberação",
+ prop:"Órgão máximo da entidade fechada. Delibera a política do plano.",
+ dur:"a confirmar",form:"Presencial",local:"Sede da entidade fechada",facil:"Presidente do Conselho",dono:"Diretoria Executiva",
+ alc:"Política, custeio e investimentos",
+ part:[["Conselheiros deliberativos","C"],["Diretoria Executiva","K"],["Conselho Fiscal","O"],["Negócio Previdência","N"]],
+ ini:["Pauta distribuída no prazo estatutário","Quórum confirmado","Parecer do Conselho Fiscal recebido"],
+ p:["Política geral do plano","Plano de custeio do exercício","Política de investimentos","Fundo de reversão"],
+ ev:["Ata registrada","Deliberação publicada"],
+ sat:["Toda matéria deliberada","Nenhuma matéria adiada","Deliberação executável pela Diretoria"],
+ tpl:"Ata estatutária",
+ fric:["Cadência não documentada","Matéria chega sem parecer prévio","Conselheiro sem tempo de leitura"],
+ boa:["Convocação com 15 dias","Material fechado antes da convocação","Parecer do Conselho Fiscal anexado","Pauta em duas listas, deliberar e informar"],
+ opor:["Publicar o calendário anual das sessões","Separar matéria de deliberação de matéria de informação","Abrir espaço fixo para risco e investimentos"]},
+
+{id:"cfis",n:"Conselho Fiscal",c:"Governança",e:"Fechada",ciclo:"a confirmar",x:950,y:140,niv:1,tipo:"Fiscalização",
+ prop:"Fiscaliza a execução do que o Conselho Deliberativo aprovou.",
+ dur:"a confirmar",form:"Presencial",local:"Sede da entidade fechada",facil:"Presidente do Conselho Fiscal",dono:"Conselho Fiscal",
+ alc:"Parecer sobre contas e ressalvas",
+ part:[["Conselheiros fiscais","C"],["Auditoria independente","K"],["Diretoria Executiva","K"],["Negócio Previdência","N"]],
+ ini:["Demonstrações do período encerradas","Relatório da auditoria recebido"],
+ p:["Contas do período","Aderência ao que foi deliberado","Emissão de parecer"],
+ ev:["Parecer emitido","Ressalvas registradas com prazo"],
+ sat:["Parecer conclusivo","Toda ressalva com prazo e responsável"],
+ tpl:"Parecer estatutário",
+ fric:["Cadência não documentada","Parecer emitido em cima do prazo","Ressalva sem acompanhamento no ciclo seguinte"],
+ boa:["Auditoria presente na sessão","Ressalvas do ciclo anterior revistas na abertura","Calendário casado com o do Conselho Deliberativo"],
+ opor:["Manter um painel vivo de ressalvas em aberto","Fechar a sessão com o parecer redigido","Antecipar a leitura das demonstrações"]},
+
+{id:"dexe",n:"Diretoria Executiva",c:"Governança",e:"Fechada",ciclo:"a confirmar",x:1450,y:140,niv:1,tipo:"Execução",
+ prop:"Executa o deliberado e presta contas ao regulador previdenciário.",
+ dur:"a confirmar",form:"Presencial",local:"Sede da entidade fechada",facil:"Superintendente",dono:"Superintendente",
+ alc:"Execução dentro da política vigente",
+ part:[["Superintendente","C"],["AETQ, investimentos","C"],["ARPB, benefícios","C"],["Negócio Previdência","K"]],
+ ini:["Deliberação vigente","Números do período encerrados"],
+ p:["Execução do deliberado","Investimentos e ALM","Planos de benefícios"],
+ ev:["Prestação de contas","Relatório ao regulador"],
+ sat:["Conselho Fiscal sem ressalva","Obrigação regulatória entregue no prazo"],
+ tpl:"Relatório de execução",
+ fric:["Cadência não documentada","Pauta dominada pelo operacional do mês","Decisão sem registro rastreável"],
+ boa:["Bloco fixo para obrigação regulatória","Ata com decisão, responsável e prazo","Negócio Previdência convidada quando o tema é da gerência"],
+ opor:["Painel único de obrigações com prazo","Separar execução de deliberação na pauta","Dar visibilidade das decisões à gerência"]},
+
+/* ---------- GOVERNANÇA DA ABERTA ---------- */
+{id:"govab",n:"Diretoria Responsável",c:"Governança",e:"Aberta",ciclo:"a confirmar",x:2450,y:140,niv:1,tipo:"Execução",
+ prop:"Responde pela entidade aberta perante o regulador de seguros, e acompanha os controles internos.",
+ dur:"a confirmar",form:"Presencial",local:"Sede do negócio",facil:"Diretor responsável",dono:"Diretor responsável",
+ alc:"Decisão de produto e conduta da entidade aberta",
+ part:[["Diretor responsável","C"],["Superintendência","C"],["Compliance","C"],["Controles internos","C"],["Atuária","K"],["Negócio Previdência","K"]],
+ ini:["Números do período encerrados","Pendências regulatórias mapeadas"],
+ p:["Resultado da carteira","Conduta e produto","Exigências abertas no regulador","Apontamentos de controle interno em aberto"],
+ ev:["Decisão registrada em ata","Reporte ao regulador"],
+ sat:["Nenhuma exigência em atraso","Nenhum apontamento de controle vencido","Decisão registrada"],
+ tpl:"Ata de diretoria",
+ fric:["Governança da aberta pouco formalizada","Decisão de produto sem atuária na sala","Sem colegiado, a decisão depende de uma pessoa"],
+ boa:["Atuária e compliance sempre convocados","Pauta fixa de exigências abertas","Registro em ata mesmo sem obrigação estatutária"],
+ opor:["Formalizar cadência e ata, como na fechada","Criar um comitê consultivo de produto","Dar rastro às decisões de conduta"]},
+
+{id:"estrat",n:"Estratégia da Previdência",c:"Estratégico",e:"Ambas",ciclo:"Anual",x:450,y:370,niv:1,tipo:"Planejamento",
+ prop:"Define onde a Negócio Previdência quer chegar e o que sai do portfólio. Trata do rumo, nunca de entrega.",
+ dur:"1 dia",form:"Presencial",local:"Sala de imersão, fora do escritório",facil:"Facilitador externo",dono:"Superintendência",
+ alc:"Define temas e encerra iniciativas",
+ part:[["Superintendência","C"],["Gerência","C"],["Coordenação","K"],["Comercial","K"],["Grupo de trabalho","N"]],
+ ini:["Ano anterior encerrado","Leitura de mercado consolidada","Diretriz do Conselho recebida"],
+ p:["Ambição do período","North Star do ano, com objetivo e KR","Temas estratégicos que sustentam a Visão SU","Portfólio: o que entra e o que sai"],
+ ev:["Mapa estratégico publicado","Temas do ano com responsável"],
+ sat:["A gerência inteira sabe os temas do ano","Cada tema com responsável","Descontinuação declarada"],
+ tpl:"Mapa estratégico",
+ fric:["Ausência de leitura de mercado","Vira lista de projetos em vez de rumo","Sai sem declarar o que será encerrado"],
+ boa:["Facilitador externo, não o gestor","Reserva de agenda com 2 meses","Leitura de mercado distribuída 1 semana antes","Fora do escritório, dia inteiro"],
+ opor:["Fechar o dia com o portfólio de saída explícito","Trazer a voz do cliente para a mesa","Amarrar cada tema a um responsável antes de encerrar"]},
+
+{id:"qbr",n:"QBR, revisão do trimestre",c:"Estratégico",e:"Ambas",ciclo:"Trimestral",x:1450,y:370,niv:1,tipo:"Revisão",risco:1,
+ prop:"Avalia quanto do OKR virou resultado e repriorizada o trimestre. O QBR que abre o semestre define os OKRs.",
+ dur:"3h",form:"Remoto síncrono",local:"Remoto, link na agenda",facil:"Coordenação",dono:"Gerência",
+ alc:"Repactua OKR e prioridade do trimestre",
+ part:[["Gerência","C"],["Coordenação","C"],["Superintendência","O"],["Finanças","K"],["Comercial","K"],["Grupo de trabalho","K"]],
+ ini:["Indicadores do trimestre consolidados","Três MBRs realizados","Riscos atualizados"],
+ p:["Quanto do OKR virou valor entregue","O que repriorizar no trimestre que começa","OKRs do semestre, quando abre o semestre","Riscos e dependências que travam o próximo ciclo"],
+ ev:["Ata com OKRs repactuados","Prioridades do trimestre registradas","Planograma do semestre, quando abre o semestre"],
+ sat:["Prioridade do trimestre seguinte acordada","Iniciativa descontinuada declarada","Risco alto com responsável"],
+ tpl:"Deck do QBR",
+ fric:["Apresentação sem decisão","Tempo todo gasto no retrospecto, nada no que vem","Quem decide entra só no final"],
+ boa:["Material circulado 3 dias antes","Metade do tempo reservada para decidir, não para apresentar","Superintendência confirmada na agenda","Lista de decisões aberta desde o início"],
+ opor:["Fechar sempre com a lista de decisões lida em voz alta","Levar ao Fórum Estratégico o que não couber","Encerrar iniciativa sem retorno na própria sessão"]},
+
+{id:"dirfin",n:"Diretoria e Finanças",c:"Estratégico",e:"Ambas",ciclo:"Mensal",x:1950,y:370,niv:2,tipo:"Revisão",
+ prop:"Aprova orçamento e decisões que dependem da diretoria.",
+ dur:"1h30",form:"Presencial",local:"Sala da diretoria",facil:"Finanças",dono:"Gerência",
+ alc:"Aprova despesa e investimento da área",
+ part:[["Superintendência","C"],["Gerência","C"],["Finanças","C"],["Coordenação","K"],["Comercial","O"]],
+ ini:["MBR do mês encerrado","Números conciliados com Finanças","Pleitos formalizados por escrito"],
+ p:["Receita, custo e margem do mês","Orçado contra realizado","Novos negócios e pleitos"],
+ ev:["Ata com aprovação e valor","Decisões com prazo"],
+ sat:["Decisão tomada, não adiada","Todo pleito respondido"],
+ tpl:"Uma página por pleito",
+ fric:["Número sem conciliação","Pleito apresentado de improviso","Decisão empurrada para o mês seguinte"],
+ boa:["Números conciliados com Finanças antes da sessão","Uma página por pleito, enviada na véspera","Pleito sem página não entra na pauta"],
+ opor:["Padronizar a página de pleito","Fechar o mês com todo pleito respondido, mesmo que negado","Publicar o orçado contra realizado para a equipe"]},
+
+{id:"forum",n:"Fórum Estratégico",c:"Estratégico",e:"Ambas",ciclo:"Trimestral",x:1450,y:590,niv:1,tipo:"Deliberação",
+ prop:"Decide o tema estruturante que não coube no QBR.",
+ dur:"1h30",form:"Remoto síncrono",local:"Remoto, link na agenda",facil:"Coordenação",dono:"Gerência",
+ alc:"Decide o tema estruturante convocado",
+ part:[["Gerência","C"],["Decisor do tema","C"],["Superintendência","O"],["Coordenação","K"],["Grupo de trabalho","N"]],
+ ini:["Tema formalizado pelo QBR","Opções e custo levantados","Quem decide confirmado na agenda"],
+ p:["Tema deixado em aberto pelo QBR","Opções, custo e impacto","Decisão e prazo"],
+ ev:["Decisão registrada","Material do tema arquivado"],
+ sat:["Decisão tomada na própria sessão","Frente destravada"],
+ tpl:"Uma página por tema",
+ fric:["Convocação sem material prévio","Convocar sem quem decide","Vira debate aberto sem opções fechadas"],
+ boa:["Um tema por sessão, nunca dois","Quem decide confirma presença antes da convocação","Opções fechadas e precificadas na véspera","Convocar só quando houver tema, não por calendário"],
+ opor:["Usar como válvula do QBR, evitando que a decisão espere um trimestre","Registrar a opção descartada e o motivo","Medir quantos temas saem decididos na própria sessão"]},
+
+{id:"invest",n:"Investimentos e ALM",c:"Estratégico",e:"Fechada",ciclo:"Mensal",x:1950,y:590,niv:2,tipo:"Revisão",novo:1,
+ prop:"Acompanha gestores, custódia e casamento de ativo e passivo.",
+ dur:"2h",form:"Híbrida",local:"Sede da entidade fechada e remoto",facil:"AETQ",dono:"Diretoria Executiva",
+ alc:"Realocação dentro da política vigente",
+ part:[["AETQ","C"],["Diretoria Executiva","C"],["Gestores de ativos","K"],["Custódia","K"],["Negócio Previdência","K"],["Conselho Deliberativo","O"]],
+ ini:["Carteira do mês encerrada","Cota apurada e conferida","Política de investimentos vigente"],
+ p:["Retorno por perfil de investimento","Aderência à política e enquadramento","Casamento de ativo e passivo"],
+ ev:["Ata de investimentos","Enquadramento registrado"],
+ sat:["Todo desenquadramento com prazo de correção","Retorno explicado por perfil"],
+ tpl:"Relatório de investimentos",
+ fric:["Gestor terceirizado sem contraditório","Sessão longa dominada por apresentação de gestor","Enquadramento discutido sem o passivo na mesa"],
+ boa:["Um gestor por sessão, em rodízio","Relatório consolidado pela AETQ, não pelo gestor","ALM sempre na pauta, mesmo em mês tranquilo","Duas horas com pauta cronometrada"],
+ opor:["Traduzir o retorno por perfil em linguagem de participante","Comparar gestores lado a lado, no mesmo formato","Antecipar o efeito do passivo na alocação"]},
+
+/* ---------- TÁTICO ---------- */
+{id:"plantri",n:"Planejamento Trimestral",c:"Tático",e:"Ambas",ciclo:"Trimestral",x:1450,y:850,niv:1,tipo:"Planejamento",
+ prop:"Prioriza as entregas do trimestre. Trata de entrega, não de rumo.",
+ dur:"3h",form:"Remoto síncrono",local:"Remoto com o quadro em tela",facil:"Coordenação",dono:"Coordenação",
+ alc:"Sequência e alocação das entregas do trimestre",
+ part:[["Coordenação","C"],["Grupo de trabalho","C"],["Gerência","C"],["Comercial","K"],["Relacionamento","K"],["Facilitador","O"]],
+ ini:["Prioridades do trimestre recebidas do QBR","Capacidade da equipe apurada pela Operação","Backlog limpo"],
+ p:["Entregas do trimestre em ordem de prioridade","Quem faz o quê, por entrega","Dependência entre entregas e com terceiros","O que não cabe e fica declarado fora"],
+ ev:["Entregas priorizadas no quadro","Responsável por entrega","Lista do que ficou fora do trimestre"],
+ sat:["Toda entrega com responsável","Trimestre cabe na capacidade apurada","Time sabe o que não vai ser feito"],
+ tpl:"Quadro do trimestre",
+ fric:["Confundir com a Estratégia da Previdência, que trata de rumo","Planejar sem a capacidade real na mesa","Sair sem declarar o que ficou fora"],
+ boa:["Quadro em tela do início ao fim","Capacidade apurada pela Operação antes da sessão","Reserva de agenda 2 semanas antes","Todo o time presente, não só a coordenação"],
+ opor:["Tornar visível o que ficou fora, e não só o que entrou","Fechar o trimestre com dependências nomeadas","Comparar o planejado com o realizado no QBR seguinte"]},
+
+{id:"mbr",n:"MBR, revisão do mês",c:"Tático",e:"Ambas",ciclo:"Mensal",x:1950,y:850,niv:1,tipo:"Revisão",
+ prop:"Lê o ritmo real da esteira e ajusta o plano do mês contra o resultado apurado.",
+ dur:"2h",form:"Remoto síncrono",local:"Remoto, link na agenda",facil:"Coordenação",dono:"Gerência",
+ alc:"Ação corretiva dentro do plano aprovado",
+ part:[["Gerência","C"],["Coordenação","C"],["Superintendência","O"],["Finanças","K"],["Comercial","K"],["Grupo de trabalho","K"]],
+ ini:["Indicadores do mês fechados","Série histórica da operação disponível","Plano comercial do mês recebido"],
+ p:["Entregas, prazo, fila e retrabalho","Resultado do mês contra o plano","Desvio e ação corretiva","Riscos que mudaram de patamar"],
+ ev:["Plano do mês ajustado","Ações com responsável e prazo"],
+ sat:["Todo desvio com ação corretiva","Plano do mês seguinte definido"],
+ tpl:"Painel mensal fixo",
+ fric:["Desvio sem ação corretiva","Painel montado na véspera, com número frio","Discussão de causa que consome o tempo da decisão"],
+ boa:["Painel sempre no mesmo formato, mês a mês","Números fechados 2 dias antes","Cada desvio sai com ação, responsável e prazo","Causa raiz vai para a Retrospectiva, não para o MBR"],
+ opor:["Automatizar o painel a partir do quadro de gestão","Reservar o último bloco só para decisões","Ligar o desvio recorrente à Retrospectiva da Gerência"]},
+
+{id:"imp01",n:"Impedimentos",c:"Tático",e:"Ambas",ciclo:"Semanal",x:2450,y:850,niv:1,tipo:"Deliberação",
+ prop:"Destrava o que a equipe não resolve na própria alçada, com escalada no mesmo fórum.",
+ dur:"30 min",form:"Remoto síncrono",local:"Remoto, link na agenda",facil:"Coordenação",dono:"Coordenação",
+ alc:"Realoca pessoa e prazo; escala orçamento e terceiros",
+ part:[["Coordenação","C"],["Grupo de trabalho","C"],["Gerência","C"],["Superintendência","O"],["Facilitador","O"]],
+ ini:["Impedimento registrado no quadro","Tentativa de solução já feita pela equipe","Entrega afetada identificada"],
+ p:["Impedimentos fora da alçada da equipe","O que a coordenação resolve agora","O que depende de orçamento, prioridade ou terceiro"],
+ ev:["Registro com responsável e prazo","Decisão de escalada registrada"],
+ sat:["Nenhum impedimento sem encaminhamento","Escalada sempre formalizada"],
+ tpl:"Coluna de impedimentos no quadro",
+ fric:["Tarefa registrada como impedimento","Item volta toda semana sem avançar","Escalada informal, por mensagem, sem registro"],
+ boa:["Fila lida na ordem de impacto na entrega","Item com mais de 2 semanas sobe automaticamente","Definição escrita do que é impedimento, visível no quadro"],
+ opor:["Medir o tempo médio de vida do impedimento","Classificar por causa e atacar a mais frequente","Encerrar a sessão quando a fila zerar, sem preencher tempo"]},
+
+{id:"reuger",n:"Reunião Geral",c:"Tático",e:"Ambas",ciclo:"Trimestral",x:1450,y:1070,niv:2,tipo:"Colaboração",risco:1,
+ prop:"Alinha toda a equipe na mesma leitura do período.",
+ dur:"1h",form:"Híbrida",local:"Auditório e remoto",facil:"Comunicação",dono:"Gerência",
+ alc:"Comunica o decidido, não decide",
+ part:[["Superintendência","C"],["Gerência","C"],["Coordenação","C"],["Grupo de trabalho","C"],["Comercial","C"],["Relacionamento","C"],["Facilitador","O"]],
+ ini:["QBR realizado","Material revisado pela gerência","Perguntas da equipe recolhidas antes"],
+ p:["Onde estamos no ano","Resultado do trimestre e o que muda","Reconhecimento de entregas","Perguntas abertas da equipe"],
+ ev:["Gravação publicada","Perguntas respondidas por escrito"],
+ sat:["Toda pergunta respondida","Mesma mensagem em toda a equipe"],
+ tpl:"Deck da Reunião Geral",
+ fric:["Comunicação sem devolutiva","Tempo todo em slide, nenhum em pergunta","Quem está remoto participa menos que quem está na sala"],
+ boa:["Perguntas recolhidas de forma anônima antes","Último terço reservado para perguntas","Um facilitador cuida do canal remoto","Gravação publicada no mesmo dia"],
+ opor:["Responder por escrito o que não couber no tempo","Abrir espaço fixo de reconhecimento por entrega","Medir presença e participação, não só presença"]},
+
+{id:"comercial",n:"Comercial e Canal",c:"Tático",e:"Ambas",ciclo:"Mensal",x:1950,y:1070,niv:2,tipo:"Revisão",
+ prop:"Define a meta por canal, gere o canal externo e confere se a esteira absorve.",
+ dur:"1h30",form:"Remoto síncrono",local:"Remoto, link na agenda",facil:"Comercial",dono:"Comercial",
+ alc:"Redistribui meta entre canais",
+ part:[["Gerência","C"],["Comercial","C"],["Relacionamento","C"],["Coordenação","K"],["Finanças","K"],["Grupo de trabalho","N"]],
+ ini:["Funil atualizado","Produção do mês encerrada","Capacidade da esteira informada pela Operação"],
+ p:["Instituidoras, coletivos e canal externo","Produção e ativação por parceiro","Meta por canal no mês que começa","Se a esteira absorve a meta"],
+ ev:["Plano comercial do mês","Funil por estágio publicado"],
+ sat:["Meta com responsável por canal","Meta compatível com a esteira"],
+ tpl:"Funil por canal",
+ fric:["Meta acima da capacidade","Funil desatualizado","Aberta e fechada discutidas como se fossem um funil só"],
+ boa:["Capacidade da esteira trazida pela Operação, por escrito","Funil por porta, nunca somado","Funil fechado na véspera","Meta sai com responsável nomeado"],
+ opor:["Confrontar meta e esteira antes de assumir com a diretoria","Trazer a Voz do Cliente para explicar a perda","Testar canal alternativo ao parceiro de canal no rede associada"]},
+
+{id:"cross",n:"Sincronia e Voz do Cliente",c:"Tático",e:"Ambas",ciclo:"Semanal",x:2450,y:1070,niv:3,tipo:"Colaboração",
+ prop:"Alinha o vendido, o entregue e o reclamado. Uma vez por mês lê a causa raiz da reclamação.",
+ dur:"45 min",form:"Remoto síncrono",local:"Remoto, link na agenda",facil:"Coordenação",dono:"Relacionamento",
+ alc:"Acordo operacional entre as três frentes",
+ part:[["Operação","C"],["Comercial","C"],["Relacionamento","C"],["Coordenação","O"],["Grupo de trabalho","K"],["Gerência","N"]],
+ ini:["Fila da operação atualizada","Funil atualizado","Reclamações da semana compiladas"],
+ p:["O que foi vendido contra o que a esteira entregou","Reclamação recorrente da semana","Combinado da semana entre as três frentes"],
+ ev:["Acordo registrado","Itens escalados a impedimentos"],
+ sat:["Mesmo combinado nas três frentes","Toda reclamação com responsável"],
+ tpl:"Painel de três colunas",
+ fric:["Ausência de decisor na sessão","Vira troca de acusações entre frentes","Acordo verbal que ninguém registra"],
+ boa:["Uma pessoa por frente, com mandato para acordar","Painel de três colunas montado antes","Acordo escrito durante a sessão","45 minutos cronometrados"],
+ opor:["Transformar o padrão de reclamação em pauta da Voz do Cliente","Escalar cedo o que não se resolve entre as frentes","Medir quantos acordos sobrevivem à semana"]},
+
+{id:"eprev",n:"Fila da Aberta",c:"Tático",e:"Aberta",ciclo:"Semanal",x:2450,y:1290,niv:2,tipo:"Revisão",novo:1,
+ prop:"Trata as duas filas que só a porta aberta tem: chamado de sistema e risco de subscrição.",
+ dur:"45 min",form:"Remoto síncrono",local:"Remoto, link na agenda",facil:"Coordenação",dono:"Coordenação",
+ alc:"Ordena a fila de chamado da semana",
+ part:[["Coordenação","C"],["Tecnologia","C"],["Operação","C"],["Subscrição","C"],["Jurídico","K"],["Comercial","K"],["Gerência","O"]],
+ ini:["chamado da semana triados","Backlog atualizado","Fila de DPS e sinistros avisados listada"],
+ p:["chamado abertos na semana","Backlog de evolução do sistema de emissão","Propostas paradas em DPS","Sinistro e pecúlio da semana"],
+ ev:["Fila priorizada","Demandas com prazo acordado"],
+ sat:["Nenhum chamado sem triagem","Nenhuma proposta parada sem justificativa","Sinistro dentro do prazo regulatório"],
+ tpl:"Fila priorizada",
+ fric:["Demanda acumulada sem priorização","Tecnologia entra sem capacidade declarada","Urgência do dia atropela a fila acordada"],
+ boa:["Tecnologia traz a capacidade da sprint por escrito","Impacto declarado por demanda, em número","Fila fechada ao final e não reaberta na semana","Backlog visível para as duas partes"],
+ opor:["Atacar a causa dos chamado recorrentes, não só a fila","Priorizar a integração sistema de venda e sistema de emissão de uma vez","Medir a idade média do backlog"]},
+
+{id:"evertec",n:"Governança do BPO",c:"Tático",e:"Fechada",ciclo:"Mensal",x:1950,y:1290,niv:2,tipo:"Revisão",novo:1,
+ prop:"Acompanha o BPO de administração, folha e boleto da fechada.",
+ dur:"1h30",form:"Remoto síncrono",local:"Remoto, link na agenda",facil:"Coordenação",dono:"Gerência",
+ alc:"Repriorização do backlog do contrato",
+ part:[["Coordenação","C"],["BPO, fornecedor","C"],["Operação","C"],["Gerência","K"],["Compliance","O"],["Diretoria Executiva","O"]],
+ ini:["Chamados do mês consolidados","SLA do contrato apurado","Pendências do mês anterior conferidas"],
+ p:["SLA do contrato no mês","Fila de chamados e reincidência","Backlog de evolução do sistema","Risco de continuidade do fornecedor"],
+ ev:["Ata com pendências e prazos","Plano de ação do fornecedor"],
+ sat:["Todo desvio de SLA com plano","Backlog repriorizado e acordado"],
+ tpl:"Painel de SLA do contrato",
+ fric:["Dependência de fornecedor único","SLA apurado pelo próprio fornecedor","Sessão vira apresentação comercial"],
+ boa:["SLA apurado pela Negócio Previdência, não pelo fornecedor","Pendências do mês anterior abrem a pauta","Reincidência tratada como item próprio","Ata assinada pelas duas partes"],
+ opor:["Usar o contrato como alavanca de prazo","Mapear o risco de continuidade e o plano de saída","Medir reincidência, não só volume de chamados"]},
+
+{id:"produto",n:"Produto e Regulatório",c:"Tático",e:"Aberta",ciclo:"Trimestral",x:1450,y:1290,niv:2,tipo:"Revisão",novo:1,
+ prop:"Cuida do produto registrado, da nota técnica e da norma nova antes do prazo do regulador.",
+ dur:"2h",form:"Remoto síncrono",local:"Remoto, link na agenda",facil:"Atuária",dono:"Gerência",
+ alc:"Ajuste de produto dentro do já registrado",
+ part:[["Atuária","C"],["Gerência","C"],["Comercial","C"],["Compliance","K"],["Jurídico","K"],["Coordenação","O"]],
+ ini:["Carteira por produto apurada","Processos no regulador em aberto listados","Demanda de produto vinda do comercial"],
+ p:["Desempenho por produto","Taxa de carregamento e de gestão","Nota técnica, tábua e juros","Norma nova por regulador e o que muda em processo","Produto novo ou alteração a submeter"],
+ ev:["Decisão de produto registrada","Protocolo no regulador quando houver submissão"],
+ sat:["Nenhum processo no regulador parado por falta nossa","Preço e taxa revisados no ciclo"],
+ tpl:"Ficha de produto",
+ fric:["Produto decidido sem atuária na sala","Taxa comparada com o mercado só quando o cliente reclama","Processo regulador de seguros parado por pendência interna"],
+ boa:["Atuária conduz, o comercial traz a demanda","Comparativo de taxas do mercado atualizado no ciclo","Processos no regulador em aberto abrem a pauta","Decisão sempre com nota técnica anexada"],
+ opor:["Revisar preço antes do concorrente","Usar a Voz do Cliente para pautar o produto","Preparar terreno para as novas regras de renda"]},
+
+/* ---------- OPERACIONAL ---------- */
+{id:"abert",n:"Abertura da Semana",c:"Operacional",e:"Ambas",ciclo:"Semanal",x:2450,y:1520,niv:1,tipo:"Planejamento",
+ prop:"Combina a semana e distribui as prioridades.",
+ dur:"1h",form:"Remoto síncrono",local:"Remoto com o quadro em tela",facil:"Coordenação",dono:"Coordenação",
+ alc:"Distribui o trabalho dentro da semana",
+ part:[["Coordenação","C"],["Grupo de trabalho","C"],["Facilitador","O"],["Gerência","N"]],
+ ini:["Fechamento da semana anterior realizado","Prioridades do mês recebidas do MBR","Quadro atualizado"],
+ p:["Replanejamento do saldo da semana anterior","Distribuição das entregas por responsável","Capacidade real da semana"],
+ ev:["Quadro com responsável por entrega","Itens que ninguém assumiu registrados"],
+ sat:["Cada entrega com responsável","Semana compatível com a capacidade"],
+ tpl:"Quadro da semana",
+ fric:["Compromisso acima da capacidade","Férias e ausências entram na conta tarde demais","Saldo da semana anterior é ignorado"],
+ boa:["Ausências da semana declaradas na abertura","Quadro em tela, ninguém fala de memória","Saldo anterior entra antes de qualquer item novo","Uma hora fixa, sempre no mesmo horário"],
+ opor:["Explicitar a capacidade antes de assumir compromisso","Registrar o item que ninguém assumiu, em vez de deixá-lo sumir","Encurtar para 45 minutos quando o saldo for baixo"]},
+
+{id:"daily",n:"Daily",c:"Operacional",e:"Ambas",ciclo:"Diário",x:2950,y:1520,niv:1,tipo:"Evolução",risco:1,
+ prop:"Destrava o dia. Não é reporte de status.",
+ dur:"15 min",form:"Remoto síncrono",local:"Remoto com o quadro em tela",facil:"Grupo de trabalho",dono:"Grupo de trabalho",
+ alc:"Ajuste de foco do próprio dia",
+ part:[["Grupo de trabalho","C"],["Coordenação","O"],["Gerência","N"]],
+ ini:["Quadro atualizado antes da sessão"],
+ p:["O que avançou desde ontem","O que está travando hoje","Entregas em foco no dia"],
+ ev:["Impedimento registrado com responsável","Quadro movimentado"],
+ sat:["Nenhum impedimento sem encaminhamento","Concluída em 15 minutos"],
+ tpl:"Quadro do time",
+ fric:["Reporte de status à gestão","Discussão técnica que devia sair da sessão","Passa de 15 minutos e vira reunião"],
+ boa:["A equipe conduz, a coordenação só ouve","Assunto técnico sai para conversa depois da daily","Cronômetro visível, 15 minutos","Quadro em tela, sempre"],
+ opor:["Encerrar antes do tempo quando não houver trava","Levar ao Impedimentos o que a equipe não resolve no dia","Medir quantas dailies passam do tempo"]},
+
+{id:"retrot",n:"Retrospectiva",c:"Operacional",e:"Ambas",ciclo:"Mensal",x:1950,y:1740,niv:2,tipo:"Time",
+ prop:"Melhora o modo de trabalhar. A cada trimestre a sessão é ampliada à gerência inteira.",
+ dur:"1h30",form:"Remoto síncrono",local:"Remoto com quadro colaborativo",facil:"Facilitador do time",dono:"Facilitador do time",
+ alc:"Melhorias de processo da equipe",
+ part:[["Grupo de trabalho","C"],["Facilitador","C"],["Coordenação","C"],["Gerência","O"],["Comercial","O"],["Relacionamento","O"]],
+ ini:["Métricas do ciclo disponíveis","Melhorias do mês anterior conferidas"],
+ p:["Métricas do ciclo lidas pela própria equipe","Tema que não aparece na daily","Uma ou duas melhorias para o mês"],
+ ev:["Melhorias com responsável","Tensões registradas"],
+ sat:["Ao menos uma melhoria entra no mês","Participação de todos"],
+ tpl:"Quadro colaborativo",
+ fric:["Participação sem contribuição","Sempre as mesmas pessoas falam","Melhoria acordada não entra no plano do mês"],
+ boa:["Rodízio de facilitador entre a equipe","Abrir conferindo a melhoria do mês anterior","Coleta anônima antes da sessão","No máximo 2 melhorias, para caberem no mês"],
+ opor:["Levar o padrão recorrente à Retrospectiva da Gerência","Usar como sinal antecipado de clima","Medir quantas melhorias sobrevivem ao mês"]},
+
+{id:"fecha",n:"Fechamento da Semana",c:"Operacional",e:"Ambas",ciclo:"Semanal",x:2450,y:1740,niv:1,tipo:"Revisão",
+ prop:"Encerra a semana com o saldo real, sem ajuste otimista.",
+ dur:"45 min",form:"Remoto síncrono",local:"Remoto com o quadro em tela",facil:"Coordenação",dono:"Coordenação",
+ alc:"Registra causa e reprograma o saldo",
+ part:[["Coordenação","C"],["Grupo de trabalho","C"],["Facilitador","O"],["Gerência","N"]],
+ ini:["Entregas atualizadas no quadro"],
+ p:["O que foi concluído na semana","Causa do que não foi concluído","Aprendizado da semana"],
+ ev:["Saldo da semana registrado","Aprendizados no quadro"],
+ sat:["Saldo entra na abertura seguinte","Nenhum item sem causa declarada"],
+ tpl:"Regra das quatro causas",
+ fric:["Fechamento sem evidência","Item marcado como concluído sem entrega real","Causa genérica, do tipo faltou tempo"],
+ boa:["Causa escolhida de uma lista fechada de quatro","Concluído só com evidência no quadro","Sexta no fim do dia, sempre","Saldo passa direto para a Abertura seguinte"],
+ opor:["Ler o padrão de causa a cada trimestre","Alimentar a Retrospectiva com a causa dominante","Encerrar a semana sem item órfão"]},
+
+];
+const IX={};R.forEach((r,i)=>IX[r.id]=i);
+
+const E=[
+["cdel","estrat","política e diretrizes","gov"],
+["cfis","cdel","parecer sobre as contas","gov"],
+["qbr","dexe","prestação de contas","gov"],
+["dexe","cfis","contas e demonstrações","gov"],
+["dexe","invest","política de investimentos","gov"],
+["dexe","evertec","contrato de BPO","gov"],
+["produto","dexe","obrigação regulatória","gov"],
+["govab","dirfin","diretriz da porta aberta","gva"],
+["govab","eprev","apontamentos de controle","gva"],
+["eprev","govab","risco da operação","gva"],
+["estrat","qbr","direcionadores do ano",""],
+["qbr","estrat","leitura para o próximo ano","tra"],
+["qbr","dirfin","prioridades do trimestre",""],
+["qbr","forum","tema em aberto",""],
+["forum","qbr","decisão estruturante",""],
+["invest","dirfin","retorno e enquadramento",""],
+["qbr","plantri","prioridades do trimestre",""],
+["qbr","produto","portfólio do período",""],
+["plantri","mbr","entregas priorizadas",""],
+["plantri","reuger","plano do trimestre",""],
+["dirfin","mbr","orçamento aprovado",""],
+["mbr","dirfin","resultado do mês",""],
+["mbr","qbr","resultado dos três meses",""],
+["mbr","comercial","capacidade da esteira",""],
+["comercial","mbr","funil e receita",""],
+["comercial","cross","meta por canal",""],
+["cross","imp01","itens sem decisor",""],
+["imp01","dirfin","escalada de orçamento",""],
+["evertec","mbr","fila do BPO",""],
+["eprev","mbr","fila de sistema e risco",""],
+["produto","comercial","produto e preço",""],
+["abert","imp01","obstáculo da semana",""],
+["imp01","abert","decisão que destrava",""],
+["abert","daily","foco da semana",""],
+["daily","fecha","entregas do dia",""],
+["fecha","abert","saldo da semana",""],
+["fecha","retrot","entregas da semana",""],
+["mbr","retrot","métricas do ciclo",""],
+["reuger","retrot","temas do time",""],
+["retrot","plantri","melhorias estruturais","tra"]
+];
+
+const FAIXAS=[
+ {nome:"GOVERNANÇA",cor:"var(--gov)",y:30,h:220,desc:"Instância estatutária e regulatória.<br>Não é rito da gerência."},
+ {nome:"ESTRATÉGICO",cor:"var(--estr)",y:320,h:380,desc:"Define o rumo e o recurso.<br>Meses a anos."},
+ {nome:"TÁTICO",cor:"var(--tat)",y:740,h:660,desc:"Traduz em plano e destrava.<br>Semanas a meses."},
+ {nome:"OPERACIONAL",cor:"var(--oper)",y:1440,h:440,desc:"Executa e ajusta.<br>Um dia a um mês."}
+];
+const VISOES=[{k:1,nome:"Essencial"},{k:2,nome:"Intermediária"},{k:3,nome:"Ampla"}];
+const PORTAS=[{k:"todas",nome:"Todas"},{k:"Aberta",nome:"Aberta"},{k:"Fechada",nome:"Fechada"}];
+
+const C=[
+["Estratégico","Define o rumo da Negócio Previdência: onde chegar, o que entra e o que sai do portfólio, e o orçamento que sustenta a decisão.","meses a anos","Correção lenta e de custo alto","Superintendência e gerência"],
+["Tático","Traduz o rumo em plano e destrava o caminho: prioriza entregas, aloca, acompanha indicador, governa fornecedor e canal, e resolve o que está fora da alçada da equipe.","semanas a meses","Correção dentro do próprio ciclo","Gerência e coordenação"],
+["Operacional","Executa e ajusta no ritmo do trabalho: combina a semana, conduz o dia, encerra o que foi comprometido e lê o que o cliente devolve.","um dia a um mês","Correção no mesmo ciclo, custo baixo","Coordenação e grupo de trabalho"],
+["Governança","Camada estatutária e regulatória. Não é rito da gerência: é a instância a quem a Negócio Previdência presta contas, e ela é diferente em cada porta.","a confirmar no estatuto","Correção com consequência regulatória","Conselheiros e diretores habilitados"]
+];
+
+const G=[
+["entidade fechada, entidade fechada","FECHADA · regulador previdenciário","Fundação sem fins lucrativos constituída pela seguradora do grupo, com 5 planos de benefícios. Governança obrigatória em tríade estatutária.",["Conselho Deliberativo, 12 membros","Diretoria Executiva, 3 diretores habilitados","Conselho Fiscal, 3 membros"],"Reguladores: regulador previdenciário; CMN para investir","fech"],
+["Conselho Deliberativo","Fechada · órgão máximo, 12 membros","Dois terços indicados pelas patrocinadoras e instituidores, um terço eleito pelos participantes. Mandato de 2 anos, posse em março.",["Política geral do plano","Plano de custeio","Política de investimentos e fundo de reversão"],"Presidência e vice-presidência eleitas","fech"],
+["Conselho Fiscal","Fechada · fiscalização, 3 membros","Fiscaliza o plano e emite parecer sobre contas e demonstrações. Verifica se a Diretoria executou o que o Conselho deliberou.",["Contas e demonstrações","Emissão de parecer"],"Presidência eleita","fech"],
+["Diretoria Executiva","Fechada · execução, 3 diretores","Superintendente, AETQ para investimentos e ARPB para planos de benefícios. Todos habilitados no regulador.",["Execução do deliberado","Investimentos e ALM","Planos de benefícios"],"Três diretorias habilitadas no regulador, com atribuição por área","fech"],
+["BPO da fechada","Fechada · fornecedor crítico","Administração, folha e boleto da entidade fechada rodam em BPO na um fornecedor único. Os 11 fluxos AS-IS da fechada dependem dele. Fornecedor único, sem alternativa contratada.",["Administração do plano","Folha de benefícios","Boleto e arrecadação"],"Gestão de ativos, custódia, atuária e auditoria terceirizadas","fech"],
+["regulador previdenciário","Fechada · regulador","Habilita dirigentes e conselheiros eleitos. Norma recente do regulador vedou à entidade fechada patrocinadora indicar membros dos conselhos.",["Elegibilidade de dirigentes","Reporte periódico e reporte periódico"],"","fech"],
+["negócio Previdência, entidade aberta","ABERTA · regulador de seguros","Sociedade anônima com fins lucrativos, com PGBL, VGBL e Tradicional na carteira. Não tem tríade estatutária: responde por diretor.",["Diretor responsável perante o regulador de seguros","Controles internos"],"Reguladores: regulador de seguros, Ministério da Fazenda","abrt"],
+["Canal único da aberta","Aberta · dependência comercial","Toda a venda da aberta passa por canal externo, com comissão vitalícia, agenciamento sobre a primeira contribuição e clawback na saída antecipada. O rede associada segue subutilizado como canal.",["Produção e ativação","Comissionamento e campanha"],"","abrt"],
+["Sistema da aberta","Aberta · sistema próprio","Os 13 fluxos da aberta rodam no sistema de emissão, com digitação manual da proposta. Backlog de chamados acumulado, e a integração sistema de venda com sistema de emissão não priorizada.",["Emissão e movimentação","Fila de chamado e backlog"],"","abrt"],
+["Risco próprio da aberta","Aberta · subscrição e sinistro","A aberta tem coberturas de risco próprias, pecúlio, pensões e sinistro, com DPS na entrada. A fechada terceiriza o risco numa seguradora estipulante e não tem esta fila.",["DPS e subscrição","Sinistro e pecúlio"],"","abrt"]
+];
+
+const esc=s=>String(s).replace(/&/g,"&amp;").replace(/</g,"&lt;");
+const recebe=id=>E.filter(e=>e[1]===id).map(e=>(R[IX[e[0]]]?R[IX[e[0]]].n:e[0])+" · "+e[2]);
+const entrega=id=>E.filter(e=>e[0]===id).map(e=>(R[IX[e[1]]]?R[IX[e[1]]].n:e[1])+" · "+e[2]);
+const VAZIO="nada mapeado";
+
+/* Três séries por ciclo: expectativa, qualidade da interação e custo.
+   Onde a expectativa fica acima da qualidade, a área entre as duas é hachurada:
+   é o vão entre o que se espera do rito e o que ele entrega.                    */
+function grafico(w,h,risco,uid,compacto){
+  const F=["😀","🙂","😕","😡"],px=compacto?34:32,py=12,gw=w-px-10,gh=h-py-22,n=6;
+  const xs=i=>px+gw*(i+.5)/n, ys=v=>py+gh*(1-v);
+  const expc=risco?[.85,.86,.84,.87,.85,.86]:[.72,.74,.73,.75,.74,.76];
+  const qual=risco?[.55,.48,.42,.36,.30,.26]:[.62,.68,.66,.72,.70,.73];
+  const cst =risco?[.50,.53,.56,.59,.61,.63]:[.45,.46,.44,.47,.45,.46];
+  const id="h"+uid;
+  let s=`<svg viewBox="0 0 ${w} ${h}" style="width:100%;height:${h}px"><defs>
+    <pattern id="${id}" width="7" height="7" patternTransform="rotate(45)" patternUnits="userSpaceOnUse">
+      <line x1="0" y1="0" x2="0" y2="7" stroke="#2F2E79" stroke-width="2" opacity=".40"/></pattern></defs>`;
+  if(compacto){
+    /* um rosto só, para o ciclo inteiro, a partir da média da qualidade entregue */
+    const m=qual.reduce((a,v)=>a+v,0)/n;
+    const rosto=m>=.65?F[0]:m>=.5?F[1]:m>=.35?F[2]:F[3];
+    s+=`<text x="15" y="${py+gh/2+8}" font-size="22" text-anchor="middle">${rosto}</text>`;
+    [.25,.5,.75].forEach(v=>{const y=py+gh*(1-v);
+      s+=`<line x1="${px}" y1="${y}" x2="${px+gw}" y2="${y}" stroke="#eceef1"/>`;});
+  }else{
+    F.forEach((f,i)=>{const y=py+gh*(i+.5)/4;
+      s+=`<text x="13" y="${y+5}" font-size="12" text-anchor="middle">${f}</text>
+          <line x1="${px}" y1="${y}" x2="${px+gw}" y2="${y}" stroke="#eceef1"/>`;});
+  }
+  /* A hachura só existe onde a condição acontece: expectativa ALTA e entrega BAIXA.
+     Fora disso não há vão a marcar, e o gráfico fica limpo.                        */
+  const ALTA=.70, BAIXA=.50;
+  const cond=i=>expc[i]>=ALTA&&qual[i]<=BAIXA;
+  let ini=-1;
+  for(let i=0;i<=n;i++){
+    if(i<n&&cond(i)){ if(ini<0)ini=i; continue; }
+    if(ini>=0){
+      const fim=i-1, faixa=[];
+      for(let k=ini;k<=fim;k++)faixa.push(k);
+      const cima=faixa.map(k=>xs(k)+","+ys(expc[k])).join(" ");
+      const baixo=faixa.map(k=>xs(k)+","+ys(qual[k])).reverse().join(" ");
+      if(faixa.length===1){
+        const w2=gw/n/2;
+        s+=`<rect x="${xs(ini)-w2/2}" y="${ys(expc[ini])}" width="${w2}"
+             height="${ys(qual[ini])-ys(expc[ini])}" fill="url(#${id})" stroke="none"/>`;
+      }else{
+        s+=`<polygon points="${cima} ${baixo}" fill="url(#${id})" stroke="none"/>`;
+      }
+      ini=-1;
+    }
+  }
+  s+=`<line x1="${px}" y1="${py}" x2="${px}" y2="${py+gh}" stroke="#ccd1d7"/>
+      <line x1="${px}" y1="${py+gh}" x2="${px+gw}" y2="${py+gh}" stroke="#ccd1d7"/>`;
+  const pl=(arr,cor,tra)=>`<polyline points="${arr.map((v,i)=>xs(i)+","+ys(v)).join(" ")}"
+      fill="none" stroke="${cor}" stroke-width="2"${tra?' stroke-dasharray="5 4"':""} opacity=".9"/>`+
+      arr.map((v,i)=>`<circle cx="${xs(i)}" cy="${ys(v)}" r="2.8" fill="#fff" stroke="${cor}" stroke-width="1.6"/>`).join("");
+  s+=pl(cst,"#0097B2",1)+pl(expc,"#2F2E79")+pl(qual,"#0064BA");
+  /* marca o ciclo em que a condição começa */
+  for(let i=0;i<n;i++){ if(expc[i]>=ALTA&&qual[i]<=BAIXA){
+    s+=`<circle cx="${xs(i)}" cy="${ys(qual[i])}" r="7.5" fill="none" stroke="#2F2E79" stroke-width="1.6"/>`;
+    break; } }
+  s+=`<text x="${px+2}" y="${h-5}" font-size="9" fill="#9aa1a9">ciclo 1</text>
+      <text x="${px+gw}" y="${h-5}" font-size="9" fill="#9aa1a9" text-anchor="end">ciclo ${n}</text></svg>`;
+  return s;
+}
+const LEGEXP='<div style="font-size:10px;color:#9aa1a9;margin-top:2px;line-height:1.6">'+
+ '<span style="color:#d0342c">━</span> expectativa &nbsp; '+
+ '<span style="color:#0064BA">━</span> qualidade da interação &nbsp; '+
+ '<span style="color:#3d6fb4">┄</span> custo &nbsp; '+
+ '<span style="color:#d0342c">▨</span> vão, só quando a expectativa é alta e a entrega é baixa &nbsp; · escala ilustrativa, sem coleta</div>';
+
+let visao=1, porta="todas";   /* abre no Essencial */
+const W=3250,H=1980;
+const filtra=()=>R.filter(r=>r.niv<=visao && (porta==="todas"||r.e===porta||r.e==="Ambas"));
+
+/* RH cobre o rótulo de DUAS linhas (37px medidos) mais folga. Com 30 o teste
+   de colisão dava falso negativo e rótulos longos se sobrepunham. */
+const RW=124, RH=44;
+const CW=300, CH=86, MX=CW/2, MY=CH/2, FOLGA=10;
+
+/* ------------------- ROTEADOR ORTOGONAL -------------------
+   Antes as 46 rotas eram escritas à mão e cada mudança de layout
+   exigia recalcular tudo. Agora o caminho é calculado: o roteador
+   procura um corredor livre entre as caixas e reserva a faixa usada,
+   de modo que duas setas nunca dividem a mesma linha.              */
+function rects(vis){return vis.map(r=>({id:r.id,x:r.x-MX-FOLGA,y:r.y-MY-FOLGA,w:CW+2*FOLGA,h:CH+2*FOLGA}));}
+/* a caixa de origem e a de destino nunca contam como obstáculo da própria seta:
+   o caminho começa e termina dentro delas, por definição */
+const semExtremos=(cs,a,b)=>cs.filter(c=>c.id!==a&&c.id!==b);
+const bateV=(cx,y1,y2,cs)=>cs.some(c=>cx>c.x&&cx<c.x+c.w&&Math.min(y1,y2)<c.y+c.h&&Math.max(y1,y2)>c.y);
+const bateH=(cy,x1,x2,cs)=>cs.some(c=>cy>c.y&&cy<c.y+c.h&&Math.min(x1,x2)<c.x+c.w&&Math.max(x1,x2)>c.x);
+/* faixas já reservadas, para não desenhar duas setas em cima uma da outra */
+function ocupa(res,eixo,pos,a,b){
+  const k=eixo+":"+pos, [lo,hi]=[Math.min(a,b),Math.max(a,b)];
+  if((res[k]||[]).some(([p,q])=>lo<q-6&&hi>p+6))return false;
+  (res[k]=res[k]||[]).push([lo,hi]); return true;
+}
+function rota(A,B,cs,res){
+  const dx=B.x-A.x, dy=B.y-A.y;
+  /* 1. mesma coluna, reta vertical */
+  if(dx===0){
+    const y1=A.y+(dy>0?MY:-MY), y2=B.y-(dy>0?MY:-MY);
+    if(!bateV(A.x,y1,y2,cs)&&ocupa(res,"v",A.x,y1,y2))return `M${A.x},${y1} V${y2}`;
+  }
+  /* 2. mesma linha, reta horizontal */
+  if(dy===0){
+    const x1=A.x+(dx>0?MX:-MX), x2=B.x-(dx>0?MX:-MX);
+    if(!bateH(A.y,x1,x2,cs)&&ocupa(res,"h",A.y,x1,x2))return `M${x1},${A.y} H${x2}`;
+  }
+  /* 3. L simples: sai na horizontal, entra na vertical, ou o inverso */
+  if(dx&&dy){
+    const x1=A.x+(dx>0?MX:-MX), y2=B.y-(dy>0?MY:-MY);
+    if(!bateH(A.y,x1,B.x,cs)&&!bateV(B.x,A.y,y2,cs)&&ocupa(res,"h",A.y,x1,B.x)&&ocupa(res,"v",B.x,A.y,y2))
+      return `M${x1},${A.y} H${B.x} V${y2}`;
+    const y1=A.y+(dy>0?MY:-MY), x2=B.x-(dx>0?MX:-MX);
+    if(!bateV(A.x,y1,B.y,cs)&&!bateH(B.y,A.x,x2,cs)&&ocupa(res,"v",A.x,y1,B.y)&&ocupa(res,"h",B.y,A.x,x2))
+      return `M${A.x},${y1} V${B.y} H${x2}`;
+  }
+  /* 4. Z por um corredor vertical livre. Os corredores são as faixas entre colunas,
+     avaliadas da mais próxima do meio do percurso para a mais distante. */
+  const meioX=dx? (A.x+B.x)/2 : A.x+(MX+90);
+  const lanesV=[];
+  for(let c=-1;c<=6;c++){const g=200+c*500; [0,35,-35,70,-70].forEach(o=>lanesV.push(g+o));}
+  lanesV.sort((u,v)=>Math.abs(u-meioX)-Math.abs(v-meioX));
+  for(const lx of lanesV){
+    const x1=A.x+(lx>A.x?MX:-MX), x2=B.x-(lx>B.x?-MX:MX)*(lx>B.x?-1:1);
+    const xa=A.x+(lx>A.x?MX:-MX), xb=B.x+(lx>B.x?MX:-MX);
+    if(bateH(A.y,xa,lx,cs)||bateV(lx,A.y,B.y,cs)||bateH(B.y,lx,xb,cs))continue;
+    if(!ocupa(res,"v",lx,A.y,B.y))continue;
+    ocupa(res,"h",A.y,xa,lx); ocupa(res,"h",B.y,lx,xb);
+    return `M${xa},${A.y} H${lx} V${B.y} H${xb}`;
+  }
+  /* 5. Z por um corredor horizontal livre, mesma lógica nas faixas entre linhas */
+  const meioY=dy? (A.y+B.y)/2 : A.y+(MY+70);
+  const LINHAS_Y=[140,370,590,850,1070,1290,1520,1740];
+  const lanesH=[];
+  for(let i=0;i<LINHAS_Y.length-1;i++){
+    const g=(LINHAS_Y[i]+LINHAS_Y[i+1])/2; [0,26,-26].forEach(o=>lanesH.push(g+o));
+  }
+  lanesH.push(LINHAS_Y[0]-95, LINHAS_Y[LINHAS_Y.length-1]+95);
+  lanesH.sort((u,v)=>Math.abs(u-meioY)-Math.abs(v-meioY));
+  for(const ly of lanesH){
+    const ya=A.y+(ly>A.y?MY:-MY), yb=B.y+(ly>B.y?MY:-MY);
+    if(bateV(A.x,A.y,ly,cs)||bateH(ly,A.x,B.x,cs)||bateV(B.x,ly,B.y,cs))continue;
+    if(!ocupa(res,"h",ly,A.x,B.x))continue;
+    ocupa(res,"v",A.x,ya,ly); ocupa(res,"v",B.x,ly,yb);
+    return `M${A.x},${ya} V${ly} H${B.x} V${yb}`;
+  }
+  /* 6. último recurso: contorna por fora, pela direita */
+  const lx=Math.max(A.x,B.x)+MX+120;
+  return `M${A.x+MX},${A.y} H${lx} V${B.y} H${B.x+MX}`;
+}
+function pontos(d){
+  const segs=d.match(/[MHV][\d.,-]+/g);let x=0,y=0;const pts=[];
+  segs.forEach(sg=>{const k=sg[0],v=sg.slice(1).split(",").map(Number);
+    if(k==="M"){x=v[0];y=v[1];}else if(k==="H"){x=v[0];}else if(k==="V"){y=v[0];}pts.push({x,y});});
+  return pts;
+}
+const cruza=(a,b)=>!(a.x+a.w<=b.x||b.x+b.w<=a.x||a.y+a.h<=b.y||b.y+b.h<=a.y);
+/* candidatos ao longo de todos os trechos, do mais longo para o mais curto,
+   e escolhe o primeiro que não encosta em card nem em rótulo já colocado */
+function coloca(d,cards,postos){
+  const pts=pontos(d), cand=[];
+  for(let i=0;i<pts.length-1;i++){
+    const a=pts[i],b=pts[i+1], len=Math.abs(b.x-a.x)+Math.abs(b.y-a.y);
+    if(len<40)continue;
+    const vertical=a.x===b.x;
+    /* além de andar sobre o trecho, o rótulo também pode sair de lado:
+       ao lado de um trecho vertical, acima ou abaixo de um horizontal */
+    const desvios=vertical?[0,-80,80,-146,146]:[0,-32,32,-58,58];
+    [.5,.38,.62,.28,.72,.2,.8].forEach((tt,k)=>{
+      const px=a.x+(b.x-a.x)*tt, py=a.y+(b.y-a.y)*tt;
+      desvios.forEach((dv,j)=>cand.push({
+        x:px+(vertical?dv:0), y:py+(vertical?0:dv), peso:len*100-k*3-j*10}));
+    });
+  }
+  if(!cand.length){const a=pts[0],b=pts[pts.length-1];cand.push({x:(a.x+b.x)/2,y:(a.y+b.y)/2,peso:0});}
+  cand.sort((p,q)=>q.peso-p.peso);
+  const cx=p=>({x:p.x-RW/2,y:p.y-RH/2,w:RW,h:RH});
+  const livre=p=>{const r=cx(p);return !cards.some(c=>cruza(r,c))&&!postos.some(c=>cruza(r,c));};
+  const bom=cand.find(livre), p=bom||cand[0];
+  postos.push(cx(p));
+  return p;
+}
+
+/* Cada vista precisa se sustentar sozinha: nenhuma caixa solta.
+   Quando um rito some do filtro, o que passava por ele não pode sumir junto.
+   Aqui a ligação é RECONSTRUÍDA por travessia: sai do visível, atravessa os
+   ocultos e liga no próximo visível, levando o rótulo do primeiro salto.      */
+function arestasVis(ids){
+  const diretas=E.filter(([a,b])=>ids.has(a)&&ids.has(b));
+  const feitas=new Set(diretas.map(e=>e[0]+">"+e[1]));
+  const pontes=[];
+  R.forEach(o=>{
+    if(!ids.has(o.id))return;
+    const fila=E.filter(e=>e[0]===o.id&&!ids.has(e[1])).map(e=>({no:e[1],rot:e[2],cl:e[3]}));
+    const andados=new Set();
+    while(fila.length){
+      const p=fila.shift();
+      if(andados.has(p.no))continue;
+      andados.add(p.no);
+      E.filter(e=>e[0]===p.no).forEach(e=>{
+        if(ids.has(e[1])){
+          const k=o.id+">"+e[1];
+          if(e[1]!==o.id&&!feitas.has(k)){feitas.add(k);pontes.push([o.id,e[1],p.rot,p.cl]);}
+        }else fila.push({no:e[1],rot:p.rot,cl:p.cl});
+      });
+    }
+  });
+  return diretas.concat(pontes);
+}
+function soltas(ids){
+  const a=arestasVis(ids), ent=new Set(a.map(e=>e[1])), sai=new Set(a.map(e=>e[0]));
+  return [...ids].filter(id=>!ent.has(id)&&!sai.has(id));
+}
+
+function diagrama(){
+  const t=document.getElementById("tela");
+  const vis=filtra(), ids=new Set(vis.map(r=>r.id));
+  t.style.width=W+"px";t.style.height=H+"px";
+  let s=`<svg width="${W}" height="${H}" viewBox="0 0 ${W} ${H}"><defs>
+   <marker id="a" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+     <path d="M0,0 L10,5 L0,10 z" fill="#5b626a"/></marker>
+   <marker id="ag" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+     <path d="M0,0 L10,5 L0,10 z" fill="#0097B2"/></marker>
+   <marker id="av" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+     <path d="M0,0 L10,5 L0,10 z" fill="#0064BA"/></marker></defs>`;
+  const cs=rects(vis), res={}, postos=[], rots=[];
+  /* trecho mais curto primeiro: quem tem menos opção escolhe corredor antes */
+  const ativas=arestasVis(ids)
+    .map(e=>{const A=R[IX[e[0]]],B=R[IX[e[1]]];
+      return {e,A,B,dist:Math.abs(A.x-B.x)+Math.abs(A.y-B.y)};})
+    .sort((u,v)=>u.dist-v.dist);
+  ativas.forEach(o=>{
+    const [a,b,rot,cl]=o.e;
+    o.d=rota(o.A,o.B,semExtremos(cs,a,b),res);
+    const m=cl==="gov"?"ag":(cl==="gva"?"av":"a");
+    s+=`<path class="aresta ${cl}" d="${o.d}" marker-end="url(#${m})"/>`;
+  });
+  [...ativas].sort((u,v)=>v.dist-u.dist)
+    .forEach(o=>rots.push([coloca(o.d,cs,postos),o.e[2],o.e[3]]));
+  s+="</svg>";
+  FAIXAS.forEach(f=>{
+    s+=`<div class="faixa" style="left:300px;top:${f.y}px;width:${W-360}px;height:${f.h}px;border-color:${f.cor}"></div>
+        <div class="frot" style="left:20px;top:${f.y+18}px;color:${f.cor}">${f.nome}</div>
+        <div class="fdesc" style="left:20px;top:${f.y+44}px;width:250px">${f.desc}</div>`;
+  });
+  s+=`<div class="gsep" style="left:1900px;top:50px;height:170px"></div>
+      <div class="grot" style="left:322px;top:52px;color:var(--fech)">Porta fechada · entidade fechada</div>
+      <div class="grot" style="left:1930px;top:52px;color:var(--abrt)">Porta aberta · entidade aberta</div>`;
+  CICLOS.forEach(c=>{s+=`<div class="ccab" style="left:${COLX[c]-MX}px;top:${CCABY}px;width:${CW}px">${c}</div>`;});
+  vis.forEach(r=>{
+    const b=ESCP[r.e];
+    s+=`<button class="no" data-i="${IX[r.id]}" style="left:${r.x-MX}px;top:${r.y-MY}px;width:${CW}px;height:${CH}px;border-left-color:${COR[r.c]}">
+      <span class="cif">${custo(r).cifra}</span>
+      <span class="bg esc" style="background:${b.c}">${b.s}</span>
+      ${r.risco?'<span class="al" title="expectativa acima da entrega"></span>':""}
+      <b>${esc(r.n)}</b><small>${esc(r.ciclo===r.dur?"cadência "+r.ciclo:r.ciclo+" · "+r.dur)}</small></button>`;
+  });
+  rots.forEach(([p,rot,cl])=>{
+    s+=`<div class="rotcx ${cl}" style="left:${p.x-62}px;top:${p.y-13}px;width:124px">${esc(rot)}</div>`;
+  });
+  t.innerHTML=s;
+  t.querySelectorAll(".no").forEach(b=>b.onclick=()=>abrir(+b.dataset.i));
+}
+
+/* Um só par de filtros, repetido nas três abas e sempre em sincronia.
+   Tudo o que a tela mostra passa por filtra(): mapa, estrutura e camadas. */
+function controles(){
+  ["","2","3"].forEach(suf=>{
+    const bv=document.getElementById("visoes"+suf), bp=document.getElementById("portas"+suf);
+    if(!bv)return;
+    bv.innerHTML='<label>Profundidade</label>'+VISOES.map(v=>{
+      const q=R.filter(r=>r.niv<=v.k&&(porta==="todas"||r.e===porta||r.e==="Ambas")).length;
+      return `<button data-k="${v.k}" class="${v.k===visao?"on":""}">${v.nome}<span class="qtd">${q}</span></button>`;}).join("");
+    bp.innerHTML='<label>Porta</label>'+PORTAS.map(p=>{
+      const q=R.filter(r=>r.niv<=visao&&(p.k==="todas"||r.e===p.k||r.e==="Ambas")).length;
+      return `<button data-p2="${p.k}" class="${p.k===porta?"on":""}">${p.nome}<span class="qtd">${q}</span></button>`;}).join("");
+  });
+  const repinta=()=>{controles();diagrama();estrutura();cartoes();};
+  document.querySelectorAll('[id^="visoes"] button').forEach(b=>b.onclick=()=>{visao=+b.dataset.k;repinta();});
+  document.querySelectorAll('[id^="portas"] button').forEach(b=>b.onclick=()=>{porta=b.dataset.p2;repinta();});
+}
+
+const LIN=[["Momentos","n"],["Propósito","prop"],["Tipo","tipo"],["Camada","c"],["Escopo","e"],["Ciclo","ciclo"],
+ ["Duração","dur"],["Formato","form"],["Local e agenda","local"],["Anfitrião da Agenda","facil"],["Dono da pauta","dono"],
+ ["Alçada","alc"],["Custo","custo"],["Participantes","part"],
+ ["Critérios para iniciar","ini"],["Pauta","p"],["Evidência","ev"],["Critérios de satisfação","sat"],
+ ["Template","tpl"],["Fricções","fric"],["Boa prática","boa"],["Oportunidade","opor"],
+ ["Recebe de","rec"],["Entrega para","ent"],["Experiência","exp"]];
+
+function estrutura(){
+  const VIS=filtra();
+  let h="";
+  LIN.forEach(([rot,k])=>{
+    const cls=k==="n"?"mom":(k==="custo"?"custo":(["tipo","c","e","ciclo","dur","form","local","facil","dono","alc"].includes(k)?"leve":
+      (k==="fric"?"fric":(k==="boa"?"boa":(k==="opor"?"opor":(k==="tpl"?"tpl":((k==="rec"||k==="ent")?"flx":"")))))));
+    h+=`<tr class="${cls}"><th class="lab">${rot}</th>`;
+    /* a Experiência é UMA linha contínua sobre a régua inteira, não um gráfico por coluna */
+    if(k==="exp"){h+=`<td class="expm" colspan="${VIS.length}"><div id="expwrap"></div></td></tr>`;return;}
+    VIS.forEach(r=>{
+      const i=IX[r.id]; let v="";
+      if(k==="n")v=esc(r.n);
+      else if(k==="e")v=`<span class="bg" style="background:${ESCP[r.e].c}">${ESCP[r.e].s}</span> ${r.e}`;
+      else if(k==="custo")v=custo(r).cifra;
+      else if(k==="part")v='<ul class="part">'+r.part.map(([q,m])=>`<li><em>${MK[m]}</em><span>${esc(q)}</span></li>`).join("")+"</ul>";
+      else if(["ini","p","ev","sat","fric","boa","opor"].includes(k))v="<ul>"+r[k].map(x=>`<li>${esc(x)}</li>`).join("")+"</ul>";
+      else if(k==="rec")v="<ul>"+(recebe(r.id).length?recebe(r.id):[VAZIO]).map(x=>`<li>${esc(x)}</li>`).join("")+"</ul>";
+      else if(k==="ent")v="<ul>"+(entrega(r.id).length?entrega(r.id):[VAZIO]).map(x=>`<li>${esc(x)}</li>`).join("")+"</ul>";
+      else if(k==="exp")v="";
+      else v=esc(r[k]||"");
+      h+=k==="n"?`<td class="c${CLS[r.c]}" data-i="${i}">${v}</td>`:`<td>${v}</td>`;
+    });
+    h+="</tr>";
+  });
+  const tb=document.getElementById("bp");
+  tb.innerHTML=h;
+  tb.querySelectorAll("tr.mom td").forEach(td=>td.onclick=()=>abrir(+td.dataset.i));
+  desenhaExp(VIS);
+}
+
+/* ---------- A CURVA CONTÍNUA DA EXPERIÊNCIA ----------
+   Uma única série sobre toda a régua, um ponto por rito, alinhada às colunas reais
+   da tabela (medidas depois do render, não estimadas). Escala 0 a 100 nas três séries.
+   Custo é derivado do modelo de participantes. Expectativa e qualidade são simuladas.  */
+function seriesExp(vis){
+  const maxS=Math.max(...vis.map(r=>custo(r).sessao))||1;
+  const pesoCam={"Governança":14,"Estratégico":10,"Tático":4,"Operacional":0};
+  return vis.map(r=>{
+    const u=custo(r);
+    const cst=Math.round(100*u.sessao/maxS);
+    const exp=Math.min(96,66+pesoCam[r.c]+(r.risco?12:0)+(r.novo?-4:0));
+    const qua=r.risco?Math.max(18,exp-46):Math.max(30,exp-(r.novo?16:8));
+    return {r,cst,exp:Math.round(exp),qua:Math.round(qua),gap:Math.round(exp-qua)};
+  });
+}
+function desenhaExp(vis){
+  const wrap=document.getElementById("expwrap");
+  if(!wrap||!vis.length)return;
+  const tds=[...document.querySelectorAll("#bp tr.mom td")];
+  if(tds.length!==vis.length)return;
+  const base=tds[0].offsetLeft;
+  const cx=tds.map(td=>td.offsetLeft-base+td.offsetWidth/2);
+  const W=tds[tds.length-1].offsetLeft-base+tds[tds.length-1].offsetWidth;
+  const H=190, py=14, gh=H-py-26;
+  const ys=v=>py+gh*(1-v/100);
+  const S=seriesExp(vis);
+  const cruza=(a,b,x1,x2)=>{ /* interpolação linear no ponto exato da inversão */
+    const t=(a.exp-a.qua)/((a.exp-a.qua)-(b.exp-b.qua));
+    return {x:x1+(x2-x1)*t, y:ys(a.exp+(b.exp-a.exp)*t)};
+  };
+  let s=`<svg width="${W}" height="${H}" viewBox="0 0 ${W} ${H}" style="display:block"><defs>
+    <pattern id="hx" width="7" height="7" patternTransform="rotate(45)" patternUnits="userSpaceOnUse">
+      <line x1="0" y1="0" x2="0" y2="7" stroke="#2F2E79" stroke-width="2" opacity=".38"/></pattern></defs>`;
+  [0,25,50,75,100].forEach(v=>{s+=`<line x1="0" y1="${ys(v)}" x2="${W}" y2="${ys(v)}"
+    stroke="#e6e8ec"${v===50?"":' stroke-dasharray="4 4"'}/>
+    <text x="4" y="${ys(v)-3}" font-size="9" fill="#aeb4bb" font-family="ui-monospace,monospace">${v}</text>`;});
+  /* área hachurada só nos trechos em que a expectativa corre acima da qualidade */
+  let seg=null;
+  for(let i=0;i<S.length;i++){
+    const acima=S[i].exp>S[i].qua;
+    if(acima&&!seg)seg={pts:[],ini:i};
+    if(acima)seg.pts.push(i);
+    const fim=(i===S.length-1)||!(S[i+1].exp>S[i+1].qua);
+    if(seg&&fim){
+      const P=seg.pts;
+      let cima=[],baixo=[];
+      if(seg.ini>0){const c=cruza(S[seg.ini-1],S[seg.ini],cx[seg.ini-1],cx[seg.ini]);cima.push(`${c.x},${c.y}`);baixo.unshift(`${c.x},${c.y}`);}
+      P.forEach(k=>{cima.push(`${cx[k]},${ys(S[k].exp)}`);baixo.unshift(`${cx[k]},${ys(S[k].qua)}`);});
+      const u=P[P.length-1];
+      if(u<S.length-1){const c=cruza(S[u],S[u+1],cx[u],cx[u+1]);cima.push(`${c.x},${c.y}`);baixo.unshift(`${c.x},${c.y}`);}
+      if(P.length)s+=`<polygon points="${cima.concat(baixo).join(" ")}" fill="url(#hx)" stroke="none"/>`;
+      seg=null;
+    }
+  }
+  const linha=(campo,cor,tra)=>`<polyline points="${S.map((d,i)=>cx[i]+","+ys(d[campo])).join(" ")}"
+     fill="none" stroke="${cor}" stroke-width="2.2"${tra?' stroke-dasharray="6 4"':""}/>`;
+  s+=linha("cst","#0097B2",1)+linha("exp","#2F2E79")+linha("qua","#0064BA");
+  S.forEach((d,i)=>{
+    const t=`${d.r.n} · expectativa ${d.exp} · qualidade ${d.qua} · custo ${d.cst} · vão ${d.gap}`;
+    [["cst","#0097B2"],["exp","#2F2E79"],["qua","#0064BA"]].forEach(([c,cor])=>{
+      s+=`<circle cx="${cx[i]}" cy="${ys(d[c])}" r="3.4" fill="#fff" stroke="${cor}" stroke-width="1.7"><title>${esc(t)}</title></circle>`;});
+    if(d.gap>=20){
+      s+=`<line x1="${cx[i]}" y1="${ys(d.exp)}" x2="${cx[i]}" y2="${ys(d.qua)}" stroke="#2F2E79" stroke-dasharray="3 3" opacity=".7"/>
+          <rect x="${cx[i]-15}" y="${ys(d.qua)+6}" width="30" height="15" rx="3" fill="#2F2E79"/>
+          <text x="${cx[i]}" y="${ys(d.qua)+17}" font-size="9.5" fill="#fff" text-anchor="middle" font-family="ui-monospace,monospace">${d.gap}</text>`;
+    }
+  });
+  s+="</svg>";
+  const piores=[...S].sort((a,b)=>b.gap-a.gap).slice(0,3);
+  wrap.innerHTML=s+
+    `<div style="font-size:10.5px;color:#9aa1a9;margin-top:6px;line-height:1.7">
+      <span style="color:#2F2E79">━</span> expectativa &nbsp;
+      <span style="color:#0064BA">━</span> qualidade da interação &nbsp;
+      <span style="color:#0097B2">┄</span> custo da sala &nbsp;
+      <span style="color:#2F2E79">▨</span> vão entre esperar e entregar, com o valor quando passa de 20 pontos.
+      <b>Procedência:</b> custo é derivado do modelo de participantes; expectativa e qualidade são simuladas, sem coleta.
+      <b>Maiores vãos:</b> ${piores.map(d=>esc(d.r.n)+" ("+d.gap+")").join(" · ")}.
+    </div>`;
+}
+
+function legenda(){
+  const bloco=(titulo,meta,itens)=>`<div class="legbloco"><h3>${titulo}</h3><div class="meta">${meta}</div>
+    <div class="legrid">${itens.map(([m,b,i])=>`<div class="legit">${m}<div><b>${b}</b><i>${i}</i></div></div>`).join("")}</div></div>`;
+  const sw=c=>`<span class="sw" style="background:${c}"></span>`;
+  const mk=t=>`<span class="mk">${t}</span>`;
+  const cif=t=>`<span class="cifra" style="font-size:15px">${t}</span>`;
+  const bg=(t,c)=>`<span class="bg" style="background:${c};margin-top:3px">${t}</span>`;
+  document.getElementById("leg").innerHTML=
+   bloco("Camada de decisão","A faixa em que o rito está no mapa. Define o horizonte e o custo do erro.",[
+     [sw("#5F6470"),"Estratégico","define o rumo e o recurso, meses a anos"],
+     [sw("#0064BA"),"Tático","traduz em plano e destrava, semanas a meses"],
+     [sw("#0097B2"),"Operacional","executa e ajusta no ciclo curto, um dia a um mês"],
+     [sw("#2F2E79"),"Governança","instância estatutária ou regulatória, não é rito da gerência"]])+
+   bloco("Escopo, a qual porta o rito serve","Fica no canto inferior esquerdo do card, no mapa.",[
+     [bg("F","#2F2E79"),"Fechada","entidade fechada, regulador previdenciário"],
+     [bg("A","#0064BA"),"Aberta","entidade aberta, regulador de seguros"],
+     [bg("A+F","#6b7280"),"Ambas","rito único, atende as duas portas"]])+
+   bloco("Participação","Quem senta e com que papel. Vale no mapa, na estrutura e na ficha de cada rito.",[
+     [mk("🔵"),"Colabora","participa e constrói o resultado"],
+     [mk("⚫"),"Consultado","é ouvido, não participa da sessão"],
+     [mk("🔘"),"Opcional","participa conforme o tema"],
+     [mk("⚪"),"Sem necessidade","não participa"]])+
+   bloco("Custo do rito","Custo da sala por sessão: quem senta, quantos são e por quanto tempo. Conselho e diretoria pesam por cabeça; consultado e opcional pesam menos. Fica no canto superior direito do card.",[
+     [cif("$"),"Baixo","sala pequena ou sessão curta"],
+     [cif("$$"),"Moderado","sala média, sem diretoria"],
+     [cif("$$$"),"Alto","sala grande ou com diretoria"],
+     [cif("$$$$"),"Muito alto","conselho ou diretoria em sessão longa"]])+
+   bloco("Experiência do rito","Três séries por ciclo, na ficha de cada rito. A área hachurada é o vão entre o que se espera do rito e o que ele entrega.",[
+     [mk('<span style="color:#d0342c">━</span>'),"Expectativa","o que a equipe espera daquele rito"],
+     [mk('<span style="color:#0064BA">━</span>'),"Qualidade da interação","o que o rito de fato entrega"],
+     [mk('<span style="color:#3d6fb4">┄</span>'),"Custo","o custo da sala ciclo a ciclo"],
+     [mk('<span style="color:#d0342c">▨</span>'),"Vão hachurado","só aparece nos ciclos em que a expectativa é alta e a entrega é baixa. Rito sem hachura não tem vão a corrigir"]])+
+   bloco("Leitura do mapa","Como ler as setas e os sinais do diagrama.",[
+     [mk("→"),"Fluxo","o que alimenta o quê"],
+     [mk("⇢"),"Aprendizado","retorna ao ciclo seguinte"],
+     [mk('<span style="color:#2F2E79">━</span>'),"Seta roxa","governança da fechada"],
+     [mk('<span style="color:#0064BA">━</span>'),"Seta azul","governança da aberta"],
+     [mk('<span style="color:#d0342c">●</span>'),"Risco de expectativa","expectativa alta com entrega abaixo do esperado"]])+
+   `<div class="nota"><b>O que ainda não está fechado.</b> A cadência e a duração dos conselhos entram como
+    "a confirmar": não estão documentadas no acervo do projeto e precisam sair do estatuto da entidade fechada.
+    Os ritos marcados como propostos têm a necessidade documentada, mas a reunião não existe formalizada.
+    O gráfico de experiência é ilustrativo: não há coleta de percepção por ciclo.</div>`;
+}
+
+function cartoes(){
+  document.getElementById("cam").innerHTML=C.map(([cam,desc,hor,erra,quem])=>{
+    const lista=filtra().filter(r=>r.c===cam);
+    return `<div class="card" style="border-left-color:${COR[cam]}"><h3 style="color:${COR[cam]}">${cam}</h3>
+      <div class="meta">${lista.length} ritos · horizonte de ${hor}</div><p>${desc}</p>
+      <ul><li><b>Modo de erro:</b> ${erra}</li><li><b>Composição:</b> ${quem}</li></ul>
+      <div style="margin-top:9px">${lista.map(r=>`<button class="tag" data-i="${IX[r.id]}">${esc(r.n)}</button>`).join("")}</div></div>`;}).join("");
+  document.querySelectorAll("#cam .tag").forEach(b=>b.onclick=()=>abrir(+b.dataset.i));
+  /* A aba de Governança mostra as REUNIÕES de governança, não a descrição da instituição. */
+  const gov=filtra().filter(r=>r.c==="Governança");
+  const grupo=(titulo,cor,porta)=>{
+    const lista=gov.filter(r=>r.e===porta);
+    return `<div style="grid-column:1/-1;margin:6px 0 2px"><h3 style="margin:0;font-size:14px;color:${cor}">${titulo}</h3></div>`+
+      lista.map(r=>{const u=custo(r);
+        return `<div class="card" style="border-left-color:${cor};cursor:pointer" data-i="${IX[r.id]}">
+          <h3 style="color:${cor}">${esc(r.n)} <span class="cifra" style="font-size:12px">${u.cifra}</span></h3>
+          <div class="meta">${r.tipo} · ${r.ciclo} · ${r.dur}</div>
+          <p>${esc(r.prop)}</p>
+          <ul><li><b>Alçada:</b> ${esc(r.alc)}</li>
+              <li><b>Anfitrião:</b> ${esc(r.facil)}</li>
+              <li><b>Dono da pauta:</b> ${esc(r.dono)}</li>
+              <li><b>Composição:</b> ${r.part.filter(x=>x[1]!=="N").map(x=>esc(x[0])).join(", ")}</li></ul>
+          <div style="margin-top:9px;font-size:12.5px;color:var(--sec)"><b>Delibera sobre:</b> ${r.p.map(esc).join(" · ")}</div>
+        </div>`;}).join("");
+  };
+  document.getElementById("gov").innerHTML=
+    grupo("PORTA FECHADA · entidade fechada, regulador previdenciário","var(--fech)","Fechada")+
+    grupo("PORTA ABERTA · entidade aberta, regulador de seguros","var(--abrt)","Aberta");
+  document.querySelectorAll("#gov .card").forEach(c=>c.onclick=()=>abrir(+c.dataset.i));
+}
+
+function abrir(i){
+  const r=R[i], b=ESCP[r.e], u=custo(r);
+  document.getElementById("gtopo").style.background=COR[r.c];
+  document.getElementById("gtipo").textContent=r.tipo+" · "+r.c;
+  document.getElementById("gnome").innerHTML=esc(r.n)+` <span class="bg" style="background:${b.c};vertical-align:middle">${b.s}</span>`;
+  document.getElementById("gprop").textContent=r.prop;
+  document.getElementById("gficha").innerHTML=
+    [["Escopo",r.e],["Ciclo",r.ciclo],["Duração",r.dur],["Formato",r.form],["Local",r.local],
+     ["Anfitrião da Agenda",r.facil],["Dono da pauta",r.dono],["Alçada",r.alc]]
+    .map(([a,c])=>`<dt>${a}</dt><dd>${esc(c)}</dd>`).join("");
+  const sec=(t,c)=>c?`<div class="gsec"><h4>${t}</h4>${c}</div>`:"";
+  const li=a=>"<ul>"+a.map(x=>`<li>${esc(x)}</li>`).join("")+"</ul>";
+  const part='<ul class="part">'+r.part.map(([q,m])=>`<li><em>${MK[m]}</em><span>${esc(q)}</span></li>`).join("")+"</ul>"+
+    '<div style="font-size:11px;color:var(--sec);margin-top:6px">🔵 colabora · ⚫ consultado · 🔘 opcional · ⚪ sem necessidade</div>';
+  document.getElementById("gbody").innerHTML=
+    (r.novo?'<div class="nota"><b>Rito proposto.</b> A necessidade está documentada no acervo do projeto, a reunião não. Cadência e duração são proposta e precisam de validação.</div>':"")+
+    `<div class="gsec"><h4>Participantes<span class="cifra">${u.cifra}<em>custo ${CUSTOTXT[u.cifra]}</em></span></h4>${part}</div>`+
+    sec("Critérios para iniciar",li(r.ini))+
+    sec("Pauta",li(r.p))+
+    sec("Evidência",li(r.ev))+
+    sec("Critérios de satisfação",li(r.sat))+
+    sec("Template",`<p>${esc(r.tpl)}</p>`)+
+    sec("Fricções",`<div class="cx f">${li(r.fric)}</div>`)+
+    sec("Boa prática",`<div class="cx b">${li(r.boa)}</div>`)+
+    sec("Oportunidade de melhorar o rito",`<div class="cx o">${li(r.opor)}</div>`)+
+    sec("Recebe de",li(recebe(r.id).length?recebe(r.id):[VAZIO]))+
+    sec("Entrega para",li(entrega(r.id).length?entrega(r.id):[VAZIO]))+
+    sec("Experiência",grafico(520,160,r.risco,"g")+LEGEXP+
+      (r.risco?'<div class="alerta"><b>Ponto de atenção.</b> O vão hachurado é largo: a equipe espera muito deste rito e recebe menos do que espera. Prioridade de redesenho.</div>':""));
+  document.getElementById("gaveta").classList.add("on");
+  document.getElementById("fundo").classList.add("on");
+}
+function fechar(){document.getElementById("gaveta").classList.remove("on");document.getElementById("fundo").classList.remove("on");}
+document.querySelector(".fechar").onclick=fechar;
+document.getElementById("fundo").onclick=fechar;
+document.addEventListener("keydown",e=>{if(e.key==="Escape")fechar();});
+document.querySelectorAll("nav button").forEach(b=>b.onclick=()=>{
+  document.querySelectorAll("nav button").forEach(x=>x.classList.remove("on"));
+  document.querySelectorAll(".painel").forEach(x=>x.classList.remove("on"));
+  b.classList.add("on");document.getElementById("p-"+b.dataset.p).classList.add("on");});
+const z=document.getElementById("z"), palco=document.querySelector(".palco"),
+      lona=document.getElementById("lona"), tela=document.getElementById("tela");
+function zoom(){
+  const v=z.value/100;
+  tela.style.transform=`scale(${v})`;
+  lona.style.width=(W*v)+"px"; lona.style.height=(H*v)+"px";   /* área de rolagem real */
+  document.getElementById("zv").textContent=z.value+"%";
+}
+z.addEventListener("input",zoom);
+/* Encaixa na LARGURA. Encaixar também na altura daria por volta de 26%, ilegível;
+   na largura fica legível e o resto se alcança com a mãozinha.               */
+function encaixa(){
+  const v=(palco.clientWidth-16)/W*100;
+  z.value=Math.max(+z.min,Math.min(+z.max,Math.floor(v)));
+  zoom(); palco.scrollLeft=0; palco.scrollTop=0;
+}
+document.getElementById("fit").onclick=encaixa;
+/* zoom pelo volante, ancorado no ponto sob o cursor: o que está embaixo do
+   mouse continua embaixo do mouse depois de ampliar.                        */
+palco.addEventListener("wheel",e=>{
+  if(!e.deltaY)return;
+  e.preventDefault();
+  const r=palco.getBoundingClientRect();
+  const cx=e.clientX-r.left, cy=e.clientY-r.top;          /* cursor na janela */
+  const antes=z.value/100;
+  const dx=(palco.scrollLeft+cx)/antes, dy=(palco.scrollTop+cy)/antes;  /* ponto no diagrama */
+  /* passo multiplicativo: o zoom cresce igual em qualquer escala, como no Miro */
+  const fator=e.deltaY<0?1.12:1/1.12;
+  z.value=Math.max(+z.min,Math.min(+z.max,Math.round(+z.value*fator)));
+  zoom();
+  const dep=z.value/100;
+  palco.scrollLeft=dx*dep-cx; palco.scrollTop=dy*dep-cy;
+},{passive:false});
+
+/* Pan com a mãozinha. Arrasto de menos de 5px ainda conta como clique no card;
+   acima disso vira pan e o clique é engolido, para não abrir a ficha sem querer. */
+let arr=null, engoleClique=false;
+palco.addEventListener("pointerdown",e=>{
+  if(e.button!==0&&e.button!==1)return;
+  arr={x:e.clientX,y:e.clientY,sl:palco.scrollLeft,st:palco.scrollTop,mexeu:false};
+  engoleClique=false;
+});
+palco.addEventListener("pointermove",e=>{
+  if(!arr)return;
+  const dx=e.clientX-arr.x, dy=e.clientY-arr.y;
+  if(!arr.mexeu){
+    if(Math.abs(dx)+Math.abs(dy)<5)return;
+    arr.mexeu=true; engoleClique=true;
+    palco.classList.add("arrastando");
+    palco.setPointerCapture(e.pointerId);
+  }
+  palco.scrollLeft=arr.sl-dx; palco.scrollTop=arr.st-dy;
+});
+const soltaPan=e=>{
+  if(!arr)return;
+  if(arr.mexeu){try{palco.releasePointerCapture(e.pointerId);}catch(_){}}
+  arr=null; palco.classList.remove("arrastando");
+};
+palco.addEventListener("pointerup",soltaPan);
+palco.addEventListener("pointercancel",soltaPan);
+palco.addEventListener("pointerleave",soltaPan);
+palco.addEventListener("click",e=>{
+  if(engoleClique){e.stopPropagation();e.preventDefault();engoleClique=false;}
+},true);
+palco.addEventListener("dragstart",e=>e.preventDefault());
+/* setas do teclado também deslocam, quando o palco tem o foco */
+palco.tabIndex=0;
+palco.addEventListener("keydown",e=>{
+  const p={ArrowLeft:[-80,0],ArrowRight:[80,0],ArrowUp:[0,-80],ArrowDown:[0,80]}[e.key];
+  if(!p)return; e.preventDefault();
+  palco.scrollLeft+=p[0]; palco.scrollTop+=p[1];
+});
+window.addEventListener("resize",()=>{if(palco.dataset.fit==="1")encaixa();estrutura();});
+controles();diagrama();estrutura();legenda();cartoes();encaixa();palco.dataset.fit="1";
+</script>
+</body>
+</html>
