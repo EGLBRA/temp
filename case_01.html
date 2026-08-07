@@ -1,0 +1,452 @@
+<!DOCTYPE html><html lang="pt-BR"><head><meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Case · Os três ciclos que prendiam o RH · V2</title><style>
+:root{--fs:16.5px;--fst:14.5px;--brand:#0E5FA8;--p2:#397CB8;--p3:#6A9CC9;--p4:#9FBFDC;--p5:#DBE7F2;
+--wash:#EFF4FA;--zebra:#F7F9FC;--ink:#1E2833;--ink2:#54616E;--ink3:#8A949F;--rule:#D6DEE8;--nav:268px}
+*{box-sizing:border-box;margin:0;padding:0}
+body{background:#fff;color:var(--ink);font-size:var(--fs);line-height:1.66;
+font-family:"Segoe UI",Roboto,Helvetica,Arial,sans-serif;-webkit-font-smoothing:antialiased}
+h1{font-size:34px;line-height:1.12;font-weight:800;letter-spacing:-.02em;color:#0A0F14}
+h2{font-size:23px;font-weight:800;color:#0A0F14;letter-spacing:-.01em;line-height:1.2;
+padding-bottom:12px;border-bottom:1px solid var(--rule)}
+h2 i{font-style:normal;color:var(--brand);margin-right:12px;font-weight:800}
+h3{font-size:17px;font-weight:800;color:#0A0F14;margin:30px 0 10px}
+p{margin:14px 0;max-width:860px}
+p.lead{font-size:var(--fs);color:var(--ink)}
+.eyebrow{font-size:11px;letter-spacing:.26em;text-transform:uppercase;font-weight:800;color:var(--brand);margin-bottom:12px}
+.capa{background:#000;color:#fff;padding:52px 54px;position:relative;overflow:hidden}
+.capa .b{position:absolute;border-radius:50%}
+.capa .b1{width:330px;height:330px;background:var(--brand);right:-90px;top:-100px;opacity:.85}
+.capa .b2{width:210px;height:210px;background:#17324B;right:110px;top:170px;opacity:.9}
+.capa .mk{font-size:10.5px;letter-spacing:.3em;font-weight:800;position:relative;z-index:2}
+.capa .mk span{color:#7FB2E0}
+.capa h5{font-size:30px;font-weight:800;line-height:1.15;margin:74px 0 14px;position:relative;z-index:2;max-width:560px}
+.capa .dk{font-size:15.5px;color:#C6CDD5;max-width:560px;position:relative;z-index:2;line-height:1.55}
+.capa .ln{height:3px;background:var(--brand);width:360px;margin:26px 0 18px;position:relative;z-index:2}
+.capa .mt{display:flex;gap:38px;position:relative;z-index:2;flex-wrap:wrap}
+.capa .mt small{display:block;font-size:8.5px;letter-spacing:.2em;color:#8C97A3;text-transform:uppercase;font-weight:800;margin-bottom:4px}
+.capa .mt b{font-size:13px}
+.conf{border:1px solid var(--rule);background:var(--zebra);padding:18px 22px;font-size:14.5px;line-height:1.55;color:var(--ink2)}
+.conf b{color:#0A0F14;display:block;font-size:10px;letter-spacing:.18em;text-transform:uppercase;margin-bottom:7px}
+.toc{background:var(--wash);padding:24px 28px}
+.toc ol{list-style:none;counter-reset:t}
+.toc li{counter-increment:t;display:flex;gap:14px;padding:9px 0;border-bottom:1px solid #E1E9F2;font-size:16px;align-items:baseline}
+.toc li:last-child{border-bottom:none}
+.toc li::before{content:counter(t,decimal-leading-zero);color:var(--brand);font-weight:800;font-size:13px;min-width:26px}
+.toc li b{font-weight:700;color:#0A0F14}
+.toc li i{font-style:normal;color:var(--ink2);font-size:14.5px}
+.kpis{display:flex;border-top:1px solid var(--rule);border-bottom:1px solid var(--rule);margin:6px 0 22px}
+.kpis div{flex:1;padding:20px 12px;text-align:center}
+.kpis div+div{border-left:1px solid var(--rule)}
+.kpis b{display:block;font-size:28px;font-weight:800;color:var(--brand);line-height:1}
+.kpis small{display:block;font-size:9.5px;letter-spacing:.16em;text-transform:uppercase;color:var(--ink2);font-weight:800;margin-top:8px}
+.callout{background:var(--wash);border-left:4px solid var(--brand);padding:18px 24px;margin:22px 0}
+.callout h6{font-size:10.5px;letter-spacing:.2em;text-transform:uppercase;color:#0B3C6B;font-weight:800;margin-bottom:8px}
+.callout p{margin:0;font-size:calc(var(--fs) - 1px);max-width:none}
+table{width:100%;border-collapse:collapse;font-size:var(--fst);margin:18px 0}
+thead th{background:#000;color:#fff;text-align:left;padding:10px 13px;font-size:10px;letter-spacing:.14em;text-transform:uppercase;font-weight:800}
+tbody td{padding:10px 13px;border-bottom:1px solid var(--rule);vertical-align:top;line-height:1.45}
+tbody tr:nth-child(even) td{background:var(--zebra)}
+td.k{font-weight:700;color:#0A0F14}
+ol.pains{list-style:none;counter-reset:d;margin:18px 0}
+ol.pains li{counter-increment:d;position:relative;padding:0 0 16px 48px}
+ol.pains li::before{content:counter(d);position:absolute;left:0;top:0;width:31px;height:31px;border-radius:50%;
+background:var(--brand);color:#fff;font-size:14px;font-weight:800;display:flex;align-items:center;justify-content:center}
+ol.pains span{display:block;font-weight:800;color:#0A0F14;font-size:calc(var(--fst) + 1px);margin-bottom:3px}
+ol.pains p{margin:0;font-size:calc(var(--fst) + .5px);max-width:none}
+ul.tri{list-style:none;margin:16px 0}
+ul.tri li{position:relative;padding:0 0 13px 24px;font-size:calc(var(--fst) + 1px);line-height:1.5}
+ul.tri b{display:block;margin-bottom:2px}
+ul.tri li::before{content:"";position:absolute;left:0;top:9px;border-left:8px solid var(--brand);
+border-top:5px solid transparent;border-bottom:5px solid transparent}
+.flow{display:flex;align-items:center;gap:8px;flex-wrap:nowrap;margin:20px 0}
+.flow span{flex:1;background:#fff;border:1px solid var(--p3);padding:10px 8px;border-radius:3px;font-size:13.5px;font-weight:700;text-align:center;line-height:1.3}
+.flow span.brk{background:#000;color:#fff;border-color:#000}
+.flow i{color:var(--ink3);font-style:normal;font-weight:800}
+.use{display:grid;grid-template-columns:1fr 1fr;border:1px solid var(--rule);margin:8px 0 22px}
+.use div{padding:16px 20px;font-size:15.5px;line-height:1.55}
+.use div+div{border-left:1px solid var(--rule)}
+.use b{display:block;font-size:10px;letter-spacing:.16em;text-transform:uppercase;font-weight:800;margin-bottom:6px}
+.use .ok b{color:#2E7D46}.use .no b{color:#8A5410}
+.tag{display:inline-block;padding:3px 10px;border-radius:3px;font-size:10.5px;font-weight:800;letter-spacing:.1em;
+text-transform:uppercase;background:#FCE8B2;color:#7A5410;vertical-align:middle}
+.tag.ok{background:#DDF0E2;color:#2E7D46}
+.quote{background:#000;color:#fff;padding:28px 32px;margin-top:26px}
+.quote p{font-size:17px;font-weight:700;line-height:1.42;margin:0;max-width:none}
+.quote small{display:block;margin-top:14px;font-size:10px;letter-spacing:.2em;text-transform:uppercase;color:#8C97A3;font-weight:800}
+.rodape{margin-top:40px;padding-top:16px;border-top:1px solid var(--rule);font-size:14px;line-height:1.55;color:var(--ink2)}
+
+nav{position:fixed;left:0;top:0;bottom:0;width:var(--nav);background:#000;color:#fff;padding:34px 26px;overflow-y:auto}
+nav .mark{font-size:12px;letter-spacing:.26em;font-weight:800;color:#fff;margin-bottom:6px}
+nav .mark span{color:#7FB2E0}
+nav .ver{font-size:11px;letter-spacing:.14em;color:#8A949F;text-transform:uppercase;font-weight:700;margin-bottom:28px}
+nav a{display:block;color:#C6CDD5;text-decoration:none;font-size:14.5px;padding:7px 0 7px 14px;border-left:2px solid #2A2F35;line-height:1.35}
+nav a:hover{color:#fff;border-left-color:var(--brand)}
+nav a b{display:block;font-size:10px;letter-spacing:.16em;color:#6E7883;text-transform:uppercase;font-weight:800;margin-bottom:2px}
+main{margin-left:var(--nav);max-width:1000px;padding:52px 60px 120px}
+section.blk{margin-top:54px;scroll-margin-top:20px}
+#fsbar{position:fixed;right:20px;bottom:20px;z-index:99;display:flex;gap:6px}
+#fsbar button{background:#fff;border:1px solid #c3ccd9;color:#22303f;border-radius:4px;padding:7px 13px;font:800 13px/1 inherit;cursor:pointer;box-shadow:0 1px 5px rgba(0,0,0,.14)}
+@media (max-width:1000px){nav{position:static;width:auto}main{margin-left:0;padding:34px 22px 80px}.use{grid-template-columns:1fr}.use div+div{border-left:none;border-top:1px solid var(--rule)}}
+</style></head><body>
+<nav><div class="mark">CASE<span>·</span>PROJETO</div><div class="ver">Design organizacional · V2.0</div><a href="#s1"><b>01</b>Sumário executivo</a><a href="#s2"><b>02</b>Contexto</a><a href="#s3"><b>03</b>Reenquadramento do problema</a><a href="#s4"><b>04</b>Como o programa foi conduzido</a><a href="#s5"><b>05</b>O que foi desenhado</a><a href="#s6"><b>06</b>Implantação</a><a href="#s7"><b>07</b>Entregas e resultados</a><a href="#s8"><b>08</b>Tensões remanescentes</a><a href="#s9"><b>09</b>Decisões de condução e aprendizado</a><a href="#s10"><b>10</b>Fundamentação</a></nav>
+<main><section class="capablk">
+<div class="capa"><div class="b b1"></div><div class="b b2"></div>
+<div class="mk">CASE DE PROJETO<span> ·</span> DESIGN ORGANIZACIONAL</div>
+<h5>Os três ciclos que prendiam o RH</h5>
+<p class="dk">A transformação partiu da própria área: do convite à escuta, da escuta ao reenquadramento como órgão de conformidade em tempo real, e do desenho a seis meses de operação medida.</p>
+<div class="ln"></div>
+<div class="mt"><div><small>Segmento</small><b>Saúde suplementar</b></div><div><small>Duração</small><b>6 meses de operação medida</b></div><div><small>Objeto</small><b>Modelo operacional de área</b></div><div><small>Versão</small><b>V2.0</b></div><div><small>Autoria</small><b>Eric Leite</b></div></div>
+</div>
+<div class="conf" style="margin-top:0"><b>Nota de descaracterização</b>Por acordo de confidencialidade e em atenção à Lei Geral de Proteção de Dados, a empresa, as pessoas, os sistemas, os fornecedores e as unidades de negócio não são nomeados. Cifras aparecem apenas em ordem de grandeza. Método, sequência de decisão, artefatos e achados estão preservados.</div>
+<h3 style="margin-top:30px">Índice</h3>
+<div class="toc"><ol><li><b>Sumário executivo</b></li><li><b>Contexto</b></li><li><b>Reenquadramento do problema</b></li><li><b>Como o programa foi conduzido</b></li><li><b>O que foi desenhado</b></li><li><b>Implantação</b></li><li><b>Entregas e resultados</b></li><li><b>Tensões remanescentes</b></li><li><b>Decisões de condução e aprendizado</b></li><li><b>Fundamentação</b></li></ol></div>
+</section><section class="blk" id="s1"><h2><i>01</i>Sumário executivo</h2>
+<div class="kpis"><div><b>-30%</b><small>no tempo das contratações comuns</small></div><div><b>32 h</b><small>mensais de conferência liberadas</small></div><div><b>16</b><small>indicadores de fluxo em uso</small></div><div><b>8</b><small>momentos com dono e alçada</small></div></div>
+
+<p class="lead">A iniciativa nasceu na própria área de Administração do RH, que procurou a frente interna de agilidade
+em busca de uma operação mais eficiente, com decisões mais rápidas e mais autonomia. A escuta que abriu o trabalho
+descreveu sobrecarga de trabalho manual, fragmentação de sistemas e desequilíbrio entre capacidade e demanda. A leitura
+que sustentou o desenho somou outra camada: a área declara fatos ao Estado com prazo próprio e multa tabelada, e recebe
+a informação que alimenta essas declarações por canais que não formam fila. O que começou como transformação ágil
+amadureceu como projeto de conformidade.</p>
+
+<p>Em seis meses, o trabalho saiu da escuta para o desenho. O mapa da área de ponta a ponta mostrou três filas antes de
+a admissão chegar à área, uma data de início combinada fora dela que dispara o prazo legal mais duro, e uma folha que
+recebia entradas de sete origens sem controlar nenhuma. A resposta foi uma porta única de entrada com fila visível,
+dono e alçada escrita para cada um dos oito momentos, conferência dirigida a risco no lugar da conferência tripla e
+folga mínima pactuada na fronteira com quem contrata. A implantação partiu em ondas na sequência do desenho, cada
+mudança entrando como experimento com critério de reversão escrito, e a linha de base saiu da primeira onda: seis
+meses de operação medida, com a régua lida pela própria equipe.</p>
+
+<div class="callout">
+  <h6>De onde vêm os números</h6>
+  <p>Este case afirma dois números: a queda de 30% no tempo das contratações comuns (os casos especiais seguem regra
+  própria de exceção) e as 32 horas mensais de esforço de conferência liberadas. Os
+  dois saem da régua definida antes de qualquer intervenção, comparados à linha de base construída na primeira
+  onda. O que não tem série fechada, ou é diferido por natureza, segue marcado como hipótese, com o indicador que a
+  prova ao lado. No blueprint de partida, cada tempo e cada fila estavam marcados como a apurar; a régua era a condição
+  para que os números de agora fossem comparáveis.</p>
+</div>
+
+<p>Uma regra atravessou o trabalho inteiro: nenhum ganho prometido antes de existir medição. A régua foi definida com o
+time, a linha de base saiu da primeira onda, e os números vieram da operação.</p>
+</section><section class="blk" id="s2"><h2><i>02</i>Contexto</h2>
+<p>A história começa na própria área. A liderança do RH Administração apresentou a área e os seus problemas à
+frente interna de agilidade e pediu apoio para uma transformação. O primeiro passo foi um diagnóstico exploratório:
+conversas individuais com o time, uma pessoa por vez, ao longo de dois meses, num ambiente combinado de segurança para
+a conversa difícil. A devolutiva identificou três desafios e propôs uma jornada em
+momentos. O programa descrito neste case é essa jornada, conduzida de dentro da casa, com a área como dona do
+movimento.</p>
+
+<p>O momento somava outra camada: o time atravessava uma reestruturação interna, com pessoas saindo e chegando e
+rotinas trocando de mãos. Quem assumia um trabalho novo ainda estava fazendo dele o seu, e o conhecimento ficava ainda
+mais preso a quem estava havia mais tempo.</p>
+
+<div class="flow">
+<span>Iniciativa da área</span><i>&rsaquo;</i><span>Escuta e diagnóstico exploratório</span><i>&rsaquo;</i>
+<span class="brk">Jornada de design</span><i>&rsaquo;</i><span>Ondas de implantação</span><i>&rsaquo;</i><span>Operação medida</span>
+</div>
+
+<h3>O que foi combinado</h3>
+<table><thead><tr><th style="width:34%">Dimensão</th><th>Conteúdo</th></tr></thead><tbody>
+<tr><td class="k">Objeto</td><td>O modelo operacional da área, com a jornada de quem ela atende definindo o recorte</td></tr>
+<tr><td class="k">Recorte inicial</td><td>Seis momentos administrativos, da admissão ao desligamento</td></tr>
+<tr><td class="k">Prazo</td><td>Seis meses para o bloco de desenho, com o ciclo de operação acordado à parte</td></tr>
+<tr><td class="k">Equipe</td><td>Condução pela frente interna de agilidade e processos, de fora da área e de dentro da casa, com ponto focal da área e participação da equipe em horas acordadas</td></tr>
+</tbody></table>
+
+<h3>Os limites dados</h3>
+<ul class="tri">
+<li><b>Sem desenvolvimento nem integração de sistemas.</b> A solução precisa funcionar sem integrar o software de folha ao ERP da empresa.</li>
+<li><b>Sem alteração de política de quadro.</b> Capacidade entra como variável apenas na forma como o trabalho chega e é consumido.</li>
+<li><b>A operação não para.</b> Campo e implantação desviam das janelas de fechamento e de vencimento de obrigação.</li>
+</ul>
+
+<div class="callout">
+  <h6>A restrição que definiu o desenho</h6>
+  <p>A intervenção apontada como central desde o diagnóstico anterior, integrar o software de folha ao ERP da empresa,
+  estava declarada fora do escopo desde o começo. Aceitar essa restrição sem discutir teria produzido um portfólio de
+  paliativos. Ela foi registrada como dependência com dono externo, e o desenho inteiro foi construído para funcionar
+  sem ela.</p>
+</div>
+</section><section class="blk" id="s3"><h2><i>03</i>Reenquadramento do problema</h2>
+<p>O pedido descrevia sintomas de uma área sobrecarregada. A leitura de domínio mostrou outra coisa: nos últimos anos o
+Estado brasileiro mudou a natureza desse tipo de área. A folha deixou de ser cálculo interno conferido depois e passou a
+ser declaração contínua, evento a evento, com prazo próprio para cada fato do vínculo.</p>
+
+<div class="flow">
+<span>Pedido recebido</span><i>&rsaquo;</i><span>Leitura de domínio</span><i>&rsaquo;</i>
+<span class="brk">Reenquadramento</span><i>&rsaquo;</i><span>Tese</span><i>&rsaquo;</i><span>Recorte</span>
+</div>
+
+<h3>Do pedido à tese</h3>
+<div class="use" style="border-top:1px solid var(--rule)">
+<div class="no"><b>Como o pedido chegou</b>A área está sobrecarregada por trabalho manual. Automatizar as conferências
+devolve capacidade e resolve o atraso nos fechamentos.</div>
+<div class="ok"><b>A tese que orientou o desenho</b>A área é um terminal de conformidade em tempo real e é gerida como
+setor administrativo. O erro dominante é de sequência, não de cálculo. Automatizar a conta resolve pouco; instalar a
+captura resolve muito.</div>
+</div>
+
+<p>O reenquadramento tem uma consequência prática imediata. Se o problema fosse de cálculo, a primeira onda seria de
+automação. Como a hipótese é de sequência, a primeira onda passou a ser tornar a demanda contável e nomear dono por
+momento: duas intervenções de esforço baixo, que custam agenda e não orçamento.</p>
+
+<p>Os três desafios herdados ganharam um segundo tratamento: foram redesenhados como ciclos de reforço num mapa causal
+único, com o trabalho manual, a fragmentação e a sobrecarga dividindo as mesmas variáveis e as conexões cruzadas
+nomeadas. O mapa mostrou por que resolver uma ponta isolada reforçava a outra, e virou a peça de conversa com a equipe
+e com o patrocínio: o problema deixou de ter culpado e passou a ter desenho.</p>
+
+<h3>A correção de escopo</h3>
+<p>O recorte inicial tinha seis momentos. A leitura do ciclo do vínculo mostrou duas ausências relevantes: jornada e
+ponto, onde o passivo se forma sem aparecer no mês, e saúde ocupacional, onde uma decisão técnica de classificação
+altera direitos de quem se afasta. O recorte passou a oito, e a correção ficou registrada com a evidência que a
+motivou.</p>
+
+<div class="callout">
+  <h6>Ponto de atenção</h6>
+  <p>Três desafios foram herdados do diagnóstico anterior, e nenhum deles tinha lastro de fluxo. A área acompanhava um
+  painel semanal de agregados, com custo da folha, horas extras, absenteísmo, rotatividade e correções pós-fechamento
+  como os cinco principais; agregados medem o resultado do mês, não o caminho até ele, e nenhum momento do ciclo tinha
+  indicador próprio. Os desafios entraram no projeto como hipóteses, com critério escrito de queda, e não como achados.
+  Isso aproveitou o material sem herdar a falta de evidência.</p>
+</div>
+</section><section class="blk" id="s4"><h2><i>04</i>Como o programa foi conduzido</h2>
+<p>O roteiro correu em cinco fases. Cada marco de passagem foi avaliado em três pilares, rigor de processo,
+fundamentação em evidência e resultado com aprendizado, com o pilar mais fraco definindo a passagem, e não a média.</p>
+
+<table><thead><tr><th style="width:16%">Fase</th><th style="width:24%">Marco</th><th style="width:22%">Janela</th><th>Instrumento central</th></tr></thead><tbody>
+<tr><td class="k">Conectar</td><td>M0 Alinhamento</td><td>Mês 1</td><td>Briefing, matriz de abertura e canvas de estratégia</td></tr>
+<tr><td class="k">Entender</td><td>M1 Diagnóstico</td><td>Meses 2 e 3</td><td>Mapa do ecossistema, matriz de certezas, suposições e dúvidas, AS-IS de partida em quatro peças, cinco cenários de investigação</td></tr>
+<tr><td class="k">Desenhar</td><td>M2 Concepção</td><td>Mês 4</td><td>Operação-alvo, portfólio priorizado, matriz de donos</td></tr>
+<tr><td class="k">Implementar</td><td>MR Entrada em regime</td><td>Mês 5</td><td>Primeiro corte com critério de parada escrito antes da partida</td></tr>
+<tr><td class="k">Medir e Adaptar</td><td>Fechamento do bloco</td><td>Mês 6</td><td>Painel de duas camadas e decisão de continuidade</td></tr>
+</tbody></table>
+
+<h3>O encadeamento das escolhas de instrumento</h3>
+<p>Era preciso decidir onde o tempo da área se perde. O blueprint espelhado foi escolhido porque separa o que quem é
+atendido vê do que a área faz, e é nessa distância que o ponto de dor aparece. O resultado mostrou três filas antes de a
+área tocar o processo de admissão, o que deslocou parte do problema para a fronteira com a área de seleção.</p>
+
+<p>Era preciso decidir se a folha entrava como jornada. Ela não entrou. Folha não tem alguém percorrendo etapas: acontece
+com todo mundo ao mesmo tempo, todo mês. O instrumento passou a ser ciclo com régua de tempo, e essa escolha revelou o
+achado estrutural do projeto: sete famílias de entrada desembocam na folha e nenhuma delas nasce na área.</p>
+
+<p>Era preciso saber se quatro peças bastavam para enxergar o todo. Foram quatro: admissão, folha, desligamento e o mês
+típico da equipe. As três primeiras representam os três tempos do vínculo. A quarta é a única que mostra os três
+acontecendo ao mesmo tempo, e é onde a capacidade acaba.</p>
+
+<h3>O trabalho com o time, não só com o processo</h3>
+<p>Nada disso entrou por documento. O Kanban chegou primeiro como jogo, numa dinâmica em que o time viveu fila, limite e
+fluxo antes de tocar no trabalho real; depois veio o quadro da própria operação, com espaço protegido na semana para
+melhoria. O painel de indicadores foi construído em sessões com a equipe, com formação de leitura de número, gráfico e
+fluxo do básico ao avançado: a régua é lida por quem opera, não por quem a desenhou. E práticas de Management 3.0
+sustentaram a parte humana, com dinâmicas de integração do time, acordos de trabalho explícitos, clareza de papéis e
+níveis de delegação combinados em conjunto, que é de onde saiu a alçada escrita de cada momento. Num time em
+reestruturação, o acordo explícito vale dobrado: ele segura o combinado quando as pessoas mudam de lugar.</p>
+
+<p>A capacidade também foi trabalhada por dentro. Os ritos da área ganharam cadência e pauta definidas, no lugar da
+reunião que acontecia quando dava. Papel foi separado de função, para o trabalho não depender do cargo de quem o faz. A
+matriz de polivalência mostrou quem cobre o quê e onde a operação dependia de uma pessoa só, e virou o instrumento para
+reduzir essa dependência. E um 5S dos arquivos e controles aposentou planilhas paralelas e deixou uma fonte só para
+cada dado.</p>
+
+<div class="callout">
+  <h6>Critério de investigação</h6>
+  <p>Cinco cenários de investigação foram definidos com um critério único: cada um precisa ser capaz de mudar uma decisão
+  de desenho. Investigação que não muda decisão é curiosidade paga. Cada cenário declara a evidência que o decide e o que
+  muda no portfólio se ele confirmar ou refutar.</p>
+</div>
+</section><section class="blk" id="s5"><h2><i>05</i>O que foi desenhado</h2>
+<p>O desenho foi feito para ficar de pé mesmo onde o diagnóstico ainda tinha lacuna. Onde uma etapa depende de uma
+hipótese específica, a condição está escrita na própria linha do documento de concepção: se a hipótese cair, aquela
+etapa volta à prancheta e o resto permanece.</p>
+
+<table><thead><tr><th style="width:22%">Dimensão</th><th style="width:39%">Antes</th><th>Depois</th></tr></thead><tbody>
+<tr><td class="k">Entrada da demanda</td><td>Canais informais, sem fila e sem prazo declarado</td><td>Canal único com classificação por momento e prazo declarado</td></tr>
+<tr><td class="k">Fronteira de entrada</td><td>Data de início combinada por terceiro, cumprida como prazo legal pela área</td><td>Folga mínima pactuada, com notificação no aceite e regra de exceção rastreável</td></tr>
+<tr><td class="k">Responsabilidade</td><td>Nenhum momento com dono nomeado</td><td>Oito momentos com dono, alçada escrita e indicador próprio</td></tr>
+<tr><td class="k">Caso fora do padrão</td><td>Consulta a quem sabe</td><td>Critério publicado, com o que se decide sozinho e o que escala</td></tr>
+<tr><td class="k">Conferência</td><td>Verificação repetida como compensação de incerteza</td><td>Conferência dirigida a risco, apoiada em histórico de erro por origem</td></tr>
+<tr><td class="k">Medição</td><td>Painel semanal de cinco agregados, sem leitura por momento</td><td>Régua de dezesseis indicadores de fluxo em quatro dimensões, somada ao painel, com faixa antes do valor</td></tr>
+<tr><td class="k">Escuta</td><td>Inexistente</td><td>Seis instrumentos, quatro dos quais leem o que a operação já produz</td></tr>
+</tbody></table>
+
+<div class="callout">
+  <h6>Por que a superfície visível não entra primeiro</h6>
+  <p>Boa parte das intervenções libera capacidade sem produzir nenhuma percepção do lado de fora. Se a primeira onda
+  fosse composta só por elas, a equipe sentiria a mudança e mais ninguém. Por isso o roteiro de saída, de esforço baixo e
+  efeito visível, entra na onda 1 mesmo tendo prioridade técnica menor. É evidência pública de que o trabalho existe.</p>
+</div>
+
+
+<h3>Os achados que o desenho endereça</h3>
+<ol class="pains">
+<li><span>O relógio é externo e um dos prazos vence antes do fato</span><p>O evento de admissão precisa estar transmitido
+antes do início da prestação de serviço. É a única obrigação da área que vence antes de o fato gerador se completar.</p></li>
+<li><span>A demanda entra sem fila, a obrigação chega com data fixa</span><p>Entre as duas pontas se forma a conferência
+repetida, que é o mecanismo criado pela equipe para compensar a ausência de fila visível.</p></li>
+<li><span>A data que dispara o prazo mais duro é definida fora da área</span><p>Quem combina o início com quem foi
+contratado está definindo um prazo legal que outra área cumpre, sem tratar como prazo.</p></li>
+<li><span>A folha concentra sete famílias de entrada e nenhuma nasce na área</span><p>Ela herda o atraso de toda a
+manutenção sem ter controle sobre nenhuma das origens.</p></li>
+<li><span>Não existe leitura por momento</span><p>Os agregados do painel semanal medem o fim do mês, não o caminho até
+ele. Sem indicador de fluxo por momento, a área prioriza por percepção e negocia capacidade sem evidência.</p></li>
+</ol>
+
+</section><section class="blk" id="s6"><h2><i>06</i>Implantação</h2>
+<p>A implantação foi desenhada em quatro ondas trimestrais, ordenadas por risco e por dependência, não por valor
+potencial. A régua de tempo é a da operação: nenhuma partida cai em janela de pico.</p>
+
+<table><thead><tr><th style="width:10%">Onda</th><th style="width:18%">Janela</th><th style="width:32%">Conteúdo</th><th>Critério de pronto</th></tr></thead><tbody>
+<tr><td class="k">O-1</td><td>1º trimestre de operação</td><td>Entrada contável, painel de estado, roteiro de saída, consolidação da lista única e do acordo de folga</td><td>Um ciclo de escuta fechado com decisão publicada e dono presente no rito</td></tr>
+<tr><td class="k">O-2</td><td>2º trimestre</td><td>Corte pactuado por área de origem, critério e alçada publicados, conferência dirigida a risco</td><td>Dois fechamentos seguidos sem evento fora do prazo</td></tr>
+<tr><td class="k">O-3</td><td>3º trimestre</td><td>Conferência de jornada, calendário de datas-base, prévia de valor rescisório</td><td>Duas rodadas de conferência concluídas com registro</td></tr>
+<tr><td class="k">O-4</td><td>4º trimestre</td><td>Acompanhamento de afastamento, registro de rotina dos momentos em regime</td><td>Registro cobrindo os momentos das ondas anteriores</td></tr>
+</tbody></table>
+
+<h3>Os ganhos rápidos, na frente das ondas</h3>
+<p>Enquanto as ondas amadureciam, os ganhos rápidos de clareza saíram primeiro, de esforço baixo e efeito imediato:</p>
+<ul class="tri">
+<li><b>O mapa da área publicado.</b> Pela primeira vez a operação inteira coube num desenho só, e a conversa com as outras áreas passou a ter um artefato em vez de opinião.</li>
+<li><b>A fila visível.</b> Quem pede passou a ver o próprio pedido, a classificação e o prazo, sem precisar perguntar.</li>
+<li><b>O roteiro de saída.</b> Orientação clara para quem desliga, entregue na primeira onda como evidência pública de que o trabalho existia.</li>
+<li><b>O critério do caso fora do padrão publicado.</b> O que se decide sozinho e o que sobe, no lugar da consulta a quem sabe.</li>
+</ul>
+
+<div class="callout">
+  <h6>O critério de parada, escrito antes da partida</h6>
+  <p>O primeiro corte reverte no mesmo dia se tocar parâmetro de cálculo, prazo legal ou obrigação acessória. Suspende em
+  vinte e quatro horas se um evento sair do prazo por causa da mudança. E para para investigar, sem reverter, se a equipe
+  passar a operar o jeito novo e o antigo em paralelo. A rotina anterior ficou documentada e disponível durante todo o
+  período, e foi arquivada ao fim da segunda onda, depois de dois fechamentos seguidos sem evento fora do prazo.</p>
+</div>
+
+
+<h3>Estado de cada frente · leitura ao fim da segunda onda</h3>
+<table><thead><tr><th style="width:40%">Frente</th><th style="width:22%">Estado</th><th>Condição</th></tr></thead><tbody>
+<tr><td>Entrada contável e painel de estado</td><td>Em regime</td><td>Fila única visível, demanda classificada por momento e prazo declarado</td></tr>
+<tr><td>Acordo de folga com a área de seleção</td><td>Assinado e em uso</td><td>Parâmetros saíram do rastreamento de vinte e cinco admissões na O-1</td></tr>
+<tr><td>Governança por momento</td><td>Em regime</td><td>Oito momentos com dono, alçada escrita e termo de aceite</td></tr>
+<tr><td>Conferência dirigida a risco</td><td>Em regime</td><td>Substituiu a conferência tripla; o histórico de erro por origem alimenta o filtro</td></tr>
+<tr><td>Conferência de jornada</td><td>Em partida na O-3</td><td>Primeira rodada em preparação, com o calendário de datas-base pronto</td></tr>
+<tr><td>Consulta autosserviço de contracheque</td><td>Fora das ondas</td><td>Depende de desenvolvimento; dependência declarada</td></tr>
+<tr><td>Integração da folha com o ERP</td><td>Não endereçada</td><td>Fora do poder de entrega desde o combinado inicial; reavaliada a cada marco</td></tr>
+</tbody></table>
+
+</section><section class="blk" id="s7"><h2><i>07</i>Entregas e resultados</h2>
+<p>O que está instalado é verificável no acervo. O que a operação mediu está comparado à linha de base. O que não tem
+série fechada, ou leva anos para aparecer, segue como hipótese, com o indicador que a prova ao lado.</p>
+
+<div class="callout">
+  <h6>Nota de completude</h6>
+  <p>O campo que o blueprint de partida deixou declarado como lacuna foi executado nas ondas: rastreamento de admissões e desligamentos,
+  cronometragem de conferência e quatro sessões de observação, duas em janela de pico. A linha de base saiu da primeira
+  onda, mantida pela própria equipe, e os três relatórios de fechamento subiram de versão com a condição que cada um
+  nomeava cumprida.</p>
+</div>
+
+
+<h3>O que está instalado</h3>
+<ul class="tri">
+<li>Recorte de oito momentos administrativos, com a correção de escopo documentada e a evidência que a motivou.</li>
+<li>Operação-alvo dos oito momentos, com o antes e o depois comparáveis linha a linha com o retrato de partida.</li>
+<li>Quadro Kanban da operação em uso, vivido primeiro em dinâmica e depois aplicado ao trabalho real, com espaço protegido de melhoria na semana.</li>
+<li>Portfólio de intervenções separado por natureza: o que dependia de tecnologia, com a dependência declarada; o que a própria área muda, de gestão; e os ganhos rápidos de clareza. O que ficou de fora está registrado com o motivo.</li>
+<li>Matriz de donos por momento, com alçada escrita e termo de aceite em cinco campos.</li>
+<li>Sistema de escuta em seis instrumentos, com gatilho de ação definido para cada um.</li>
+<li>Régua de dezesseis indicadores de fluxo em quatro dimensões, com conformidade operando como veto e não como média.</li>
+<li>Linha de base dos oito momentos, construída na primeira onda e mantida pela equipe, com formação de leitura de indicador do básico ao avançado.</li>
+<li>Três relatórios de fechamento encadeados, com a regra verificada: todo achado termina em solução ou na lista de não endereçados.</li>
+</ul>
+
+<h3>O que a operação provou <span class="tag ok">medido</span> e o que segue em teste <span class="tag">hipótese</span></h3>
+<table><thead><tr><th style="width:32%">Hipótese da concepção</th><th style="width:28%">Indicador que a prova</th><th>Estado ao fim da segunda onda</th></tr></thead><tbody>
+<tr><td>Prazo pactuado na fronteira e entrada contável encurtam a contratação</td><td>Tempo de contratação; filas antes de a admissão chegar à área</td><td><b>Confirmada.</b> Queda de 30% no tempo das contratações comuns, com menos filas antes da área e a folga pactuada no aceite; casos especiais seguem a regra de exceção e são medidos à parte</td></tr>
+<tr><td>Conferência dirigida a risco devolve capacidade sem elevar erro</td><td>Horas em conferência; retrabalho por origem; eventos no prazo</td><td><b>Confirmada.</b> 32 horas mensais liberadas da conferência tripla, com os fechamentos dentro do prazo desde a O-2</td></tr>
+<tr><td>Critério publicado reduz a dependência de uma pessoa</td><td>Rotinas com executor único</td><td><b>Em regime, sem série fechada.</b> Rotinas com executor único mapeadas na matriz de polivalência e em redução; o número consolida com um ciclo completo</td></tr>
+<tr><td>Conferência periódica reduz o passivo que aparece na rescisão</td><td>Divergência entre escala e pago; questionamento pós-saída</td><td><b>Segue hipótese.</b> Efeito diferido por natureza: aparece anos depois, e a série começa na O-3</td></tr>
+</tbody></table>
+
+</section><section class="blk" id="s8"><h2><i>08</i>Tensões remanescentes</h2>
+<p>As quatro tensões declaradas no fechamento do bloco de desenho seguem aqui, com o que aconteceu com cada uma. Duas
+permanecem; nenhuma impede a operação; todas comprometem a leitura do trabalho se não forem ditas.</p>
+
+<table><thead><tr><th style="width:28%">Tensão</th><th style="width:38%">O que aconteceu desde o fechamento do desenho</th><th>Efeito prático hoje</th></tr></thead><tbody>
+<tr><td class="k">O diagnóstico era estrutural, não apurado</td><td>O campo foi executado nas ondas e a linha de base existe. A série, porém, é curta: seis meses medidos</td><td>O pico de fim de ano, com as parcelas do 13º, ainda não entrou na série; a leitura de sazonalidade fica para o ciclo seguinte</td></tr>
+<tr><td class="k">A maior alavanca segue fora do alcance</td><td>Permanece. Integrar a folha ao ERP continua dependendo de priorização de desenvolvimento</td><td>O desenho funciona sem ela, e melhora se ela vier. A dependência é reavaliada a cada marco</td></tr>
+<tr><td class="k">Escopo e patrocínio não nomeados</td><td>Fechada na entrada em regime, com os oito aceites da matriz de donos completados</td><td>A pendência atravessou o bloco de desenho aberto, e o custo disso está registrado na seção 09</td></tr>
+<tr><td class="k">O ganho na folha é invisível por construção</td><td>Permanece, por natureza do ciclo: o único ponto visível é o crédito na conta</td><td>A comunicação de resultado usa os momentos com superfície visível; a folha aparece pela régua, não pela percepção</td></tr>
+</tbody></table>
+
+<p>A quarta tensão segue sendo a que mais afeta a conversa de continuidade. Quando o projeto promete efeito percebido,
+precisa escolher momentos com superfície visível; admissão, afastamento e desligamento têm, folha quase não tem.
+Prometer percepção onde não há superfície é o modo mais rápido de o trabalho ser lido como inexistente.</p>
+</section><section class="blk" id="s9"><h2><i>09</i>Decisões de condução e aprendizado</h2>
+<p>Sete decisões de condução foram tomadas ao longo do projeto e são reconhecidas como do autor. Cada uma teve custo, e o
+custo está registrado.</p>
+
+<table><thead><tr><th style="width:6%">#</th><th style="width:34%">Decisão</th><th style="width:30%">Razão</th><th>Custo assumido</th></tr></thead><tbody>
+<tr><td class="k">1</td><td>Rebaixar os três desafios herdados à condição de hipótese</td><td>O material de origem não tinha indicador de fluxo por momento. Tratá-los como achados herdaria a falta de lastro</td><td>Precisou ser explicado a quem patrocinou a jornada com base naquele material</td></tr>
+<tr><td class="k">2</td><td>Fechar o diagnóstico sem estimativa de ganho</td><td>Preencher com número inventado reproduziria o defeito que o próprio diagnóstico apontava</td><td>O caso de negócio ficou sem projeção e o aval do patrocínio demorou mais</td></tr>
+<tr><td class="k">3</td><td>Ampliar o recorte de seis para oito momentos</td><td>A leitura do ciclo do vínculo mostrou duas ausências que mudavam a exposição a risco</td><td>Aumentou o volume de campo previsto dentro da mesma janela</td></tr>
+<tr><td class="k">4</td><td>Tratar folha como ciclo e não como jornada</td><td>Folha não tem alguém percorrendo etapas. Forçar o formato produziria personagem inventado</td><td>Quebrou a simetria do conjunto de peças e exigiu explicar a diferença de instrumento</td></tr>
+<tr><td class="k">5</td><td>Trazer a interface com seleção para dentro do escopo</td><td>A data de início definida lá é prazo legal cumprido aqui</td><td>Exigiu negociação com uma área que não fazia parte do combinado original</td></tr>
+<tr><td class="k">6</td><td>Colocar uma frente de baixa prioridade técnica na primeira onda</td><td>Sem entrega visível, a escuta perde credibilidade antes do segundo ciclo</td><td>Consumiu espaço de uma frente com efeito maior sobre capacidade</td></tr>
+<tr><td class="k">7</td><td>Simular o relatório de avaliação com um ciclo deliberadamente ruim</td><td>Testar se o veto de conformidade e os cruzamentos seguram a passagem quando os números parecem bons</td><td>Produziu um documento que precisa circular com faixa de aviso e não pode ser usado como resultado</td></tr>
+</tbody></table>
+
+<h3>O que o tempo confirmou</h3>
+<p>A decisão 2, fechar o diagnóstico sem estimativa, era a mais arriscada e foi a que envelheceu melhor: os números deste
+case só são defensáveis porque a régua veio antes deles. E a decisão 5, trazer a fronteira com seleção para dentro do
+escopo, produziu o resultado mais visível do projeto, a queda de 30% no tempo das contratações comuns, exatamente onde
+o pedido original não olhava.</p>
+
+<h3>O que eu faria diferente</h3>
+<p>A pendência de escopo deveria ter travado o avanço. Ela foi registrada e o projeto seguiu, o que é defensável em
+termos de cronograma e frágil em termos de método: o tamanho do campo, o patrocínio e a matriz de donos dependem dessa
+decisão, e três documentos foram produzidos com a premissa em aberto. A régua de passagem existia justamente para
+impedir isso, e não foi acionada.</p>
+
+<p>A segunda seria a sequência de leitura. O lastro de domínio entrou depois do desenho das peças de retrato, e corrigiu
+o recorte a posteriori. Entrar antes teria evitado retrabalho em dois artefatos e produziria um recorte correto desde a
+primeira versão.</p>
+
+<p>A terceira é de comunicação com quem pediu o trabalho. O reenquadramento foi apresentado como conclusão de leitura,
+dentro de um documento. Ele deveria ter sido construído em sessão, junto com a liderança que iniciou o movimento.
+Reenquadrar por escrito economiza tempo de quem conduz e transfere para o outro lado o trabalho de aceitar uma mudança
+de tese que ele não ajudou a formular. O aceite veio, e veio mais devagar do que precisava.</p>
+</section><section class="blk" id="s10"><h2><i>10</i>Fundamentação</h2>
+<p>O roteiro aplicado combina cinco tradições. Nenhuma delas responde sozinha por um projeto de design organizacional, e
+a composição é deliberada.</p>
+
+<table><thead><tr><th style="width:30%">Tradição</th><th style="width:34%">O que ela aporta</th><th>Onde aparece</th></tr></thead><tbody>
+<tr><td class="k">Experiência do colaborador</td><td>A jornada e os momentos que importam como unidade de análise; a escuta contínua no lugar da pesquisa anual</td><td>O lado de quem é atendido no blueprint; inventário de momentos; sistema de escuta</td></tr>
+<tr><td class="k">Gestão de processo madura</td><td>Dono nomeado, alçada escrita e a regra do elo fraco na avaliação de maturidade</td><td>Matriz de donos; régua de passagem dos marcos</td></tr>
+<tr><td class="k">Gestão de mudança, com ADKAR</td><td>O cuidado com cada pessoa afetada como frente própria, separada da comunicação institucional</td><td>Plano de mudança; os cinco estados de preparação do ADKAR</td></tr>
+<tr><td class="k">Agilidade</td><td>Trabalho visível, limite ao que anda em paralelo, experimentos pequenos e seguros, melhoria contínua</td><td>Kanban da operação; dinâmicas e práticas de Management 3.0; ondas com critério de reversão escrito</td></tr>
+<tr><td class="k">Design de serviço</td><td>A geometria das fases, a cocriação como fonte de legitimidade e a preocupação com fixar o método na organização</td><td>Estrutura do roteiro; blueprint espelhado; devolutiva à equipe antes do patrocínio</td></tr>
+</tbody></table>
+
+<p>Duas referências sustentam especificamente o bloco de concepção. O modelo em estrela, pelo qual estratégia, estrutura,
+processos, recompensas e pessoas precisam mover juntos: mexer só na estrutura devolve o problema em três meses. E a
+separação em camadas do desenho do modelo operacional, que permitiu tratar cadeia de valor, organização, informação e
+sistema de gestão como objetos distintos de desenho.</p>
+
+<p>O que costura as cinco tradições é uma regra de evidência única, repetida em três pontos do roteiro: a jornada
+mapeada em sala não é a jornada vivida; medir sem linha de base é opinião com número; e o marco de diagnóstico não fecha
+sem indicadores de partida. É essa regra, e não a escolha de ferramentas, que define o método.</p>
+
+<div class="quote">
+  <p>A área não controla nenhuma das quatro direções que a cercam, e é cobrada pelas quatro. O desenho não muda isso.
+  Muda o que ela consegue enxergar, decidir sozinha e provar.</p>
+  <small>Leitura do mapa de ecossistema · fase de evidência</small>
+</div>
+</section><div class="conf" style="margin-top:38px"><b>Assinatura e versão</b>Eric Leite &nbsp;·&nbsp; case de projeto em design organizacional &nbsp;·&nbsp; versão 2.0 &nbsp;·&nbsp; segmento de saúde suplementar. Os anexos de referência (o AS-IS de partida em quatro peças com o mapa causal dos ciclos, a grade de execução e a matriz de rastreabilidade) acompanham este documento em arquivo separado, em paisagem.</div><div class="rodape"><b>Nota de descaracterização.</b> Por acordo de confidencialidade e em atenção à Lei Geral de Proteção de Dados, a empresa, as pessoas, os sistemas, os fornecedores e as unidades de negócio não são nomeados. Cifras aparecem apenas em ordem de grandeza. Método, sequência de decisão, artefatos e achados estão preservados. Números de escopo de execução são rastreáveis até o acervo de projeto. Os números de impacto saem da régua instalada pelo projeto, medidos pela operação contra a linha de base da primeira onda, e aparecem em percentual ou em horas; o que não tem série fechada segue marcado como hipótese, com o indicador que a prova. Material de apoio ao estudo "Os três ciclos que prendiam o RH". Documento de uso restrito.</div></main>
+<div id="fsbar"><button id="mn">A&minus;</button><button id="mr">A+</button></div>
+<script>(function(){var e=1;function q(){document.documentElement.style.setProperty('--fs',(16.5*e).toFixed(1)+'px');
+document.documentElement.style.setProperty('--fst',(14.5*e).toFixed(1)+'px');}
+document.getElementById('mr').onclick=function(){e=Math.min(1.4,e+0.1);q();};
+document.getElementById('mn').onclick=function(){e=Math.max(0.8,e-0.1);q();};})();</script>
+</body></html>
