@@ -88,6 +88,13 @@ section.blk{margin-top:54px;scroll-margin-top:20px}
 #fsbar{position:fixed;right:20px;bottom:20px;z-index:99;display:flex;gap:6px}
 #fsbar button{background:#fff;border:1px solid #c3ccd9;color:#22303f;border-radius:4px;padding:7px 13px;font:800 13px/1 inherit;cursor:pointer;box-shadow:0 1px 5px rgba(0,0,0,.14)}
 @media (max-width:1000px){nav{position:static;width:auto}main{margin-left:0;padding:34px 22px 80px}.use{grid-template-columns:1fr}.use div+div{border-left:none;border-top:1px solid var(--rule)}}
+@media print{
+  nav,#fsbar{display:none}
+  main{margin-left:0;max-width:none;padding:0}
+  section.blk{margin-top:34px}
+  table,.callout,.use,.kpis,.toc,.conf,.capa{break-inside:avoid}
+  h2{break-after:avoid}
+}
 </style></head><body>
 <nav><div class="mark">CASE<span>·</span>PROJETO</div><div class="ver">Design organizacional · V2.0</div><a href="#s1"><b>01</b>Sumário executivo</a><a href="#s2"><b>02</b>Contexto</a><a href="#s3"><b>03</b>Reenquadramento do problema</a><a href="#s4"><b>04</b>Como o programa foi conduzido</a><a href="#s5"><b>05</b>O que foi desenhado</a><a href="#s6"><b>06</b>Implantação</a><a href="#s7"><b>07</b>Entregas e resultados</a><a href="#s8"><b>08</b>Tensões remanescentes</a><a href="#s9"><b>09</b>Decisões de condução e aprendizado</a><a href="#s10"><b>10</b>Fundamentação</a></nav>
 <main><section class="capablk">
