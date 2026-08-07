@@ -1,0 +1,467 @@
+<!DOCTYPE html>
+<html lang="pt-BR"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Deck · Os três ciclos que prendiam o RH</title>
+<style>
+:root{
+  --brand:#0E5FA8; --hl:#7FB2E0; --p3:#6A9CC9; --p5:#DBE7F2;
+  --rich:#0A2A47; --deep:#17324B;
+  --g1:#1E2833; --g2:#54616E; --g3:#8A949F; --g4:#D6DEE8;
+  --wash:#EFF4FA; --zebra:#F7F9FC;
+}
+*{box-sizing:border-box;}
+html,body{margin:0;padding:0;background:#e9edf2;
+  font-family:"Segoe UI",Roboto,Helvetica,Arial,sans-serif;color:var(--g1);}
+.slide{width:13.333in;height:7.5in;background:#fff;position:relative;overflow:hidden;
+  margin:24px auto;box-shadow:0 2px 14px rgba(10,42,71,.18);
+  padding:0.62in 0.75in 0.55in;display:flex;flex-direction:column;}
+.slide.dark{background:#000;color:#fff;}
+.blob{position:absolute;border-radius:50%;pointer-events:none;}
+.eyebrow{font-size:11px;letter-spacing:.28em;font-weight:700;text-transform:uppercase;
+  color:var(--brand);margin:0 0 10px;}
+.dark .eyebrow{color:var(--hl);}
+h1{font-size:46px;line-height:1.1;font-weight:800;letter-spacing:-.015em;margin:0 0 16px;color:#fff;}
+h2{font-size:27px;line-height:1.2;font-weight:800;letter-spacing:-.01em;margin:0 0 6px;color:var(--rich);}
+.dark h2{color:#fff;}
+.sub{font-size:14.5px;color:var(--g2);margin:0 0 16px;}
+.dark .sub{color:#C6CDD5;}
+.rule{height:3px;background:var(--brand);margin:8px 0 18px;}
+.body{flex:1;display:flex;flex-direction:column;min-height:0;}
+p{margin:0 0 10px;font-size:14.5px;line-height:1.5;}
+strong{color:var(--rich);font-weight:700;}
+.dark strong{color:#fff;}
+.cols{display:flex;gap:26px;flex:1;min-height:0;}
+.col{flex:1;min-width:0;}
+table{width:100%;border-collapse:collapse;font-size:12.5px;margin:4px 0;}
+thead th{background:#000;color:#fff;text-align:left;padding:7px 10px;
+  font-size:10px;letter-spacing:.12em;text-transform:uppercase;font-weight:700;}
+tbody td{padding:7px 10px;border-bottom:1px solid var(--g4);vertical-align:top;line-height:1.42;}
+tbody tr:nth-child(even){background:var(--zebra);}
+tbody td:first-child{font-weight:700;color:var(--rich);}
+.kpis{display:flex;border-top:2px solid var(--rich);border-bottom:2px solid var(--rich);margin:14px 0 6px;}
+.kpi{flex:1;padding:16px;border-right:1px solid var(--g4);}
+.kpi:last-child{border-right:none;}
+.kpi b{display:block;font-size:34px;font-weight:800;color:var(--brand);line-height:1.05;letter-spacing:-.02em;}
+.kpi small{display:block;font-size:9.5px;letter-spacing:.14em;text-transform:uppercase;color:var(--g2);margin-top:7px;font-weight:700;line-height:1.4;}
+ul.tri{list-style:none;padding:0;margin:8px 0;}
+ul.tri li{padding-left:22px;position:relative;margin-bottom:10px;font-size:14px;line-height:1.45;}
+ul.tri li::before{content:"\25B8";position:absolute;left:2px;color:var(--brand);font-weight:700;}
+.dark ul.tri li::before{color:var(--hl);}
+ol.pains{list-style:none;padding:0;margin:8px 0;counter-reset:p;}
+ol.pains li{counter-increment:p;display:flex;gap:13px;padding:11px 0;border-bottom:1px solid var(--g4);align-items:flex-start;}
+ol.pains li:last-child{border-bottom:none;}
+ol.pains li::before{content:counter(p);min-width:27px;height:27px;border-radius:50%;
+  background:var(--brand);color:#fff;font-weight:800;font-size:13px;
+  display:flex;align-items:center;justify-content:center;flex-shrink:0;margin-top:1px;}
+ol.pains b{display:block;color:var(--rich);font-size:14.5px;}
+ol.pains span{color:var(--g2);font-size:12.5px;line-height:1.42;}
+.callout{background:var(--wash);border-left:4px solid var(--brand);padding:13px 18px;margin:12px 0 0;}
+.callout h5{margin:0 0 6px;font-size:9.5px;letter-spacing:.22em;text-transform:uppercase;color:var(--brand);font-weight:800;}
+.callout p{font-size:13px;margin:0;}
+.flow{display:flex;flex-wrap:wrap;align-items:center;gap:8px;margin:14px 0;padding:15px;background:var(--wash);}
+.flow span{background:#fff;border:1px solid var(--p3);padding:8px 13px;font-size:13px;font-weight:700;color:var(--rich);}
+.flow span.brk{background:#000;color:#fff;border-color:#000;}
+.flow i{color:var(--brand);font-style:normal;font-weight:800;}
+.meta{display:flex;flex-wrap:wrap;gap:42px;margin-top:auto;}
+.meta div small{display:block;font-size:9.5px;letter-spacing:.2em;color:#8C97A3;text-transform:uppercase;margin-bottom:5px;font-weight:700;}
+.meta div b{font-size:14px;color:#fff;font-weight:700;}
+.waves{display:flex;flex-direction:column;gap:7px;margin-top:6px;}
+.wave{display:flex;gap:14px;align-items:flex-start;background:var(--zebra);border:1px solid var(--g4);border-left:4px solid var(--brand);padding:9px 14px;}
+.wave .n{font-size:20px;font-weight:800;color:var(--brand);min-width:22px;line-height:1.2;}
+.wave .t{font-size:13.5px;font-weight:700;color:var(--rich);line-height:1.3;}
+.wave .d{font-size:11.5px;color:var(--g2);line-height:1.38;}
+.ciclos{display:flex;gap:20px;margin:14px 0;}
+.ciclo{flex:1;border:1px solid var(--g4);border-top:4px solid var(--brand);padding:14px 16px;background:var(--zebra);}
+.ciclo b{display:block;font-size:15px;color:var(--rich);margin-bottom:6px;}
+.ciclo p{font-size:12.5px;color:var(--g2);margin:0;line-height:1.45;}
+.quotebig{font-size:24px;line-height:1.45;font-weight:600;color:#fff;max-width:10.5in;margin:0;}
+.quotebig::before{content:"\201C";color:var(--hl);font-size:44px;line-height:0;vertical-align:-12px;margin-right:6px;}
+.who{display:block;margin-top:14px;font-size:10.5px;letter-spacing:.2em;text-transform:uppercase;color:#8C97A3;font-weight:700;}
+.foot{position:absolute;left:0.75in;right:0.75in;bottom:0.28in;display:flex;justify-content:space-between;
+  font-size:9px;letter-spacing:.08em;color:var(--g3);text-transform:uppercase;font-weight:600;}
+.dark .foot{color:#8C97A3;}
+.pgnum{font-variant-numeric:tabular-nums;}
+@media print{
+  html,body{background:#fff;}
+  .slide{margin:0;box-shadow:none;page-break-after:always;break-after:page;}
+  .slide:last-child{page-break-after:auto;}
+}
+@page{size:13.333in 7.5in;margin:0;}
+</style></head><body>
+
+<!-- 1 CAPA -->
+<div class="slide dark">
+  <div class="blob" style="width:340px;height:340px;background:var(--brand);opacity:.85;right:-70px;top:-110px"></div>
+  <div class="blob" style="width:220px;height:220px;background:var(--deep);opacity:.9;right:150px;top:150px"></div>
+  <div style="font-size:11px;letter-spacing:.3em;font-weight:800;color:#fff">CASE DE PROJETO <span style="color:var(--hl)">·</span> DESIGN ORGANIZACIONAL</div>
+  <div style="margin-top:auto;position:relative;z-index:2">
+    <h1>Os três ciclos que<br>prendiam o RH</h1>
+    <p style="font-size:15.5px;color:#C6CDD5;max-width:8.4in;margin:0 0 24px">A transformação partiu da própria área: da escuta do time ao redesenho da operação, com resultado medido.</p>
+    <div style="height:2px;background:var(--brand);margin-bottom:22px;width:5in"></div>
+    <div class="meta">
+      <div><small>Segmento</small><b>Saúde</b></div>
+      <div><small>Duração</small><b>6 meses</b></div>
+      <div><small>Objeto</small><b>Modelo operacional de área</b></div>
+      <div><small>Versão</small><b>V2.0</b></div>
+      <div><small>Autoria</small><b>Eric Leite</b></div>
+    </div>
+  </div>
+  <div class="foot"><span>Case · Os três ciclos que prendiam o RH · Eric Leite · Design Organizacional</span><span class="pgnum">01</span></div>
+</div>
+
+<!-- 2 RESULTADOS -->
+<div class="slide">
+  <p class="eyebrow">Resultado</p>
+  <h2>O que a operação entregou</h2>
+  <div class="rule"></div>
+  <div class="body">
+    <div class="kpis">
+      <div class="kpi"><b>-30%</b><small>no tempo das contratações comuns</small></div>
+      <div class="kpi"><b>32 h</b><small>mensais de conferência liberadas</small></div>
+      <div class="kpi"><b>4</b><small>indicadores de fluxo em uso</small></div>
+      <div class="kpi"><b>8</b><small>momentos com dono e alçada</small></div>
+    </div>
+    <p style="margin-top:14px">A área saiu do modo apagar incêndio para uma operação com mapa, fila e dono. O caminho da contratação
+    encurtou, a conferência tripla deu lugar à conferência dirigida a risco, e o time terminou com o quadro em uso e as
+    próprias métricas na mão.</p>
+    <div class="callout">
+      <h5>De onde vêm os números</h5>
+      <p>A régua foi definida com o time antes de qualquer intervenção, e a linha de base saiu da primeira onda de
+      implantação. Nenhum ganho foi prometido antes de existir medição; o que ainda não tem série fechada aparece como
+      hipótese, com o indicador que a prova ao lado. Os casos especiais de contratação seguem regra própria de exceção.</p>
+    </div>
+  </div>
+  <div class="foot"><span>Case · Os três ciclos que prendiam o RH · Eric Leite · Design Organizacional</span><span class="pgnum">02</span></div>
+</div>
+
+<!-- 3 CONTEXTO -->
+<div class="slide">
+  <p class="eyebrow">Contexto</p>
+  <h2>A história começa na própria área</h2>
+  <div class="rule"></div>
+  <div class="body">
+    <p>A liderança do RH Administração apresentou a área e os seus problemas à frente interna de agilidade e pediu apoio
+    para uma transformação. O primeiro passo foi um diagnóstico exploratório: conversas individuais com o time, uma
+    pessoa por vez, num ambiente combinado de segurança para a conversa difícil. E o momento somava outra camada: o time
+    atravessava uma reestruturação interna, com pessoas saindo e chegando e rotinas trocando de mãos.</p>
+    <div class="flow">
+      <span>Iniciativa da área</span><i>&rsaquo;</i>
+      <span>Escuta e diagnóstico</span><i>&rsaquo;</i>
+      <span class="brk">Jornada de design</span><i>&rsaquo;</i>
+      <span>Ondas de implantação</span><i>&rsaquo;</i>
+      <span>Operação medida</span>
+    </div>
+    <p><strong>Os limites combinados.</strong> Sem integrar o software de folha ao ERP da empresa, sem mexer no tamanho do
+    quadro, e a operação não para: campo e implantação desviam das semanas de fechamento.</p>
+  </div>
+  <div class="foot"><span>Case · Os três ciclos que prendiam o RH · Eric Leite · Design Organizacional</span><span class="pgnum">03</span></div>
+</div>
+
+<!-- 4 REENQUADRAMENTO -->
+<div class="slide">
+  <p class="eyebrow">Reenquadramento</p>
+  <h2>Do pedido recebido à tese</h2>
+  <div class="rule"></div>
+  <div class="body">
+    <div class="cols">
+      <div class="col">
+        <p class="eyebrow" style="color:#8A5410">Como o pedido chegou</p>
+        <p>A área está sobrecarregada por trabalho manual. Automatizar as conferências devolve capacidade e resolve o
+        atraso nos fechamentos.</p>
+      </div>
+      <div class="col">
+        <p class="eyebrow" style="color:#2E7D46">A tese que orientou o desenho</p>
+        <p>A área declara fatos ao governo com prazo próprio e multa tabelada, e recebe a informação que alimenta essas
+        declarações por canais que não formam fila. O erro dominante é de sequência, não de cálculo. Automatizar a conta
+        resolve pouco; organizar a chegada resolve muito.</p>
+      </div>
+    </div>
+    <div class="callout">
+      <h5>A consequência prática</h5>
+      <p>Se o problema fosse de cálculo, a primeira onda seria de automação. Como era de sequência, a primeira onda foi
+      tornar a demanda contável e nomear dono por momento: duas mudanças que custam agenda, não orçamento.</p>
+    </div>
+  </div>
+  <div class="foot"><span>Case · Os três ciclos que prendiam o RH · Eric Leite · Design Organizacional</span><span class="pgnum">04</span></div>
+</div>
+
+<!-- 5 OS TRES CICLOS -->
+<div class="slide">
+  <p class="eyebrow">O diagnóstico</p>
+  <h2>Três ciclos que se alimentavam entre si</h2>
+  <div class="rule"></div>
+  <div class="body">
+    <p>A escuta não encontrou três problemas soltos. Encontrou três engrenagens girando juntas, em que cada reação
+    sensata de quem trabalha reforçava o problema que a provocou:</p>
+    <div class="ciclos">
+      <div class="ciclo"><b>Trabalho manual</b><p>A conferência consome o tempo, o tempo escasso aumenta o erro, e o erro
+      pede mais conferência. O ciclo fecha e aperta.</p></div>
+      <div class="ciclo"><b>Fragmentação</b><p>Sistemas que não conversam geram lançamento em dobro, o dobro gera
+      inconsistência, e a inconsistência gera planilha paralela para conciliar.</p></div>
+      <div class="ciclo"><b>Sobrecarga</b><p>Com a demanda acima da capacidade, só o urgente sobrevive, e o tempo de
+      melhorar é o primeiro que se perde. A sobrecarga se perpetua.</p></div>
+    </div>
+    <div class="callout">
+      <h5>Por que isso muda a conversa</h5>
+      <p>Enquanto o laço entre os três não é nomeado, resolver uma ponta reforça a outra. Desenhados como mapa, o
+      problema deixou de ter culpado e passou a ter desenho, e virou a peça de conversa com o time e com o patrocínio.</p>
+    </div>
+  </div>
+  <div class="foot"><span>Case · Os três ciclos que prendiam o RH · Eric Leite · Design Organizacional</span><span class="pgnum">05</span></div>
+</div>
+
+<!-- 6 ACHADOS -->
+<div class="slide">
+  <p class="eyebrow">O diagnóstico</p>
+  <h2>Os quatro achados que o desenho ataca</h2>
+  <div class="rule"></div>
+  <div class="body">
+    <ol class="pains">
+      <li><div><b>O prazo mais apertado vence antes de a pessoa começar, e quem marca a data é outra área</b>
+      <span>A contratação precisa estar declarada ao governo antes do primeiro dia de trabalho, e a data de início é
+      combinada na seleção, direto com o candidato, sem ninguém tratar aquilo como prazo legal.</span></div></li>
+      <li><div><b>O pedido chega de qualquer jeito, a obrigação chega com data marcada</b>
+      <span>Pedidos por e-mail, mensagem e conversa de corredor, sem fila e sem prazo. Do outro lado, a data legal não se
+      move. Para se proteger, a equipe conferia tudo três vezes.</span></div></li>
+      <li><div><b>A folha depende de sete origens e não manda em nenhuma</b>
+      <span>Ponto, afastamento, férias, benefício, alteração de contrato, admissão e desligamento desembocam nela. Ela
+      herda o atraso de todo mundo e responde sozinha pelo prazo.</span></div></li>
+      <li><div><b>Dava para ver como o mês terminou, não onde o tempo foi embora</b>
+      <span>O painel media o resultado do mês inteiro. Sem número por etapa, a área priorizava por percepção e pedia mais
+      gente sem conseguir mostrar onde a fila se formava.</span></div></li>
+    </ol>
+  </div>
+  <div class="foot"><span>Case · Os três ciclos que prendiam o RH · Eric Leite · Design Organizacional</span><span class="pgnum">06</span></div>
+</div>
+
+<!-- 7 AS QUATRO PECAS -->
+<div class="slide">
+  <p class="eyebrow">Instrumentos</p>
+  <h2>As quatro peças que deram a visão do todo</h2>
+  <div class="rule"></div>
+  <div class="body">
+    <div class="cols">
+      <div class="col">
+        <ul class="tri">
+          <li><strong>Admissão e desligamento</strong> em blueprint espelhado, que separa o que a pessoa atendida vê do
+          que a área faz por baixo. Foi ali que apareceram as três filas anteriores à área.</li>
+          <li><strong>Folha mensal</strong> como ciclo com régua de tempo: ela tem etapas, mas o percurso não é linear, e
+          tudo roda para todos os vínculos ao mesmo tempo. Quem é atendido só vê o crédito na conta.</li>
+        </ul>
+      </div>
+      <div class="col">
+        <ul class="tri">
+          <li><strong>Mês típico da equipe</strong> em mapa de sobreposição: a única peça que mostra os três momentos
+          acontecendo juntos, que é onde a capacidade acaba.</li>
+          <li><strong>O achado estrutural</strong> saiu daí: sete origens desembocam na folha e nenhuma nasce dentro
+          dela.</li>
+        </ul>
+      </div>
+    </div>
+    <div class="callout">
+      <h5>Retrato honesto</h5>
+      <p>No retrato de partida, cada tempo e cada fila estavam marcados como a apurar. As lacunas foram fechadas em
+      campo, durante as ondas, com rastreamento, cronometragem e observação.</p>
+    </div>
+  </div>
+  <div class="foot"><span>Case · Os três ciclos que prendiam o RH · Eric Leite · Design Organizacional</span><span class="pgnum">07</span></div>
+</div>
+
+<!-- 8 TRABALHO COM O TIME -->
+<div class="slide">
+  <p class="eyebrow">Condução</p>
+  <h2>O trabalho com o time, não só com o processo</h2>
+  <div class="rule"></div>
+  <div class="body">
+    <div class="cols">
+      <div class="col">
+        <table>
+          <thead><tr><th>Sessão</th><th>Ritmo</th><th>Para quê</th></tr></thead>
+          <tbody>
+            <tr><td>Prioridades no quadro</td><td>Início da semana</td><td>Combinar o que entra e quem puxa o quê</td></tr>
+            <tr><td>Impedimentos e suporte</td><td>Curta e frequente</td><td>Destravar, com nível de suporte combinado</td></tr>
+            <tr><td>Leitura dos indicadores</td><td>Semanal</td><td>Decidir com dado, não com percepção</td></tr>
+            <tr><td>Melhoria</td><td>Espaço protegido</td><td>Mexer no processo sem a urgência invadir</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <div class="col">
+        <ul class="tri">
+          <li><strong>Kanban como jogo primeiro:</strong> o time viveu fila, limite e fluxo antes de aplicar no trabalho real.</li>
+          <li><strong>Papéis por tema:</strong> a meta é de todos, mas cada assunto tem quem responde por ele. Papel
+          separado de função.</li>
+          <li><strong>Acordos de time explícitos</strong>, escritos pelo grupo: num time em reestruturação, é o acordo que
+          segura o combinado quando as pessoas trocam de lugar.</li>
+          <li><strong>Matriz de polivalência e 5S:</strong> quem cobre o quê, onde a operação dependia de uma pessoa só,
+          e uma fonte só para cada dado.</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+  <div class="foot"><span>Case · Os três ciclos que prendiam o RH · Eric Leite · Design Organizacional</span><span class="pgnum">08</span></div>
+</div>
+
+<!-- 9 ANTES E DEPOIS -->
+<div class="slide">
+  <p class="eyebrow">O desenho</p>
+  <h2>O que mudou, dimensão por dimensão</h2>
+  <div class="rule"></div>
+  <div class="body">
+    <table>
+      <thead><tr><th style="width:20%">Dimensão</th><th style="width:40%">Antes</th><th>Depois</th></tr></thead>
+      <tbody>
+        <tr><td>Entrada da demanda</td><td>Canais informais, sem fila e sem prazo</td><td>Canal único, com classificação e prazo declarado</td></tr>
+        <tr><td>Fronteira com a seleção</td><td>Data de início combinada fora, virando prazo legal da área</td><td>Folga mínima pactuada, com aviso no aceite</td></tr>
+        <tr><td>Responsabilidade</td><td>Nenhum momento com dono</td><td>Oito momentos com dono, alçada escrita e indicador</td></tr>
+        <tr><td>Caso fora do padrão</td><td>Consulta a quem sabe</td><td>Critério publicado: o que se decide sozinho e o que sobe</td></tr>
+        <tr><td>Conferência</td><td>Tudo conferido três vezes</td><td>Conferência dirigida a risco, pelo histórico de erro</td></tr>
+        <tr><td>Medição</td><td>Cinco números de resultado do mês</td><td>Quatro indicadores de fluxo por etapa, somados ao painel</td></tr>
+      </tbody>
+    </table>
+  </div>
+  <div class="foot"><span>Case · Os três ciclos que prendiam o RH · Eric Leite · Design Organizacional</span><span class="pgnum">09</span></div>
+</div>
+
+<!-- 10 IMPLANTACAO -->
+<div class="slide">
+  <p class="eyebrow">Implantação</p>
+  <h2>Quatro ondas curtas, ordenadas por risco</h2>
+  <div class="rule"></div>
+  <div class="body">
+    <div class="waves">
+      <div class="wave"><div class="n">1</div><div><div class="t">Enxergar o trabalho</div><div class="d">Todo pedido num canal só, quadro com a situação de cada um, guia do desligamento e folga combinada com a seleção.</div></div></div>
+      <div class="wave"><div class="n">2</div><div><div class="t">Combinar as regras</div><div class="d">Data de corte com cada área de origem, o que o analista decide sozinho e o que sobe, conferência só onde o histórico mostra erro.</div></div></div>
+      <div class="wave"><div class="n">3</div><div><div class="t">Fechar o buraco silencioso</div><div class="d">Conferência de jornada contra o que foi pago, calendário das datas de reajuste, prévia do valor da rescisão.</div></div></div>
+      <div class="wave"><div class="n">4</div><div><div class="t">Deixar de pé</div><div class="d">Acompanhamento de afastamento e o passo a passo de cada rotina escrito, para não depender de quem está há mais tempo.</div></div></div>
+    </div>
+    <p style="margin-top:12px;font-size:13px;color:var(--g2)">Cada onda só começa quando a anterior cumpre o combinado
+    como pronto, e nenhuma partida cai em semana de fechamento de folha.</p>
+  </div>
+  <div class="foot"><span>Case · Os três ciclos que prendiam o RH · Eric Leite · Design Organizacional</span><span class="pgnum">10</span></div>
+</div>
+
+<!-- 11 GATILHOS -->
+<div class="slide">
+  <p class="eyebrow">Implantação</p>
+  <h2>Os gatilhos de reversão, escritos antes da partida</h2>
+  <div class="rule"></div>
+  <div class="body">
+    <p>Em área de folha, nenhum piloto parte sem estar escrito o que o faria voltar atrás:</p>
+    <ul class="tri" style="margin-top:10px">
+      <li><strong>Voltar ao jeito antigo no mesmo dia</strong> se a mudança encostar em cálculo de verba, em prazo legal
+      ou em declaração obrigatória ao governo.</li>
+      <li><strong>Suspender em 24 horas</strong> se um evento sair do prazo legal por causa da mudança.</li>
+      <li><strong>Parar e investigar, sem reverter,</strong> se o time começar a fazer o mesmo passo dos dois jeitos, o
+      novo e o antigo, ao mesmo tempo.</li>
+    </ul>
+    <div class="callout">
+      <h5>A rede de segurança</h5>
+      <p>O passo a passo antigo de cada rotina alterada ficou documentado e à mão o tempo todo. Só foi arquivado depois
+      de dois fechamentos de folha seguidos sem nenhum evento fora do prazo.</p>
+    </div>
+  </div>
+  <div class="foot"><span>Case · Os três ciclos que prendiam o RH · Eric Leite · Design Organizacional</span><span class="pgnum">11</span></div>
+</div>
+
+<!-- 12 PROVADO E EM TESTE -->
+<div class="slide">
+  <p class="eyebrow">Resultados</p>
+  <h2>O que a operação provou, e o que segue em teste</h2>
+  <div class="rule"></div>
+  <div class="body">
+    <table>
+      <thead><tr><th style="width:34%">Hipótese do desenho</th><th style="width:26%">Indicador</th><th>Estado ao fim da segunda onda</th></tr></thead>
+      <tbody>
+        <tr><td>Prazo pactuado e entrada contável encurtam a contratação</td><td>Tempo de contratação; filas antes da área</td><td><strong>Confirmada.</strong> Queda de 30% nas contratações comuns</td></tr>
+        <tr><td>Conferência dirigida devolve capacidade sem elevar erro</td><td>Horas em conferência; eventos no prazo</td><td><strong>Confirmada.</strong> 32 horas mensais liberadas, fechamentos no prazo</td></tr>
+        <tr><td>Critério publicado reduz dependência de uma pessoa</td><td>Rotinas com executor único</td><td><strong>Em regime.</strong> Mapeadas na matriz de polivalência e em redução</td></tr>
+        <tr><td>Conferência de jornada reduz o passivo da rescisão</td><td>Divergência entre escala e pago</td><td><strong>Segue hipótese.</strong> O efeito só aparece anos depois</td></tr>
+      </tbody>
+    </table>
+    <div class="callout">
+      <h5>O que ficou dito</h5>
+      <p>O trabalho foi concluído em seis meses. A régua ficou instalada e o acompanhamento seguiu com a área; duas
+      dependências permanecem declaradas: o autosserviço de contracheque e a integração da folha com o ERP.</p>
+    </div>
+  </div>
+  <div class="foot"><span>Case · Os três ciclos que prendiam o RH · Eric Leite · Design Organizacional</span><span class="pgnum">12</span></div>
+</div>
+
+<!-- 13 CONDUCAO -->
+<div class="slide">
+  <p class="eyebrow">Condução</p>
+  <h2>Decisões do autor, com o custo declarado</h2>
+  <div class="rule"></div>
+  <div class="body">
+    <div class="cols">
+      <div class="col">
+        <ul class="tri">
+          <li><strong>Tratar os desafios herdados como hipótese, não como fato.</strong> O material de origem não tinha
+          número por etapa.</li>
+          <li><strong>Fechar o diagnóstico sem estimativa de ganho.</strong> Número inventado reproduziria o defeito que o
+          próprio diagnóstico apontava. O aval do patrocínio demorou mais, e os números de hoje são defensáveis por isso.</li>
+          <li><strong>Trazer a fronteira com a seleção para dentro do escopo.</strong> Foi de onde saiu o resultado mais
+          visível do projeto.</li>
+        </ul>
+      </div>
+      <div class="col">
+        <p class="eyebrow">O que eu faria diferente</p>
+        <ul class="tri">
+          <li><strong>Travar o avanço na pendência de escopo</strong>, em vez de registrar e seguir.</li>
+          <li><strong>Estudar as regras do setor antes de desenhar:</strong> foi esse estudo que revelou os dois momentos
+          que faltavam no recorte.</li>
+          <li><strong>Reenquadrar em sessão, não por documento:</strong> conclusão construída em conjunto se aceita mais
+          rápido do que conclusão entregue.</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+  <div class="foot"><span>Case · Os três ciclos que prendiam o RH · Eric Leite · Design Organizacional</span><span class="pgnum">13</span></div>
+</div>
+
+<!-- 14 FUNDAMENTACAO -->
+<div class="slide">
+  <p class="eyebrow">Fundamentação</p>
+  <h2>Quatro disciplinas, uma regra que as costura</h2>
+  <div class="rule"></div>
+  <div class="body">
+    <div class="cols">
+      <div class="col">
+        <ul class="tri">
+          <li><strong>Experiência do colaborador:</strong> a jornada e os momentos que importam como unidade de análise;
+          escuta contínua no lugar da pesquisa anual.</li>
+          <li><strong>Gestão de mudança, com ADKAR:</strong> o cuidado com cada pessoa do time, uma a uma, e não só o
+          comunicado para o grupo.</li>
+        </ul>
+      </div>
+      <div class="col">
+        <ul class="tri">
+          <li><strong>Agilidade:</strong> trabalho visível, limite ao que anda em paralelo, experimentos pequenos e
+          seguros, melhoria contínua.</li>
+          <li><strong>Design de serviço:</strong> a cocriação como fonte de legitimidade e a preocupação de fixar o
+          método na organização.</li>
+        </ul>
+      </div>
+    </div>
+    <div class="callout">
+      <h5>A regra de evidência</h5>
+      <p>A jornada mapeada em sala não é a jornada vivida. Medir sem linha de base é opinião com número. E o diagnóstico
+      não fecha sem indicadores de partida. É essa regra, e não a escolha de ferramentas, que define o método.</p>
+    </div>
+  </div>
+  <div class="foot"><span>Case · Os três ciclos que prendiam o RH · Eric Leite · Design Organizacional</span><span class="pgnum">14</span></div>
+</div>
+
+<!-- 15 FECHAMENTO -->
+<div class="slide dark">
+  <div class="blob" style="width:300px;height:300px;background:var(--brand);opacity:.85;right:-80px;bottom:-100px"></div>
+  <div class="blob" style="width:190px;height:190px;background:var(--deep);opacity:.9;right:160px;bottom:60px"></div>
+  <div style="margin:auto 0;position:relative;z-index:2">
+    <p class="quotebig">Enquanto o laço entre os problemas não é nomeado, resolver uma ponta reforça a outra. Nomeado, o
+    mesmo giro que prendia o time passou a trabalhar a favor.</p>
+    <span class="who">O aprendizado que dá nome ao case</span>
+  </div>
+  <div class="foot"><span>Eric Leite · case de projeto em design organizacional · segmento de saúde</span><span class="pgnum">15</span></div>
+</div>
+
+</body></html>
