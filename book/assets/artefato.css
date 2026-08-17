@@ -167,7 +167,7 @@
   margin:34px 0;
   /* a peca e larga de proposito: as tabelas e os pares de figura precisam de espaco.
      Centrada no miolo, com folga de 26px de cada lado da janela, nunca estourando. */
-  width:min(1240px, calc(100vw - 52px)); margin-left:50%; transform:translateX(-50%);
+  width:calc(100% + 52px); margin-left:-26px;
 }
 .artefato .wrap{ max-width:100%; margin:0; padding:clamp(1.25rem,3vw,2.5rem); }
 .artefato section:first-of-type{ margin-top:clamp(1.25rem,3vw,2rem); }
@@ -178,6 +178,10 @@
   font-size:clamp(1.5rem,3vw,2.125rem); letter-spacing:-.02em; line-height:1.18;
   font-weight:800; color:#1a1917; margin:.5rem 0 1rem; max-width:26ch;
 }
+/* foto e documento: nunca em largura cheia. Imagem grande rouba a cena do argumento. */
+.artefato figure img{ max-width:660px; margin:0 auto; display:block; }
+.artefato figure{ margin:1.5rem 0 0; }
+
 @media (max-width:640px){ .artefato .wrap{ padding:1rem; } }
 @media print{ .artefato{ width:auto; margin-left:0; transform:none; } }
 

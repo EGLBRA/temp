@@ -33,7 +33,7 @@
   --blue-line:#c3cef5;
   --radius:14px;
   --radius-lg:20px;
-  --maxw:860px;
+  --maxw:1292px;   /* mesma régua da peça embutida: 1240 de conteúdo + 26 de folga cada lado */
   --sans:'Inter','Segoe UI',system-ui,-apple-system,sans-serif;
   --mono:'JetBrains Mono',Consolas,monospace;
 }
@@ -71,6 +71,7 @@ a{color:var(--blue)}
   text-decoration:none; color:var(--ink-soft); border:1px solid transparent; flex:0 0 auto;
   transition:background .13s, color .13s, border-color .13s;
 }
+.nav .brand{margin-right:38px; padding-right:38px; border-right:1px solid var(--line)}
 .nav a.item:hover{background:var(--surface-2); color:var(--blue-deep)}
 .nav a.item.on{background:var(--blue-soft); color:var(--blue); font-weight:700; border-color:var(--blue-line)}
 
@@ -183,7 +184,12 @@ h1{font-size:43px; line-height:1.15; letter-spacing:-.022em; margin:0 0 20px; fo
 }
 .card:hover{border-color:var(--blue-line); transform:translateY(-1px);
   box-shadow:0 8px 26px rgba(13,40,75,.09)}
-.card .cnum{font-family:var(--mono); font-size:11px; letter-spacing:.16em; color:var(--blue); margin:0 0 9px; font-weight:700}
+.card .cnum{font-family:var(--mono); font-size:11px; letter-spacing:.16em; color:var(--blue); margin:0 0 11px; font-weight:700;
+  display:flex; align-items:center; gap:11px}
+/* pictograma do case: traço fino, herda a cor do rótulo */
+.cpic{width:27px; height:27px; flex:0 0 auto; stroke:currentColor; fill:none;
+  stroke-width:1.5; stroke-linecap:round; stroke-linejoin:round}
+.card:hover .cpic{stroke:var(--blue-deep)}
 .card .ctitle{font-size:23px; line-height:1.28; font-weight:800; margin:0 0 10px; letter-spacing:-.015em; color:var(--blue-deep)}
 .card:hover .ctitle{color:var(--blue)}
 .card .cres{font-size:15.5px; line-height:1.62; color:var(--ink-soft); margin:0 0 16px}
@@ -193,7 +199,7 @@ h1{font-size:43px; line-height:1.15; letter-spacing:-.022em; margin:0 0 20px; fo
   border:1px solid var(--line); border-radius:20px; padding:5px 12px; background:var(--surface);
 }
 .card .chip b{color:var(--blue); font-weight:700}
-.card .cgo{font-size:13.5px; font-weight:800; color:var(--ink-soft); margin:0; text-align:right}
+.card .cgo{font-size:13.5px; font-weight:500; color:var(--ink-soft); margin:0; text-align:right}
 .card:hover .cgo{color:var(--ink)}
 
 /* ---------------- painel executivo ---------------- */
@@ -209,7 +215,7 @@ h1{font-size:43px; line-height:1.15; letter-spacing:-.022em; margin:0 0 20px; fo
 .exec dl{margin:0; display:grid; grid-template-columns:150px 1fr; gap:15px 22px}
 .exec dt{
   font-family:var(--mono); font-size:10.5px; letter-spacing:.12em; text-transform:uppercase;
-  color:var(--ink-faint); padding-top:5px;
+  color:var(--blue-mid); font-weight:700; padding-top:5px;
 }
 .exec dd{margin:0; font-size:16.5px; line-height:1.6}
 
@@ -228,14 +234,34 @@ h3{
   color:var(--ink-faint); margin:40px 0 14px; font-weight:700;
 }
 p{margin:0 0 17px}
-.standfirst{font-size:19.5px; line-height:1.6; color:var(--ink-soft); max-width:62ch}
+.standfirst{font-size:19.5px; line-height:1.6; color:var(--ink-soft); max-width:92ch}
+/* dentro da peça o standfirst é subtítulo do h2: divide a mesma régua dele */
+.artefato .standfirst{max-width:none}
 .facts{
   font-size:12.5px; color:var(--ink-faint); border-top:1px solid var(--line);
   border-bottom:1px solid var(--line); padding:13px 0; margin:24px 0 0;
 }
-.facts span{display:block; margin:0 0 5px}
-.facts span:last-child{margin-bottom:0}
+/* fichas uma abaixo da outra, com linhas justas.
+   O pictograma sai do fluxo: assim ele não estica as linhas nem abre vão entre elas. */
+.facts{position:relative; display:flex; flex-direction:column; justify-content:center;
+  gap:5px; min-height:96px}
+.facts span{display:block; margin:0}
+.fpic{position:absolute; right:0; top:50%; transform:translateY(-50%);
+  width:96px; height:96px;
+  color:var(--blue); stroke:currentColor; fill:none; stroke-width:1.1;
+  stroke-linecap:round; stroke-linejoin:round; opacity:.82}
+@media (max-width:640px){ .facts{min-height:62px} .fpic{width:62px; height:62px} }
 .facts b{color:var(--ink-soft)}
+
+/* a régua é larga: a prosa mantém medida de leitura e as listas ocupam
+   o espaço em duas colunas, em vez de deixar vão à direita */
+.pane > p{max-width:104ch}
+@media (min-width:1120px){
+  /* ul.bul fica de fora: são os desafios em sequência, um abaixo do outro */
+  .pane > ul.inits, .pane > ul.arrow{columns:2; column-gap:58px}
+  .pane > ul.inits > li, .pane > ul.arrow > li{break-inside:avoid}
+  .pane > ul.bul > li{max-width:104ch}
+}
 
 ul.inits,ul.bul{margin:0 0 10px; padding:0 0 0 22px}
 ul.inits li{margin:0 0 15px}
@@ -372,12 +398,13 @@ figcaption{font-size:12.5px; color:var(--ink-faint); margin-top:10px; line-heigh
 .tabs{
   position:sticky; top:57px; z-index:25;
   background:var(--bg); border-bottom:2px solid var(--line-dark,#211f1c); padding-top:8px;
-  /* mesma largura da peça embutida: nada escorre por baixo da barra */
-  width:min(1240px, calc(100vw - 52px)); margin-left:50%; transform:translateX(-50%);
+  /* exatamente a coluna de texto. Sem 100vw na conta: 100vw inclui a barra de
+     rolagem e a coluna não, e essa diferença desalinhava os tópicos. */
+  width:100%; margin-bottom:54px;
 }
 .tabs .tinner{
-  /* mesma régua da coluna de texto (.shell): os tópicos alinham com o conteúdo */
-  display:flex; gap:0; overflow-x:auto; max-width:var(--maxw); margin:0 auto; padding:0 26px;
+  /* a barra já tem a largura da coluna de texto: sem recuo, os tópicos alinham com o conteúdo */
+  display:flex; gap:0; overflow-x:auto; max-width:none; margin:0; padding:0;
   scrollbar-width:none; -ms-overflow-style:none;
 }
 .tabs .tinner::-webkit-scrollbar{ display:none }
@@ -423,7 +450,7 @@ footer{ background:var(--surface-2); color:var(--ink); border-top:1px solid var(
 @media print{ footer{ background:none } #to-top{ display:none } }
 
 /* ---------------- peça embutida por iframe (case 8) ---------------- */
-.embed{ width:min(1240px, calc(100vw - 52px)); margin:26px 0 26px 50%; transform:translateX(-50%);
+.embed{ width:calc(100% + 52px); margin:26px 0 26px -26px;
   background:#fff; border:1px solid var(--line); border-radius:var(--radius); overflow:hidden; }
 .embed-head{ display:flex; justify-content:space-between; align-items:center; gap:16px;
   padding:14px 20px; border-bottom:1px solid var(--line); background:var(--surface); }
@@ -433,6 +460,15 @@ footer{ background:var(--surface-2); color:var(--ink); border-top:1px solid var(
   color:var(--blue); text-decoration:none; white-space:nowrap; }
 .embed iframe{ width:100%; height:78vh; min-height:520px; border:0; display:block; background:#fff; }
 @media print{ .embed iframe{ display:none } }
+
+/* bloco "O que foi feito", no lugar do antigo ciclo virtuoso */
+.artefato .quadro.feito{border-top:3px solid var(--blue)}
+.artefato .quadro.feito table.simples{margin:.85rem 0 0; font-size:.9375rem}
+.artefato .quadro.feito table.simples th{font-size:.6875rem; letter-spacing:.14em}
+.artefato .quadro.feito table.simples td{vertical-align:top; line-height:1.45}
+.artefato .quadro.feito table.simples td:first-child{color:#6b6760}
+.artefato .quadro.feito ul.bul{margin:.75rem 0 0; padding-left:1.15rem}
+.artefato .quadro.feito ul.bul li{margin-bottom:.5rem; font-size:.9375rem}
 
 /* ---------------- cabeçalho numerado das 10 seções ---------------- */
 .ph{ display:flex; align-items:baseline; gap:14px; margin:6px 0 22px; }

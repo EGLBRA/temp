@@ -35,7 +35,7 @@
   var brand = document.createElement('a');
   brand.className = 'brand';
   brand.href = 'Home.html';
-  brand.textContent = 'Book de Cases · Eric Leite';
+  brand.textContent = 'Book de Cases · Eric Leite & Grupo Equatorial';
   inner.appendChild(brand);
 
   PAGES.forEach(function (p, i) {
