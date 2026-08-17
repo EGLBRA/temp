@@ -1,0 +1,279 @@
+<!DOCTYPE html><html lang="pt-BR"><head><meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Ponte da Chegada · Papel do buddy · Case Os primeiros 90 dias</title>
+<style>
+:root{
+ --tex:#2F3238;--mut:#5F6470;--ln:#DCE5EC;--bg:#F2F6F8;
+ --azul:#0064BA;--azesc:#00203B;--azmed:#013A6B;--teal:#0097B2;--tealc:#5FB8CB;--no:#B8323C;
+ --grad:linear-gradient(118deg,#000508 0%,#00182D 26%,#00305A 52%,#00437D 74%,#0068BE 100%);
+}
+*{box-sizing:border-box}
+html,body{margin:0;padding:0}
+body{background:var(--bg);color:var(--tex);
+ font-family:Montserrat,Poppins,"Segoe UI",-apple-system,Helvetica,Arial,sans-serif;
+ font-size:14.5px;line-height:1.62;-webkit-font-smoothing:antialiased;
+ print-color-adjust:exact;-webkit-print-color-adjust:exact}
+.wrap{max-width:980px;margin:0 auto;padding:0 28px}
+
+.capa{background:var(--grad);color:#fff;padding:32px 0 36px}
+.fio{display:flex;align-items:center;gap:10px;margin-bottom:18px}
+.fio i{flex:1;height:1px;background:linear-gradient(90deg,rgba(0,151,178,0) 0%,var(--teal) 88%)}
+.fio b{width:7px;height:7px;border-radius:50%;background:var(--teal);flex:0 0 auto}
+.fio span{font-size:9px;letter-spacing:.19em;text-transform:uppercase;color:var(--tealc);font-weight:600;white-space:nowrap}
+.pil{display:inline-block;border:1.6px solid #fff;background:rgba(0,100,186,.55);border-radius:999px;
+ padding:8px 22px;font-size:12px;font-weight:700;color:#fff}
+.capa h1{margin:16px 0 0;font-size:40px;line-height:1.05;letter-spacing:-.025em;font-weight:800}
+.capa h1 em{display:block;font-style:normal;font-size:14px;letter-spacing:.2em;text-transform:uppercase;
+ color:var(--tealc);font-weight:700;margin-bottom:9px}
+.capa .sub{margin:13px 0 0;font-size:15.5px;color:#CFE0EC;max-width:700px}
+.meta{display:flex;gap:32px;flex-wrap:wrap;margin-top:22px;font-size:10.5px;letter-spacing:.13em;
+ text-transform:uppercase;color:var(--tealc);font-weight:600}
+.meta b{display:block;color:#fff;font-size:13px;letter-spacing:0;text-transform:none;font-weight:700;margin-top:4px}
+.aviso{margin-top:22px;border:1px solid rgba(95,184,203,.45);border-left:3px solid var(--teal);
+ border-radius:12px;padding:12px 17px;font-size:11px;line-height:1.6;color:#D7E4EE;background:rgba(0,0,0,.18)}
+.aviso b{display:block;font-size:9px;letter-spacing:.18em;text-transform:uppercase;color:var(--tealc);margin-bottom:5px}
+
+main{padding:40px 0 70px}
+section{margin-bottom:38px}
+h2{display:flex;align-items:baseline;gap:12px;margin:0 0 14px;font-size:12px;letter-spacing:.16em;
+ text-transform:uppercase;font-weight:800;color:var(--azesc);border-bottom:2px solid var(--azesc);padding-bottom:9px}
+h2 .n{color:var(--azul)}
+p{margin:0 0 12px;max-width:880px}
+.lead{font-size:15.5px;color:#3D4148}
+
+.card{background:#fff;border:1px solid var(--ln);border-radius:18px;padding:20px 24px;margin-bottom:12px}
+.card.az{border-left:5px solid var(--azul)}
+.card.tl{border-left:5px solid var(--teal)}
+.card.no{border-left:5px solid var(--no)}
+.duas{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+@media screen and (max-width:820px){.duas{grid-template-columns:1fr}}
+.rot{font-size:9.5px;letter-spacing:.18em;text-transform:uppercase;font-weight:700;color:var(--azul);margin:0 0 6px}
+.nome{font-size:30px;font-weight:800;color:var(--azesc);letter-spacing:-.02em;margin:0;line-height:1.12}
+.prop{font-size:17px;font-weight:600;color:var(--azmed);margin:0}
+.mini{font-size:11.5px;color:var(--mut);margin:8px 0 0}
+
+ul{margin:0;padding-left:0;list-style:none}
+ul li{position:relative;padding-left:21px;margin:7px 0}
+ul li::before{content:"";position:absolute;left:0;top:8px;width:8px;height:8px;border-radius:2px;background:var(--teal)}
+ul.dom li::before{background:var(--azul)}
+ul.nao li::before{background:var(--no)}
+
+table{width:100%;border-collapse:collapse;background:#fff;border:1px solid var(--ln);border-radius:12px;
+ overflow:hidden;font-size:12.8px;margin:4px 0 12px}
+th,td{border-bottom:1px solid var(--ln);padding:10px 12px;text-align:left;vertical-align:top}
+th{background:#EAF1F6;font-size:9.5px;letter-spacing:.13em;text-transform:uppercase;color:var(--azmed);font-weight:800}
+tr:last-child td{border-bottom:0}
+td.v{white-space:nowrap;font-weight:700;color:var(--azesc)}
+
+.ck{background:#fff;border:1px solid var(--ln);border-radius:18px;padding:4px 22px 16px}
+.ck h4{margin:16px 0 8px;font-size:11px;letter-spacing:.15em;text-transform:uppercase;color:var(--azul);font-weight:800}
+.ck label{display:flex;gap:11px;align-items:flex-start;padding:6px 0;border-bottom:1px dashed #E7EDF2;font-size:13.5px;cursor:pointer}
+.ck label:last-child{border-bottom:0}
+.ck input{margin:3px 0 0;width:16px;height:16px;accent-color:var(--azul);flex:0 0 auto}
+
+.nota{background:#EAF4F7;border:1px dashed var(--teal);border-radius:12px;padding:13px 17px;font-size:12.8px;color:#22414A;margin:4px 0 12px}
+.nota b{color:var(--azesc)}
+footer{border-top:1px solid var(--ln);padding-top:16px;margin-top:16px;font-size:10px;letter-spacing:.14em;
+ text-transform:uppercase;color:var(--mut);display:flex;justify-content:space-between;flex-wrap:wrap;gap:10px}
+@media print{
+ body{background:#fff}
+ .capa{padding:18px 0 24px}
+ h2,.ck h4{break-after:avoid}
+ .card,.nota,tr,.ck label{break-inside:avoid}
+ @page{size:A4 portrait;margin:12mm}
+}
+</style></head>
+<body>
+
+<div class="capa"><div class="wrap">
+  <div class="fio"><i></i><b></b><span>Case Os primeiros 90 dias · Incentivos e experiência do colaborador</span></div>
+  <span class="pil">Papel do buddy | Contas a Pagar</span>
+  <h1><em>O papel</em>Ponte da Chegada</h1>
+  <p class="sub">Quem recebe a pessoa nova em Contas a Pagar: o papel, as atividades e o checklist.</p>
+  <div class="meta">
+    <div>Área<b>Finanças · Contas a Pagar</b></div>
+    <div>Quem chega<b>Analista Financeiro de Contas a Pagar</b></div>
+    <div>Vigência do papel<b>Da véspera ao dia 90</b></div>
+  </div>
+  <div class="aviso"><b>Aviso</b>
+  Documento de exemplo, para demonstrar a dinâmica de papéis. Os perfis são fictícios e os sistemas aparecem pela função, não pelo nome do produto. A descaracterização serve à demonstração, não à identificação da empresa.</div>
+</div></div>
+
+<main><div class="wrap">
+
+<section>
+  <h2><span class="n">01</span> Por que o papel existe</h2>
+  <p class="lead">Contas a Pagar tem janela curta. O calendário não espera a pessoa nova aprender, e o erro de quem está chegando aparece do lado de fora: no fornecedor que não recebeu e na área que não consegue comprar de novo.</p>
+  <p>Quando ninguém tem o papel de receber, a chegada acontece por sobra de tempo. A Ponte da Chegada existe para tirar isso da sorte. Não é cargo, é escopo de autoridade com prazo, e termina no dia 90.</p>
+</section>
+
+<section>
+  <h2><span class="n">02</span> O papel</h2>
+
+  <div class="duas">
+    <div class="card az">
+      <p class="rot">Nome do papel</p>
+      <p class="nome">Ponte da Chegada</p>
+      <p class="mini">Substantivo, sem gênero específico, sem cargo tradicional. Nomeia o que o papel produz: a travessia de quem entra até o trabalho autônomo.</p>
+    </div>
+    <div class="card tl">
+      <p class="rot">Propósito</p>
+      <p class="prop">Chegada segura e produtiva de quem entra em Contas a Pagar.</p>
+      <p class="mini">Nove palavras. Substantivo com as qualidades desejadas e o beneficiário explícito.</p>
+    </div>
+  </div>
+
+  <div class="card">
+    <p class="rot">Responsabilidades</p>
+    <ul>
+      <li><b>Percorrer o ciclo de pagar</b> com quem chega, uma etapa por sessão.</li>
+      <li><b>Revisar os lançamentos</b> de quem chega antes do envio.</li>
+      <li><b>Responder dúvidas</b> no canal e no prazo combinados.</li>
+      <li><b>Avisar o gestor</b> quando a chegada trava por acesso ou por carga.</li>
+      <li><b>Registrar no roteiro de chegada</b> as dúvidas que se repetem.</li>
+    </ul>
+    <p class="mini">Cinco, cada uma com um verbo e uma ação. Sem meta, sem métrica e sem poder sobre pessoas.</p>
+  </div>
+
+  <div class="duas">
+    <div class="card az">
+      <p class="rot">Domínios</p>
+      <ul class="dom">
+        <li><b>Roteiro de chegada</b> de Contas a Pagar.</li>
+        <li><b>Registro de dúvidas e pendências</b> da chegada em curso.</li>
+      </ul>
+      <p class="mini">Dois ativos concretos, que quebram se muita gente mexer. Agenda e lista de contatos não entraram: não precisam de dono exclusivo.</p>
+    </div>
+    <div class="card no">
+      <p class="rot">Fora do papel</p>
+      <ul class="nao">
+        <li>Avaliar desempenho ou opinar sobre efetivação.</li>
+        <li>Distribuir carteira, priorizar pagamento ou aprovar lançamento.</li>
+        <li>Conceder acesso a sistema.</li>
+        <li>Ser o único canal da pessoa nova com a área.</li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="nota"><b>Encerramento.</b> O papel se encerra na sessão do dia 90, com o roteiro atualizado. Se a chegada precisar de mais tempo, isso vira conversa com o gestor, não extensão silenciosa do papel.</div>
+</section>
+
+<section>
+  <h2><span class="n">03</span> Quem ocupa</h2>
+  <p>Critério de escolha, não senioridade:</p>
+  <div class="card">
+    <ul>
+      <li>Roda o ciclo de pagar de ponta a ponta, incluindo os casos que travam.</li>
+      <li>Tem agenda para as sessões, com a carteira ajustada nas primeiras semanas.</li>
+      <li>Não é o gestor de quem chega. Quem chega precisa de um lugar para dizer "não entendi" sem que isso vire avaliação.</li>
+    </ul>
+  </div>
+</section>
+
+<section>
+  <h2><span class="n">04</span> Atividades por onda</h2>
+  <table>
+    <tr><th style="width:14%">Onda</th><th style="width:33%">O que a Ponte faz</th><th style="width:28%">O que estraga se ninguém faz</th><th style="width:25%">Sinal observável</th></tr>
+    <tr><td class="v">Véspera</td>
+      <td>Confere o que já foi pedido de acesso e de posto. Monta a pasta do roteiro. Envia o combinado do primeiro dia.</td>
+      <td>Silêncio entre a assinatura e o dia 1</td>
+      <td>Pessoa sabe onde chegar e com quem falar</td></tr>
+    <tr><td class="v">Dia 1</td>
+      <td>Recebe, apresenta o time por função e mostra o calendário da área: dia de pagamento, dia de corte, dia de fechamento.</td>
+      <td>Ninguém esperando e o dia inteiro assistindo</td>
+      <td>Pessoa diz o que a área entrega e para quem</td></tr>
+    <tr><td class="v">Semana 1</td>
+      <td>Percorre o ciclo, uma etapa por sessão, com nota real na tela.</td>
+      <td>Despejo de manual e de sigla sem contexto</td>
+      <td>Pessoa desenha o fluxo do pagar sem ajuda</td></tr>
+    <tr><td class="v">Dias 8 a 30</td>
+      <td>Revisa os lançamentos antes do envio e devolve o motivo do que voltou. Percorre a régua de aprovação com casos.</td>
+      <td>Primeiro erro tratado como falha pessoal</td>
+      <td>Lançamentos simples saindo corretos</td></tr>
+    <tr><td class="v">Dias 31 a 60</td>
+      <td>Acompanha o primeiro fechamento com a pessoa tendo tarefa própria.</td>
+      <td>Entrar no fechamento só olhando</td>
+      <td>Entrega dentro do calendário</td></tr>
+    <tr><td class="v">Dias 61 a 90</td>
+      <td>Reduz a revisão para amostragem e trabalha os casos difíceis: imposto retido, adiantamento, rateio e urgência fora da régua.</td>
+      <td>Autonomia declarada sem ter sido verificada</td>
+      <td>Pessoa chama ajuda no ponto certo, não depois</td></tr>
+    <tr><td class="v">Dia 90</td>
+      <td>Conduz a sessão de encerramento e atualiza o roteiro com as dúvidas repetidas.</td>
+      <td>Nenhuma devolutiva, e a dúvida vira ansiedade</td>
+      <td>Roteiro em uso na próxima chegada</td></tr>
+  </table>
+  <p class="mini">O esforço se concentra na véspera e nas quatro primeiras semanas, e cai a partir do dia 30. Marcar sessão em dia de corte ou em pico de fechamento é o jeito mais comum de o acompanhamento não acontecer.</p>
+</section>
+
+<section>
+  <h2><span class="n">05</span> Checklist</h2>
+  <div class="ck">
+    <h4>Véspera</h4>
+    <label><input type="checkbox"><span>Confirmei com o gestor que ocupo o papel e que ele termina no dia 90</span></label>
+    <label><input type="checkbox"><span>Verifiquei o pedido de acesso ao ERP, ao portal de notas e às pastas da área</span></label>
+    <label><input type="checkbox"><span>Montei a pasta do roteiro com o fluxo do ciclo e o calendário da área</span></label>
+    <label><input type="checkbox"><span>Enviei o combinado do dia 1: horário, local e o que vai acontecer</span></label>
+
+    <h4>Dia 1</h4>
+    <label><input type="checkbox"><span>Recebi a pessoa no horário combinado</span></label>
+    <label><input type="checkbox"><span>Apresentei o time por função, com o motivo de cada contato</span></label>
+    <label><input type="checkbox"><span>Mostrei o calendário: dia de pagamento, dia de corte, dia de fechamento</span></label>
+    <label><input type="checkbox"><span>Combinei o canal e o prazo de resposta para dúvidas</span></label>
+
+    <h4>Semana 1</h4>
+    <label><input type="checkbox"><span>Percorri o ciclo completo, uma etapa por sessão</span></label>
+    <label><input type="checkbox"><span>Mostrei as divergências mais comuns e o caminho de cada uma</span></label>
+    <label><input type="checkbox"><span>Expliquei a regra de conferência de dados bancários do fornecedor</span></label>
+
+    <h4>Dias 8 a 30</h4>
+    <label><input type="checkbox"><span>Revisei os lançamentos antes do envio e devolvi com o motivo</span></label>
+    <label><input type="checkbox"><span>Percorri a régua de aprovação com casos, incluindo o aprovador ausente</span></label>
+    <label><input type="checkbox"><span>Avisei o gestor sobre o que trava por acesso ou por carga</span></label>
+
+    <h4>Dias 31 a 60</h4>
+    <label><input type="checkbox"><span>Acompanhei o fechamento com a pessoa tendo tarefa própria</span></label>
+    <label><input type="checkbox"><span>Percorri a fila de pendências e a conciliação com a contabilidade</span></label>
+
+    <h4>Dias 61 a 90</h4>
+    <label><input type="checkbox"><span>Reduzi a revisão para amostragem e avisei que estava reduzindo</span></label>
+    <label><input type="checkbox"><span>Trabalhei os casos difíceis da carteira</span></label>
+
+    <h4>Dia 90</h4>
+    <label><input type="checkbox"><span>Conduzi a sessão de encerramento</span></label>
+    <label><input type="checkbox"><span>Atualizei o roteiro com as dúvidas que se repetiram</span></label>
+    <label><input type="checkbox"><span>Declarei o papel encerrado</span></label>
+  </div>
+</section>
+
+<section>
+  <h2><span class="n">06</span> Como o papel é reconhecido</h2>
+  <p>Ocupar o papel custa tempo de quem já tem carteira. Se o custo é real e o reconhecimento é vago, ninguém quer o papel no ciclo seguinte.</p>
+  <div class="duas">
+    <div class="card tl">
+      <p class="rot">O que reconhece</p>
+      <ul>
+        <li><b>Tempo protegido na agenda</b> nas primeiras semanas. Reconhecimento que não vem em tempo não vem.</li>
+        <li><b>Certificado entre pares</b> escrito por quem chegou, no modelo por valor do Grupo.</li>
+        <li><b>Registro como papel exercido</b> no histórico da pessoa, não como favor prestado.</li>
+      </ul>
+    </div>
+    <div class="card no">
+      <p class="rot">O que distorce</p>
+      <ul class="nao">
+        <li><b>Bônus por número de chegadas.</b> Produz ocupante de crachá.</li>
+        <li><b>Nota de satisfação como métrica do papel.</b> Quem devolve erro perde.</li>
+        <li><b>Prêmio entregue trimestres depois.</b> A distância apaga o sinal.</li>
+      </ul>
+    </div>
+  </div>
+  <div class="nota"><b>Regra.</b> Reconhecer o que a pessoa controla. Quem ocupa a Ponte não controla se quem chegou vai ficar na empresa. Controla se percorreu o ciclo, revisou os lançamentos e devolveu o roteiro.</div>
+</section>
+
+<footer>
+  <span>Case Os primeiros 90 dias · Ponte da Chegada · Contas a Pagar · V2.0</span>
+  <span>Documento de exemplo · Uso interno · 06/08/2026</span>
+</footer>
+
+</div></main>
+</body></html>

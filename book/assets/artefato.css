@@ -1,0 +1,188 @@
+/* ============================================================
+   Artefatos embutidos nas paginas de case.
+   GERADO por _ia/gera_artefato_css.py. Nao editar a mao:
+   edite o HTML da peca e rode o script de novo.
+   ============================================================ */
+.artefato *, .artefato *::before, .artefato *::after { margin:0; padding:0; box-sizing:border-box; }
+.artefato .wrap { max-width:1080px; margin:0 auto; padding:clamp(2rem,6vw,4.5rem) clamp(1.25rem,4vw,3rem); }
+.artefato .cota { font-family:'JetBrains Mono',Consolas,monospace; font-size:.6875rem; letter-spacing:.18em; text-transform:uppercase; color:#6b6760; }
+.artefato h1 { font-size:clamp(1.75rem,4vw,2.75rem); letter-spacing:-.02em; line-height:1.15; margin:.75rem 0 1rem; }
+.artefato .pecaintro { display:grid; grid-template-columns:minmax(0,5fr) minmax(0,7fr); gap:clamp(1.5rem,4vw,3.25rem); align-items:start; margin-bottom:.25rem; }
+.artefato .pecaintro h1 { margin:0; }
+@media (max-width:820px) {
+  .artefato .pecaintro { grid-template-columns:1fr; gap:.75rem; }
+}
+.artefato .standfirst { font-size:1.0625rem; color:#3f3d38; }
+.artefato h2 { font-size:clamp(1.25rem,2.4vw,1.625rem); letter-spacing:-.01em; margin-bottom:.5rem; }
+.artefato h3 { font-size:1.0625rem; margin-bottom:.4rem; }
+.artefato section { margin-top:clamp(3rem,7vw,5rem); }
+.artefato .como-ler { display:grid; grid-template-columns:repeat(3,1fr); gap:1px; background:#d9d5cf; border:1px solid #d9d5cf; margin-top:1.5rem; }
+.artefato .como-ler div { background:#fff; padding:1.1rem 1.25rem; font-size:.9375rem; }
+.artefato .como-ler strong { display:block; margin-bottom:.25rem; }
+.artefato .meta-fig { background:#fff; border:1px solid #d9d5cf; padding:clamp(1rem,3vw,2rem); margin-top:1.5rem; }
+.artefato .meta-fig svg { width:100%; height:auto; display:block; max-width:760px; margin:0 auto; }
+.artefato .par { display:grid; grid-template-columns:1fr 1fr; gap:1.25rem; margin-top:1.25rem; }
+.artefato .quadro { background:#fff; border:1px solid #d9d5cf; padding:1.25rem; }
+.artefato .quadro.vic { border-top:3px solid #b4543f; }
+.artefato .quadro.virt { border-top:3px solid #3d63e6; }
+.artefato .quadro svg { width:100%; height:auto; display:block; overflow:visible; }
+.artefato .hist { font-size:.9375rem; color:#3f3d38; margin-top:.75rem; }
+.artefato .fala { border-left:3px solid #d9d5cf; padding:.5rem 0 .5rem 1rem; margin-top:1rem; font-style:italic; color:#6b6760; font-size:.9375rem; }
+.artefato .alavanca { background:#1a1917; color:#f5f3ee; padding:1.1rem 1.4rem; margin-top:1.25rem; font-size:.9375rem; }
+.artefato .alavanca .cota { color:#7d97ff; margin-bottom:.3rem; display:block; }
+.artefato .selo-vic { color:#b4543f; }
+.artefato .selo-virt { color:#3d63e6; }
+.artefato footer { margin-top:clamp(3rem,7vw,5rem); padding-top:1.25rem; border-top:1px solid #d9d5cf; font-size:.8125rem; color:#6b6760; }
+@media (max-width:860px) {
+  .artefato .par, .artefato .como-ler { grid-template-columns:1fr; }
+}
+.artefato p + p { margin-top:.75rem; }
+.artefato .meta-fig svg { width:100%; height:auto; display:block; margin:0 auto; overflow:visible; }
+.artefato .legenda { font-size:.875rem; color:#6b6760; margin-top:1rem; padding-top:.85rem; border-top:1px solid #ece9e3; }
+.artefato .quadro.antes { border-top:3px solid #b4543f; }
+.artefato .quadro.depois { border-top:3px solid #3d63e6; }
+.artefato .quadro ul { list-style:none; margin-top:.5rem; }
+.artefato .quadro li { font-size:.9375rem; padding:.4rem 0 .4rem 1.1rem; position:relative; border-bottom:1px solid #f0ede7; }
+.artefato .quadro li:last-child { border-bottom:none; }
+.artefato .quadro li::before { content:""; position:absolute; left:0; top:.95rem; width:6px; height:6px; border-radius:50%; background:#c9c4bc; }
+.artefato .quadro.antes li::before { background:#b4543f; }
+.artefato .quadro.depois li::before { background:#3d63e6; }
+.artefato .selo-antes { color:#b4543f; }
+.artefato .selo-depois { color:#3d63e6; }
+.artefato table { width:100%; border-collapse:collapse; margin-top:1.25rem; background:#fff; border:1px solid #d9d5cf; font-size:.9375rem; }
+.artefato thead th { background:#1a1917; color:#f5f3ee; text-align:left; padding:.6rem .85rem; font-size:.6875rem; letter-spacing:.14em; text-transform:uppercase; }
+.artefato tbody td { padding:.55rem .85rem; border-bottom:1px solid #ece9e3; vertical-align:top; }
+.artefato tbody tr:last-child td { border-bottom:none; }
+.artefato tbody tr.morreu td { color:#8a857c; }
+.artefato tbody tr.morreu td:first-child { text-decoration:line-through; }
+.artefato tbody tr.soma td { background:#f0ede7; font-weight:700; }
+.artefato td.num { text-align:right; font-family:'JetBrains Mono',Consolas,monospace; white-space:nowrap; }
+.artefato .parede { margin-top:1.5rem; background:#fff; border:1px solid #d9d5cf; padding:clamp(1rem,3vw,1.75rem); overflow-x:auto; }
+.artefato .fita { display:flex; gap:.5rem; min-width:1180px; align-items:flex-start; }
+.artefato .col { flex:1 1 0; min-width:96px; display:flex; flex-direction:column; gap:.4rem; }
+.artefato .pit { padding:.5rem .55rem; font-size:.75rem; line-height:1.35; box-shadow:1px 2px 3px rgba(26,25,23,.12); }
+.artefato .pit.etapa { background:#eef2a8; min-height:74px; font-weight:600; }
+.artefato .pit.dor { background:#f8b24a; font-size:.6875rem; }
+.artefato .pit.dia { background:#f79a3c; font-family:'JetBrains Mono',Consolas,monospace; font-weight:700; text-align:center; font-size:.875rem; }
+.artefato .pit.total { background:#f27f2c; }
+.artefato .kaizen { display:inline-block; background:#f27f2c; color:#fff; font-size:.5625rem; letter-spacing:.12em; padding:1px 5px; margin-bottom:3px; }
+.artefato .fotos { display:grid; grid-template-columns:1fr 1fr; gap:1.25rem; margin-top:1.5rem; }
+.artefato figure { background:#fff; border:1px solid #d9d5cf; padding:.75rem; }
+.artefato figure img { width:100%; height:auto; display:block; }
+.artefato figcaption { font-size:.8125rem; color:#6b6760; margin-top:.6rem; line-height:1.5; }
+.artefato .moedas { display:grid; grid-template-columns:repeat(3,1fr); gap:1px; background:#d9d5cf; border:1px solid #d9d5cf; margin-top:1.25rem; }
+.artefato .moedas div { background:#fff; padding:1.1rem 1.25rem; font-size:.9375rem; }
+.artefato .moedas strong { display:block; margin-bottom:.25rem; }
+.artefato .aviso { background:#fff; border:1px solid #d9d5cf; border-left:4px solid #b4543f; padding:1.1rem 1.4rem; margin-top:1.5rem; font-size:.9375rem; }
+.artefato .aviso .cota { display:block; margin-bottom:.35rem; color:#b4543f; }
+@media (max-width:860px) {
+  .artefato .par, .artefato .como-ler, .artefato .moedas, .artefato .fotos { grid-template-columns:1fr; }
+}
+.artefato h3 { font-size:1.0625rem; margin:1.75rem 0 .4rem; }
+.artefato .notacao { display:grid; grid-template-columns:repeat(4,1fr); gap:1px; background:#d9d5cf; border:1px solid #d9d5cf; margin-top:1.5rem; }
+.artefato .notacao div { background:#fff; padding:1rem 1.1rem; font-size:.875rem; line-height:1.55; }
+.artefato .notacao strong { display:block; margin-bottom:.3rem; font-size:.9375rem; }
+.artefato .notacao code { font-family:'JetBrains Mono',Consolas,monospace; font-size:.75rem; background:#f0ede7; padding:1px 4px; }
+.artefato .aviso p + p { margin-top:.6rem; }
+.artefato table.simples { width:100%; border-collapse:collapse; margin-top:1.25rem; background:#fff; border:1px solid #d9d5cf; font-size:.875rem; }
+.artefato table.simples thead th { background:#1a1917; color:#f5f3ee; text-align:left; padding:.55rem .8rem; font-size:.6875rem; letter-spacing:.14em; text-transform:uppercase; }
+.artefato table.simples tbody td { padding:.5rem .8rem; border-bottom:1px solid #ece9e3; vertical-align:top; line-height:1.5; }
+.artefato table.simples tbody tr:last-child td { border-bottom:none; }
+.artefato table.simples td.k { font-weight:700; }
+.artefato table.simples td.n { font-family:'JetBrains Mono',Consolas,monospace; white-space:nowrap; text-align:right; }
+.artefato table.simples td.ganho { color:#2b48b0; font-weight:700; }
+.artefato .scroll { overflow-x:auto; }
+.artefato table.simples.larga { min-width:820px; }
+.artefato .bp { margin-top:1.5rem; background:#fff; border:1px solid #d9d5cf; overflow-x:auto; }
+.artefato table.grade { border-collapse:collapse; font-size:11.5px; line-height:1.4; min-width:2940px; }
+.artefato table.grade th, .artefato table.grade td { vertical-align:top; padding:.45rem .5rem; border-right:1px solid #ece9e3; }
+.artefato table.grade tbody td { width:146px; min-width:146px; border-bottom:1px solid #f0ede7; }
+.artefato table.grade th.raia { width:158px; min-width:158px; position:sticky; left:0; z-index:2; }
+.artefato thead tr.l0 th { color:#f5f3ee; text-align:left; font-size:11px; letter-spacing:.06em; padding:.5rem .6rem; border-right:1px solid #3f3d38; }
+.artefato thead tr.l0 th span { display:block; font-family:'JetBrains Mono',Consolas,monospace; font-size:9.5px; letter-spacing:.1em; font-weight:400; opacity:.72; margin-top:2px; }
+.artefato thead tr.l0 th.m1 { background:#8f3d2c; }
+.artefato thead tr.l0 th.m2 { background:#2b48b0; }
+.artefato thead tr.l0 th.m3 { background:#1a1917; }
+.artefato thead tr.l0 th.raia { background:#1a1917; z-index:3; }
+.artefato thead tr.l1 th { background:#3f3d38; color:#f5f3ee; text-align:left; font-size:10.5px; letter-spacing:.04em; font-weight:700; }
+.artefato thead tr.l1 th.raia { background:#3f3d38; z-index:3; }
+.artefato thead tr.l1 th b { display:block; font-family:'JetBrains Mono',Consolas,monospace; font-size:9px; letter-spacing:.12em; color:#a8a49c; }
+.artefato table.grade tbody th.raia { background:#fff; text-align:left; font-size:11px; border-right:2px solid #d9d5cf; }
+.artefato table.grade tbody th.raia b { display:block; font-family:'JetBrains Mono',Consolas,monospace; font-size:9px; letter-spacing:.12em; color:#8a857c; font-weight:700; }
+.artefato table.grade tbody th.raia i { display:block; font-style:normal; font-size:9.5px; color:#8a857c; font-weight:400; margin-top:2px; }
+.artefato tr.dias td, .artefato tr.dias th.raia { background:#faf8f4; font-family:'JetBrains Mono',Consolas,monospace; text-align:center; font-size:13px; font-weight:700; }
+.artefato tr.dias th.raia { text-align:left; font-size:11px; font-family:inherit; }
+.artefato tr.dias.antes td { color:#8f3d2c; }
+.artefato tr.dias.depois td { color:#2b48b0; }
+.artefato tr.dias.delta td { color:#3f3d38; font-size:11.5px; }
+.artefato td.morta { text-decoration:line-through; opacity:.55; }
+.artefato tr.ev td, .artefato tr.ev th.raia, .artefato tr.cli td, .artefato tr.cli th.raia { background:#fdf7ee; }
+.artefato tr.front td, .artefato tr.front th.raia { background:#e7ebfb; }
+.artefato tr.back td, .artefato tr.back th.raia { background:#f4f2ee; }
+.artefato tr.apoio td, .artefato tr.apoio th.raia, .artefato tr.esforco td, .artefato tr.esforco th.raia, .artefato tr.mede td, .artefato tr.mede th.raia { background:#fff; }
+.artefato tr.fric td, .artefato tr.fric th.raia { background:#fbf1ee; }
+.artefato tr.contra td, .artefato tr.contra th.raia { background:#eef6f0; }
+.artefato tr.oport td, .artefato tr.oport th.raia { background:#fdf8e8; }
+.artefato tr.fric td { color:#8f3d2c; }
+.artefato tr.contra td { color:#20603a; }
+.artefato tr.oport td { color:#7a5410; }
+.artefato .mural { display:block; font-style:italic; }
+.artefato .mural::before { content:"«"; }
+.artefato .mural::after { content:"»"; }
+.artefato tr.linha th, .artefato tr.linha td { background:#1a1917; color:#f5f3ee; padding:.28rem .5rem; font-family:'JetBrains Mono',Consolas,monospace; font-size:9.5px; letter-spacing:.16em; text-transform:uppercase; border-right:none; }
+.artefato table.grade tbody tr.linha th.raia { background:#1a1917; color:#f5f3ee; border-right:none; }
+.artefato table.grade tbody tr.ev th.raia, .artefato table.grade tbody tr.cli th.raia { background:#fdf7ee; }
+.artefato table.grade tbody tr.front th.raia { background:#e7ebfb; }
+.artefato table.grade tbody tr.back th.raia { background:#f4f2ee; }
+.artefato table.grade tbody tr.fric th.raia { background:#fbf1ee; }
+.artefato table.grade tbody tr.contra th.raia { background:#eef6f0; }
+.artefato table.grade tbody tr.oport th.raia { background:#fdf8e8; }
+.artefato table.grade tbody tr.dias th.raia { background:#faf8f4; }
+.artefato .barra { height:9px; background:#3d63e6; }
+.artefato .barra.i5 { opacity:1 }
+.artefato .barra.i4 { opacity:.78 }
+.artefato .barra.i3 { opacity:.55 }
+.artefato .barra.i2 { opacity:.34 }
+.artefato .barra.i1 { opacity:.18 }
+.artefato .vazio { color:#c9c4bc; }
+.artefato .dica { font-size:.8125rem; color:#8a857c; margin-top:.6rem; font-family:'JetBrains Mono',Consolas,monospace; letter-spacing:.06em; }
+@media (max-width:860px) {
+  .artefato .notacao { grid-template-columns:1fr 1fr; }
+}
+.artefato table.simples { width:100%; border-collapse:collapse; margin-top:1.25rem; background:#fff; border:1px solid #d9d5cf; font-size:.9375rem; }
+.artefato table.simples thead th { background:#1a1917; color:#f5f3ee; text-align:left; padding:.6rem .85rem; font-size:.6875rem; letter-spacing:.14em; text-transform:uppercase; }
+.artefato table.simples tbody td { padding:.55rem .85rem; border-bottom:1px solid #ece9e3; vertical-align:top; line-height:1.5; }
+.artefato table.simples tr.soma td { background:#f0ede7; font-weight:700; }
+.artefato table.simples.larga { min-width:760px; }
+@media (max-width:860px) {
+  .artefato .par, .artefato .como-ler, .artefato .moedas { grid-template-columns:1fr; }
+}
+
+/* ---------------- encaixe da peca dentro do book ----------------
+   Vem por ultimo de proposito: vence as regras geradas acima.      */
+.artefato{
+  background:#f5f4f0; color:#1a1917; line-height:1.7;
+  font-family:'Inter','Segoe UI',system-ui,-apple-system,sans-serif;
+  border:1px solid #d9d5cf; border-radius:var(--radius); overflow:hidden;
+  margin:34px 0;
+  /* a peca e larga de proposito: as tabelas e os pares de figura precisam de espaco.
+     Centrada no miolo, com folga de 26px de cada lado da janela, nunca estourando. */
+  width:min(1240px, calc(100vw - 52px)); margin-left:50%; transform:translateX(-50%);
+}
+.artefato .wrap{ max-width:100%; margin:0; padding:clamp(1.25rem,3vw,2.5rem); }
+.artefato section:first-of-type{ margin-top:clamp(1.25rem,3vw,2rem); }
+.artefato a{ color:#3d63e6; }
+.artefato img{ border:0; border-radius:0; }
+.artefato figure{ margin:0; }
+.artefato .peca-h1{
+  font-size:clamp(1.5rem,3vw,2.125rem); letter-spacing:-.02em; line-height:1.18;
+  font-weight:800; color:#1a1917; margin:.5rem 0 1rem; max-width:26ch;
+}
+@media (max-width:640px){ .artefato .wrap{ padding:1rem; } }
+@media print{ .artefato{ width:auto; margin-left:0; transform:none; } }
+
+/* selo "peça autoral do case", no topo de cada peça embutida */
+.pecatag{ display:inline-block; font-family:'JetBrains Mono',Consolas,monospace; font-size:10px;
+  letter-spacing:.16em; text-transform:uppercase; color:#3d63e6; background:#e7ebfb;
+  border:1px solid #c3cef5; border-radius:20px; padding:4px 11px; margin:0 0 4px; }
+

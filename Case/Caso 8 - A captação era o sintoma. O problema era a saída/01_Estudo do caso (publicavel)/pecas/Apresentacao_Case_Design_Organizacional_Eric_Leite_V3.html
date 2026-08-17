@@ -1,0 +1,364 @@
+﻿<!DOCTYPE html>
+<html lang="pt-BR"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Case · Ressignificar o modelo organizacional de previdência · Apresentação</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Source+Sans+3:ital,wght@0,400;0,600;0,700;0,800;1,400&display=swap" rel="stylesheet">
+<style>
+:root{
+  --brand:#302F7A; --hl:#A9A4E8; --p2:#55549E; --p3:#7A79BC; --p4:#A9A4E8; --p5:#E4E2F6;
+  --rich:#141244; --deep:#302478;
+  --g1:#333333; --g2:#666666; --g3:#999999; --g4:#CCCCCC;
+  --wash:#F0EFF9; --zebra:#F8F8FC;
+}
+*{box-sizing:border-box;}
+html,body{margin:0;padding:0;background:#e9e9ef;
+  font-family:"Source Sans 3","Segoe UI",Helvetica,Arial,sans-serif;color:var(--g1);}
+.slide{width:13.333in;height:7.5in;background:#fff;position:relative;overflow:hidden;
+  margin:24px auto;box-shadow:0 2px 14px rgba(20,18,68,.18);
+  padding:0.62in 0.75in 0.55in;display:flex;flex-direction:column;}
+.slide.dark{background:linear-gradient(135deg,var(--deep) 0%,var(--rich) 100%);color:#fff;}
+.blob{position:absolute;border-radius:50%;pointer-events:none;}
+.eyebrow{font-size:11px;letter-spacing:.28em;font-weight:700;text-transform:uppercase;
+  color:var(--brand);margin:0 0 10px;}
+.dark .eyebrow{color:var(--hl);}
+h1{font-size:44px;line-height:1.12;font-weight:800;letter-spacing:-.015em;margin:0 0 16px;color:#fff;}
+h1 em{font-style:normal;color:var(--hl);}
+h2{font-size:27px;line-height:1.2;font-weight:800;letter-spacing:-.01em;margin:0 0 6px;color:var(--rich);}
+.dark h2{color:#fff;}
+.sub{font-size:14.5px;color:var(--g2);margin:0 0 18px;}
+.dark .sub{color:#D9D7EE;}
+.rule{height:3px;background:var(--brand);margin:10px 0 20px;}
+.dark .rule{background:var(--hl);}
+.body{flex:1;display:flex;flex-direction:column;min-height:0;}
+p{margin:0 0 10px;font-size:14.5px;line-height:1.5;}
+strong{color:var(--rich);font-weight:700;}
+.dark strong{color:#fff;}
+.cols{display:flex;gap:26px;flex:1;min-height:0;}
+.col{flex:1;min-width:0;}
+table{width:100%;border-collapse:collapse;font-size:12.5px;margin:4px 0;}
+thead th{background:var(--rich);color:#fff;text-align:left;padding:7px 10px;
+  font-size:10px;letter-spacing:.12em;text-transform:uppercase;font-weight:700;}
+tbody td{padding:7px 10px;border-bottom:1px solid var(--g4);vertical-align:top;line-height:1.42;}
+tbody tr:nth-child(even){background:var(--zebra);}
+tbody td:first-child{font-weight:700;color:var(--rich);}
+.kpis{display:flex;border-top:2px solid var(--rich);border-bottom:2px solid var(--rich);margin:14px 0 6px;}
+.kpi{flex:1;padding:14px 16px;border-right:1px solid var(--g4);}
+.kpi:last-child{border-right:none;}
+.kpi b{display:block;font-size:30px;font-weight:800;color:var(--brand);line-height:1.05;letter-spacing:-.02em;}
+.kpi small{display:block;font-size:9.5px;letter-spacing:.14em;text-transform:uppercase;color:var(--g2);margin-top:7px;font-weight:700;line-height:1.4;}
+ul.tri{list-style:none;padding:0;margin:8px 0;}
+ul.tri li{padding-left:22px;position:relative;margin-bottom:9px;font-size:14px;line-height:1.45;}
+ul.tri li::before{content:"\25B8";position:absolute;left:2px;color:var(--brand);font-weight:700;}
+.dark ul.tri li::before{color:var(--hl);}
+ol.pains{list-style:none;padding:0;margin:8px 0;counter-reset:p;}
+ol.pains li{counter-increment:p;display:flex;gap:13px;padding:10px 0;border-bottom:1px solid var(--g4);align-items:flex-start;}
+ol.pains li:last-child{border-bottom:none;}
+ol.pains li::before{content:counter(p);min-width:26px;height:26px;border-radius:50%;
+  background:var(--brand);color:#fff;font-weight:800;font-size:13px;
+  display:flex;align-items:center;justify-content:center;flex-shrink:0;margin-top:1px;}
+ol.pains b{display:block;color:var(--rich);font-size:14px;}
+ol.pains span{color:var(--g2);font-size:12.5px;line-height:1.4;}
+.callout{background:var(--p5);border-left:4px solid var(--brand);padding:14px 18px;margin:12px 0 0;border-radius:0 3px 3px 0;}
+.callout h5{margin:0 0 6px;font-size:9.5px;letter-spacing:.22em;text-transform:uppercase;color:var(--brand);font-weight:800;}
+.callout p{font-size:13px;margin:0;}
+.flow{display:flex;flex-wrap:wrap;align-items:center;gap:8px;margin:14px 0;padding:16px;background:var(--wash);border-radius:4px;}
+.flow span{background:#fff;border:1px solid var(--p3);padding:8px 13px;border-radius:3px;font-size:13px;font-weight:700;color:var(--rich);}
+.flow span.brk{background:var(--rich);color:#fff;border-color:var(--rich);}
+.flow i{color:var(--brand);font-style:normal;font-weight:800;}
+.meta{display:flex;flex-wrap:wrap;gap:44px;margin-top:auto;}
+.meta div small{display:block;font-size:9.5px;letter-spacing:.2em;color:#9a97c9;text-transform:uppercase;margin-bottom:5px;font-weight:700;}
+.meta div b{font-size:14px;color:#fff;font-weight:700;}
+.tag{display:inline-block;padding:2px 9px;border-radius:3px;font-size:10px;font-weight:800;letter-spacing:.1em;text-transform:uppercase;vertical-align:middle;}
+.tag.hip{background:var(--rich);color:var(--hl);}
+.tag.disc{background:var(--p5);color:var(--brand);}
+.waves{display:flex;flex-direction:column;gap:6px;margin-top:4px;}
+.wave{display:flex;gap:14px;align-items:flex-start;background:var(--zebra);border:1px solid var(--g4);border-left:4px solid var(--brand);border-radius:4px;padding:8px 13px;}
+.wave .n{font-size:20px;font-weight:800;color:var(--brand);min-width:22px;line-height:1.2;}
+.wave .t{font-size:13.5px;font-weight:700;color:var(--rich);line-height:1.3;}
+.wave .d{font-size:11.5px;color:var(--g2);line-height:1.35;}
+.quotebig{font-size:21px;line-height:1.4;font-weight:600;color:#fff;max-width:10.5in;margin:0;}
+.quotebig::before{content:"\201C";color:var(--hl);font-size:40px;line-height:0;vertical-align:-11px;margin-right:6px;}
+.who{display:block;margin-top:12px;font-size:10.5px;letter-spacing:.2em;text-transform:uppercase;color:#9a97c9;font-weight:700;}
+.foot{position:absolute;left:0.75in;right:0.75in;bottom:0.28in;display:flex;justify-content:space-between;
+  font-size:9px;letter-spacing:.08em;color:var(--g3);text-transform:uppercase;font-weight:600;}
+.dark .foot{color:#8683b8;}
+.pgnum{font-variant-numeric:tabular-nums;}
+@media print{
+  html,body{background:#fff;}
+  .slide{margin:0;box-shadow:none;page-break-after:always;break-after:page;}
+  .slide:last-child{page-break-after:auto;}
+}
+@page{size:13.333in 7.5in;margin:0;}
+</style></head><body>
+
+<!-- 1 CAPA -->
+<div class="slide dark">
+  <div class="blob" style="width:340px;height:340px;background:var(--hl);opacity:.4;right:-60px;top:-110px"></div>
+  <div class="blob" style="width:230px;height:230px;background:var(--p3);opacity:.38;right:170px;top:70px"></div>
+  <div class="blob" style="width:180px;height:180px;background:#fff;opacity:.1;right:-10px;top:250px"></div>
+  <div style="font-size:12px;letter-spacing:.34em;font-weight:700;color:#fff">ESTRATÉGIA <span style="color:var(--hl)">ORGANIZACIONAL</span></div>
+  <div style="margin-top:auto">
+    <p class="eyebrow">Case de projeto · Design organizacional</p>
+    <h1>Ressignificar o modelo<br>organizacional de previdência</h1>
+    <p style="font-size:15.5px;color:#D9D7EE;max-width:8.4in;margin:0 0 26px">Redesenho integrado do modelo operacional e do modelo de negócio de um portfólio de previdência complementar que opera nas duas portas regulatórias.</p>
+    <div style="height:2px;background:var(--hl);opacity:.9;margin-bottom:22px"></div>
+    <div class="meta">
+      <div><small>Cliente</small><b>Previdência complementar · identificação preservada</b></div>
+      <div><small>Período</small><b>Ciclo de nove meses · pilotos em curso</b></div>
+      <div><small>Status</small><b>Momento 1 concluído · Momento 2 em execução</b></div>
+    </div>
+  </div>
+  <div class="foot"><span>Case · Ressignificar o modelo organizacional de previdência · Eric Leite · Design Organizacional</span><span class="pgnum">01</span></div>
+</div>
+
+<!-- 2 O PROBLEMA -->
+<div class="slide">
+  <p class="eyebrow">O ponto de partida</p>
+  <h2>O pedido era captação. O problema era a saída.</h2>
+  <div class="rule"></div>
+  <div class="cols">
+    <div class="col">
+      <p>O programa foi acionado por uma <strong>queda de captação</strong>. A leitura corrente atribuía o resultado ao desempenho comercial, e a saída esperada era ampliar a remuneração do canal intermediado.</p>
+      <p>A investigação apontou outra origem: <strong>o volume que entrava vinha sendo anulado pelo volume que saía</strong>, e a saída não tinha prazo apurado ponta a ponta, dono único nem indicador próprio. Por não estar medida, não aparecia em pauta de reunião.</p>
+    </div>
+    <div class="col">
+      <div class="callout"><h5>A aritmética que ordenou o programa</h5>
+      <p>A receita do produto é <strong>anuidade sobre estoque</strong>. Cada resgate leva junto a recorrência dos anos seguintes, e cada adesão nova só começa a pagar depois de um período. Enquanto a saída não for medida, ampliar captação eleva o custo de aquisição e o resultado líquido segue parado.</p></div>
+      <div class="callout" style="margin-top:10px"><h5>A decisão que decorre dela</h5>
+      <p>Corrigir a saída antes de ativar demanda, mesmo adiando receita nova por dois a três ciclos. Esse custo está declarado na projeção.</p></div>
+    </div>
+  </div>
+  <div class="foot"><span>Case · Ressignificar o modelo organizacional de previdência · Eric Leite · Design Organizacional</span><span class="pgnum">02</span></div>
+</div>
+
+<!-- 3 MANDATO -->
+<div class="slide">
+  <p class="eyebrow">Contexto e mandato</p>
+  <h2>O perímetro dentro do qual tudo foi decidido</h2>
+  <div class="rule"></div>
+  <table><thead><tr><th style="width:26%">Dimensão</th><th>O que foi definido no início</th></tr></thead><tbody>
+    <tr><td>Objeto de desenho</td><td>Modelo operacional e modelo de negócio, redesenhados de forma integrada, nas duas portas em que o produto opera</td></tr>
+    <tr><td>Fora do objeto</td><td>Desenvolvimento de sistema e lançamento de produto novo</td></tr>
+    <tr><td>Limites duros</td><td>Sistema legado, regulamento de plano e taxa de administração, todos dependentes de prazo ou de instância fora do programa</td></tr>
+    <tr><td>Decisão anterior</td><td>Unificação das áreas sob uma única gerência, tomada pela companhia antes do início</td></tr>
+    <tr><td>Fronteira regulatória</td><td>Mudança de plano, de regulamento ou de premissa atuarial depende de homologação e de calendário externos</td></tr>
+    <tr><td>Prazo e escopo</td><td>Nove meses para o bloco de desenho; quinze frentes, com o fora de escopo registrado por escrito</td></tr>
+  </tbody></table>
+  <div class="kpis">
+    <div class="kpi"><b>9 meses</b><small>Bloco de desenho</small></div>
+    <div class="kpi"><b>15</b><small>Frentes de trabalho</small></div>
+    <div class="kpi"><b>7</b><small>Ondas de implantação</small></div>
+    <div class="kpi"><b>21</b><small>Ritos de gestão instalados</small></div>
+  </div>
+  <div class="foot"><span>Case · Ressignificar o modelo organizacional de previdência · Eric Leite · Design Organizacional</span><span class="pgnum">03</span></div>
+</div>
+
+<!-- 4 ACHADOS -->
+<div class="slide">
+  <p class="eyebrow">O reenquadramento</p>
+  <h2>O que a investigação encontrou</h2>
+  <p class="sub">A escuta priorizou quem está do lado de fora: participantes ativos, participantes que saíram e pessoas que avaliaram e não contrataram.</p>
+  <div class="cols">
+    <div class="col">
+      <ol class="pains">
+        <li><div><b>A saída não tinha medição</b><span>Sem prazo ponta a ponta, sem dono único e sem indicador próprio.</span></div></li>
+        <li><div><b>O incentivo premiava a originação</b><span>O mesmo intermediário que trazia o participante podia portar a reserva para fora depois da carência.</span></div></li>
+        <li><div><b>A decisão subia por acúmulo de aprovador</b><span>A portabilidade exigia cinco assinaturas em série, nenhuma por exigência do regulador.</span></div></li>
+      </ol>
+    </div>
+    <div class="col">
+      <ol class="pains" style="counter-reset:p 3">
+        <li><div><b>A operação estava agrupada por área herdada</b><span>O mesmo processo cortado entre várias áreas; sete das doze áreas executoras sem cargo formal.</span></div></li>
+        <li><div><b>O tempo comercial estava na esteira</b><span>Cerca de setenta por cento do tempo de quem vende consumido por tarefa operacional de pós-venda.</span></div></li>
+      </ol>
+      <div class="callout"><h5>Segundo achado da escuta</h5>
+      <p>A recusa aparecia com mais frequência na etapa de <strong>entendimento</strong> do que na comparação de taxa. O problema se desloca de preço para compreensão da oferta.</p></div>
+    </div>
+  </div>
+  <div class="foot"><span>Case · Ressignificar o modelo organizacional de previdência · Eric Leite · Design Organizacional</span><span class="pgnum">04</span></div>
+</div>
+
+<!-- 5 RUPTURA + REGUAS -->
+<div class="slide">
+  <p class="eyebrow">O reenquadramento</p>
+  <h2>Onde a cadeia rompia, e as réguas publicadas antes da evidência</h2>
+  <div class="rule"></div>
+  <p>A jornada foi mapeada em blueprint de serviços com <strong>29 momentos em 7 etapas</strong>, incluindo as raias do participante, da instituidora, do corretor e da averbadora. Os elos de aquisição funcionavam. A ruptura aparecia no ponto em que o participante pede para sair.</p>
+  <div class="flow"><span>Interesse</span><i>&rarr;</i><span>Adesão</span><i>&rarr;</i><span>Contribuição</span><i>&rarr;</i><span>Relacionamento</span><i>&rarr;</i><span class="brk">Pedido de saída</span><i>&rarr;</i><span>Crédito em conta</span></div>
+  <p style="margin-top:6px">Os critérios de decisão foram escritos e publicados <strong>antes de olhar qualquer evidência</strong>, para que a recusa de uma frente fosse critério, e não preferência de quem conduz.</p>
+  <ul class="tri">
+    <li><strong>Permanência vale mais que captação</strong>, porque a receita é anuidade sobre estoque.</li>
+    <li><strong>Nenhuma ativação de demanda</strong> antes de a saída operar dentro do desenho normativo.</li>
+    <li><strong>Decisão desce por alçada escrita</strong>, com a faixa de risco declarada, em lugar do acúmulo de aprovador.</li>
+  </ul>
+  <div class="foot"><span>Case · Ressignificar o modelo organizacional de previdência · Eric Leite · Design Organizacional</span><span class="pgnum">05</span></div>
+</div>
+
+<!-- 6 CONDUCAO -->
+<div class="slide">
+  <p class="eyebrow">Condução</p>
+  <h2>Seis fases em quatro zonas, com marcos assinados em ata</h2>
+  <div class="rule"></div>
+  <table><thead><tr><th>Zona</th><th>Fase</th><th>Marco</th><th>O que fecha a fase</th><th>Cobertura</th></tr></thead><tbody>
+    <tr><td>Fundação</td><td>Conectar</td><td>M0 · Alinhamento</td><td>Mandato, escopo, critérios, governança e riscos publicados</td><td>100% · concluída</td></tr>
+    <tr><td>Evidência</td><td>Investigar</td><td>M1 · Leitura de contexto</td><td>Diagnóstico consolidado e divergências reconciliadas</td><td>100% · concluída</td></tr>
+    <tr><td>Concepção</td><td>Modelar</td><td>M2 · Modelo aprovado</td><td>Modelos aprovados, com roadmap sequenciado</td><td>100% · concluída</td></tr>
+    <tr><td>Ciclo permanente</td><td>Executar</td><td>MR · Onda em operação</td><td>Time operando sem suporte do time do programa</td><td>95% · pilotos em curso</td></tr>
+    <tr><td>Ciclo permanente</td><td>Aferir</td><td>MR · Ciclo aferido</td><td>Par de indicadores apurado e projeção comparada ao realizado</td><td>60% · ciclo em curso</td></tr>
+    <tr><td>Ciclo permanente</td><td>Reorientar</td><td>MR · Rumo decidido</td><td>Perseverar, ajustar ou pivotar, com critério escrito</td><td>55% · primeiro giro feito</td></tr>
+  </tbody></table>
+  <p style="font-size:12.5px;color:var(--g2);margin-top:10px">Quatro disciplinas correm por baixo de todas as fases e não encerram com nenhuma delas: <strong>gestão de risco, gestão de projeto, gestão de mudança e construção de roadmap</strong>. A troca de diretoria patrocinadora foi tratada como evento de governança: mandato reapresentado, relido linha a linha e ratificado em três sessões.</p>
+  <div class="foot"><span>Case · Ressignificar o modelo organizacional de previdência · Eric Leite · Design Organizacional</span><span class="pgnum">06</span></div>
+</div>
+
+<!-- 7 MODELO OPERACIONAL -->
+<div class="slide">
+  <p class="eyebrow">O que foi desenhado</p>
+  <h2>Modelo operacional: onde a decisão mora</h2>
+  <p class="sub">O redesenho alcançou o organograma: quatro blocos operacionais e quatro frentes de atuação, com dono nomeado e alçada escrita.</p>
+  <table><thead><tr><th style="width:18%">Dimensão</th><th>Antes</th><th>Depois</th></tr></thead><tbody>
+    <tr><td>Agrupamento</td><td>Áreas herdadas, com o mesmo processo cortado entre várias</td><td>Quatro blocos agrupados por natureza da decisão, cada um com dono e alçada</td></tr>
+    <tr><td>Decisão</td><td>Cinco assinaturas em série na portabilidade</td><td>Matriz de delegação em sete níveis, com alçada escrita por tipo de assunto</td></tr>
+    <tr><td>Papéis</td><td>Sete das doze áreas executoras sem cargo formal</td><td>Responsabilidade declarada por processo: dono, aprovador, consultado e informado</td></tr>
+    <tr><td>Conhecimento</td><td>Retido nas pessoas</td><td>Procedimento publicado, guia de integração e acordos da equipe</td></tr>
+    <tr><td>Gestão diária</td><td>Cadência informal, dependente de quem puxava</td><td>21 ritos em 3 camadas e 5 instâncias, com pauta, quórum e evidência</td></tr>
+    <tr><td>Tempo comercial</td><td>Cerca de 70% em operação, 30% em venda</td><td>Balcão único devolvendo o especialista à venda e à retenção consultiva</td></tr>
+  </tbody></table>
+  <div class="foot"><span>Case · Ressignificar o modelo organizacional de previdência · Eric Leite · Design Organizacional</span><span class="pgnum">07</span></div>
+</div>
+
+<!-- 8 MODELO DE NEGOCIO -->
+<div class="slide">
+  <p class="eyebrow">O que foi desenhado</p>
+  <h2>Modelo de negócio: da captação à permanência</h2>
+  <p class="sub">O denominador da decisão de canal veio do mercado endereçável em três camadas: total, servível e obtenível.</p>
+  <table><thead><tr><th style="width:18%">Dimensão</th><th>Antes</th><th>Depois</th></tr></thead><tbody>
+    <tr><td>Tese de crescimento</td><td>Captar mais pelo canal existente</td><td>Reter mais, com a receita lida como anuidade sobre estoque</td></tr>
+    <tr><td>Portfólio</td><td>Duas portas como negócios vizinhos</td><td>Portfólio único, com proposta de valor por segmento</td></tr>
+    <tr><td>Carteira</td><td>Base tratada como bloco único</td><td>Segmentação por reserva, permanência e vínculo, com ação por quadrante: reter, aprofundar, reativar ou deixar seguir</td></tr>
+    <tr><td>Canal</td><td>Dependência do intermediário</td><td>18 canais com decisão declarada; canal de afinidade próprio prioritário; balcão bancário excluído por escrito</td></tr>
+    <tr><td>Incentivo</td><td>Prêmio concentrado na originação</td><td>Parcela migrando para a manutenção de reserva, com janela alinhada ao ponto em que o estoque se paga</td></tr>
+    <tr><td>Funil e oferta</td><td>Leitura única de aquisição, concentrada em acumulação</td><td>Cinco etapas por quatro linhas de produto; esteira de renda e decumulação em modelagem</td></tr>
+  </tbody></table>
+  <div class="foot"><span>Case · Ressignificar o modelo organizacional de previdência · Eric Leite · Design Organizacional</span><span class="pgnum">08</span></div>
+</div>
+
+<!-- 9 ONDAS -->
+<div class="slide">
+  <p class="eyebrow">Implantação</p>
+  <h2>Sete ondas sequenciadas por risco, não por valor</h2>
+  <p class="sub">A frente de maior valor potencial, o canal próprio, entrou em quinto lugar: levar volume novo a uma operação que falha na saída amplia o problema.</p>
+  <div class="cols">
+    <div class="col">
+      <div class="waves">
+        <div class="wave"><div class="n">0</div><div><div class="t">Balcão único de consulta e triagem</div><div class="d">Em operação</div></div></div>
+        <div class="wave"><div class="n">1</div><div><div class="t">Nível de serviço de saída instrumentado ponta a ponta</div><div class="d">Em operação</div></div></div>
+        <div class="wave"><div class="n">2</div><div><div class="t">Régua de retenção e contato ativo de portabilidade</div><div class="d">Em operação</div></div></div>
+        <div class="wave"><div class="n">3</div><div><div class="t">Quatro blocos operacionais constituídos</div><div class="d">Em operação</div></div></div>
+      </div>
+    </div>
+    <div class="col">
+      <div class="waves">
+        <div class="wave"><div class="n">4</div><div><div class="t">Piloto do canal próprio em recorte controlado</div><div class="d">Piloto controlado, com critério de parada escrito</div></div></div>
+        <div class="wave" style="border-left-color:var(--p3)"><div class="n">5</div><div><div class="t">Grade de taxa e adesão automática na porta fechada</div><div class="d">Em discussão · depende de política entre instâncias</div></div></div>
+        <div class="wave" style="border-left-color:var(--p3)"><div class="n">6</div><div><div class="t">Esteira de renda e decumulação</div><div class="d">Em discussão · depende de decisão de produto</div></div></div>
+      </div>
+      <div class="callout" style="margin-top:10px"><h5>Fila de frentes do Momento 2</h5>
+      <p>Dois pilotos em curso (canal prioritário e escolha simplificada), estratégia de remuneração em andamento e quatro frentes ainda não iniciadas. Cada uma só escala depois do veredito do próprio piloto.</p></div>
+    </div>
+  </div>
+  <div class="foot"><span>Case · Ressignificar o modelo organizacional de previdência · Eric Leite · Design Organizacional</span><span class="pgnum">09</span></div>
+</div>
+
+<!-- 10 PAINEIS -->
+<div class="slide">
+  <p class="eyebrow">Instrumentação</p>
+  <h2>Painéis e indicadores que sustentam a decisão de rumo</h2>
+  <p class="sub">Cada painel tem dono e cadência de leitura definida nos ritos. É a fase de aferição virando instrumento.</p>
+  <table><thead><tr><th style="width:26%">Instrumento</th><th>O que mostra</th></tr></thead><tbody>
+    <tr><td>OMTM por linha</td><td>A métrica única que importa em cada uma das quatro linhas de produto, ligada ao funil próprio da linha</td></tr>
+    <tr><td>Painel de métricas por onda</td><td>Par de indicadores por onda: um de resultado e um de reincidência do comportamento antigo, com corte no terceiro mês</td></tr>
+    <tr><td>Painel de saída</td><td>Prazo real de resgate e portabilidade, do pedido ao crédito, lido pela distribuição e não pela média</td></tr>
+    <tr><td>Painel econômico</td><td>Custo de condução, reforço de equipe e ferramenta contra a capacidade instalada; o número que o conselho compara</td></tr>
+    <tr><td>Painel de quick wins e TI</td><td>Estado dos quick wins e dos backlogs de tecnologia e corporativo, frente a frente com as ondas</td></tr>
+    <tr><td>Linha de base</td><td>Fotografia do diagnóstico no M1, contra a qual toda aferição é comparada</td></tr>
+    <tr><td>Régua de maturidade e capacidade</td><td>Reaplicação periódica das avaliações, medindo a saída do nível heroico</td></tr>
+  </tbody></table>
+  <div class="foot"><span>Case · Ressignificar o modelo organizacional de previdência · Eric Leite · Design Organizacional</span><span class="pgnum">10</span></div>
+</div>
+
+<!-- 11 ENTREGAS E IMPACTO -->
+<div class="slide">
+  <p class="eyebrow">Resultados</p>
+  <h2>O que está instalado, e o que ainda é hipótese <span class="tag hip">Hipótese a validar</span></h2>
+  <div class="rule"></div>
+  <div class="cols">
+    <div class="col">
+      <p style="font-size:12px;letter-spacing:.18em;text-transform:uppercase;font-weight:800;color:var(--brand);margin-bottom:8px">Instalado</p>
+      <ul class="tri" style="font-size:13px">
+        <li>Quatro blocos operacionais e quatro frentes, com dono, alçada e indicador próprios.</li>
+        <li>Matriz de delegação em sete níveis no lugar das aprovações em série.</li>
+        <li>Nível de serviço de saída instrumentado, sem integração de sistemas.</li>
+        <li>21 ritos de gestão com pauta, quórum, evidência e critério de satisfação.</li>
+        <li>Procedimentos publicados, retirando a operação do nível heroico.</li>
+        <li>Plano de mudança escrito por público.</li>
+      </ul>
+    </div>
+    <div class="col">
+      <p style="font-size:12px;letter-spacing:.18em;text-transform:uppercase;font-weight:800;color:var(--brand);margin-bottom:8px">Hipóteses com caminho de validação instalado</p>
+      <ul class="tri" style="font-size:13px">
+        <li>Redução do prazo real de resgate e queda da perda evitável de estoque.</li>
+        <li>Retenção de parte dos pedidos de portabilidade que hoje saem sem contato.</li>
+        <li>Custo de aquisição do canal próprio menor que o do intermediado.</li>
+        <li>Menos portabilidade originada pelo mesmo intermediário que trouxe o participante.</li>
+        <li>Decisão mais rápida na movimentação, sem aumento de incidente.</li>
+      </ul>
+      <p style="font-size:12px;color:var(--g2);margin-top:8px">Em uma receita de anuidade sobre estoque, o efeito de retenção leva trimestres para aparecer no líquido. Ler isso como atraso é confundir o relógio do projeto com o do negócio.</p>
+    </div>
+  </div>
+  <div class="foot"><span>Case · Ressignificar o modelo organizacional de previdência · Eric Leite · Design Organizacional</span><span class="pgnum">11</span></div>
+</div>
+
+<!-- 12 DECISOES -->
+<div class="slide">
+  <p class="eyebrow">Condução e aprendizado</p>
+  <h2>As escolhas que explicam o resultado</h2>
+  <div class="rule"></div>
+  <div class="cols">
+    <div class="col">
+      <ul class="tri" style="font-size:13.5px">
+        <li><strong>Recusar o enunciado recebido</strong> e levar a campo uma hipótese concorrente, registrada por escrito antes da investigação.</li>
+        <li><strong>Publicar pergunta central e critérios antes do diagnóstico</strong>, dando à recusa de escopo um documento anterior à conversa.</li>
+        <li><strong>Ordenar as ondas por risco</strong>, com a frente de maior valor em quinto lugar.</li>
+        <li><strong>Declarar o custo da alternativa escolhida</strong>: a sequência adotada adia receita nova por dois a três ciclos.</li>
+        <li><strong>Definir pronto como comportamento</strong>: onda implantada é time operando sem suporte do programa.</li>
+      </ul>
+    </div>
+    <div class="col">
+      <p style="font-size:12px;letter-spacing:.18em;text-transform:uppercase;font-weight:800;color:var(--brand);margin-bottom:8px">O que seria feito de outro modo</p>
+      <ul class="tri" style="font-size:13.5px">
+        <li>A medição do prazo de saída deveria ter entrado na fundação, não na fase de evidência.</li>
+        <li>As ondas dependentes de instâncias externas entraram no roadmap sem gatilho de decisão mapeado.</li>
+        <li>O indicador de reincidência deveria ter nascido junto com a primeira onda.</li>
+      </ul>
+    </div>
+  </div>
+  <div class="foot"><span>Case · Ressignificar o modelo organizacional de previdência · Eric Leite · Design Organizacional</span><span class="pgnum">12</span></div>
+</div>
+
+<!-- 13 FECHO -->
+<div class="slide dark">
+  <div class="blob" style="width:300px;height:300px;background:var(--hl);opacity:.35;right:-70px;bottom:-100px"></div>
+  <div class="blob" style="width:200px;height:200px;background:var(--p3);opacity:.32;right:180px;bottom:40px"></div>
+  <p class="eyebrow">Síntese</p>
+  <div style="margin:auto 0">
+    <p class="quotebig">Um programa de design organizacional entrega decisão instalada. Enquanto a decisão depender de quem conduz o programa para acontecer, ela ainda não foi entregue.</p>
+    <span class="who">Síntese da condução</span>
+  </div>
+  <p style="font-size:9.5px;color:#8683b8;line-height:1.5;max-width:11in;margin:14px 0 26px">Por acordo de confidencialidade e em atenção à Lei Geral de Proteção de Dados, a empresa, as pessoas, os sistemas, os fornecedores e as unidades de negócio não são nomeados; cifras aparecem apenas em ordem de grandeza. O método, a sequência de decisão, os artefatos e os achados são os do projeto. Documento de uso restrito, preparado para avaliação técnica.</p>
+  <div class="foot"><span>Case · Ressignificar o modelo organizacional de previdência · Eric Leite · Design Organizacional · Versão 3 · agosto de 2026</span><span class="pgnum">13</span></div>
+</div>
+
+</body></html>
