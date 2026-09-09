@@ -4,21 +4,21 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Radar de Futuros · Seguros Unimed · POC</title>
-<meta name="color-scheme" content="dark">
-<link href="https://fonts.googleapis.com/css2?family=Archivo:wght@400;500;600;700;800&family=Archivo+Narrow:wght@500;600;700&display=swap" rel="stylesheet">
+<meta name="color-scheme" content="light">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Space+Grotesk:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
 <style>
 :root{
-  --navy:#EAF1FF;--green:#00995D;--green-t:#3DDC97;--sky:#009EDB;--sky-t:#5CC8F5;--orange:#F47920;--orange-t:#FFA45C;
-  --bg-0:#0B1730;--bg-1:#101F3D;--bg-2:#162A4F;--bg-3:#1E3560;--card:#12234A;
-  --blue-0:rgba(92,200,245,.10);--green-0:rgba(0,153,93,.16);--red-0:rgba(255,120,120,.12);
-  --tint-orange:rgba(255,164,92,.14);--tint-orange-b:rgba(255,164,92,.42);--tint-blue-b:rgba(92,200,245,.38);
-  --text-0:#F4F7FB;--text-1:#E3E9F3;--text-2:#B7C3D6;--text-3:#8A9AB5;--text-4:#5F7092;
-  --border-0:rgba(255,255,255,.09);--border-1:rgba(255,255,255,.16);--border-2:rgba(255,255,255,.26);
-  --c-sau:#22A96A;--c-odo:#1E9CD8;--c-vid:#6C5CDB;--c-prv:#D46B2A;--c-pat:#D95AA0;--c-tra:#9E882C;
-  --nav-h:52px;--side-w:236px;
-  --font:'Unimed Sans','Archivo',system-ui,-apple-system,'Segoe UI',sans-serif;
-  --display:'Archivo','Unimed Sans',system-ui,sans-serif;
-  --mono:'Archivo Narrow','Archivo',monospace;
+  --navy:#1a1a2e;--green:#00995D;--green-t:#007F4D;--sky:#009EDB;--sky-t:#0077B6;--orange:#F47920;--orange-t:#B5500A;
+  --bg-0:#ffffff;--bg-1:#f7f7f9;--bg-2:#eeeef2;--bg-3:#e4e4ea;--card:#ffffff;
+  --blue-0:#F2F7FF;--green-0:#E9F5EE;--red-0:#FCF3F3;
+  --tint-orange:#FFF1E6;--tint-orange-b:#F9CDA8;--tint-blue-b:#BFD6F5;
+  --text-0:#1a1a2e;--text-1:#2d2d44;--text-2:#4a4a62;--text-3:#6e6e88;--text-4:#9090a5;
+  --border-0:#e0e0e8;--border-1:#d0d0da;--border-2:#bbbbc8;
+  --c-sau:#00995D;--c-odo:#009EDB;--c-vid:#2B4E9E;--c-prv:#F47920;--c-pat:#8E44AD;--c-tra:#A67C00;
+  --nav-h:48px;--side-w:236px;
+  --font:'Inter',system-ui,-apple-system,'Segoe UI',sans-serif;
+  --display:'Space Grotesk','Inter',system-ui,sans-serif;
+  --mono:'JetBrains Mono','Inter',monospace;
 }
 *{margin:0;padding:0;box-sizing:border-box}
 html{-webkit-font-smoothing:antialiased}
@@ -40,7 +40,7 @@ b,strong{font-weight:700}
 .tn-brand{display:flex;align-items:center;gap:10px;margin-right:auto;flex-shrink:0}
 .tn-mark{width:30px;height:30px;border-radius:8px;background:var(--green);display:flex;align-items:center;justify-content:center;flex-shrink:0}
 .tn-mark svg{width:18px;height:18px}
-.tn-name{font-family:var(--display);font-weight:800;font-size:14px;color:var(--navy);letter-spacing:-.2px;white-space:nowrap}
+.tn-name{font-family:var(--display);font-weight:700;font-size:13px;color:var(--text-0);letter-spacing:-.2px;white-space:nowrap}
 .tn-name span{color:var(--green-t)}
 .tn-sub{font-size:11px;color:var(--text-4);white-space:nowrap;border-left:1px solid var(--border-1);padding-left:10px;margin-left:2px}
 .tn-pills{display:flex;gap:2px;background:var(--bg-2);border-radius:8px;padding:3px;overflow-x:auto;scrollbar-width:none;flex:0 1 auto;min-width:0}
@@ -59,15 +59,15 @@ b,strong{font-weight:700}
 .page.on{display:flex}
 
 /* HOME */
-.pg-home{flex-direction:column;align-items:center;background:radial-gradient(ellipse at 50% 15%,#153263,var(--bg-0) 60%);padding:48px 40px 60px}
-.home-badge{font-family:var(--display);font-size:10px;font-weight:700;color:var(--green-t);border:1px solid rgba(61,220,151,.35);text-transform:uppercase;letter-spacing:3px;margin-bottom:14px;background:var(--green-0);padding:5px 14px;border-radius:20px;display:inline-block}
+.pg-home{flex-direction:column;align-items:center;background:radial-gradient(ellipse at 50% 30%,#e8f0eb,var(--bg-0) 70%);padding:48px 40px 60px}
+.home-badge{font-family:var(--display);font-size:10px;font-weight:700;color:var(--green-t);text-transform:uppercase;letter-spacing:3px;margin-bottom:14px;background:var(--green-0);padding:5px 14px;border-radius:20px;display:inline-block}
 .home-title{font-family:var(--display);font-size:clamp(30px,4.6vw,50px);font-weight:800;color:var(--navy);line-height:1.08;letter-spacing:-1.2px;max-width:760px;margin-bottom:16px;text-align:center}
 .home-title span{color:var(--green-t)}
 .home-sub{font-size:15.5px;color:var(--text-2);max-width:640px;line-height:1.7;margin-bottom:28px;text-align:center}
 .home-cta{display:flex;gap:12px;flex-wrap:wrap;justify-content:center}
 .home-btn{padding:11px 26px;border-radius:8px;font-size:13px;font-weight:600;border:none;transition:all .2s}
 .home-btn.primary{background:var(--green);color:#fff}
-.home-btn.primary:hover{background:#00B36E;box-shadow:0 6px 18px rgba(0,179,110,.3)}
+.home-btn.primary:hover{background:#007F4D;box-shadow:0 0 24px rgba(0,153,93,.2)}
 .home-btn.secondary{background:var(--card);color:var(--navy);border:1px solid var(--border-1)}
 .home-btn.secondary:hover{border-color:var(--navy)}
 .home-stats{display:flex;gap:36px;margin-top:40px;flex-wrap:wrap;justify-content:center}
@@ -87,19 +87,19 @@ b,strong{font-weight:700}
 .lines{display:grid;grid-template-columns:repeat(auto-fit,minmax(170px,1fr));gap:12px}
 .line{background:var(--card);border:1px solid var(--border-0);border-radius:10px;padding:14px 16px;cursor:pointer;transition:all .15s;position:relative;overflow:hidden}
 .line:before{content:'';position:absolute;left:0;top:0;bottom:0;width:4px;background:var(--lc)}
-.line:hover{border-color:var(--lc);transform:translateY(-2px);box-shadow:0 8px 20px rgba(0,0,0,.35)}
+.line:hover{border-color:var(--lc);transform:translateY(-2px);box-shadow:0 8px 20px rgba(0,0,0,.08)}
 .line-name{font-family:var(--display);font-weight:700;font-size:14px;color:var(--navy);margin-bottom:3px}
 .line-prods{font-size:11px;color:var(--text-3);line-height:1.45;min-height:32px}
 .line-foot{display:flex;gap:10px;margin-top:10px;font-size:11px;color:var(--text-3)}
 .line-foot b{color:var(--lc);font-size:14px;font-family:var(--display)}
 
 /* RADAR */
-.pg-radar{position:relative;align-items:center;justify-content:center;background:radial-gradient(ellipse at 45% 50%,#132A52,var(--bg-0) 62%)}
+.pg-radar{position:relative;align-items:center;justify-content:center;background:radial-gradient(ellipse at 45% 50%,#eef2f0,var(--bg-0) 62%)}
 .radar-wrap{position:relative;touch-action:none;overflow:hidden;width:100%;height:100%;display:flex;align-items:center;justify-content:center;cursor:grab}
 .radar-canvas{transform-origin:center center;transition:transform .12s ease-out}
 #radarSvg{display:block;overflow:visible}
 .radar-filters{position:absolute;top:12px;left:12px;bottom:12px;width:196px;display:flex;flex-direction:column;gap:8px;z-index:10;overflow-y:auto;padding-right:2px}
-.fgroup{display:flex;gap:3px;background:rgba(16,31,61,.96);border:1px solid var(--border-0);border-radius:8px;padding:4px;backdrop-filter:blur(6px)}
+.fgroup{display:flex;gap:3px;background:rgba(255,255,255,.94);border:1px solid var(--border-0);border-radius:8px;padding:4px;backdrop-filter:blur(6px)}
 .vfilters .fgroup{flex-direction:column;align-items:stretch;gap:1px}
 .vfilters .fgroup-label{padding:3px 8px 4px}
 .vfilters .fchip{justify-content:flex-start;padding:4px 9px}
@@ -107,7 +107,7 @@ b,strong{font-weight:700}
 .rl-note{font-size:10.5px;color:var(--text-3);line-height:1.45;padding:2px 8px 4px}
 .rl-row{display:flex;align-items:center;gap:6px;font-size:11px;color:var(--text-2);padding:2px 8px}
 .ringtog{display:flex;gap:2px;padding:2px}
-.ringtog button{flex:1;font-size:10.5px;padding:4px 6px;border-radius:5px;border:1px solid var(--border-1);background:var(--bg-2);color:var(--text-2)}
+.ringtog button{flex:1;font-size:10.5px;padding:4px 6px;border-radius:5px;border:1px solid var(--border-1);background:#fff;color:var(--text-3)}
 .ringtog button.on{background:var(--green);border-color:var(--green-t);color:#fff;font-weight:600}
 .fgroup-label{font-family:var(--display);font-size:9px;font-weight:700;letter-spacing:1.2px;text-transform:uppercase;color:var(--text-4);padding:0 6px;align-self:center}
 .fchip{padding:4px 10px;border-radius:6px;font-size:11px;font-weight:500;color:var(--text-3);border:none;background:none;transition:all .12s;white-space:nowrap;display:flex;align-items:center;gap:5px}
@@ -128,7 +128,7 @@ b,strong{font-weight:700}
 .radar-legend-item.off{opacity:.35}
 .rl-dot{width:9px;height:9px;border-radius:50%;flex-shrink:0}
 .rl-shape{width:14px;height:14px;flex-shrink:0}
-.radar-sidebar{position:absolute;top:0;right:0;bottom:0;width:var(--side-w);background:rgba(16,31,61,.97);border-left:1px solid var(--border-0);overflow-y:auto;padding:10px 0 20px;z-index:11}
+.radar-sidebar{position:absolute;top:0;right:0;bottom:0;width:var(--side-w);background:rgba(255,255,255,.96);border-left:1px solid var(--border-0);overflow-y:auto;padding:10px 0 20px;z-index:11}
 .radar-sidebar-head{padding:6px 14px 8px;font-family:var(--display);font-size:10px;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;color:var(--text-4);border-bottom:1px solid var(--border-0);margin-bottom:6px;display:flex;justify-content:space-between}
 .radar-sidebar-title{font-family:var(--display);font-size:10px;font-weight:700;letter-spacing:1.2px;text-transform:uppercase;padding:10px 14px 4px}
 .radar-sidebar-item{display:flex;align-items:flex-start;gap:7px;padding:5px 14px;font-size:11.5px;color:var(--text-2);cursor:pointer;line-height:1.35;transition:background .12s}
@@ -169,7 +169,7 @@ b,strong{font-weight:700}
   .pg-explore .ex-search{min-width:0;width:100%;margin-left:0}
 }
 /* TOOLTIP */
-.tip{position:fixed;z-index:500;pointer-events:none;background:#1E3560;border:1px solid var(--border-2);color:var(--text-0);border-radius:8px;padding:9px 12px;font-size:11.5px;line-height:1.45;max-width:280px;box-shadow:0 8px 24px rgba(0,0,0,.6);opacity:0;transition:opacity .12s;transform:translate(14px,14px)}
+.tip{position:fixed;z-index:500;pointer-events:none;background:#1a1a2e;color:#fff;border-radius:8px;padding:9px 12px;font-size:11.5px;line-height:1.45;max-width:280px;box-shadow:0 8px 24px rgba(0,0,0,.18);opacity:0;transition:opacity .12s;transform:translate(14px,14px)}
 .tip.show{opacity:1}
 .tip b{font-family:var(--display);font-size:12.5px;display:block;margin-bottom:3px}
 .tip .tm{display:flex;gap:8px;flex-wrap:wrap;margin-top:5px;font-size:10px;opacity:.85}
@@ -189,7 +189,7 @@ b,strong{font-weight:700}
 .cards{display:grid;grid-template-columns:repeat(auto-fill,minmax(290px,1fr));gap:12px}
 .card{background:var(--card);border:1px solid var(--border-0);border-radius:10px;padding:14px 16px;cursor:pointer;transition:all .15s;display:flex;flex-direction:column;gap:7px;position:relative;overflow:hidden}
 .card:before{content:'';position:absolute;left:0;top:0;bottom:0;width:4px;background:var(--cc)}
-.card:hover{border-color:var(--cc);box-shadow:0 8px 22px rgba(0,0,0,.35);transform:translateY(-2px)}
+.card:hover{border-color:var(--cc);box-shadow:0 8px 22px rgba(0,0,0,.08);transform:translateY(-2px)}
 .card-top{display:flex;align-items:center;gap:8px}
 .card-cat{font-family:var(--display);font-size:10px;font-weight:700;letter-spacing:1.2px;text-transform:uppercase;color:var(--cc)}
 .card-type{margin-left:auto;font-size:10px;font-weight:600;padding:2px 8px;border-radius:10px;background:var(--bg-2);color:var(--text-2)}
@@ -201,10 +201,10 @@ b,strong{font-weight:700}
 .card-arr{margin-left:auto;width:14px;height:14px;color:var(--text-4)}
 
 /* RELAÇÕES */
-.pg-rel{position:relative;background:radial-gradient(ellipse at 55% 50%,#132A52,var(--bg-0) 62%)}
+.pg-rel{position:relative;background:radial-gradient(ellipse at 55% 50%,#eef2f0,var(--bg-0) 62%)}
 .rel-wrap{position:absolute;inset:0;overflow:hidden}
 #relSvg{width:100%;height:100%;display:block}
-.rel-tools{position:absolute;top:12px;right:14px;width:250px;background:rgba(16,31,61,.96);border:1px solid var(--border-0);border-radius:8px;padding:8px;z-index:10}
+.rel-tools{position:absolute;top:12px;right:14px;width:300px;max-height:calc(100% - 24px);overflow-y:auto;background:rgba(255,255,255,.94);border:1px solid var(--border-0);border-radius:8px;padding:8px;z-index:10}
 .rel-title{font-family:var(--display);font-size:12px;font-weight:700;color:var(--navy);padding:2px 6px 6px}
 @media(max-width:1000px){.rel-tools #tgRel{display:inline-block !important}}
 .rel-edge{transition:opacity .15s}
@@ -274,10 +274,97 @@ b,strong{font-weight:700}
 .fontes-table tr:hover td{background:var(--bg-1)}
 .fnote{font-size:12px;color:var(--text-3);line-height:1.55;max-width:900px}
 
+/* LINHA DO TEMPO, CRUZAMENTOS, CENÁRIOS, MÉTRICAS, ÍNDICE, GLOSSÁRIO */
+.pg-tl,.pg-cruz,.pg-cen,.pg-metrics,.pg-index,.pg-gloss{flex-direction:column;padding:22px 28px 40px;gap:14px}
+.tl-wrap{flex:1;min-height:460px;overflow:auto;background:var(--card);border:1px solid var(--border-0);border-radius:12px;padding:4px}
+#tlSvg{display:block}
+.corr-wrap{margin-top:8px;padding:8px 4px;border-top:1px solid var(--border-0);overflow-x:auto}
+.corr-title{font-family:var(--display);font-size:11px;font-weight:700;color:var(--text-0);margin-bottom:6px}
+.corr-title span{font-weight:400;color:var(--text-4);font-size:10px;margin-left:6px}
+.corr{border-collapse:separate;border-spacing:2px;font-size:10px}
+.corr th{font-family:var(--display);font-size:9px;letter-spacing:.5px;text-align:left;padding:2px 4px;font-weight:700;white-space:nowrap}
+.corr td{width:28px;height:24px;text-align:center;border-radius:4px;cursor:pointer;color:var(--text-0);font-weight:600;border:1px solid transparent}
+.corr td:hover{border-color:var(--green-t)}
+.corr td.on{border-color:var(--text-0)}
+.lab-tabs{display:flex;gap:4px;background:var(--bg-2);border-radius:8px;padding:3px;width:max-content}
+.lab-tab{padding:6px 14px;border-radius:6px;font-size:12px;font-weight:500;color:var(--text-3);border:none;background:none}
+.lab-tab.on{background:var(--green);color:#fff;font-weight:600}
+.lab-intro{font-size:13px;color:var(--text-2);line-height:1.6;max-width:820px;margin-bottom:10px}
+.hab-controls{display:flex;align-items:center;gap:10px;flex-wrap:wrap;margin-bottom:12px;font-size:12px;color:var(--text-2)}
+.hab-controls select{font-family:var(--font);font-size:12px;padding:6px 10px;border-radius:6px;border:1px solid var(--border-1);background:var(--card);color:var(--text-0);max-width:360px}
+.hab-quick{display:flex;gap:5px;flex-wrap:wrap;align-items:center;font-size:11px;color:var(--text-4)}
+.lab-chip{display:inline-block;font-size:10.5px;padding:2px 8px;border-radius:12px;background:var(--blue-0);border:1px solid var(--tint-blue-b);color:var(--sky-t);cursor:pointer;margin:2px 2px 0 0}
+.lab-chip:hover{border-color:var(--green-t);color:var(--green-t)}
+.hab-svg-wrap{overflow-x:auto;background:var(--card);border:1px solid var(--border-0);border-radius:12px;padding:10px}
+.recipe-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(340px,1fr));gap:14px}
+.recipe-card{background:var(--card);border:1px solid var(--border-0);border-radius:12px;padding:18px;display:flex;flex-direction:column;gap:6px}
+.recipe-out{font-family:var(--display);font-size:9.5px;font-weight:700;letter-spacing:1.8px;text-transform:uppercase;color:var(--green-t)}
+.recipe-name{font-family:var(--display);font-size:16px;font-weight:800;color:var(--text-0);line-height:1.25}
+.recipe-desc{font-size:12.5px;color:var(--text-2);line-height:1.55}
+.recipe-sec{font-family:var(--display);font-size:9.5px;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;color:var(--text-4);margin-top:8px}
+.recipe-ing{display:flex;flex-direction:column;gap:1px;padding:6px 8px;border-radius:6px;background:var(--bg-1);border:1px solid var(--border-0);margin-top:4px}
+.recipe-ing-name{font-size:12px;font-weight:700;color:var(--text-0);cursor:pointer;display:flex;align-items:center;gap:7px}
+.recipe-ing-name .dot{width:7px;height:7px;border-radius:50%;flex-shrink:0}
+.recipe-ing-role{font-size:11px;color:var(--text-3);padding-left:14px}
+.recipe-steps{padding-left:18px;font-size:12px;color:var(--text-2);line-height:1.55;display:flex;flex-direction:column;gap:3px}
+.recipe-warn{margin-top:8px;font-size:12px;color:var(--text-1);background:var(--tint-orange);border-left:3px solid var(--orange);border-radius:0 8px 8px 0;padding:8px 10px;line-height:1.5}
+.recipe-warn b{color:var(--orange-t)}
+.cen-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(320px,1fr));gap:14px}
+.cen-card{background:var(--card);border:1px solid var(--border-0);border-top:3px solid var(--cc);border-radius:12px;padding:18px;display:flex;flex-direction:column;gap:6px}
+.cen-top{display:flex;justify-content:space-between;align-items:center}
+.cen-type{font-family:var(--display);font-size:9.5px;font-weight:700;letter-spacing:1.8px;text-transform:uppercase;color:var(--cc)}
+.cen-year{font-family:var(--mono);font-size:11px;color:var(--text-4)}
+.cen-name{font-family:var(--display);font-size:20px;font-weight:800;color:var(--text-0);line-height:1.15}
+.cen-prem{font-size:12.5px;color:var(--text-2);line-height:1.55;font-style:italic}
+.cen-sec{font-family:var(--display);font-size:9.5px;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;color:var(--text-4);margin-top:8px}
+.cen-text{font-size:13px;color:var(--text-1);line-height:1.65}
+.cen-list{padding-left:18px;font-size:12px;color:var(--text-2);line-height:1.55}
+.met-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(230px,1fr));gap:10px}
+.ind-group{margin-bottom:18px}
+.ind-head{font-family:var(--display);font-size:12px;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;margin:6px 0 10px;display:flex;align-items:center;gap:10px}
+.ind-head span{font-family:var(--font);font-size:11px;font-weight:400;letter-spacing:0;text-transform:none;color:var(--text-4)}
+.ind-head:after{content:'';flex:1;height:1px;background:var(--border-0)}
+.met-card.ind{border-top:3px solid var(--cc);display:flex;flex-direction:column;gap:4px}
+.met-card.ind .met-val{color:var(--text-0)}
+.ind-label{font-size:12.5px;font-weight:600;color:var(--text-1);line-height:1.35}
+.ind-ctx{font-size:11.5px;color:var(--text-3);line-height:1.45}
+.ind-foot{margin-top:auto;padding-top:6px;font-size:10.5px;color:var(--text-4);display:flex;flex-direction:column;gap:2px}
+.ind-foot a{color:var(--green-t);font-weight:600}
+.ind-tema{color:var(--sky-t);font-weight:600;cursor:pointer}
+.met-card{background:var(--card);border:1px solid var(--border-0);border-radius:10px;padding:14px 16px}
+.met-val{font-family:var(--display);font-size:24px;font-weight:700;color:var(--green-t);line-height:1.1}
+.met-label{font-size:10.5px;color:var(--text-3);text-transform:uppercase;letter-spacing:1px;margin-top:6px}
+.met-hi{font-size:13px;color:var(--text-2);line-height:1.6;background:var(--card);border:1px solid var(--border-0);border-radius:10px;padding:12px 16px;margin:10px 0}
+.met-cols{display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:12px}
+.met-block{background:var(--card);border:1px solid var(--border-0);border-radius:10px;padding:12px 14px}
+.met-section-title{font-family:var(--display);font-size:10px;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;color:var(--text-4);margin-bottom:8px}
+.met-bar-row{display:flex;align-items:center;gap:8px;margin:4px 0}
+.met-bar-label{width:130px;font-size:11px;text-align:right;flex-shrink:0;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.met-bar-track{flex:1;height:8px;background:var(--bg-3);border-radius:4px;overflow:hidden}
+.met-bar-fill{height:100%;border-radius:4px}
+.met-bar-val{width:26px;font-family:var(--mono);font-size:11px;color:var(--text-2)}
+.idx-list{display:flex;flex-direction:column}
+.idx-letter{font-family:var(--display);font-size:14px;font-weight:800;color:var(--green-t);margin:14px 0 4px;padding-bottom:3px;border-bottom:1px solid var(--border-0)}
+.idx-row{display:flex;align-items:center;gap:10px;padding:7px 8px;border-radius:6px;cursor:pointer;font-size:12.5px;color:var(--text-1)}
+.idx-row:hover{background:var(--bg-2)}
+.idx-dot{width:8px;height:8px;border-radius:50%;flex-shrink:0}
+.idx-name{flex:1;font-weight:600;min-width:200px}
+.idx-meta{font-size:11px;color:var(--text-3);width:120px;flex-shrink:0}
+@media(max-width:900px){.idx-meta{display:none}.idx-meta:last-child{display:block;width:auto}}
+.gloss-list{display:grid;grid-template-columns:repeat(auto-fill,minmax(300px,1fr));gap:10px}
+.gloss-item{background:var(--card);border:1px solid var(--border-0);border-radius:10px;padding:12px 14px}
+.gloss-term{font-family:var(--display);font-size:14px;font-weight:700;color:var(--text-0);margin-bottom:4px}
+.gloss-cat{font-size:9.5px;letter-spacing:1px;text-transform:uppercase;color:var(--text-4);font-weight:600;margin-left:6px}
+.gloss-def{font-size:12.5px;color:var(--text-2);line-height:1.55}
+.gloss-see{margin-top:6px;font-size:10.5px;color:var(--text-4)}
+.pan-box{border-radius:8px;padding:10px 12px;font-size:13px;line-height:1.6;color:var(--text-1);border-left:3px solid}
+.pan-box.comite{background:var(--blue-0);border-color:var(--sky);font-weight:600}
+.pan-box.ninguem{background:var(--tint-orange);border-color:var(--orange)}
+.pan-box.pulo{background:var(--green-0);border-color:var(--green)}
 /* DETAIL PANEL */
-.pov{position:fixed;inset:0;top:var(--nav-h);background:rgba(2,8,20,.55);z-index:200;opacity:0;visibility:hidden;transition:all .2s}
+.pov{position:fixed;inset:0;top:var(--nav-h);background:rgba(15,30,61,.18);z-index:200;opacity:0;visibility:hidden;transition:all .2s}
 .pov.open{opacity:1;visibility:visible}
-.pan{position:fixed;top:var(--nav-h);left:0;bottom:0;width:440px;max-width:94vw;background:var(--card);border-right:1px solid var(--border-0);z-index:201;transform:translateX(-100%);transition:transform .25s cubic-bezier(.2,.8,.2,1);overflow-y:auto;box-shadow:12px 0 40px rgba(0,0,0,.5)}
+.pan{position:fixed;top:var(--nav-h);left:0;bottom:0;width:440px;max-width:94vw;background:var(--card);border-right:1px solid var(--border-0);z-index:201;transform:translateX(-100%);transition:transform .25s cubic-bezier(.2,.8,.2,1);overflow-y:auto;box-shadow:12px 0 40px rgba(0,0,0,.12)}
 .pan.open{transform:translateX(0)}
 .pan-bar{height:5px}
 .pan-in{padding:18px 22px 40px}
@@ -326,13 +413,18 @@ b,strong{font-weight:700}
     <button class="tn-pill on" data-pg="home" onclick="go('home')">Início</button>
     <button class="tn-pill" data-pg="radar" onclick="go('radar')">Radar</button>
     <button class="tn-pill" data-pg="explore" onclick="go('explore')">Explorar</button>
+    <button class="tn-pill" data-pg="tl" onclick="go('tl')">Linha do tempo</button>
     <button class="tn-pill" data-pg="rel" onclick="go('rel')">Relações</button>
+    <button class="tn-pill" data-pg="cruz" onclick="go('cruz')">Cruzamentos</button>
+    <button class="tn-pill" data-pg="cen" onclick="go('cen')">Cenários 2035</button>
     <button class="tn-pill" data-pg="macro" onclick="go('macro')">Macrotendências</button>
     <button class="tn-pill" data-pg="matriz" onclick="go('matriz')">Impacto x Horizonte</button>
+    <button class="tn-pill" data-pg="metrics" onclick="go('metrics')">Indicadores</button>
+    <button class="tn-pill" data-pg="index" onclick="go('index')">Índice</button>
     <button class="tn-pill" data-pg="help" onclick="go('help')">Como navegar</button>
-    <button class="tn-pill" data-pg="fontes" onclick="go('fontes')">Fontes</button>
+
   </div>
-  <div class="tn-poc">POC · v3 · set/2026</div>
+  <div class="tn-poc">POC · v5 · set/2026</div>
 </nav>
 
 <div class="shell"><div class="main">
@@ -340,8 +432,8 @@ b,strong{font-weight:700}
   <div class="page pg-home on" id="pg-home">
     <div class="home-badge">Prova de conceito · Radar de Futuros</div>
     <h1 class="home-title">O que se aproxima da <span>carteira</span> antes de chegar</h1>
-    <p class="home-sub">Temas de futuro que tocam a carteira da Seguros Unimed, posicionados nas nove dimensões STEEPLEDI e coloridos por linha de produto. Cada tema traz o que ele é, o que muda para a companhia, as notícias e dados que o sustentam, como se relaciona com os outros temas e quando chega.</p>
-    <div class="home-cta"><button class="home-btn primary" onclick="go('radar')">Abrir o radar</button><button class="home-btn secondary" onclick="go('help')">Como navegar</button></div>
+    <p class="home-sub">Temas de futuro que tocam a carteira da Seguros Unimed, posicionados nas nove dimensões STEEPLEDI e coloridos por linha de produto. Cada tema traz o que ele é, o que muda para a companhia, o que ninguém diz, o pulo do gato, as evidências com fonte, como se relaciona com os outros temas e quando chega. Os temas combinados viram jogadas e cenários para 2035.</p>
+    <div class="home-cta"><button class="home-btn primary" onclick="go('radar')">Abrir o radar</button><button class="home-btn secondary" onclick="go('tl')">Linha do tempo</button><button class="home-btn secondary" onclick="go('cen')">Cenários 2035</button><button class="home-btn secondary" onclick="go('help')">Como navegar</button></div>
     <div class="home-stats" id="homeStats"></div>
     <div class="home-block"><div class="home-block-title">A carteira hoje</div><div class="kpis" id="homeKpis"></div></div>
     <div class="home-block"><div class="home-block-title">Linhas de produto (cor e filtro do radar)</div><div class="lines" id="homeLines"></div></div>
@@ -367,7 +459,20 @@ b,strong{font-weight:700}
   <div class="page pg-rel" id="pg-rel">
     <div class="rel-wrap" id="relWrap"><svg id="relSvg"></svg></div>
     <div class="radar-filters vfilters" id="relFilters"></div>
-    <div class="rel-tools"><div class="rel-title">Relações entre temas <button class="fil-toggle" id="tgRel" onclick="toggleFilters('relFilters','tgRel')" style="float:right;display:none">Filtros</button></div><div class="ringtog"><button id="relForca" class="on" onclick="setRelMode('forca')">Rede</button><button id="relGrade" onclick="setRelMode('grade')">Grade linha x dimensão</button></div><div class="rl-note" id="relNote">Passe o mouse (ou toque) num tema para ler como ele puxa ou é puxado pelos outros. Clique para abrir a ficha.</div></div>
+    <div class="rel-tools"><div class="rel-title">Relações entre temas <button class="fil-toggle" id="tgRel" onclick="toggleFilters('relFilters','tgRel')" style="float:right;display:none">Filtros</button></div><div class="ringtog"><button id="relForca" class="on" onclick="setRelMode('forca')">Rede</button><button id="relGrade" onclick="setRelMode('grade')">Grade linha x dimensão</button><button id="relCorrBtn" onclick="relToggleCorr()">Correlações</button></div><div id="relCorr" class="corr-wrap" style="display:none"></div><div class="rl-note" id="relNote">Passe o mouse (ou toque) num tema para ler como ele puxa ou é puxado pelos outros. Clique para abrir a ficha.</div></div>
+  </div>
+  <div class="page pg-tl" id="pg-tl">
+    <div class="sec-head"><div><div class="sec-title">Linha do <b>tempo</b></div><div class="sec-sub">Os mesmos temas dispostos de 2026 a 2050, por linha de produto. Onde a faixa fica vazia, a varredura ainda não olhou. Passe o mouse para ver as relações; clique para abrir a ficha.</div></div></div>
+    <div class="tl-wrap" id="tlWrap"><svg id="tlSvg"></svg></div>
+  </div>
+  <div class="page pg-cruz" id="pg-cruz">
+    <div class="sec-head"><div><div class="sec-title">Cruza<b>mentos</b></div><div class="sec-sub">Como um tema puxa e é puxado pelos outros, e as jogadas que nascem de combinar temas para uma saída estratégica.</div></div></div>
+    <div class="lab-tabs" id="cruzTabs"></div>
+    <div id="cruzContent"></div>
+  </div>
+  <div class="page pg-cen" id="pg-cen">
+    <div class="sec-head"><div><div class="sec-title">Cenários <b>2035</b></div><div class="sec-sub">Três futuros plausíveis construídos com os temas do radar: um de transformação, um tendencial e um de ruptura. Nenhum é previsão; cada um traz os sinais que indicam se estamos indo para lá.</div></div></div>
+    <div class="cen-grid" id="cenGrid"></div>
   </div>
   <div class="page pg-macro" id="pg-macro">
     <div class="sec-head"><div><div class="sec-title">Macro<b>tendências</b></div><div class="sec-sub">Megatendências são forças globais de longa duração (envelhecimento, clima, IA). Macrotendências são o recorte delas que atravessa a carteira da Seguros Unimed: temas de produtos e dimensões diferentes que se reforçam. Cada macrotendência aqui declara a megatendência de que descende e a pergunta que deixa para a Estratégia.</div></div></div>
@@ -380,6 +485,18 @@ b,strong{font-weight:700}
     <div class="prios" id="prios"></div>
   </div>
 
+  <div class="page pg-metrics" id="pg-metrics">
+    <div class="sec-head"><div><div class="sec-title">Indicadores de <b>mercado</b></div><div class="sec-sub">Os números que sustentam os temas, extraídos das fontes e organizados por linha de produto. Cada indicador aponta a fonte e o tema em que aparece.</div></div></div>
+    <div id="metWrap"></div>
+  </div>
+  <div class="page pg-index" id="pg-index">
+    <div class="sec-head"><div><div class="sec-title">Índice <b>A a Z</b></div><div class="sec-sub">Todos os temas da visão atual em ordem alfabética, com linha, dimensão, tipo, horizonte e postura.</div></div></div>
+    <div class="idx-list" id="idxList"></div>
+  </div>
+  <div class="page pg-gloss" id="pg-gloss">
+    <div class="sec-head"><div><div class="sec-title">Glos<b>sário</b></div><div class="sec-sub">Os termos do método e do negócio usados no radar, em linguagem de quem não é do seguro.</div></div><div class="ex-search" style="margin-left:auto"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.3-4.3"/></svg><input type="text" placeholder="Buscar termo" id="glossSearch" oninput="renderGlossary()"><span class="ex-count" id="glossCount"></span></div></div>
+    <div class="gloss-list" id="glossList"></div>
+  </div>
   <div class="page pg-help" id="pg-help"><div class="help-wrap" id="helpWrap"></div></div>
 
   <div class="page pg-fontes" id="pg-fontes">
@@ -396,7 +513,7 @@ b,strong{font-weight:700}
 // ═══════════════════════════════════════
 // DADOS DO RADAR (POC)
 // ═══════════════════════════════════════
-const VERSAO={v:"v3",data:"2026-09-09",proxima:"2027-03 (revisão semestral sugerida)",acesso:"8 de setembro de 2026"};
+const VERSAO={v:"v5",data:"2026-09-09",proxima:"2027-03 (revisão semestral sugerida)",acesso:"8 de setembro de 2026"};
 
 const CATS=[
   {id:"sau",name:"Saúde",color:"#22A96A",prods:"Seguro Saúde empresarial e por adesão, programas de cuidado (Cuidando de Perto)"},
@@ -771,6 +888,153 @@ D_ALL.forEach(d=>{d.f=[...new Set(d.ev.flatMap(e=>e.f))];});
 let D=D_ALL;
 
 // ═══════════════════════════════════════
+// CAMADAS EXTRAS POR TEMA (comitê, o que ninguém diz, o pulo do gato)
+// ═══════════════════════════════════════
+const DX={
+ 1:{comite:"A carteira envelhece mais rápido que o preço acompanha.",ninguem:"O envelhecimento não é só o idoso que já está na carteira: é o beneficiário de 45 anos que vai ficar vinte anos e cruzar a faixa de custo dentro do plano. A conta se faz na permanência, não na idade de entrada.",pulo:"Quem mede resultado clínico por coorte de idade (internação evitada, crônico controlado) descobre onde o custo do envelhecimento é gordura e onde é osso. Sem coorte, a resposta vira reajuste linear."},
+ 2:{comite:"Atenção primária é o produto, não o programa.",ninguem:"A APS reduz custo só quando a porta de entrada é obrigatória ou muito conveniente. Programa opcional com adesão de 10% vira custo extra sem retorno.",pulo:"Vender ao cliente empresarial a APS como redução de afastamento, com número medido, tira a conversa do preço. É o argumento que a concorrente sem rede própria não consegue copiar."},
+ 3:{comite:"O ciclo virou: a disputa agora é por preço de renovação.",ninguem:"Sinistralidade em queda no setor não significa custo em queda: significa reajuste alto no ano anterior. O ciclo volta a subir em dois ou três anos.",pulo:"Usar a folga do ciclo para segurar clientes bons com reajuste abaixo do mercado, em troca de prazo, é mais barato do que recomprar a carteira depois."},
+ 4:{comite:"A ANS vai fixar teto para coparticipação; o produto barato muda de desenho.",ninguem:"O limite de 30% por procedimento e 3,6 mensalidades por ano do estudo de 2024 pode voltar como base. Produtos hoje vendidos com moderador acima disso ficam ilegais no dia seguinte.",pulo:"Simular hoje toda a carteira com moderador dentro dos tetos propostos mostra quanto prêmio precisa migrar para a mensalidade. Quem sabe o número antes da norma negocia; quem descobre depois só absorve."},
+ 5:{comite:"O GLP-1 é custo agora e economia depois; a seguradora escolhe de que lado fica.",ninguem:"A patente da semaglutida caiu em março de 2026: o preço vai cair e a pressão por cobertura vai subir junto. O tema deixa de ser de alto custo e vira de alto volume.",pulo:"Cobrir com critério clínico e acompanhamento, em vez de negar, transforma um pedido de liminar em programa de crônicos. O custo evitado em diabetes e cardiologia é a contrapartida."},
+ 6:{comite:"Cada negativa mal explicada vira um precedente pago.",ninguem:"A maior parte das ações não nasce da cobertura em si, mas do tempo e da forma da resposta. Uma negativa clara e rápida litiga menos que uma demora educada.",pulo:"Segunda opinião médica antes da negativa e um canal de solução com prazo curto derrubam o volume de ações mais do que qualquer tese jurídica."},
+ 7:{comite:"A agenda da ANS de 2026 a 2028 é a lista de custos regulatórios dos próximos três anos.",ninguem:"A tomada de subsídios recebe contribuições de quem participa. Quem não contribui recebe a norma pronta, redigida pela lógica de quem contribuiu.",pulo:"Ler a agenda pela lente do odonto separadamente da lente médica: a regra que nasce pensando em hospital chega ao dentista sem adaptação."},
+ 8:{comite:"Sessenta milhões pagam por saúde sem plano: é um mercado que a regulação ainda não abriu.",ninguem:"O cartão de desconto compete com o plano pela mesma pessoa e não presta contas à ANS. A regulação de produtos acessíveis é a única forma de trazer esse público para dentro.",pulo:"Um produto de entrada com rede Unimed e coparticipação regulada não canibaliza o plano completo: ele conversa com quem hoje não compra nada."},
+ 9:{comite:"Não se prevê pandemia; prepara-se o balanço para uma.",ninguem:"Em 2020 o problema das seguradoras não foi só sinistro: foi resgate de previdência, queda de prêmio empresarial e operação sem plano de continuidade.",pulo:"Cláusula de pandemia na nova Lei de Seguros, resseguro de mortalidade e plano de continuidade testado são três decisões baratas enquanto nada acontece."},
+ 10:{comite:"O odonto cresce quatro vezes mais rápido que o plano médico e é a porta mais barata de entrada.",ninguem:"Mensalidade baixa significa que cada ponto de sinistralidade pesa muito. Crescer em vidas sem crescer em rede qualificada é o erro que mata margem em dois anos.",pulo:"Cada beneficiário odonto é um contato mensal com uma família sem seguro de vida. A base é canal, não só carteira."},
+ 11:{comite:"Pagar por procedimento estimula procedimento; pagar por resultado estimula prevenção.",ninguem:"O dentista credenciado não é funcionário: mudar remuneração sem envolver a rede quebra a confiança que a marca construiu.",pulo:"Piloto com uma fração da rede, com meta de menos urgências e bônus compartilhado, vale mais que um novo modelo imposto a todos."},
+ 12:{comite:"A odontologia virou digital antes do plano odontológico.",ninguem:"Auditoria de imagem por IA reduz glosa indevida tanto quanto reduz fraude: metade do ganho é relação com o dentista, não custo.",pulo:"Alinhadores e estética estão fora da cobertura mas dentro do desejo do cliente: rede com preço negociado transforma exclusão em receita de serviço."},
+ 13:{comite:"As redes de clínicas vendem prevenção direta ao paciente, sem plano no meio.",ninguem:"Elas competem pelo cliente individual, o segmento que mais cresce, e prometem exatamente o que o plano não entrega: cuidado contínuo com um profissional conhecido.",pulo:"Ou o plano oferece prevenção com retorno visível, ou vira a rede dessas clínicas. As duas posições são viáveis; ficar no meio não é."},
+ 14:{comite:"A família passou a temer mais o custo de sobreviver do que a morte.",ninguem:"Doenças graves cresce 21% ao ano porque a cobertura paga em vida, quando o custo médico aparece. É seguro de saúde disfarçado de seguro de vida.",pulo:"Combinar doenças graves com a carteira de saúde numa oferta única, com diagnóstico da própria rede, é a jogada que nenhuma seguradora sem saúde consegue fazer."},
+ 15:{comite:"Oitenta e dois por cento dos adultos sem seguro de vida: o mercado está dentro da própria carteira.",ninguem:"O problema não é o preço do seguro de vida; é que ninguém oferece na hora certa. A venda acontece em momentos de vida: filho, casa, diagnóstico.",pulo:"Cruzar a base de saúde e odonto com os momentos de vida visíveis nos dados (inclusão de dependente, mudança de endereço) é a máquina de venda mais barata que existe."},
+ 16:{comite:"Vida deixou de ser produto isolado e virou peça de sucessão.",ninguem:"Com o STF afastando o ITCMD de VGBL e PGBL, previdência e vida passaram a disputar o mesmo espaço no planejamento sucessório do cliente de alta renda.",pulo:"Para o cooperado, a conversa é uma só: renda na vida, proteção na doença, sucessão na morte. Três produtos, uma proposta, um assessor."},
+ 17:{comite:"Subscrição sem IA perde preço e prazo; subscrição com IA sem governança perde o regulador.",ninguem:"A SUSEP classifica precificação como uso de alto risco. O modelo que decide em segundos precisa explicar em minutos.",pulo:"Emissão em minutos para risco padrão e triagem humana para o resto: a IA vale pelo que ela tira da fila, não pelo que ela decide sozinha."},
+ 18:{comite:"Trinta por cento do seguro de pessoas é vendido junto com crédito.",ninguem:"Prestamista é distribuído por quem empresta. A seguradora que não tem parceiro de crédito não participa desse terço do mercado.",pulo:"Cooperativas de crédito são parceiras naturais de uma seguradora cooperativa: mesmo público, mesma linguagem, sem intermediário."},
+ 19:{comite:"O seguro vai ser contratado dentro de outra jornada, não numa jornada própria.",ninguem:"Seguro embutido exige produto simples o bastante para caber num clique com consentimento válido. Produto complexo não embarca.",pulo:"O Super App já é uma jornada com milhões de acessos: vida ao incluir dependente, residencial ao mudar de endereço, sem sair do aplicativo."},
+ 20:{comite:"Microsseguro é a versão regulada de proteger quem o seguro tradicional não alcança.",ninguem:"A renda de até três salários mínimos inclui parte dos funcionários das empresas clientes e das famílias dos beneficiários. O público já está na carteira, sem produto.",pulo:"Prêmio pequeno, linguagem clara e pagamento rápido: o produto certo aqui é o mais simples que a seguradora consegue operar, não o mais completo."},
+ 21:{comite:"O cooperado envelhece com a seguradora; o produto de vida precisa envelhecer junto.",ninguem:"Seguro de morte perde valor depois dos 65: o que a pessoa teme é a dependência, não a morte. Cobertura de cuidado prolongado é o produto que falta no mercado.",pulo:"Diária por internação, assistência domiciliar e cuidado prolongado, vendidos a quem é cliente há décadas, retêm mais que qualquer desconto."},
+ 22:{comite:"A previdência aberta está sacando mais do que aportando; reter é mais barato que captar.",ninguem:"O patrimônio recorde esconde o fluxo negativo. O saque vem de quem chegou à fase de renda sem produto de renda, e de quem perdeu o incentivo fiscal.",pulo:"Um alerta de resgate provável (idade, saldo, comportamento) com oferta de renda antes do saque é a intervenção de maior retorno na previdência hoje."},
+ 23:{comite:"Quatro mudanças tributárias em dois anos: o argumento de venda da previdência precisa ser refeito.",ninguem:"A carteira da Seguros Unimed é avessa ao mercado: PGBL maior que VGBL, porque o médico declara no modelo completo. As regras que atingem o VGBL de alta renda ajudam mais do que atrapalham aqui.",pulo:"A decisão do regime migrou para o resgate: quem oferece simulador e assessoria no momento do saque fica com o cliente; quem só vende na entrada perde no fim."},
+ 24:{comite:"O Brasil acumula bem e saca mal: renda vitalícia é a lacuna de produto do mercado.",ninguem:"Ninguém oferece renda vitalícia de verdade porque o risco de longevidade não tem resseguro fácil no país. É problema de balanço, não de marketing.",pulo:"Uma seguradora que nasceu de um montepio para médicos tem legitimidade e base atuarial para ser a primeira a resolver a fase de saque. O ciclo de renda regulado pela SUSEP abre a porta."},
+ 25:{comite:"Planos instituídos por microcontribuição são o modelo do Multicoop aplicado a novos públicos.",ninguem:"O iFood testar contribuição por corrida mostra o caminho: contribuição ligada à produção, sem patrocínio da empresa. O cooperado médico produz por consulta e plantão.",pulo:"Microcontribuição automática por produção médica, descontada na cooperativa, transforma a previdência do cooperado em hábito, não em decisão anual."},
+ 26:{comite:"O vínculo com o cooperado é o ativo central e não está garantido por contrato.",ninguem:"A Quanta Previdência já atende uma Unimed. A exclusividade nunca existiu; o que existia era a ausência de concorrente organizado.",pulo:"Serviço ao participante, transparência de taxa e relacionamento com cada singular são a única defesa. O ativo é o vínculo, e vínculo se cultiva pessoa a pessoa."},
+ 27:{comite:"O clima tirou o seguro residencial da hipótese e colocou na rotina da casa.",ninguem:"Dezessete por cento de penetração com demanda crescendo 16% ao ano é o melhor cenário de entrada que uma linha nova pode ter. O risco está na acumulação, não na venda.",pulo:"Mapa de risco por CEP e limite de acumulação por região antes da primeira apólice. O Sistema Unimed é forte no Sul: exposição e oportunidade no mesmo lugar."},
+ 28:{comite:"Processar o médico virou rotina; proteger o médico virou produto.",ninguem:"Mais de 70% dos médicos enfrentaram ou conhecem colega processado. A demanda por RC profissional cresce mais que o mercado consegue precificar.",pulo:"O diferencial não é a indenização: é a assistência jurídica no primeiro dia e a prevenção de risco clínico. Isso a seguradora do cooperado sabe fazer melhor que qualquer concorrente."},
+ 29:{comite:"O seguro residencial vende pela assistência e retém pela assistência.",ninguem:"Sessenta e cinco por cento dos acionamentos são chaveiro, encanador e eletricista. O cliente paga pela indenização rara e usa o serviço frequente.",pulo:"Desenhar o produto como cuidado com a casa, na mesma lógica de cuidado da marca Unimed, tira o residencial da comparação de preço."},
+ 30:{comite:"Sete em dez empresas operam sem seguro patrimonial, incluindo os consultórios dos cooperados.",ninguem:"O consultório é uma pequena empresa que ninguém trata como empresa: sem seguro de equipamento, sem lucro cessante, sem responsabilidade civil geral.",pulo:"O mesmo cliente da RC profissional compra o patrimonial do consultório na mesma conversa. Vender junto custa quase zero."},
+ 31:{comite:"O setor de saúde é o alvo preferido do crime digital e quase ninguém tem cobertura.",ninguem:"A operadora está na mesma mira que a clínica do cooperado. Vender seguro cibernético sem ter o próprio preparo é vender o que não se pratica.",pulo:"Seguro cibernético com resposta a incidente inclusa, para clínicas e hospitais da rede, é extensão natural da RC profissional e reforça a própria segurança do ecossistema."},
+ 32:{comite:"Uma enchente na escala do RS numa capital densa quebra a acumulação de três carteiras ao mesmo tempo.",ninguem:"O RS custou R$ 6 bilhões ao setor com penetração baixa. Uma capital com penetração alta multiplica a conta.",pulo:"Resseguro de catástrofe e limite de acumulação por região decidem se a carteira residencial sobrevive ao primeiro grande evento."},
+ 33:{comite:"Todo contrato emitido desde dezembro de 2025 precisa obedecer à nova lei.",ninguem:"A Lei 15.040 muda prazos de regulação de sinistro e deveres de informação para todos os ramos. A adaptação não é jurídica só: é sistema, é processo, é treinamento.",pulo:"Tratar o marco legal, a reforma tributária e o Open Insurance como uma única agenda de adaptação evita três projetos que disputam os mesmos sistemas."},
+ 34:{comite:"O Sistema Unimed é o diferencial que a concorrente nacional não consegue copiar.",ninguem:"A verticalização das singulares muda a relação de rede: a cooperativa vira parceira de risco, não fornecedora de procedimento.",pulo:"Negociar rede como parceria de resultado, com a cooperativa dividindo ganho de sinistralidade, alinha os dois lados e fecha a porta para concorrentes."},
+ 35:{comite:"A partir de 2027 o seguro paga IBS e CBS sobre o prêmio, e o cliente empresa recebe crédito.",ninguem:"O fim do IOF e a alíquota de 10,85% mudam o preço líquido de cada produto de forma diferente: o efeito depende dos créditos que cada carteira gera.",pulo:"A carteira coletiva empresarial, coração da Seguros Unimed, é a mais favorecida: o cliente aproveita o crédito. Isso é argumento de venda desde já."},
+ 36:{comite:"A IA saiu do atendimento e entrou na decisão; o regulador vai cobrar quem responde por ela.",ninguem:"Reduzir 30% a 50% do tempo de sinistro é ganho real, mas o mesmo modelo que acelera pode negar em escala. Erro sistemático é mais caro que erro humano.",pulo:"Governança nascida junto com o modelo (explicabilidade, viés, revisão humana) custa uma fração do que custa consertar depois de uma sanção."},
+ 37:{comite:"No Open Insurance, quem consome dados ganha cliente; quem só cede, perde.",ninguem:"Os adiamentos das fases criaram a ilusão de que o tema pode esperar. A infraestrutura de consumo de dados leva mais tempo que o cronograma do regulador.",pulo:"Ser receptora ativa de dados de outras seguradoras muda a subscrição e a oferta. É decisão de estratégia, não de conformidade."},
+ 38:{comite:"O Brasil parou de repor a população; crescer em vidas agora depende de penetração.",ninguem:"Menos filhos significa menos dependentes jovens nos planos coletivos e famílias menores para proteger. O crescimento por demografia acabou.",pulo:"Cada ponto de penetração na base atual vale mais que qualquer expansão geográfica. O mercado é quem já está dentro e não tem tudo."},
+ 39:{comite:"Viver até os 80 virou regra, e ninguém financia os últimos dez anos.",ninguem:"Cuidado de longa duração não existe como produto no Brasil porque exige rede de cuidadores, não só dinheiro. A seguradora ligada a cooperativas médicas tem a rede.",pulo:"Um produto híbrido de seguro e previdência para cuidado prolongado, com rede Unimed, é a lacuna de mercado com maior encaixe na Seguros Unimed."},
+ 40:{comite:"Um ataque aos sistemas compartilhados do setor para autorização e sinistro em escala.",ninguem:"A integração digital que a seguradora persegue é a mesma que aumenta a exposição. Cada API nova é uma porta nova.",pulo:"Modo degradado testado com prestadores (autorizar sem sistema por 72 horas) é o plano de continuidade que faz diferença no dia do ataque."},
+ 41:{comite:"Documentos, laudos e vídeos sintéticos vão testar a confiança do sinistro digital.",ninguem:"A mesma IA que acelera o sinistro é a que gera a fraude. A corrida é entre a geração e a detecção, e a detecção começa atrasada.",pulo:"Verificação de vivacidade em teleconsulta e prova de vida, mais trilha de auditoria do sinistro, precisam existir antes do primeiro caso público."}
+};
+
+// ═══════════════════════════════════════
+// VISÕES (recorte por impacto)
+// ═══════════════════════════════════════
+const VIEWS=[
+  {id:'prioridade',l:'Prioridade',min:3,hint:'só os temas de impacto alto'},
+  {id:'ampliada',l:'Ampliada',min:2,hint:'impacto alto e médio'},
+  {id:'completa',l:'Completa',min:1,hint:'todos os temas'}
+];
+let VIEW='completa';
+
+// ═══════════════════════════════════════
+// JOGADAS (combinações de temas para uma saída)
+// ═══════════════════════════════════════
+const JOGADAS=[
+ {saida:"Proteção da família do médico cooperado",desc:"Uma proposta única de renda, saúde e sucessão para quem já é cliente há décadas, em vez de três produtos vendidos separados.",
+  ing:[{id:16,papel:"massa: a conversa começa por sucessão e planejamento"},{id:14,papel:"fermento: doenças graves é o que a família teme agora"},{id:28,papel:"liga: a RC profissional já une a seguradora ao cooperado"},{id:24,papel:"forma: renda vitalícia dá o destino ao patrimônio"},{id:23,papel:"tempero: a decisão tributária migrou para o resgate"}],
+  passos:["Mapear na base quem é cooperado com previdência e sem vida, ou com vida e sem RC.","Um único assessor por cooperativa singular, com simulador de resgate e sucessão.","Oferta em três camadas (renda, doença, sucessão) com um só contrato guarda-chuva.","Revisão anual no aniversário do plano, não na renovação do seguro."],
+  aviso:"Empurrar três produtos sem assessoria vira venda casada e perde o cooperado para quem só vende um. O vínculo é o ativo; a pressa o destrói.",avisoIds:[26]},
+ {saida:"Saúde que vende resultado, não cobertura",desc:"Transformar atenção primária, controle de crônicos e uso criterioso de terapias caras num argumento de venda com número.",
+  ing:[{id:2,papel:"massa: a atenção primária como porta obrigatória"},{id:1,papel:"o problema a resolver: a carteira envelhece"},{id:5,papel:"tempero: terapias caras cobertas com critério, não negadas"},{id:36,papel:"ferramenta: IA na triagem e na auditoria"},{id:3,papel:"o momento: o ciclo de reajuste abre janela"}],
+  passos:["Medir internação evitada e afastamento por coorte de idade e por cliente empresarial.","Colocar o número na proposta de renovação, ao lado do preço.","Cobrir GLP-1 e similares com protocolo clínico e acompanhamento, como programa de crônicos.","Publicar o resultado anual por cliente: o relatório vira a peça de venda."],
+  aviso:"Reduzir custo negando cobertura alimenta a judicialização e apaga o ganho em dois anos.",avisoIds:[6]},
+ {saida:"Casa e consultório protegidos",desc:"Nascer no patrimonial pelo público que já confia na marca: a casa da família e o consultório do cooperado.",
+  ing:[{id:27,papel:"massa: o clima criou a demanda"},{id:29,papel:"fermento: a assistência é o que o cliente usa"},{id:30,papel:"liga: o consultório é uma empresa sem seguro"},{id:31,papel:"cobertura: cibernético para clínicas e hospitais"},{id:19,papel:"canal: oferta na jornada do aplicativo"}],
+  passos:["Mapa de risco climático por CEP e limite de acumulação por região antes da primeira apólice.","Produto residencial desenhado como assistência, com indenização como segunda camada.","Patrimonial do consultório vendido junto com a RC profissional, no mesmo contrato.","Cibernético com resposta a incidente para a rede credenciada."],
+  aviso:"Carteira residencial sem resseguro de catástrofe é aposta contra o clima. O RS custou R$ 6 bilhões ao setor.",avisoIds:[32]},
+ {saida:"Venda cruzada dentro da própria carteira",desc:"Usar os milhões de contatos mensais de saúde e odonto para levar vida e residencial a quem nunca comprou.",
+  ing:[{id:15,papel:"o alvo: 82% dos adultos sem seguro de vida"},{id:10,papel:"massa: a base odonto é o contato mais frequente e mais barato"},{id:19,papel:"canal: oferta embutida na jornada"},{id:14,papel:"fermento: doenças graves é a cobertura que converte"},{id:20,papel:"porção: microsseguro para a faixa de renda mais baixa"},{id:37,papel:"combustível: dados abertos com consentimento"}],
+  passos:["Identificar momentos de vida nos dados (dependente incluído, endereço alterado, diagnóstico).","Oferta de um clique no Super App com consentimento explícito e produto simples.","Começar por doenças graves e residencial, os dois de maior conversão.","Medir custo de aquisição por canal: interno contra corretor externo."],
+  aviso:"Oferta contextual sem consentimento válido é abuso de dado sensível de saúde: sanção da ANPD e perda de confiança na mesma semana.",avisoIds:[37,41]},
+ {saida:"Uma agenda só de adaptação regulatória",desc:"Marco legal, reforma tributária, Open Insurance e agenda da ANS tratados como um único programa, com os mesmos sistemas e o mesmo calendário.",
+  ing:[{id:33,papel:"massa: a nova Lei de Seguros já vigora"},{id:35,papel:"prazo: IBS e CBS em 2027"},{id:37,papel:"dados: Open Insurance no mesmo sistema"},{id:4,papel:"produto: tetos de coparticipação"},{id:7,papel:"radar: a agenda da ANS antecipa o resto"},{id:23,papel:"previdência: quatro mudanças tributárias"}],
+  passos:["Inventário único de contratos, sistemas e processos afetados por todas as frentes.","Um calendário: o que muda em 2026, 2027 e 2028, por linha de produto.","Contribuir nas consultas públicas com posição própria, pela Unimed do Brasil e pelas associações.","Comunicar ao cliente empresarial o crédito de IBS e CBS como vantagem, não como aviso."],
+  aviso:"Tratar cada norma como projeto isolado gasta o mesmo sistema três vezes e entrega atrasado nas três.",avisoIds:[33,35]},
+ {saida:"Previdência que retém antes de captar",desc:"Parar a sangria de resgates com produto de renda e assessoria no momento do saque, antes de gastar em captação.",
+  ing:[{id:22,papel:"o problema: resgates superam aportes"},{id:24,papel:"massa: renda vitalícia e ciclo de renda"},{id:23,papel:"tempero: o regime decidido no resgate"},{id:25,papel:"fermento: microcontribuição por produção médica"},{id:21,papel:"cobertura: vida sênior no mesmo pacote"},{id:26,papel:"o que evitar: perder a singular para outro fundo"}],
+  passos:["Alerta de resgate provável por idade, saldo e comportamento.","Oferta de renda com simulador antes do saque, com assessor da cooperativa.","Contribuição automática por produção médica nas singulares.","Relatório de taxa e resultado ao participante, todo semestre."],
+  aviso:"Renda vitalícia sem resseguro de longevidade transfere o risco do cliente para o balanço da seguradora.",avisoIds:[24,39]}
+];
+
+// ═══════════════════════════════════════
+// CENÁRIOS 2035 (o que os temas combinados podem virar)
+// ═══════════════════════════════════════
+const CENARIOS=[
+ {id:"c1",nome:"Cuidado contínuo",tipo:"Transformação",cor:"#22A96A",premissa:"A atenção primária vira a porta obrigatória, a IA triagem de rotina e as terapias caras ficam baratas a tempo.",
+  narrativa:"Em 2035 o beneficiário da Seguros Unimed tem uma equipe de referência que o acompanha há anos. As canetas para obesidade custam uma fração do preço de 2026 e cortaram uma geração de diabéticos. A sinistralidade da carteira envelhecida cresce menos que a idade média, porque o crônico está controlado e a internação evitável caiu. O cliente empresarial recebe um relatório anual de afastamentos evitados e renova pelo resultado, não pelo preço. A previdência do cooperado é contribuída por produção médica e paga renda vitalícia com resseguro de longevidade.",
+  su:"A seguradora que mede resultado clínico vira referência de mercado; a que só mede custo perde o cliente empresarial para quem mostra o número.",
+  sinais:["Adesão à APS acima de metade da carteira empresarial","Queda de preço dos análogos de GLP-1 após os genéricos","Contrato de renovação com meta clínica assinada pelo cliente"],
+  temas:[2,5,36,1,24,25]},
+ {id:"c2",nome:"O custo sobe a escada",tipo:"Tendencial",cor:"#D46B2A",premissa:"Envelhecimento, judicialização e terapias caras avançam mais rápido que a mudança do modelo assistencial; a regulação fixa tetos e o preço fica espremido.",
+  narrativa:"Em 2035 a carteira tem mais gente acima de 60 do que abaixo de 30. As terapias de alto custo entraram na cobertura por decisão judicial antes de entrar por protocolo. A ANS fixou tetos de coparticipação e o produto de entrada regulado tirou parte do público dos cartões de desconto, mas com margem estreita. IBS e CBS mudaram o preço líquido e o cliente empresa aprendeu a pedir o crédito. A previdência aberta segue sacando mais do que aporta, e a disputa pelo cooperado tem três fundos na mesa.",
+  su:"Sobrevive quem controla custo pela rede própria do Sistema Unimed e transforma o crédito tributário em argumento comercial; quem depende de reajuste linear perde carteira a cada ciclo.",
+  sinais:["Judicialização crescendo mais que a carteira por dois anos seguidos","Norma da ANS de tetos publicada sem produto de entrada pronto","Reajuste acima do mercado em dois ciclos consecutivos"],
+  temas:[1,6,5,4,8,35,22,26]},
+ {id:"c3",nome:"Choque de confiança",tipo:"Ruptura",cor:"#D95AA0",premissa:"Um ataque cibernético sistêmico e uma onda de fraude sintética coincidem com uma catástrofe climática em região densa; a confiança no sinistro digital se rompe por um período.",
+  narrativa:"Em 2035 o setor passa semanas com autorização em modo degradado depois de um ataque aos sistemas compartilhados. Sinistros pagos com laudos sintéticos viram caso de imprensa. Uma enchente numa capital concentra sinistros residenciais, empresariais e de vida na mesma semana. O regulador endurece: verificação de vivacidade obrigatória, resseguro de catástrofe exigido, prazos da nova lei cobrados na letra. Quem tinha plano de continuidade e acumulação controlada atravessa; quem não tinha, vende carteira.",
+  su:"O vínculo cooperativo vira a vantagem: a cooperativa autoriza sem sistema porque conhece o médico e o paciente. Continuidade operacional e resseguro decidem quem fica.",
+  sinais:["Incidente relevante num autorizador ou provedor de nuvem do setor","Primeiro sinistro público pago com documento sintético no Brasil","Endurecimento das condições de resseguro de catástrofe para o Brasil"],
+  temas:[40,41,32,27,9,33]}
+];
+
+// ═══════════════════════════════════════
+// GLOSSÁRIO
+// ═══════════════════════════════════════
+const GLOSS=[
+ {t:"STEEPLEDI",cat:"método",def:"Grade de nove dimensões do ambiente para varrer sinais: Social, Tecnológico, Econômico, Ambiental, Político, Legal, Ético, Demográfico e Indústria. Aqui define o setor da roda.",see:["Dimensão","Macrotendência"]},
+ {t:"Tendência",cat:"método",def:"Padrão ou direção com evidência acumulada, que indica com mais precisão como o futuro próximo se desdobra.",see:["Sinal fraco","Cisne negro"]},
+ {t:"Sinal fraco",cat:"método",def:"Indicação inicial de uma mudança possível, ainda pouco reconhecida. Costuma ser o estágio anterior de uma tendência.",see:["Tendência"]},
+ {t:"Cisne negro",cat:"método",def:"Evento improvável e difícil de antecipar, de grande impacto se ocorrer. No radar entra para ser observado, com gatilhos de alerta, não para ser previsto.",see:["Gatilho de alerta"]},
+ {t:"Gatilho de alerta",cat:"método",def:"Sinal precursor de um cisne negro que, se aparecer, pede revisão imediata da postura recomendada.",see:["Cisne negro"]},
+ {t:"Postura",cat:"método",def:"O que fazer com o tema: Agir (decidir agora), Preparar (planejar) ou Observar (monitorar). Combina impacto e prontidão, na leitura do Radar de Futuros da Sicredi Pioneira.",see:["Horizonte"]},
+ {t:"Horizonte",cat:"método",def:"Quando o impacto se materializa. Um radar de futuros olha no mínimo dez anos: em curso até 2027, curto prazo até 2030, médio até 2035, longo até 2050.",see:["Postura"]},
+ {t:"Macrotendência",cat:"método",def:"Recorte de uma força maior que atravessa a carteira da Seguros Unimed: temas de produtos e dimensões diferentes que se reforçam.",see:["Megatendência"]},
+ {t:"Megatendência",cat:"método",def:"Força global de longa duração (envelhecimento, clima, inteligência artificial) da qual as macrotendências descendem.",see:["Macrotendência"]},
+ {t:"Evidência",cat:"método",def:"Notícia ou dado com fonte que mostra o tema acontecendo. O grau (forte, média, fraca, interna) é calculado pelas fontes: oficial ou associativa, imprensa especializada, blog, documento interno.",see:["Fontes"]},
+ {t:"Sinistralidade",cat:"seguro",def:"Proporção do prêmio consumida por sinistros. Em saúde, 71% significa que de cada R$ 100 de mensalidade, R$ 71 pagam assistência.",see:["Reajuste"]},
+ {t:"Coparticipação e franquia",cat:"saúde",def:"Mecanismos moderadores: o beneficiário paga parte de cada procedimento (coparticipação) ou um valor inicial por período (franquia). A ANS voltou a regular limites em 2026.",see:["ANS"]},
+ {t:"Atenção primária (APS)",cat:"saúde",def:"Modelo em que uma equipe de referência acompanha o beneficiário de forma contínua e coordena o cuidado, reduzindo urgência e internação evitável.",see:["Sinistralidade"]},
+ {t:"Análogos de GLP-1",cat:"saúde",def:"Classe de medicamentos para diabetes e obesidade (semaglutida, tirzepatida) de alto custo e uso em massa; a patente da semaglutida caiu em março de 2026.",see:["Judicialização"]},
+ {t:"Judicialização",cat:"saúde",def:"Uso da Justiça como canal de acesso a cobertura. Cada decisão vira custo não precificado e precedente.",see:["Coparticipação e franquia"]},
+ {t:"PGBL e VGBL",cat:"previdência",def:"Planos de previdência aberta. No PGBL a contribuição é dedutível do IR (declaração completa) e o imposto incide sobre o total; no VGBL não há dedução e o imposto incide só sobre o rendimento.",see:["Tabela regressiva e progressiva"]},
+ {t:"Tabela regressiva e progressiva",cat:"previdência",def:"Regimes de tributação da previdência. Desde a Lei 14.803/2024 a escolha é feita no primeiro resgate, de forma irrevogável.",see:["PGBL e VGBL"]},
+ {t:"Multicoop",cat:"previdência",def:"Fundo de pensão multipatrocinado instituído pelas cooperativas, administrado pela Seguros Unimed: cerca de R$ 2,3 bilhões e 73 instituidoras.",see:["Fundo instituído"]},
+ {t:"Fundo instituído",cat:"previdência",def:"Plano de previdência fechada em que a contribuição parte do próprio participante, ligado a uma entidade de classe ou cooperativa, sem patrocínio de empregador.",see:["Multicoop"]},
+ {t:"Renda vitalícia",cat:"previdência",def:"Conversão do saldo acumulado em renda paga até o fim da vida, com o risco de longevidade assumido pela seguradora. Produto escasso no Brasil.",see:["Ciclo de renda"]},
+ {t:"Ciclo de renda",cat:"previdência",def:"Regra da SUSEP que permite ao participante planejar quando e quanto converter em renda, em etapas.",see:["Renda vitalícia"]},
+ {t:"Prestamista",cat:"vida",def:"Seguro vinculado a uma operação de crédito, que quita a dívida em caso de morte ou invalidez. Responde por cerca de 30% do seguro de pessoas.",see:["Seguro embutido"]},
+ {t:"Seguro embutido",cat:"vida",def:"Proteção oferecida dentro de outra jornada (compra, aplicativo do banco, contratação de serviço), por integração de sistemas.",see:["Open Insurance"]},
+ {t:"Microsseguro",cat:"vida",def:"Seguro de valor pequeno, linguagem clara e prêmio proporcional, para famílias de baixa renda, MEI e pequenas empresas (Resolução CNSP 409/2021).",see:["Prestamista"]},
+ {t:"RC profissional",cat:"patrimonial",def:"Seguro de responsabilidade civil profissional: cobre o médico ou a clínica em ações por erro, incluindo assistência jurídica.",see:["Judicialização"]},
+ {t:"Resseguro",cat:"seguro",def:"Seguro da seguradora: transfere parte do risco (catástrofe, longevidade, mortalidade em massa) a uma resseguradora.",see:["Cisne negro"]},
+ {t:"Open Insurance",cat:"regulação",def:"Sistema de seguros aberto: o cliente é dono dos próprios dados de seguro e pode compartilhá-los com outra seguradora mediante consentimento.",see:["Seguro embutido"]},
+ {t:"IBS e CBS",cat:"regulação",def:"Impostos do consumo criados pela reforma tributária. Para seguros, alíquota de 10,85% em 2027 e 2028 sobre o prêmio, com crédito para o cliente empresa; o IOF sobre seguros acaba em 2027.",see:["Lei 15.040/2024"]},
+ {t:"Lei 15.040/2024",cat:"regulação",def:"Nova Lei de Seguros, em vigor desde 11 de dezembro de 2025: prazos, deveres de informação e regulação de sinistro para todos os contratos.",see:["IBS e CBS"]},
+ {t:"ANS",cat:"regulação",def:"Agência Nacional de Saúde Suplementar, que regula planos de saúde e odontológicos.",see:["SUSEP"]},
+ {t:"SUSEP",cat:"regulação",def:"Superintendência de Seguros Privados, que regula seguros, previdência aberta e capitalização.",see:["ANS"]},
+ {t:"Cooperado",cat:"Sistema Unimed",def:"Médico que é dono da cooperativa singular Unimed. Cliente de origem da Seguros Unimed e vínculo central da companhia.",see:["Sistema Unimed"]},
+ {t:"Sistema Unimed",cat:"Sistema Unimed",def:"Conjunto de cooperativas médicas singulares, federações, a Unimed do Brasil e empresas como a Seguros Unimed. Presente em nove de cada dez municípios.",see:["Cooperado"]}
+];
+
+// ═══════════════════════════════════════
 // ESTADO E UTILITÁRIOS
 // ═══════════════════════════════════════
 let pg='home',zoom=1,panX=-24,panY=6,autoFit=true,ringMode='h',isPanning=false,psx=0,psy=0,pox=0,poy=0,hov=null,sel=null;
@@ -789,6 +1053,7 @@ function sideSpace(filtersId,sidebarId){const f=document.getElementById(filtersI
 const OFFICIAL=/gov\.br|cnseg|fenaprevi|ibge|weforum|abrapp|susep|ans\.gov|fgv|ens\.edu|unimed\.coop|sicredi/i;
 function evidGrade(d){const srcs=d.f.map(src);const off=srcs.filter(x=>OFFICIAL.test(x.u||x.o)).length;const pub=srcs.filter(x=>x.u).length;if(off>=1&&pub>=2)return['Forte','fonte oficial ou associativa mais imprensa especializada'];if(off>=1||pub>=2)return['Média','fonte oficial isolada ou só imprensa especializada'];if(pub===0)return['Interna','apenas documento interno, a verificar'];return['Fraca','uma fonte de imprensa ou blog setorial'];}
 function passes(d){
+  if(d.i<viewMin())return false;
   if(F.c.size&&!F.c.has(d.c))return false;
   if(F.t.size&&!F.t.has(d.t))return false;
   if(F.p.size&&!F.p.has(d.p))return false;
@@ -798,10 +1063,10 @@ function passes(d){
 }
 function toggleF(k,v){const set=F[k];if(set.has(v))set.delete(v);else set.add(v);refresh();}
 function clearF(){Object.values(F).forEach(s=>s.clear());refresh();}
-function refresh(){renderFilters();if(pg==='radar')drawRadar();if(pg==='explore')renderCards();if(pg==='rel')drawRel();}
+function refresh(){renderFilters();if(pg==='radar')drawRadar();if(pg==='explore')renderCards();if(pg==='rel')drawRel();if(pg==='tl')drawTimeline();}
 function typeShape(t,col,size){
   if(t==='tend')return `<circle r="${size}" fill="${col}"/>`;
-  if(t==='sinal')return `<circle r="${size}" fill="#0B1730" stroke="${col}" stroke-width="2"/>`;
+  if(t==='sinal')return `<circle r="${size}" fill="#ffffff" stroke="${col}" stroke-width="2"/>`;
   return `<path d="M0,-${size+1} L${size+1},0 L0,${size+1} L-${size+1},0 Z" fill="${col}"/>`;
 }
 function shapeIcon(t,col){return `<svg class="rl-shape" viewBox="-9 -9 18 18">${typeShape(t,col,5)}</svg>`;}
@@ -810,14 +1075,20 @@ function chipP(p){return `<span class="ct p${p}">${POST[p].name}</span>`;}
 // ═══════════════════════════════════════
 // NAVEGAÇÃO
 // ═══════════════════════════════════════
-const PAGES=['home','radar','explore','rel','macro','matriz','help','fontes'];
+const PAGES=['home','radar','tl','explore','rel','cruz','cen','macro','matriz','metrics','index','help'];
 function go(p){
   pg=p;
   document.querySelectorAll('.page').forEach(el=>el.classList.toggle('on',el.id==='pg-'+p));
   document.querySelectorAll('.tn-pill').forEach(el=>el.classList.toggle('on',el.dataset.pg===p));
   closePanel(false);
   if(p==='radar'){requestAnimationFrame(()=>{drawRadar();renderFilters();});}
-  if(p==='rel'){requestAnimationFrame(()=>{renderFilters();drawRel();});}
+  if(p==='rel'){requestAnimationFrame(()=>{renderFilters();renderRelCorr();drawRel();});}
+  if(p==='tl'){requestAnimationFrame(()=>drawTimeline());}
+  if(p==='cruz')renderCruz();
+  if(p==='cen')renderCenarios();
+  if(p==='metrics')renderMetrics();
+  if(p==='index')renderIndex();
+  if(p==='gloss')renderGlossary();
   if(p==='explore'){renderFilters();renderCards();}
   if(p==='macro')renderMacros();
   if(p==='matriz')renderMatriz();
@@ -848,17 +1119,17 @@ function renderHome(){
 function chip(k,v,label,extra=''){return `<button class="fchip ${F[k].has(v)?'on':''}" onclick="toggleF('${k}',${typeof v==='string'?`'${v}'`:v})">${extra}${label}</button>`;}
 function renderFilters(){
   const any=Object.values(F).some(s=>s.size);
-  let h='';
+  let h=viewGroup();
   if(pg==='radar'){
     h+=`<div class="fgroup"><span class="fgroup-label">Anéis (distância do centro)</span><div class="ringtog"><button class="${ringMode==='h'?'on':''}" onclick="setRing('h')">Horizonte</button><button class="${ringMode==='p'?'on':''}" onclick="setRing('p')">Postura</button></div><div class="rl-note">${ringMode==='h'?'Do centro para a borda: em curso (até 2027), curto prazo (até 2030), médio (até 2035), longo (até 2050). Quanto mais perto, mais cedo chega.':'Centro = Agir, meio = Preparar, borda = Observar. Quanto mais perto, mais urgente decidir.'}</div></div>`;
   }
   h+=`<div class="fgroup"><span class="fgroup-label">Linha de produto (cor)</span>${CATS.map(c=>chip('c',c.id,c.name,`<span class="sw" style="background:${c.color}"></span>`)).join('')}</div>`;
-  h+=`<div class="fgroup"><span class="fgroup-label">Tipo (forma)</span>${Object.keys(TYPES).map(t=>chip('t',t,TYPES[t].name,pg==='radar'?shapeIcon(t,'#EAF1FF'):'')).join('')}</div>`;
+  h+=`<div class="fgroup"><span class="fgroup-label">Tipo (forma)</span>${Object.keys(TYPES).map(t=>chip('t',t,TYPES[t].name,pg==='radar'?shapeIcon(t,'#1a1a2e'):'')).join('')}</div>`;
   h+=`<div class="fgroup"><span class="fgroup-label">Postura</span>${[1,2,3].map(p=>chip('p',p,POST[p].name)).join('')}</div>`;
   h+=`<div class="fgroup"><span class="fgroup-label">Horizonte</span>${HORS.map(x=>chip('h',x,HOR[x].name+' · '+HOR[x].short)).join('')}</div>`;
   if(pg==='explore')h+=`<div class="fgroup"><span class="fgroup-label">Dimensão</span>${DIMS.map(s=>chip('s',s,DIM[s])).join('')}</div>`;
   if(pg!=='explore'){
-    h+=`<div class="fgroup"><span class="fgroup-label">Impacto (tamanho)</span><div class="rl-row"><svg class="rl-shape" viewBox="-9 -9 18 18"><circle r="2.5" fill="#8A9AB5"/></svg>baixo &nbsp;<svg class="rl-shape" viewBox="-9 -9 18 18"><circle r="4.2" fill="#8A9AB5"/></svg>médio &nbsp;<svg class="rl-shape" viewBox="-9 -9 18 18"><circle r="6.2" fill="#8A9AB5"/></svg>alto</div><div class="rl-note">Setor = dimensão STEEPLEDI (clique no nome para filtrar).</div></div>`;
+    h+=`<div class="fgroup"><span class="fgroup-label">Impacto (tamanho)</span><div class="rl-row"><svg class="rl-shape" viewBox="-9 -9 18 18"><circle r="2.5" fill="#6e6e88"/></svg>baixo &nbsp;<svg class="rl-shape" viewBox="-9 -9 18 18"><circle r="4.2" fill="#6e6e88"/></svg>médio &nbsp;<svg class="rl-shape" viewBox="-9 -9 18 18"><circle r="6.2" fill="#6e6e88"/></svg>alto</div><div class="rl-note">Setor = dimensão STEEPLEDI (clique no nome para filtrar).</div></div>`;
   }
   if(any)h+=`<button class="fclear" onclick="clearF()">Limpar filtros</button>`;
   const el=document.getElementById(pg==='explore'?'exFilters':pg==='rel'?'relFilters':'radarFilters');
@@ -892,20 +1163,20 @@ function drawRadar(){
   const SEC={};let acc=-Math.PI/2;
   DIMS.forEach(k=>{const span=counts[k]/tot*2*Math.PI;SEC[k]={a0:acc,a1:acc+span,span};acc+=span;});
   let h='';
-  h+=`<defs><filter id="shd"><feDropShadow dx="0" dy="2" stdDeviation="3" flood-color="rgba(0,0,0,.6)"/></filter></defs>`;
+  h+=`<defs><filter id="shd"><feDropShadow dx="0" dy="2" stdDeviation="3" flood-color="rgba(0,0,0,.15)"/></filter></defs>`;
   DIMS.forEach((k,i)=>{
     const {a0,a1}=SEC[k];const on=F.s.size===0||F.s.has(k);
-    h+=`<path d="M${cx},${cy} L${cx+Math.cos(a0)*maxR},${cy+Math.sin(a0)*maxR} A${maxR},${maxR} 0 ${(a1-a0)>Math.PI?1:0} 1 ${cx+Math.cos(a1)*maxR},${cy+Math.sin(a1)*maxR} Z" fill="${i%2?'#5CC8F5':'#3DDC97'}" opacity="${on?(i%2?.06:.05):.015}"/>`;
+    h+=`<path d="M${cx},${cy} L${cx+Math.cos(a0)*maxR},${cy+Math.sin(a0)*maxR} A${maxR},${maxR} 0 ${(a1-a0)>Math.PI?1:0} 1 ${cx+Math.cos(a1)*maxR},${cy+Math.sin(a1)*maxR} Z" fill="${i%2?'#009EDB':'#00995D'}" opacity="${on?(i%2?.05:.04):.012}"/>`;
   });
   const rl=rk==='h'?['ATÉ 2027','ATÉ 2030','ATÉ 2035','ATÉ 2050']:['AGIR','PREPARAR','OBSERVAR'];
   ringR.forEach((r,i)=>{
-    h+=`<circle cx="${cx}" cy="${cy}" r="${r}" fill="none" stroke="#EAF1FF" stroke-opacity="${.14+i*.08}" stroke-width="${i===2?1.2:.8}" ${i<2?'stroke-dasharray="3 5"':''}/>`;
-    h+=`<text x="${cx}" y="${cy-r+11}" fill="#EAF1FF" opacity="${.45+i*.12}" font-size="8.5" font-family="Archivo" font-weight="700" letter-spacing="2.5" text-anchor="middle">${rl[i]}</text>`;
+    h+=`<circle cx="${cx}" cy="${cy}" r="${r}" fill="none" stroke="#1a1a2e" stroke-opacity="${.10+i*.06}" stroke-width="${i===2?1.2:.8}" ${i<2?'stroke-dasharray="3 5"':''}/>`;
+    h+=`<text x="${cx}" y="${cy-r+11}" fill="#1a1a2e" opacity="${.35+i*.12}" font-size="8.5" font-family="Space Grotesk" font-weight="700" letter-spacing="2.5" text-anchor="middle">${rl[i]}</text>`;
   });
-  DIMS.forEach(k=>{const a=SEC[k].a0;h+=`<line x1="${cx}" y1="${cy}" x2="${cx+Math.cos(a)*maxR}" y2="${cy+Math.sin(a)*maxR}" stroke="#EAF1FF" stroke-opacity=".16" stroke-width=".6"/>`});
-  h+=`<circle cx="${cx}" cy="${cy}" r="${Math.min(ringR[0]*.5,24)}" fill="#101F3D" stroke="#3DDC97" stroke-width="1.2"/>`;
-  h+=`<text x="${cx}" y="${cy-5}" fill="#EAF1FF" font-size="9" font-family="Archivo" font-weight="800" letter-spacing="2" text-anchor="middle">SEGUROS</text>`;
-  h+=`<text x="${cx}" y="${cy+8}" fill="#3DDC97" font-size="9" font-family="Archivo" font-weight="800" letter-spacing="2" text-anchor="middle">UNIMED</text>`;
+  DIMS.forEach(k=>{const a=SEC[k].a0;h+=`<line x1="${cx}" y1="${cy}" x2="${cx+Math.cos(a)*maxR}" y2="${cy+Math.sin(a)*maxR}" stroke="#1a1a2e" stroke-opacity=".12" stroke-width=".6"/>`});
+  h+=`<circle cx="${cx}" cy="${cy}" r="${Math.min(ringR[0]*.5,24)}" fill="#ffffff" stroke="#00995D" stroke-width="1.2"/>`;
+  h+=`<text x="${cx}" y="${cy-5}" fill="#1a1a2e" font-size="9" font-family="Space Grotesk" font-weight="800" letter-spacing="2" text-anchor="middle">SEGUROS</text>`;
+  h+=`<text x="${cx}" y="${cy+8}" fill="#00995D" font-size="9" font-family="Space Grotesk" font-weight="800" letter-spacing="2" text-anchor="middle">UNIMED</text>`;
   // posições: setor = dimensão STEEPLEDI, anel = postura
   const pos={};const seq={};let n=0;
   DIMS.forEach(k=>{
@@ -942,8 +1213,8 @@ function drawRadar(){
     h+=`<g class="node" data-id="${d.id}" style="cursor:pointer;opacity:${op};transition:opacity .2s" ${isHov||isSel?'filter="url(#shd)"':''}>`;
     h+=`<line x1="${lx1}" y1="${ly1}" x2="${lx2}" y2="${ly2}" stroke="${col}" stroke-width="${isHov||isSel?1.4:.7}" opacity="${isHov||isSel?.9:.45}"/>`;
     h+=`<g transform="translate(${p.x},${p.y})">${typeShape(d.t,col,size)}<circle r="${size+6}" fill="transparent"/></g>`;
-    h+=`<text x="${nx}" y="${ny}" fill="${col}" font-size="8.5" font-family="Archivo Narrow, Archivo" font-weight="700" text-anchor="middle" dominant-baseline="middle" transform="rotate(${tAng.toFixed(1)},${nx.toFixed(1)},${ny.toFixed(1)})" opacity=".8">${pad3(seq[d.id])}</text>`;
-    h+=`<text x="${tx}" y="${ty}" fill="${isHov||isSel?col:'#E3E9F3'}" font-size="10" font-family="Archivo" font-weight="${isHov||isSel?700:500}" text-anchor="${left?'end':'start'}" dominant-baseline="middle" transform="rotate(${tAng.toFixed(1)},${tx.toFixed(1)},${ty.toFixed(1)})">${esc((isHov||isSel)?d.n:shortName(d.n))}</text>`;
+    h+=`<text x="${nx}" y="${ny}" fill="${col}" font-size="8.5" font-family="JetBrains Mono" font-weight="700" text-anchor="middle" dominant-baseline="middle" transform="rotate(${tAng.toFixed(1)},${nx.toFixed(1)},${ny.toFixed(1)})" opacity=".8">${pad3(seq[d.id])}</text>`;
+    h+=`<text x="${tx}" y="${ty}" fill="${isHov||isSel?col:'#2d2d44'}" font-size="10" font-family="Space Grotesk" font-weight="${isHov||isSel?700:500}" text-anchor="${left?'end':'start'}" dominant-baseline="middle" transform="rotate(${tAng.toFixed(1)},${tx.toFixed(1)},${ty.toFixed(1)})">${esc((isHov||isSel)?d.n:shortName(d.n))}</text>`;
     h+=`</g>`;
   });
   // rótulos das dimensões num arco externo (clicáveis: filtram a dimensão)
@@ -956,8 +1227,8 @@ function drawRadar(){
     const large=Math.abs(s1-s0)>Math.PI?1:0,sweep=bottom?0:1;
     const on=F.s.size===0||F.s.has(k);
     h+=`<path id="sec_${k}" d="M${x0},${y0} A${arcR},${arcR} 0 ${large} ${sweep} ${x1},${y1}" fill="none"/>`;
-    h+=`<text class="seclabel" data-dim="${k}" style="cursor:pointer" fill="#EAF1FF" opacity="${on?.85:.28}" font-size="10.5" font-family="Archivo" font-weight="800" letter-spacing="2.2"><textPath href="#sec_${k}" startOffset="50%" text-anchor="middle">${DIM[k].toUpperCase()}</textPath></text>`;
-    h+=`<path d="M${cx+Math.cos(a0)*(maxR+26+labelPx+4)},${cy+Math.sin(a0)*(maxR+26+labelPx+4)} L${cx+Math.cos(a0)*(maxR+26+labelPx+26)},${cy+Math.sin(a0)*(maxR+26+labelPx+26)}" stroke="#EAF1FF" stroke-opacity=".25" stroke-width=".8"/>`;
+    h+=`<text class="seclabel" data-dim="${k}" style="cursor:pointer" fill="#1a1a2e" opacity="${on?.8:.22}" font-size="10.5" font-family="Space Grotesk" font-weight="800" letter-spacing="2.2"><textPath href="#sec_${k}" startOffset="50%" text-anchor="middle">${DIM[k].toUpperCase()}</textPath></text>`;
+    h+=`<path d="M${cx+Math.cos(a0)*(maxR+26+labelPx+4)},${cy+Math.sin(a0)*(maxR+26+labelPx+4)} L${cx+Math.cos(a0)*(maxR+26+labelPx+26)},${cy+Math.sin(a0)*(maxR+26+labelPx+26)}" stroke="#1a1a2e" stroke-opacity=".18" stroke-width=".8"/>`;
   });
   svg.innerHTML=h;
   window._seq=seq;
@@ -970,7 +1241,7 @@ function renderSidebar(){
   let h=`<div class="radar-sidebar-head"><span>Temas</span><span>${vis} de ${D_ALL.length}</span></div>`;
   DIMS.forEach(k=>{
     const items=D_ALL.filter(d=>d.s===k).sort((a,b)=>seq[a.id]-seq[b.id]);
-    h+=`<div class="radar-sidebar-title" style="color:var(--sky-t);cursor:pointer" onclick="toggleF('s','${k}')" title="${esc(DIMDESC[k])}">${DIM[k]}</div>`;
+    h+=`<div class="radar-sidebar-title" style="color:var(--text-0);cursor:pointer" onclick="toggleF('s','${k}')" title="${esc(DIMDESC[k])}">${DIM[k]}</div>`;
     items.forEach(d=>{
       const on=d.id===sel||(sel===null&&d.id===hov);
       h+=`<div class="radar-sidebar-item ${on?'on':''} ${passes(d)?'':'dim'}" onmousedown="sbSelect(${d.id})" onmouseenter="hov=${d.id};drawRadar()" onmouseleave="hov=null;drawRadar()"><span class="radar-sidebar-num">${pad3(seq[d.id])}</span><span class="rl-dot" style="background:${ccol(d.c)};margin-top:4px" title="${cnam(d.c)}"></span><span>${esc(d.n)}</span><span class="rsi-type" title="${TYPES[d.t].name}">${d.t==='tend'?'T':d.t==='sinal'?'SF':'CN'}</span></div>`;
@@ -982,8 +1253,8 @@ function sbSelect(id){sel=id;hov=null;openPanel(id);drawRadar();}
 function renderLegend_unused(){
   const el=document.getElementById('radarLegend');
   let h=`<div class="rl-group"><span class="rl-title">Linha</span>`+CATS.map(c=>`<div class="radar-legend-item ${F.c.size&&!F.c.has(c.id)?'off':''}" onclick="toggleF('c','${c.id}')"><span class="rl-dot" style="background:${c.color}"></span>${c.name}</div>`).join('')+`</div>`;
-  h+=`<div class="rl-group"><span class="rl-title">Tipo</span>`+Object.keys(TYPES).map(t=>`<div class="radar-legend-item ${F.t.size&&!F.t.has(t)?'off':''}" onclick="toggleF('t','${t}')">${shapeIcon(t,'#EAF1FF')}${TYPES[t].name}</div>`).join('')+`</div>`;
-  h+=`<div class="rl-group"><span class="rl-title">Impacto</span><div class="radar-legend-item" style="cursor:default"><svg class="rl-shape" viewBox="-9 -9 18 18"><circle r="2.5" fill="#8A9AB5"/></svg>baixo</div><div class="radar-legend-item" style="cursor:default"><svg class="rl-shape" viewBox="-9 -9 18 18"><circle r="4.2" fill="#8A9AB5"/></svg>médio</div><div class="radar-legend-item" style="cursor:default"><svg class="rl-shape" viewBox="-9 -9 18 18"><circle r="6.2" fill="#8A9AB5"/></svg>alto</div></div>`;
+  h+=`<div class="rl-group"><span class="rl-title">Tipo</span>`+Object.keys(TYPES).map(t=>`<div class="radar-legend-item ${F.t.size&&!F.t.has(t)?'off':''}" onclick="toggleF('t','${t}')">${shapeIcon(t,'#1a1a2e')}${TYPES[t].name}</div>`).join('')+`</div>`;
+  h+=`<div class="rl-group"><span class="rl-title">Impacto</span><div class="radar-legend-item" style="cursor:default"><svg class="rl-shape" viewBox="-9 -9 18 18"><circle r="2.5" fill="#6e6e88"/></svg>baixo</div><div class="radar-legend-item" style="cursor:default"><svg class="rl-shape" viewBox="-9 -9 18 18"><circle r="4.2" fill="#6e6e88"/></svg>médio</div><div class="radar-legend-item" style="cursor:default"><svg class="rl-shape" viewBox="-9 -9 18 18"><circle r="6.2" fill="#6e6e88"/></svg>alto</div></div>`;
   h+=`<div class="rl-group"><span class="rl-title">Leitura</span><div class="radar-legend-item" style="cursor:default;color:var(--text-3)">setor = dimensão STEEPLEDI · cor = linha de produto · centro Agir, meio Preparar, borda Observar</div></div>`;
   el.innerHTML=h;
 }
@@ -1030,7 +1301,7 @@ function relEdges(){const E=[];D_ALL.forEach(a=>a.cn.forEach(([b,txt])=>E.push({
 function relLayout(W,H){
   const nodes=D_ALL.map(d=>({id:d.id,d}));
   const E=relEdges();
-  const {fw}=sideSpace('relFilters',null);const toolsW=(W>1000)?270:0;
+  const {fw}=sideSpace('relFilters',null);const toolsW=(W>1000)?320:0;
   if(relMode==='grade'){
     const left=fw+120,top=60,right=W-toolsW-20,bottom=H-30;
     const cw=(right-left)/DIMS.length,rh=(bottom-top)/CATS.length;
@@ -1068,22 +1339,22 @@ function drawRel(){
   const focus=relHov||sel;
   let h='';
   if(grid){
-    DIMS.forEach((k,i)=>{h+=`<text x="${grid.left+grid.cw*(i+.5)}" y="${grid.top-14}" text-anchor="middle" font-family="Archivo" font-weight="800" font-size="10" letter-spacing="1.2" fill="#EAF1FF" opacity=".8">${DIM[k].toUpperCase()}</text>`;h+=`<line x1="${grid.left+grid.cw*i}" y1="${grid.top}" x2="${grid.left+grid.cw*i}" y2="${grid.top+grid.rh*CATS.length}" stroke="#EAF1FF" stroke-opacity=".12"/>`;});
-    CATS.forEach((c,i)=>{h+=`<text x="${grid.left-8}" y="${grid.top+grid.rh*(i+.5)}" text-anchor="end" dominant-baseline="middle" font-family="Archivo" font-weight="800" font-size="10" letter-spacing="1" fill="${c.color}">${c.name.toUpperCase()}</text>`;h+=`<line x1="${grid.left}" y1="${grid.top+grid.rh*i}" x2="${grid.left+grid.cw*DIMS.length}" y2="${grid.top+grid.rh*i}" stroke="#EAF1FF" stroke-opacity=".12"/>`;});
+    DIMS.forEach((k,i)=>{h+=`<text x="${grid.left+grid.cw*(i+.5)}" y="${grid.top-14}" text-anchor="middle" font-family="Space Grotesk" font-weight="800" font-size="10" letter-spacing="1.2" fill="#1a1a2e" opacity=".7">${DIM[k].toUpperCase()}</text>`;h+=`<line x1="${grid.left+grid.cw*i}" y1="${grid.top}" x2="${grid.left+grid.cw*i}" y2="${grid.top+grid.rh*CATS.length}" stroke="#1a1a2e" stroke-opacity=".07"/>`;});
+    CATS.forEach((c,i)=>{h+=`<text x="${grid.left-8}" y="${grid.top+grid.rh*(i+.5)}" text-anchor="end" dominant-baseline="middle" font-family="Space Grotesk" font-weight="800" font-size="10" letter-spacing="1" fill="${c.color}">${c.name.toUpperCase()}</text>`;h+=`<line x1="${grid.left}" y1="${grid.top+grid.rh*i}" x2="${grid.left+grid.cw*DIMS.length}" y2="${grid.top+grid.rh*i}" stroke="#1a1a2e" stroke-opacity=".07"/>`;});
   }
   const okN=id=>passes(byId(id));
-  E.forEach(e=>{const a=P[e.a],b=P[e.b];if(!a||!b)return;const on=focus?(e.a===focus||e.b===focus):true;const vis=okN(e.a)&&okN(e.b);
+  E.forEach(e=>{const a=P[e.a],b=P[e.b];if(!a||!b)return;const on=focus?(e.a===focus||e.b===focus):true;const vis=okN(e.a)&&okN(e.b)&&relPairOk(e);
     const mx=(a.x+b.x)/2+(a.y-b.y)*.12,my=(a.y+b.y)/2-(a.x-b.x)*.12;
-    h+=`<path class="rel-edge" d="M${a.x},${a.y} Q${mx},${my} ${b.x},${b.y}" fill="none" stroke="${ccol(a.d.c)}" stroke-width="${focus&&on?1.8:1}" opacity="${!vis?.03:focus?(on?.8:.06):.22}"/>`;
+    h+=`<path class="rel-edge" d="M${a.x},${a.y} Q${mx},${my} ${b.x},${b.y}" fill="none" stroke="${ccol(a.d.c)}" stroke-width="${focus&&on?1.8:1}" opacity="${!vis?.03:focus?(on?.8:.06):relPair?.75:.22}"/>`;
   });
   nodes.forEach(n=>{const d=n.d,col=ccol(d.c),vis=passes(d);const isF=n.id===focus;const conn=focus&&(byId(focus).cn.some(([x])=>x===n.id)||d.cn.some(([x])=>x===focus));
     let op=vis?1:.08;if(focus&&!isF&&!conn)op=.18;
     const size=(4+(d.i-1)*1.6)+(isF?2:0);
     const showLbl=true;
-    h+=`<g class="rnode" data-id="${n.id}" style="cursor:pointer;opacity:${op}"><g transform="translate(${n.x},${n.y})">${typeShape(d.t,col,size)}<circle r="${size+7}" fill="transparent"/></g>${showLbl?`<text x="${n.x}" y="${n.y+size+11}" text-anchor="middle" font-family="Archivo" font-size="${isF?10.5:W>1000?9:8}" font-weight="${isF||conn?700:500}" fill="${isF?col:'#E3E9F3'}" style="paint-order:stroke;stroke:#0B1730;stroke-width:3px;stroke-linejoin:round">${esc(shortName(d.n))}</text>`:''}</g>`;
+    h+=`<g class="rnode" data-id="${n.id}" style="cursor:pointer;opacity:${op}"><g transform="translate(${n.x},${n.y})">${typeShape(d.t,col,size)}<circle r="${size+7}" fill="transparent"/></g>${showLbl?`<text x="${n.x}" y="${n.y+size+11}" text-anchor="middle" font-family="Space Grotesk" font-size="${isF?10.5:W>1000?9:8}" font-weight="${isF||conn?700:500}" fill="${isF?col:'#2d2d44'}" style="paint-order:stroke;stroke:#ffffff;stroke-width:3px;stroke-linejoin:round">${esc(shortName(d.n))}</text>`:''}</g>`;
   });
   if(focus&&P[focus]){const f=byId(focus);f.cn.forEach(([id,txt])=>{const a=P[focus],b=P[id];if(!b)return;const mx=(a.x+b.x)/2+(a.y-b.y)*.12,my=(a.y+b.y)/2-(a.x-b.x)*.12;const w=Math.min(txt.length*5.2+10,260);
-      h+=`<g><rect x="${mx-w/2}" y="${my-8}" width="${w}" height="16" rx="4" fill="#162A4F" stroke="${ccol(f.c)}" stroke-opacity=".7"/><text class="rel-lbl" x="${mx}" y="${my+3.5}" text-anchor="middle">${esc(txt.length>48?txt.slice(0,47)+'\u2026':txt)}</text></g>`;});}
+      h+=`<g><rect x="${mx-w/2}" y="${my-8}" width="${w}" height="16" rx="4" fill="#ffffff" stroke="${ccol(f.c)}" stroke-opacity=".6"/><text class="rel-lbl" x="${mx}" y="${my+3.5}" text-anchor="middle">${esc(txt.length>48?txt.slice(0,47)+'\u2026':txt)}</text></g>`;});}
   svg.innerHTML=h;
 }
 (function(){const w=document.getElementById('relWrap');
@@ -1139,13 +1410,14 @@ function renderHelp(){
   <div class="sec-head" style="margin-bottom:6px"><div><div class="sec-title">Como <b>navegar</b></div><div class="sec-sub">O radar organiza temas de futuro, não notícias: a notícia é evidência que sustenta o tema. Para cada tema ele diz o que é, o que muda para a companhia, quando chega, o que fazer e como se liga aos outros. Esta é uma prova de conceito: a estrutura está pronta, o conteúdo é uma primeira varredura.</div></div></div>
   <div class="help-block"><div class="help-block-title">${ICO.ring}Anéis: o que a distância do centro significa</div><div class="help-text"><p>Num radar, o que está perto do centro está perto de chegar. Por padrão os anéis são o <b>horizonte</b>, e um radar de futuros olha no mínimo dez anos: em curso (até 2027) no centro, curto prazo (até 2030), médio prazo (até 2035) e longo prazo (até 2050) na borda. O botão da coluna esquerda troca para <b>postura</b>, a leitura da Sicredi Pioneira: Agir no centro, Preparar no meio, Observar na borda, combinando impacto e prontidão.</p></div><div class="help-grid">${[1,2,3].map(p=>`<div class="hg"><b>${POST[p].name}</b>${POST[p].desc}</div>`).join('')}</div></div>
   <div class="help-block"><div class="help-block-title">${ICO.src}Temas, evidências e relações</div><div class="help-text"><p>Cada ponto é um <b>tema</b>: uma mudança em curso ou possível, descrita pelo que ela é. As <b>evidências</b> são as notícias e os dados que mostram o tema acontecendo, cada uma com fonte. As <b>relações</b> dizem, em uma frase, como um tema puxa, amplia ou responde a outro; a página Relações desenha essa rede, em modo rede (temas mais ligados ficam mais próximos) ou em grade linha de produto x dimensão.</p><p>O grau de <b>evidência</b> da ficha é calculado pelas fontes: forte quando há fonte oficial ou associativa mais imprensa especializada; média quando há uma só das duas; fraca quando só há um blog ou corretora; interna quando só há documento da própria companhia.</p></div></div>
-  <div class="help-block"><div class="help-block-title">${ICO.shape}Formas: o tipo de tema</div><div class="help-text">A forma do ponto indica a intensidade do padrão, de um evento em curso a um evento improvável.</div><div class="help-grid">${Object.keys(TYPES).map(t=>`<div class="hg"><b>${shapeIcon(t,'#EAF1FF')} ${TYPES[t].name}</b>${TYPES[t].desc}${t==='cisne'?' Cada cisne negro traz gatilhos de alerta: os sinais precursores que, se aparecerem, pedem revisão da postura.':''}</div>`).join('')}</div></div>
+  <div class="help-block"><div class="help-block-title">${ICO.shape}Formas: o tipo de tema</div><div class="help-text">A forma do ponto indica a intensidade do padrão, de um evento em curso a um evento improvável.</div><div class="help-grid">${Object.keys(TYPES).map(t=>`<div class="hg"><b>${shapeIcon(t,'#1a1a2e')} ${TYPES[t].name}</b>${TYPES[t].desc}${t==='cisne'?' Cada cisne negro traz gatilhos de alerta: os sinais precursores que, se aparecerem, pedem revisão da postura.':''}</div>`).join('')}</div></div>
   <div class="help-block"><div class="help-block-title">${ICO.sector}Setores: as nove dimensões STEEPLEDI</div><div class="help-text">Cada fatia é uma dimensão do ambiente, pela natureza principal do impacto do achado. A largura da fatia acompanha o número de achados: uma fatia estreita mostra onde a varredura ainda é rala. Clique no nome da dimensão para filtrar.</div><div class="help-grid">${DIMS.map(k=>`<div class="hg"><b>${DIM[k]}</b>${esc(DIMDESC[k])}</div>`).join('')}</div></div>
   <div class="help-block"><div class="help-block-title">${ICO.radar}Cores e filtro: as linhas de produto</div><div class="help-text">A cor do ponto é a linha de produto da Seguros Unimed em que o impacto aparece primeiro; os demais produtos afetados estão na ficha. Achados que atravessam a carteira inteira (regulação, tributação, tecnologia, demografia) ficam na linha Transversal. Filtre por linha na barra do topo ou na legenda.</div><div class="help-grid">${CATS.map(c=>`<div class="hg"><b><span class="sw" style="background:${c.color}"></span>${c.name}</b>${esc(c.prods)}</div>`).join('')}</div></div>
   <div class="help-block"><div class="help-block-title">${ICO.radar}Tamanho, horizonte e dimensão</div><div class="help-text"><p><b>Tamanho do ponto</b> é o grau de impacto (baixo, médio, alto). <b>Horizonte</b> é quando o impacto se materializa: em curso até 2027, curto prazo até 2030, médio prazo até 2035, longo prazo até 2050. A página Impacto x Horizonte cruza os dois, na leitura do Radar de Tendências do kit de Design de Futuros.</p><p><b>Dimensão</b> segue a grade STEEPLEDI e define o setor da roda. Um radar só com achados tecnológicos é um radar mal feito: a cobertura social, regulatória e demográfica é parte do método, e a largura das fatias deixa isso visível.</p></div></div>
-  <div class="help-block"><div class="help-block-title">${ICO.src}Fontes, versão e revisão</div><div class="help-text"><p>Todo achado carrega ao menos uma fonte identificável, listada na ficha e na página Fontes. Número sem fonte não entra. Achado com fonte apenas interna fica em "a verificar" na página Impacto x Horizonte.</p><p>O radar não é documento estático. Versão ${VERSAO.v}, elaborada em ${VERSAO.data}, com fontes acessadas em ${VERSAO.acesso}. Próxima revisão sugerida: ${VERSAO.proxima}. A cada revisão, o que mudou de anel ou de tipo fica registrado.</p></div></div>
-  <div class="help-block"><div class="help-block-title">${ICO.key}Navegação e atalhos</div><div class="help-text">No radar, passe o mouse sobre um ponto para ver as conexões; clique para abrir a ficha, que abre à esquerda e deixa a lista da direita livre para percorrer os achados um a um. Filtros no topo e na legenda reduzem o que aparece sem tirar do lugar.</div><div class="help-keys"><span class="help-key">Rolagem</span><span>zoom</span><span class="help-key">Arrastar</span><span>mover</span><span class="help-key">Esc</span><span>fechar ficha</span><span class="help-key">1 a 8</span><span>trocar de página</span></div></div>
-  <div class="help-block"><div class="help-block-title">${ICO.info}Referências de método e limites desta POC</div><div class="help-text"><p>Estrutura inspirada no Radar de Futuros da Sicredi Pioneira (posturas Agir, Preparar e Observar; tipos Tendência, Sinal Fraco e Cisne Negro; setores por dimensão do ambiente, aqui na grade STEEPLEDI de nove dimensões; macrotendências) e no Horizon 2045 Foresight Radar (domínios, anéis de escala e sinais com fonte). A leitura impacto x horizonte vem do Radar de Tendências do kit de Design de Futuros usado pela Estratégia.</p><p>Limites: os temas são uma primeira varredura de fontes públicas de mercado e imprensa especializada, sem validação com as áreas de produto. A classificação de postura, horizonte e impacto é proposta inicial, para ser calibrada em oficina. Não há cenários nem histórico de movimento entre versões (isso entra a partir da v3). Números da carteira vêm de divulgações públicas da própria Seguros Unimed.</p></div></div>`;
+  <div class="help-block"><div class="help-block-title">${ICO.src}Fontes, versão e revisão</div><div class="help-text"><p>Todo achado carrega ao menos uma fonte identificável, listada na ficha. Número sem fonte não entra. Achado com fonte apenas interna fica em "a verificar" na página Impacto x Horizonte.</p><p>O radar não é documento estático. Versão ${VERSAO.v}, elaborada em ${VERSAO.data}, com fontes acessadas em ${VERSAO.acesso}. Próxima revisão sugerida: ${VERSAO.proxima}. A cada revisão, o que mudou de anel ou de tipo fica registrado.</p></div></div>
+  <div class="help-block"><div class="help-block-title">${ICO.radar}Visão, linha do tempo, cruzamentos e cenários</div><div class="help-text"><p><b>Visão</b> recorta o radar por impacto: Prioridade mostra só os temas de impacto alto, Ampliada soma os de impacto médio, Completa mostra tudo. Vale para o radar, a linha do tempo, o explorar, as métricas e o índice.</p><p><b>Linha do tempo</b> dispõe os temas de 2026 a 2050 por linha de produto: a mesma informação da roda, lida como calendário. <b>Cruzamentos</b> mostra, para um tema A, quem puxa A e o que A puxa, com a frase de cada relação, e as <b>jogadas</b>, combinações de temas para uma saída estratégica, com o papel de cada ingrediente e onde a jogada vira erro. <b>Cenários 2035</b> combina os temas em três futuros plausíveis (transformação, tendencial, ruptura), cada um com sinais de que estamos indo para lá.</p><p>Cada ficha traz três camadas além da descrição: <b>para o comitê em uma frase</b>, <b>o que ninguém diz</b> e <b>o pulo do gato</b>. <b>Indicadores</b> reúne os números de mercado extraídos das fontes, por linha de produto; <b>Índice</b> lista tudo em ordem alfabética.</p></div></div>
+  <div class="help-block"><div class="help-block-title">${ICO.key}Navegação e atalhos</div><div class="help-text">No radar, passe o mouse sobre um ponto para ver as conexões; clique para abrir a ficha, que abre à esquerda e deixa a lista da direita livre para percorrer os achados um a um. Filtros no topo e na legenda reduzem o que aparece sem tirar do lugar.</div><div class="help-keys"><span class="help-key">Rolagem</span><span>zoom</span><span class="help-key">Arrastar</span><span>mover</span><span class="help-key">Esc</span><span>fechar ficha</span><span class="help-key">1 a 9</span><span>trocar de página</span></div></div>
+  <div class="help-block"><div class="help-block-title">${ICO.info}Referências de método e limites desta POC</div><div class="help-text"><p>Estrutura inspirada no Radar de Futuros da Sicredi Pioneira (posturas Agir, Preparar e Observar; tipos Tendência, Sinal Fraco e Cisne Negro; setores por dimensão do ambiente, aqui na grade STEEPLEDI de nove dimensões; macrotendências) e no Horizon 2045 Foresight Radar (domínios, anéis de escala e sinais com fonte). A leitura impacto x horizonte vem do Radar de Tendências do kit de Design de Futuros usado pela Estratégia.</p><p>Limites: os temas são uma primeira varredura de fontes públicas de mercado e imprensa especializada, sem validação com as áreas de produto. A classificação de postura, horizonte e impacto é proposta inicial, para ser calibrada em oficina. Os cenários são construções a partir dos temas, não previsões. Não há histórico de movimento entre versões ainda. Números da carteira vêm de divulgações públicas da própria Seguros Unimed.</p></div></div>`;
 }
 
 // ═══════════════════════════════════════
@@ -1178,6 +1450,7 @@ function openPanel(id){
       <div class="pm"><div class="pm-l">Evidência</div><div class="pm-v" title="${esc(grDesc)}">${gr}</div></div>
     </div>
     <div class="pan-sec"><div class="pan-sec-l">O que muda para a Seguros Unimed</div><div class="pan-imp">${esc(d.q)}</div></div>
+    ${panelExtras(d)}
     ${d.gat?`<div class="pan-sec"><div class="pan-sec-l">Gatilhos de alerta (o que observar)</div><ul class="pan-refs">${d.gat.map(g=>`<li class="pan-ref"><span class="n">&#9650;</span><span>${esc(g)}</span></li>`).join('')}</ul></div>`:''}
     <div class="pan-sec"><div class="pan-sec-l">Evidências (notícias e dados que sustentam o tema)</div><ul class="pan-refs">${d.ev.map(e=>`<li class="pan-ref"><span class="n">${e.f.join(',')}</span><span>${esc(e.t)}<small>${e.f.map(x=>{const s=src(x);return s.u?`<a href="${s.u}" target="_blank" rel="noopener">${esc(s.o)}</a>`:esc(s.o)}).join(' · ')}</small></span></li>`).join('')}</ul></div>
     <div class="pan-sec"><div class="pan-sec-l">Produtos afetados</div><div class="pan-prods">${d.pr.map(p=>`<span class="pp">${esc(p)}</span>`).join('')}</div></div>
@@ -1194,6 +1467,243 @@ document.addEventListener('keydown',e=>{
   if(e.target.tagName==='INPUT')return;
   const i=parseInt(e.key);if(i>=1&&i<=PAGES.length)go(PAGES[i-1]);
 });
+
+// ═══════════════════════════════════════
+// VISÃO (recorte por impacto)
+// ═══════════════════════════════════════
+function viewMin(){return (VIEWS.find(v=>v.id===VIEW)||VIEWS[VIEWS.length-1]).min;}
+function setView(v){VIEW=v;try{localStorage.setItem('radar-su-view',v)}catch(_){}refresh();renderHome();if(pg==='tl')drawTimeline();if(pg==='metrics')renderMetrics();if(pg==='index')renderIndex();}
+try{const v=localStorage.getItem('radar-su-view');if(v&&VIEWS.some(x=>x.id===v))VIEW=v;}catch(_){}
+function viewGroup(){return `<div class="fgroup"><span class="fgroup-label">Visão (recorte por impacto)</span><div class="ringtog">${VIEWS.map(v=>`<button class="${VIEW===v.id?'on':''}" title="${v.hint}" onclick="setView('${v.id}')">${v.l}</button>`).join('')}</div><div class="rl-note">${(VIEWS.find(v=>v.id===VIEW)||{}).hint||''}: ${D_ALL.filter(d=>d.i>=viewMin()).length} de ${D_ALL.length} temas.</div></div>`;}
+
+// ═══════════════════════════════════════
+// LINHA DO TEMPO 2026 a 2050
+// ═══════════════════════════════════════
+let tlHov=null;
+function drawTimeline(){
+  const wrap=document.getElementById('tlWrap');if(!wrap)return;
+  const W=Math.max(880,wrap.clientWidth-8),H=Math.max(440,Math.min(640,wrap.clientHeight-8));
+  const svg=document.getElementById('tlSvg');svg.setAttribute('width',W);svg.setAttribute('height',H);svg.setAttribute('viewBox',`0 0 ${W} ${H}`);
+  const left=150,top=52,right=W-24,bottom=H-26;
+  const bw=(right-left)/4,lh=(bottom-top)/CATS.length;
+  let h='';
+  HORS.forEach((x,i)=>{
+    h+=`<rect x="${left+bw*i}" y="${top}" width="${bw}" height="${bottom-top}" fill="${i%2?'#009EDB':'#00995D'}" opacity=".05"/>`;
+    h+=`<text x="${left+bw*(i+.5)}" y="${top-26}" text-anchor="middle" font-family="Space Grotesk" font-weight="800" font-size="11" letter-spacing="1.5" fill="#1a1a2e" opacity=".85">${HOR[x].name.toUpperCase()}</text>`;
+    h+=`<text x="${left+bw*(i+.5)}" y="${top-11}" text-anchor="middle" font-family="Space Grotesk" font-size="9.5" fill="#6e6e88">${HOR[x].short} · ${HOR[x].sub}</text>`;
+    h+=`<line x1="${left+bw*i}" y1="${top}" x2="${left+bw*i}" y2="${bottom}" stroke="#1a1a2e" stroke-opacity=".1"/>`;
+  });
+  h+=`<line x1="${left}" y1="${bottom}" x2="${right}" y2="${bottom}" stroke="#1a1a2e" stroke-opacity=".3"/>`;
+  [['2026',0],['2027',1],['2030',2],['2035',3],['2050',4]].forEach(([y,i])=>{h+=`<text x="${left+bw*i}" y="${bottom+16}" text-anchor="middle" font-family="JetBrains Mono" font-size="10" fill="#6e6e88">${y}</text>`;});
+  CATS.forEach((c,ri)=>{
+    const y=top+lh*ri;
+    h+=`<line x1="${left}" y1="${y}" x2="${right}" y2="${y}" stroke="#1a1a2e" stroke-opacity=".07"/>`;
+    h+=`<text x="${left-10}" y="${y+lh/2}" text-anchor="end" dominant-baseline="middle" font-family="Space Grotesk" font-weight="800" font-size="10" letter-spacing="1" fill="${c.color}">${c.name.toUpperCase()}</text>`;
+  });
+  const cell={};D_ALL.forEach(d=>{const k=d.c+'|'+d.h;(cell[k]=cell[k]||[]).push(d);});
+  const pos={};
+  Object.entries(cell).forEach(([k,list])=>{
+    list.sort((a,b)=>b.i-a.i||a.n.localeCompare(b.n));
+    const [c,hz]=k.split('|');const ri=CATS.findIndex(x=>x.id===c),bi=+hz-1;
+    const n=list.length;
+    list.forEach((d,j)=>{
+      const fx=n===1?.5:.18+.64*(j/(n-1));
+      const x=left+bw*(bi+fx);
+      const y=top+lh*ri+lh*(n===1?.5:(j%2?.68:.32));
+      pos[d.id]={x,y};
+    });
+  });
+  const focus=tlHov||sel;
+  D_ALL.forEach(d=>{
+    const p=pos[d.id],col=ccol(d.c),ok=passes(d);
+    const isF=d.id===focus,conn=focus&&byId(focus).cn.some(([x])=>x===d.id);
+    let op=ok?1:.1;if(focus&&!isF&&!conn)op=.25;
+    const size=(3.6+(d.i-1)*1.7)+(isF?2:0);
+    h+=`<g class="tlnode" data-id="${d.id}" style="cursor:pointer;opacity:${op}"><g transform="translate(${p.x},${p.y})">${typeShape(d.t,col,size)}<circle r="${size+7}" fill="transparent"/></g><text x="${p.x}" y="${p.y+size+11}" text-anchor="middle" font-family="Space Grotesk" font-size="${isF?10:8.5}" font-weight="${isF?700:500}" fill="${isF?col:'#2d2d44'}" style="paint-order:stroke;stroke:#ffffff;stroke-width:3px;stroke-linejoin:round">${esc(shortName(d.n))}</text></g>`;
+  });
+  if(focus&&pos[focus]){const f=byId(focus);f.cn.forEach(([id])=>{const a=pos[focus],b=pos[id];if(!b)return;const mx=(a.x+b.x)/2,my=Math.min(a.y,b.y)-24;h+=`<path d="M${a.x},${a.y} Q${mx},${my} ${b.x},${b.y}" fill="none" stroke="${ccol(f.c)}" stroke-width="1.4" stroke-dasharray="4 3" opacity=".7"/>`;});}
+  svg.innerHTML=h;
+}
+(function(){const w=document.getElementById('tlWrap');if(!w)return;
+  w.addEventListener('mousemove',e=>{const g=e.target.closest('g.tlnode');const id=g?+g.dataset.id:null;if(id!==tlHov){tlHov=id;drawTimeline();}const tip=document.getElementById('tip');if(id){const d=byId(id);tip.innerHTML=`<b>${esc(d.n)}</b>${esc(d.d.slice(0,150))}${d.d.length>150?'…':''}<div class="tm"><span style="color:${ccol(d.c)};font-weight:700">${cnam(d.c)}</span><span>·</span><span>${HOR[d.h].name}</span><span>·</span><span>${POST[d.p].name}</span></div>`;tip.style.left=Math.min(e.clientX,window.innerWidth-300)+'px';tip.style.top=Math.min(e.clientY,window.innerHeight-120)+'px';tip.classList.add('show');}else tip.classList.remove('show');});
+  w.addEventListener('mouseleave',()=>{tlHov=null;drawTimeline();document.getElementById('tip').classList.remove('show');});
+  w.addEventListener('click',e=>{const g=e.target.closest('g.tlnode');if(!g)return;sel=+g.dataset.id;openPanel(sel);drawTimeline();});
+})();
+
+// ═══════════════════════════════════════
+// RELAÇÕES: matriz de correlações entre linhas
+// ═══════════════════════════════════════
+let relShowCorr=false,relPair=null;
+function relToggleCorr(){relShowCorr=!relShowCorr;if(!relShowCorr)relPair=null;renderRelCorr();drawRel();}
+function relSetPair(a,b){relPair=(relPair&&relPair[0]===a&&relPair[1]===b)?null:[a,b];renderRelCorr();drawRel();}
+function relPairOk(e){if(!relPair)return true;const ca=byId(e.a).c,cb=byId(e.b).c;return (ca===relPair[0]&&cb===relPair[1])||(ca===relPair[1]&&cb===relPair[0]);}
+function renderRelCorr(){
+  const el=document.getElementById('relCorr');if(!el)return;
+  const btn=document.getElementById('relCorrBtn');if(btn)btn.classList.toggle('on',relShowCorr);
+  if(!relShowCorr){el.style.display='none';return;}
+  el.style.display='block';
+  const M={};CATS.forEach(a=>{M[a.id]={};CATS.forEach(b=>M[a.id][b.id]=0);});
+  D_ALL.forEach(d=>d.cn.forEach(([id])=>{const o=byId(id);if(o){M[d.c][o.c]++;if(d.c!==o.c)M[o.c][d.c]++;}}));
+  let mx=1;CATS.forEach(a=>CATS.forEach(b=>{if(a.id!==b.id)mx=Math.max(mx,M[a.id][b.id]);}));
+  let h=`<div class="corr-title">Relações entre linhas de produto <span>clique numa célula para destacar</span></div><table class="corr"><tr><th></th>${CATS.map(c=>`<th style="color:${c.color}">${c.name.split(' ')[0]}</th>`).join('')}</tr>`;
+  CATS.forEach(a=>{h+=`<tr><th style="color:${a.color}">${a.name}</th>`;CATS.forEach(b=>{const v=M[a.id][b.id];const on=relPair&&((relPair[0]===a.id&&relPair[1]===b.id)||(relPair[0]===b.id&&relPair[1]===a.id));const al=a.id===b.id?.10:.12+.6*(v/mx);h+=`<td class="${on?'on':''}" style="background:rgba(0,153,93,${v?al:0.03})" onclick="relSetPair('${a.id}','${b.id}')" title="${a.name} x ${b.name}: ${v} relações">${v||''}</td>`;});h+=`</tr>`;});
+  h+=`</table><div class="rl-note">Diagonal = relações dentro da mesma linha. ${relPair?`Destacando ${cnam(relPair[0])} x ${cnam(relPair[1])}. `:''}Clique de novo para limpar.</div>`;
+  el.innerHTML=h;
+}
+
+// ═══════════════════════════════════════
+// CRUZAMENTOS: puxa e é puxado (A → B) e jogadas
+// ═══════════════════════════════════════
+let cruzTab='ab',cruzFocus=null;
+function cruzSetTab(t){cruzTab=t;renderCruz();}
+function renderCruz(){
+  const tabs=document.getElementById('cruzTabs');if(!tabs)return;
+  tabs.innerHTML=[['ab','Quem puxa e o que é puxado'],['jog','Jogadas']].map(([k,l])=>`<button class="lab-tab ${cruzTab===k?'on':''}" onclick="cruzSetTab('${k}')">${l}</button>`).join('');
+  const c=document.getElementById('cruzContent');
+  if(cruzTab==='ab'){c.innerHTML=renderCruzAB();drawCruzDiagram();}else c.innerHTML=renderJogadas();
+}
+function renderCruzAB(){
+  if(cruzFocus===null)cruzFocus=D_ALL.reduce((a,b)=>a.cn.length>b.cn.length?a:b).id;
+  const opts=CATS.map(c=>`<optgroup label="${c.name}">`+D_ALL.filter(d=>d.c===c.id).sort((a,b)=>a.n.localeCompare(b.n)).map(d=>`<option value="${d.id}" ${d.id===cruzFocus?'selected':''}>${esc(d.n)}</option>`).join('')+`</optgroup>`).join('');
+  const deg=d=>d.cn.length+D_ALL.filter(x=>x.cn.some(([id])=>id===d.id)).length;
+  const top=[...D_ALL].sort((a,b)=>deg(b)-deg(a)).slice(0,6);
+  return `<p class="lab-intro">Escolha o tema A e leia o diagrama: à esquerda, quem puxa A; à direita, o que A puxa. Cada seta traz a frase da relação. Clique num tema para torná-lo o novo A; clique no A central para abrir a ficha.</p>
+  <div class="hab-controls"><b>Tema A:</b><select onchange="cruzFocus=parseInt(this.value);renderCruz()">${opts}</select><span class="hab-quick">mais conectados: ${top.map(d=>`<span class="lab-chip" onclick="cruzFocus=${d.id};renderCruz()">${esc(shortName(d.n))}</span>`).join('')}</span></div>
+  <div class="hab-svg-wrap"><svg id="cruzSvg"></svg></div>`;
+}
+function cruzNode(d,x,y,w,isA,txt){
+  const col=ccol(d.c);const name=d.n.length>40?d.n.slice(0,38)+'…':d.n;
+  return `<g style="cursor:pointer" data-hid="${d.id}"><rect x="${x}" y="${y}" width="${w}" height="${txt?46:32}" rx="8" fill="${isA?'rgba(0,153,93,.08)':'#ffffff'}" stroke="${isA?'#00995D':col}" stroke-width="${isA?2:1.2}"/><circle cx="${x+13}" cy="${y+16}" r="4" fill="${col}"/><text x="${x+23}" y="${y+20}" font-size="11" font-family="Space Grotesk" font-weight="${isA?800:600}" fill="#1a1a2e">${esc(name)}</text>${txt?`<text x="${x+23}" y="${y+36}" font-size="9.5" font-family="Space Grotesk" fill="#6e6e88">${esc(txt.length>52?txt.slice(0,50)+'…':txt)}</text>`:''}</g>`;
+}
+function drawCruzDiagram(){
+  const svg=document.getElementById('cruzSvg');const A=byId(cruzFocus);if(!svg||!A)return;
+  const rev=D_ALL.filter(d=>d.cn.some(([id])=>id===A.id)).map(d=>({d,txt:d.cn.find(([id])=>id===A.id)[1]})).sort((a,b)=>a.d.n.localeCompare(b.d.n));
+  const fwd=A.cn.map(([id,txt])=>({d:byId(id),txt})).filter(x=>x.d).sort((a,b)=>a.d.n.localeCompare(b.d.n));
+  const wrap=svg.parentElement;const W=Math.max(860,(wrap.clientWidth||900)-24);
+  const colW=Math.min(300,(W-140)/3),gap=(W-colW*3)/2;
+  const x1=4,x2=x1+colW+gap,x3=x1+2*(colW+gap);const rowH=56;
+  const n=Math.max(rev.length,fwd.length,1);const H=n*rowH+70;const yA=42+((n*rowH)-32)/2;
+  svg.setAttribute('width',W);svg.setAttribute('height',H);svg.setAttribute('viewBox',`0 0 ${W} ${H}`);
+  let h=`<defs><marker id="cruzArr" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto"><path d="M0,0L10,5L0,10z" fill="#00995D" opacity=".7"/></marker></defs>`;
+  h+=`<text x="${x1+colW/2}" y="22" text-anchor="middle" font-size="9.5" font-family="Space Grotesk" font-weight="800" letter-spacing="1.5" fill="#6e6e88">QUEM PUXA A (${rev.length})</text>`;
+  h+=`<text x="${x2+colW/2}" y="22" text-anchor="middle" font-size="9.5" font-family="Space Grotesk" font-weight="800" letter-spacing="1.5" fill="#00995D">TEMA A</text>`;
+  h+=`<text x="${x3+colW/2}" y="22" text-anchor="middle" font-size="9.5" font-family="Space Grotesk" font-weight="800" letter-spacing="1.5" fill="#6e6e88">A PUXA (${fwd.length})</text>`;
+  rev.forEach((r,i)=>{const y=42+i*rowH;h+=`<path d="M${x1+colW},${y+23} C${x1+colW+gap*.45},${y+23} ${x2-gap*.45},${yA+16} ${x2-4},${yA+16}" fill="none" stroke="#00995D" stroke-width="1.2" opacity=".35" marker-end="url(#cruzArr)"/>`;});
+  fwd.forEach((r,i)=>{const y=42+i*rowH;h+=`<path d="M${x2+colW},${yA+16} C${x2+colW+gap*.45},${yA+16} ${x3-gap*.45},${y+23} ${x3-4},${y+23}" fill="none" stroke="#00995D" stroke-width="1.2" opacity=".35" marker-end="url(#cruzArr)"/>`;});
+  rev.forEach((r,i)=>{h+=cruzNode(r.d,x1,42+i*rowH,colW,false,r.txt);});
+  h+=cruzNode(A,x2,yA,colW,true,null);
+  fwd.forEach((r,i)=>{h+=cruzNode(r.d,x3,42+i*rowH,colW,false,r.txt);});
+  if(!rev.length)h+=`<text x="${x1+colW/2}" y="${yA+20}" text-anchor="middle" font-size="10" fill="#9090a5">nada aponta para A</text>`;
+  if(!fwd.length)h+=`<text x="${x3+colW/2}" y="${yA+20}" text-anchor="middle" font-size="10" fill="#9090a5">A não aponta para ninguém</text>`;
+  svg.innerHTML=h;
+  if(!svg.dataset.wired){svg.dataset.wired='1';svg.addEventListener('click',e=>{const g=e.target.closest('g[data-hid]');if(!g)return;const id=parseInt(g.dataset.hid);if(id!==cruzFocus){cruzFocus=id;renderCruz();}else openPanel(id);});}
+}
+function renderJogadas(){
+  const cards=JOGADAS.map(r=>{
+    const ing=r.ing.map(i=>{const d=byId(i.id);return d?`<div class="recipe-ing"><span class="recipe-ing-name" onclick="openPanel(${d.id})"><span class="dot" style="background:${ccol(d.c)}"></span>${esc(d.n)}</span><span class="recipe-ing-role">${esc(i.papel)}</span></div>`:'';}).join('');
+    const passos=r.passos.map(p=>`<li>${esc(p)}</li>`).join('');
+    const av=(r.avisoIds||[]).map(id=>{const d=byId(id);return d?`<span class="lab-chip" onclick="openPanel(${d.id})">${esc(shortName(d.n))}</span>`:'';}).join('');
+    return `<div class="recipe-card"><div class="recipe-out">Saída</div><div class="recipe-name">${esc(r.saida)}</div><div class="recipe-desc">${esc(r.desc)}</div><div class="recipe-sec">Ingredientes</div>${ing}<div class="recipe-sec">Modo de preparo</div><ol class="recipe-steps">${passos}</ol><div class="recipe-warn"><b>Onde a jogada vira erro:</b> ${esc(r.aviso)}<div style="margin-top:6px">${av}</div></div></div>`;
+  }).join('');
+  return `<p class="lab-intro">Combinações de temas para uma saída estratégica, como receita: cada ingrediente tem um papel (massa, fermento, liga, tempero, cobertura) e toda jogada declara onde vira erro.</p><div class="recipe-grid">${cards}</div>`;
+}
+
+// ═══════════════════════════════════════
+// CENÁRIOS 2035
+// ═══════════════════════════════════════
+function renderCenarios(){
+  const el=document.getElementById('cenGrid');if(!el)return;
+  el.innerHTML=CENARIOS.map(c=>`<div class="cen-card" style="--cc:${c.cor}"><div class="cen-top"><span class="cen-type">${esc(c.tipo)}</span><span class="cen-year">2035</span></div><div class="cen-name">${esc(c.nome)}</div><div class="cen-prem">${esc(c.premissa)}</div><div class="cen-sec">Como seria</div><div class="cen-text">${esc(c.narrativa)}</div><div class="cen-sec">O que muda para a Seguros Unimed</div><div class="pan-imp" style="border-left-color:${c.cor}">${esc(c.su)}</div><div class="cen-sec">Sinais de que estamos indo para cá</div><ul class="cen-list">${c.sinais.map(s=>`<li>${esc(s)}</li>`).join('')}</ul><div class="cen-sec">Temas que o compõem</div><div class="pan-conn">${c.temas.map(id=>{const d=byId(id);return d?`<div class="pcc" onclick="openPanel(${d.id})"><span class="dot" style="background:${ccol(d.c)}"></span>${esc(d.n)}</div>`:''}).join('')}</div></div>`).join('');
+}
+
+// ═══════════════════════════════════════
+// INDICADORES DE MERCADO (extraídos das fontes)
+// ═══════════════════════════════════════
+const INDICADORES=[
+ {c:"sau",v:"80,8%",l:"Sinistralidade do setor",ctx:"nove primeiros meses de 2025, 2,3 pontos abaixo de 2024",f:[4],t:3},
+ {c:"sau",v:"32 milhões",l:"Brasileiros com 60 anos ou mais",ctx:"cerca de 16% da população",f:[36],t:1},
+ {c:"sau",v:"63%",l:"Programas de prevenção aprovados pela ANS conduzidos por Unimeds",ctx:"atenção primária como modelo",f:[33],t:2},
+ {c:"sau",v:"60 milhões",l:"Pessoas com cartão de desconto em saúde",ctx:"fora da regulação da ANS",f:[69,70],t:8},
+ {c:"sau",v:"+600%",l:"Vendas de medicamentos GLP-1",ctx:"entre 2018 e 2024, IQVIA",f:[27],t:5},
+ {c:"sau",v:"1 milhão",l:"Vidas em Saúde na Seguros Unimed",ctx:"sinistralidade de 71% no primeiro quadrimestre de 2026",f:[51],t:1},
+ {c:"odo",v:"35,7 milhões",l:"Beneficiários de planos odontológicos",ctx:"fevereiro de 2026, alta de 8,4% em doze meses",f:[16,76],t:10},
+ {c:"odo",v:"74,8%",l:"Participação dos coletivos empresariais no odonto",ctx:"individuais crescem 16,1%",f:[16],t:10},
+ {c:"odo",v:"1,3 milhão",l:"Beneficiários da Unimed Odonto",ctx:"alta de 318% em oito anos; 12.490 dentistas em 921 municípios",f:[50],t:10},
+ {c:"vid",v:"R$ 41,6 bi",l:"Prêmios de seguros de pessoas",ctx:"primeiro semestre de 2026, alta de 10%",f:[8],t:14},
+ {c:"vid",v:"+21%",l:"Crescimento das coberturas de doenças graves",ctx:"primeiro semestre de 2026",f:[8,77],t:14},
+ {c:"vid",v:"18%",l:"Adultos com algum seguro de vida",ctx:"82% seguem desprotegidos",f:[7],t:15},
+ {c:"vid",v:"30%",l:"Peso do prestamista no seguro de pessoas",ctx:"vida individual e coletivo 48%, acidentes pessoais 12%",f:[5],t:18},
+ {c:"vid",v:"+64%",l:"Expansão do mobile banking como canal de seguro",ctx:"segundo maior canal de contratação do país",f:[46,47],t:19},
+ {c:"prv",v:"R$ 1,63 tri",l:"Patrimônio da previdência privada",ctx:"maio de 2026; 11,2 milhões de pessoas, 13,7 milhões de planos",f:[56],t:22},
+ {c:"prv",v:"R$ 4 bi",l:"Captação líquida da previdência aberta em 2025",ctx:"queda de 93,5%; em 2026 os resgates superam os aportes",f:[9,10],t:22},
+ {c:"prv",v:"R$ 57 mi",l:"Contribuições de previdência da Seguros Unimed",ctx:"primeiro quadrimestre de 2026",f:[51],t:22},
+ {c:"prv",v:"R$ 1,47 bi",l:"PGBL na carteira da Seguros Unimed",ctx:"maior que o VGBL (R$ 388 mi), o inverso do mercado",f:[72],t:23},
+ {c:"prv",v:"R$ 2,3 bi",l:"Multicoop, fundo instituído das cooperativas",ctx:"73 instituidoras, cinco planos",f:[72],t:25},
+ {c:"prv",v:"100% do PIB",l:"Meta da Abrapp para os fundos de pensão",ctx:"em dez anos; ativos hoje em torno de R$ 1,4 trilhão",f:[65],t:25},
+ {c:"pat",v:"R$ 1,73 bi",l:"Prêmios de seguro residencial",ctx:"primeiro trimestre de 2026, alta de 10,5%",f:[13],t:27},
+ {c:"pat",v:"17%",l:"Domicílios com seguro residencial",ctx:"cerca de 13 milhões de casas; linha cresce 16%",f:[12,14],t:27},
+ {c:"pat",v:"R$ 6 bi",l:"Indenizações pelas enchentes do RS em 2024",ctx:"mais de 57 mil avisos; 29,8 mil residenciais",f:[53,54],t:27},
+ {c:"pat",v:"65%",l:"Acionamentos do residencial que são assistência",ctx:"imprevistos domésticos e manutenção",f:[15],t:29},
+ {c:"pat",v:"26,7%",l:"Empresários com seguro para o negócio",ctx:"mais de 70% das empresas sem proteção patrimonial",f:[14],t:30},
+ {c:"pat",v:"R$ 866 mi",l:"Mercado de RC profissional em 2024",ctx:"alta de 18%",f:[40],t:28},
+ {c:"pat",v:"139 mil",l:"Processos pendentes contra profissionais de saúde",ctx:"2024, alta de 80,5% sobre 2020; cerca de 70 novas ações por dia",f:[38,39],t:28},
+ {c:"pat",v:"45%",l:"Empresas de saúde que já sofreram ransomware",ctx:"custo médio de violação de US$ 1,36 milhão em 2024",f:[43,44],t:31},
+ {c:"tra",v:"R$ 2,8 bi",l:"Investimento do setor em IA até o fim de 2026",ctx:"80% já usam; 30% a 50% menos tempo de sinistro",f:[24,74],t:36},
+ {c:"tra",v:"10,85%",l:"Alíquota de IBS e CBS para seguros",ctx:"2027 e 2028, subindo até 12,5% em 2033; fim do IOF em 2027",f:[29,30],t:35},
+ {c:"tra",v:"1,57",l:"Filhos por mulher em 2023",ctx:"1,44 em 2040; população para de crescer em 2041",f:[48,49],t:38},
+ {c:"tra",v:"79,7 anos",l:"Expectativa de vida em 2040",ctx:"76,4 em 2023; 60+ chegam a 37,8% da população em 45 anos",f:[37,36],t:39},
+ {c:"tra",v:"34",l:"Unimeds entre as 50 maiores operadoras",ctx:"presença em nove de cada dez municípios",f:[32,34],t:34},
+ {c:"tra",v:"R$ 3,04 bi",l:"Faturamento da Seguros Unimed no primeiro quadrimestre de 2026",ctx:"alta de 13,6%; R$ 8,5 bi em 2025 e meta de R$ 9,6 bi em 2026",f:[51,52],t:34}
+];
+function renderMetrics(){
+  const el=document.getElementById('metWrap');if(!el)return;
+  let h='';
+  CATS.forEach(c=>{
+    const list=INDICADORES.filter(i=>i.c===c.id);if(!list.length)return;
+    h+=`<div class="ind-group"><div class="ind-head" style="color:${c.color}">${c.name}<span>${list.length} indicadores</span></div><div class="met-grid">${list.map(i=>{const tema=byId(i.t);return `<div class="met-card ind" style="--cc:${c.color}"><div class="met-val">${esc(i.v)}</div><div class="ind-label">${esc(i.l)}</div><div class="ind-ctx">${esc(i.ctx)}</div><div class="ind-foot"><span>Fonte: ${i.f.map(x=>{const s=src(x);return s.u?`<a href="${s.u}" target="_blank" rel="noopener">${esc(s.o.split(',')[0])}</a>`:esc(s.o.split(',')[0])}).join(' · ')}</span>${tema?`<span class="ind-tema" onclick="openPanel(${tema.id})">Tema: ${esc(shortName(tema.n))}</span>`:''}</div></div>`}).join('')}</div></div>`;
+  });
+  const D=D_ALL.filter(d=>d.i>=viewMin());
+  const bars=(title,rows)=>{const mx=Math.max(1,...rows.map(r=>r.v));return `<div class="met-block"><div class="met-section-title">${title}</div>${rows.map(r=>`<div class="met-bar-row"><div class="met-bar-label" style="color:${r.col||'var(--text-2)'}">${r.l}</div><div class="met-bar-track"><div class="met-bar-fill" style="width:${Math.round(r.v/mx*100)}%;background:${r.col||'#00995D'}"></div></div><div class="met-bar-val">${r.v}</div></div>`).join('')}</div>`;};
+  h+=`<div class="ind-group"><div class="ind-head" style="color:var(--text-3)">Sobre a varredura<span>${D.length} temas · ${D.reduce((a,d)=>a+d.ev.length,0)} evidências · ${new Set(D.flatMap(d=>d.f)).size} fontes</span></div><div class="met-cols">${bars('Por dimensão STEEPLEDI',DIMS.map(k=>({l:DIM[k],v:D.filter(d=>d.s===k).length})))}${bars('Por linha de produto',CATS.map(c=>({l:c.name,v:D.filter(d=>d.c===c.id).length,col:c.color})))}${bars('Por horizonte',HORS.map(x=>({l:HOR[x].name,v:D.filter(d=>d.h===x).length})))}</div></div>`;
+  el.innerHTML=h;
+}
+// ═══════════════════════════════════════
+// ÍNDICE A a Z
+// ═══════════════════════════════════════
+function renderIndex(){
+  const el=document.getElementById('idxList');if(!el)return;
+  const s=[...D_ALL].filter(d=>d.i>=viewMin()).sort((a,b)=>a.n.localeCompare(b.n));
+  let html='',ll='';
+  s.forEach(d=>{const l=d.n[0].toUpperCase();if(l!==ll){html+=`<div class="idx-letter">${l}</div>`;ll=l;}
+    html+=`<div class="idx-row" onclick="openPanel(${d.id})"><span class="idx-dot" style="background:${ccol(d.c)}"></span><span class="idx-name">${esc(d.n)}</span><span class="idx-meta">${cnam(d.c)}</span><span class="idx-meta">${DIM[d.s]}</span><span class="idx-meta">${TYPES[d.t].name}</span><span class="idx-meta">${HOR[d.h].name}</span><span class="idx-meta"><span class="ct p${d.p}">${POST[d.p].name}</span></span></div>`;});
+  el.innerHTML=html;
+}
+
+// ═══════════════════════════════════════
+// GLOSSÁRIO
+// ═══════════════════════════════════════
+function renderGlossary(){
+  const el=document.getElementById('glossList');if(!el)return;
+  const q=(document.getElementById('glossSearch')?.value||'').toLowerCase().trim();
+  const items=GLOSS.filter(g=>!q||(g.t+' '+g.def+' '+g.cat).toLowerCase().includes(q)).sort((a,b)=>a.t.localeCompare(b.t));
+  const cnt=document.getElementById('glossCount');if(cnt)cnt.textContent=`${items.length} termos`;
+  el.innerHTML=items.map(g=>`<div class="gloss-item"><div class="gloss-term">${esc(g.t)} <span class="gloss-cat">${esc(g.cat)}</span></div><div class="gloss-def">${esc(g.def)}</div>${g.see&&g.see.length?`<div class="gloss-see">Ver também: ${g.see.map(x=>`<span class="lab-chip" onclick="document.getElementById('glossSearch').value='${esc(x)}';renderGlossary()">${esc(x)}</span>`).join('')}</div>`:''}</div>`).join('')||`<div style="color:var(--text-4);font-size:13px">Nenhum termo encontrado.</div>`;
+}
+
+// ═══════════════════════════════════════
+// FICHA: camadas extras e onde o tema aparece
+// ═══════════════════════════════════════
+function panelExtras(d){
+  const x=DX[d.id]||{};
+  const jog=JOGADAS.filter(j=>j.ing.some(i=>i.id===d.id));
+  const cen=CENARIOS.filter(c=>c.temas.includes(d.id));
+  let h='';
+  if(x.comite)h+=`<div class="pan-sec"><div class="pan-sec-l">Para o comitê, em uma frase</div><div class="pan-box comite">${esc(x.comite)}</div></div>`;
+  if(x.ninguem)h+=`<div class="pan-sec"><div class="pan-sec-l">O que ninguém diz</div><div class="pan-box ninguem">${esc(x.ninguem)}</div></div>`;
+  if(x.pulo)h+=`<div class="pan-sec"><div class="pan-sec-l">O pulo do gato</div><div class="pan-box pulo">${esc(x.pulo)}</div></div>`;
+  if(jog.length||cen.length)h+=`<div class="pan-sec"><div class="pan-sec-l">Onde este tema aparece</div><div class="pan-tags">${jog.map(j=>`<span class="pan-tag" style="cursor:pointer" onclick="cruzTab='jog';go('cruz')">Jogada: ${esc(j.saida)}</span>`).join('')}${cen.map(c=>`<span class="pan-tag" style="cursor:pointer;border-color:${c.cor}" onclick="go('cen')">Cenário: ${esc(c.nome)}</span>`).join('')}</div></div>`;
+  return h;
+}
 
 // ═══════════════════════════════════════
 // INÍCIO DA APLICAÇÃO
