@@ -1897,6 +1897,17 @@ function prev(){
         "Vinte e cinco anos depois da lei que criou o instituidor, o segmento tem R$ 17,4 bilhões. Parece pouco perto do trilhão e meio do sistema inteiro, e é. Mas olhe de perto quem está lá dentro: metade do dinheiro é de uma entidade criada por cooperativas de crédito, e quase todo o resto é de fundos de ordem de advogados. Ninguém precisou inventar nada. Pegaram um quadro associativo que já existia, com gente que já se reconhecia como grupo, e ofereceram um plano.",
         "Aba Previdência, seção Fechada, e a lista das dez maiores logo acima.",
         true);
+      h+=card("Inferência",
+        "O sistema Unimed já tem a entidade instituidora, e ela não aparece entre as dez maiores",
+        "",
+        "A <b>MultiCoop</b> é o fundo de pensão multipatrocinado do sistema, instituído pela Unimed Seguradora, administrado pela Seguros Unimed e constituído pela Unimed do Brasil para as Singulares. O estatuto vigente foi aprovado pela PREVIC na Portaria 173, de 1 de março de 2018. São cinco planos: três instituídos, voltados às cooperativas, e dois patrocinados, para empregados.",
+        "No informe da PREVIC, a MultiCoop não está entre as dez maiores do segmento instituidor, cuja décima colocada tem "+
+          fmt(((PI.maiores||[])[9]||{}).ativos_mi*1e6,"rs")+". Há duas explicações possíveis e o informe público não separa qual: ou o ativo dela no segmento está abaixo desse patamar, ou o patrocínio predominante da entidade é classificado em outra coluna por causa dos planos de empregados. Nos dois casos, a conclusão comercial é a mesma: a estrutura existe e não é ela que ocupa o canal.",
+        "Isso reposiciona o projeto inteiro. Não se trata de criar veículo, se trata de encher um veículo que já está criado, licenciado e operando há anos. A comparação útil deixa de ser com a concorrência de varejo e passa a ser com a Quanta: mesmo desenho, mesma origem cooperativa, e uma delas conseguiu virar metade do segmento.",
+        "PREVIC, Informe Estatístico Trimestral de março de 2026, tabela 1.2.5. Dados da MultiCoop pelo material público da própria entidade e do Portal Prev, incluindo a Portaria PREVIC 173 de 2018. A leitura sobre por que ela não aparece na tabela é inferência.",
+        "",
+        "Toda discussão sobre levar previdência ao cooperado costuma começar do zero, como se faltasse o veículo. Não falta. A MultiCoop está de pé desde antes de 2018, com estatuto aprovado pelo regulador, cinco planos e três deles desenhados exatamente para cooperativa instituidora. Do lado de fora, um fundo criado por cooperativas de crédito catarinenses em 2004 chegou a metade de todo o segmento. As duas coisas convivem no mesmo mercado, sob a mesma lei, com o mesmo produto.",
+        "Aba Previdência, seção Fechada, lista das dez maiores do segmento instituidor.");
       h+='<div class="mini">Fluxo do segmento instituidor no trimestre</div>';
       h+='<table class="tb"><thead><tr><th>Movimento</th><th class="n">Instituidor</th><th class="n">Sistema inteiro</th><th class="n">Fatia do instituidor</th></tr></thead><tbody>';
       [["Contribuições totais",PI.adicoes_mil],["Contribuição dos participantes",PI.contrib_participantes_mil],
@@ -1922,7 +1933,7 @@ function prev(){
       '<tr><td><b>Quantos players</b></td><td>22 companhias com VGBL</td><td>268 entidades, só 19 instituidoras</td></tr>'+
       '<tr><td><b>Concentração</b></td><td>as três maiores fazem 75% da venda</td><td>São Paulo e Rio somam 144 das 268</td></tr>'+
       '<tr><td><b>Ciclo de venda</b></td><td>curto, decisão individual</td><td>longo, decisão de conselho</td></tr>'+
-      '<tr><td><b>Onde a Unimed está</b></td><td>17ª em venda nova, 12ª em estoque</td><td>o sistema tem entidade instituída própria</td></tr>'+
+      '<tr><td><b>Onde a Unimed está</b></td><td>17ª em venda nova, 12ª em estoque</td><td>tem entidade própria, a MultiCoop, fora das dez maiores do segmento instituidor</td></tr>'+
       '</tbody></table>';
     h+='<div class="ins" style="margin-top:14px"><div class="selo i">Inferência</div><h4>Estoque é herança, fluxo é trabalho</h4>';
     h+='<p class="hist">Tem uma diferença que quase ninguém enuncia em reunião: patrimônio acumulado e captação corrente contam histórias opostas sobre a mesma empresa. Um fundo de pensão com um trilhão em ativos pode não estar captando nada. Uma seguradora com pouco estoque pode estar vendendo mais que todo mundo. Estoque é o que a geração anterior construiu. Fluxo é o que a atual está construindo. Quando as duas listas desta aba discordam sobre quem é grande, é o fluxo que está dizendo o que vai acontecer.</p>';
