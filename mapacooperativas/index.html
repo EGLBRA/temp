@@ -79,6 +79,22 @@ input[type=range]{width:100%;accent-color:var(--barra)}
 #leg .esc i{flex:1}
 #leg .lb{display:flex;justify-content:space-between;font-size:10px;color:var(--tinta2);font-variant-numeric:tabular-nums}
 #det{right:11px;top:11px;width:248px;max-height:calc(100% - 22px);overflow:auto;display:none}
+#fsMapa{right:11px;top:11px;width:226px;max-height:calc(100% - 60px);overflow:auto}
+#mapa.fsAberto #det{right:248px}
+.fsT{font-size:10.5px;font-weight:650;color:var(--tinta);margin:2px 0 5px}
+.fvRow{border:1px solid var(--linha);border-radius:6px;padding:6px 7px;margin-bottom:6px;background:var(--sup2)}
+.fvRow select{font-size:11.5px;padding:3px 5px}
+.fvDel{border:1px solid var(--linha);background:var(--sup);border-radius:5px;cursor:pointer;color:var(--tinta2);width:24px;height:24px;flex:none}
+.fvPre{display:flex;flex-wrap:wrap;gap:3px;margin:5px 0 3px}
+.fvPre .chip{font-size:10px;padding:1px 6px}
+.fvSl span{display:block;font-size:10.5px;color:var(--tinta2);margin-top:3px}
+.fvSl b{color:var(--tinta);font-variant-numeric:tabular-nums}
+.tb tr.marc td{background:var(--sup2)}
+#cBody tr,#uBody tr{cursor:pointer}
+.detCoop{cursor:pointer;text-decoration:underline dotted;text-underline-offset:2px}
+#fvRail .chip{display:inline-flex;gap:5px;margin:0 4px 4px 0;background:var(--sup2);color:var(--tinta);border-color:var(--linha);cursor:default}
+#fvRail .chip b{cursor:pointer;color:var(--tinta3);font-weight:400}
+.bt:disabled{opacity:.5;cursor:default}
 #ctl{position:absolute;right:11px;bottom:11px;display:flex;gap:5px;z-index:4}
 #ctl button{width:27px;height:25px;border:1px solid var(--linha);background:var(--sup);border-radius:5px;cursor:pointer;color:var(--tinta2)}
 #dica{position:fixed;pointer-events:none;background:var(--tinta);color:var(--sup);border-radius:6px;padding:7px 9px;font-size:11.5px;display:none;z-index:99;box-shadow:0 3px 12px rgba(0,0,0,.25);max-width:280px}
@@ -180,6 +196,7 @@ svg text{font-family:inherit}
       <div id="selLista" class="nota" style="margin-bottom:6px"></div>
       <button class="bt" id="selLimpa" style="width:100%">Tirar a seleção</button>
     </div>
+    <div class="g" id="gFv" style="display:none"><h2>Filtros por variável</h2><div id="fvRail"></div></div>
     <div class="g">
       <h2>Nível de análise</h2>
       <select id="nivel">
@@ -237,7 +254,7 @@ svg text{font-family:inherit}
     <div id="painel">
 
       <div class="aba on" id="aba-mapa">
-        <div id="mapa">
+        <div id="mapa" class="fsAberto">
           <canvas id="tela"></canvas>
           <div class="flut" id="opMapa">
             <div id="opCab" style="display:flex;justify-content:space-between;align-items:center;cursor:pointer;margin-bottom:6px">
@@ -265,6 +282,30 @@ svg text{font-family:inherit}
               <div class="f"><span>Espessura do traço</span><input type="range" id="simEsp" min="6" max="40" value="12"></div>
             </div>
             <label style="display:flex;gap:6px;font-size:11.5px;cursor:pointer"><input type="checkbox" id="rot"> rótulo do valor da cor</label>
+            </div>
+          </div>
+          <div class="flut" id="fsMapa">
+            <div id="fsCab" style="display:flex;justify-content:space-between;align-items:center;cursor:pointer;margin-bottom:6px">
+              <b style="font-size:10px;text-transform:uppercase;letter-spacing:.1em;color:var(--tinta3)">Filtrar e selecionar</b>
+              <span id="fsSeta" style="color:var(--tinta3);font-size:13px">&minus;</span>
+            </div>
+            <div id="fsCorpo">
+              <div class="fsT">Filtrar áreas por variável</div>
+              <div id="fvLista"></div>
+              <button class="bt" id="fvAdd" style="width:100%">+ Adicionar filtro</button>
+              <div class="fsT" style="margin-top:12px">Selecionar áreas por critério</div>
+              <div class="par">
+                <div class="f"><span>Quais</span><select id="tnDir"><option value="maiores">As maiores</option><option value="menores">As menores</option></select></div>
+                <div class="f"><span>Quantas</span><select id="tnN"><option value="5">5</option><option value="10" selected>10</option><option value="20">20</option><option value="50">50</option></select></div>
+              </div>
+              <div class="f"><span>Por</span><select id="tnVar"></select></div>
+              <div class="f"><select id="tnEx"></select></div>
+              <button class="bt" id="tnOk" style="width:100%">Selecionar</button>
+              <div class="par" style="margin-top:6px">
+                <button class="bt" id="selInv">Inverter seleção</button>
+                <button class="bt" id="selNada">Limpar seleção</button>
+              </div>
+              <div class="nota" style="margin-top:7px">No mapa, clique abre o detalhe e <b>Ctrl + clique</b> soma ou tira uma área. Nos gráficos, clique seleciona só aquela área e Ctrl + clique soma. Nas tabelas, a caixa marca a cooperativa ou a Unimed da linha.</div>
             </div>
           </div>
           <div class="flut" id="leg"></div>
@@ -347,6 +388,7 @@ svg text{font-family:inherit}
           <div class="f" style="min-width:220px"><span>Buscar</span><input type="search" id="cBusca" placeholder="nome, ramo ou município"></div>
           <div class="f"><span>Ordenar por</span>
             <select id="cOrd"><option value="capital">Capital social</option><option value="nome">Nome</option><option value="ano">Mais antiga</option><option value="ramo">Ramo</option></select></div>
+          <label class="f" style="display:flex;gap:5px;align-items:center;font-size:11.5px;cursor:pointer;min-width:0"><input type="checkbox" id="cSoMarc"> só as marcadas</label>
           <button class="bt" id="cCsv">Baixar CSV</button>
         </div>
         <div class="pad" style="max-width:none"><p class="sub" id="cSub"></p>
@@ -385,6 +427,7 @@ svg text{font-family:inherit}
           <div class="f"><span>Resultado 2025</span>
             <select id="uResult"><option value="">Qualquer</option><option value="pos">Positivo</option>
               <option value="neg">Negativo</option></select></div>
+          <label class="f" style="display:flex;gap:5px;align-items:center;font-size:11.5px;cursor:pointer;min-width:0"><input type="checkbox" id="uSoMarc"> só as marcadas</label>
           <button class="bt" id="uCsv">Baixar CSV</button>
         </div>
         <div class="pad" style="max-width:none"><p class="sub" id="uSub"></p>
@@ -442,6 +485,7 @@ var E={visao:"todas",aba:"mapa",ins:"geral",nivel:"uf",variavel:"coops",expressa
   ramos:{},escalas:{},clusters:{},idade:"",situacao:"",sel:null,
   pVar:"coops",pTop:20,dx:"pop",dy:"coops",dt:"capital",dlog:"",
   cOrd:"capital",cBusca:"",uOrd:"benef",uBusca:"",selecao:{},nSel:0,
+  selCoop:{},nSelCoop:0,selUni:{},nSelUni:0,fv:[],cSoMarc:false,uSoMarc:false,
   prevSeg:"aberta",medSeg:"onde",anSeg:"box",anVar:"capital",mx:"pop",my:"matriz"};
 REGIOES.forEach(function(r){E.regioes[r]=true;});
 RAMOS.forEach(function(r){E.ramos[r]=true;});
@@ -462,12 +506,16 @@ function corMarca(){
   return pal[escuro()?1:3];}
 
 var cpMun={};COOPS.forEach(function(c){var k=c[CC.codMun];if(!k)return;(cpMun[k]=cpMun[k]||[]).push(c);});
+COOPS.forEach(function(c,i){c._i=i;});
+// quando true, a cooperativa escolhida na tabela não restringe a conta (mapa de fundo e listas)
+var semItens=false;
 function visaoOk(c){
   if(E.visao==="unimed")return c[CC.grupo]===1;
   if(E.visao==="uniodonto")return c[CC.grupo]===2;
   if(E.visao==="demais")return c[CC.grupo]===0;return true;}
 function coopOk(c){
   if(!visaoOk(c))return false;
+  if(E.nSelCoop&&!semItens&&!E.selCoop[c._i])return false;
   if(E.situacao==="matriz"&&!c[CC.matriz])return false;
   if(!E.ramos[RAMOS[c[CC.ramo]]])return false;
   if(!E.escalas[faixaDe(c)])return false;
@@ -480,6 +528,8 @@ function coopOk(c){
   return true;}
 function coopsDo(cod){return (cpMun[cod]||[]).filter(coopOk);}
 var uniMun={};UNI.forEach(function(u){var c=u[CU.codMun];if(c)(uniMun[c]=uniMun[c]||[]).push(u);});
+var uniPorReg={};UNI.forEach(function(u){uniPorReg[u[CU.reg]]=u;});
+function uniNoRecorte(u){var c=u[CU.codMun];return !!(c&&gKey[c])&&(!E.nSelUni||!!E.selUni[u[CU.reg]]);}
 var porCodMun={};MUN.forEach(function(m){porCodMun[m[CM.cod]]=m;});
 
 // ---------------------------------------------------------------- variáveis
@@ -550,28 +600,51 @@ function ok(m){
     if(E.cobertura==="baixa"&&c>=.10)return false;
     if(E.cobertura==="media"&&(c<.10||c>.30))return false;
     if(E.cobertura==="alta"&&c<=.30)return false;}
-  if(E.nSel&&!E.selecao[chaveNivel(m,E.nivel)])return false;
   return true;}
 function marca(chave){
   if(E.selecao[chave]){delete E.selecao[chave];E.nSel--;}
   else{E.selecao[chave]=1;E.nSel++;}
   E.sel=null;document.getElementById("det").style.display="none";
   recalc();}
+function temSelecao(){return !!(E.nSel||E.nSelCoop||E.nSelUni);}
+function fechaDet(){E.sel=null;var d=document.getElementById("det");if(d)d.style.display="none";}
+function marcaSo(chave){E.selecao={};E.selecao[chave]=1;E.nSel=1;fechaDet();recalc();}
+function marcaEv(chave,ev){
+  if(ev&&(ev.ctrlKey||ev.metaKey||ev.shiftKey)){marca(chave);return;}
+  if(E.nSel===1&&E.selecao[chave]){E.selecao={};E.nSel=0;fechaDet();recalc();return;}
+  marcaSo(chave);}
+function marcaCoop(i){if(E.selCoop[i]){delete E.selCoop[i];E.nSelCoop--;}else{E.selCoop[i]=1;E.nSelCoop++;}fechaDet();recalc();}
+function marcaUni(r){if(E.selUni[r]){delete E.selUni[r];E.nSelUni--;}else{E.selUni[r]=1;E.nSelUni++;}fechaDet();recalc();}
+function limpaSelecao(){E.selecao={};E.nSel=0;E.selCoop={};E.nSelCoop=0;E.selUni={};E.nSelUni=0;fechaDet();recalc();}
+function nomeArea(k){
+  if(E.nivel==="uf")return k;
+  if(E.nivel==="mun"){var m=porCodMun[k];return m?m[CM.nome]+" ("+m[CM.uf]+")":k;}
+  return NOMES[k]||k;}
 function pintaSelecao(){
   var g2=document.getElementById("gSel");
-  if(!E.nSel){g2.style.display="none";return;}
+  if(!temSelecao()){g2.style.display="none";return;}
   g2.style.display="block";
-  var nomes=G.map(function(g){return g.nome;});
-  document.getElementById("selLista").innerHTML="<b>"+E.nSel+"</b> "+
-    (E.nSel===1?"área selecionada":"áreas selecionadas")+": "+nomes.slice(0,6).join(", ")+
-    (nomes.length>6?" e mais "+(nomes.length-6):"")+
-    ". Todo o painel está preso a esse recorte.";}
+  var partes=[];
+  if(E.nSel){var ks=Object.keys(E.selecao);
+    partes.push("<b>"+E.nSel+"</b> "+(E.nSel===1?"área":"áreas")+": "+
+      ks.slice(0,5).map(function(k){return esc2(nomeArea(k));}).join(", ")+(ks.length>5?" e mais "+(ks.length-5):""));}
+  if(E.nSelCoop){var ic=Object.keys(E.selCoop);
+    partes.push("<b>"+E.nSelCoop+"</b> "+(E.nSelCoop===1?"cooperativa":"cooperativas")+": "+
+      ic.slice(0,4).map(function(i){return esc2(COOPS[i][CC.nome]);}).join(", ")+(ic.length>4?" e mais "+(ic.length-4):""));}
+  if(E.nSelUni){var iu=Object.keys(E.selUni);
+    partes.push("<b>"+E.nSelUni+"</b> "+(E.nSelUni===1?"Unimed":"Unimeds")+": "+
+      iu.slice(0,4).map(function(r){return esc2((uniPorReg[r]||[])[CU.nome]||r);}).join(", ")+(iu.length>4?" e mais "+(iu.length-4):""));}
+  document.getElementById("selLista").innerHTML=partes.join("<br>")+
+    '<div style="margin-top:4px">O painel fala de '+G.length+(E.nivel==="mun"?" municípios":" áreas")+
+    '. No mapa e nos gráficos o resto fica apagado, e Ctrl + clique soma ou tira.</div>';}
 function chaveNivel(m,nv){
   if(nv==="uf")return m[CM.uf];
   if(nv==="imediata")return m[CM.imediata]||m[CM.uf];
   if(nv==="intermediaria")return m[CM.intermediaria]||m[CM.uf];
   return m[CM.cod];}
 var vis=[],G=[],gKey={},cortes=[],med,esc=[],porMun={};
+// GB é o recorte antes da seleção: é o que o mapa e os gráficos de escolha desenham, com o selecionado em destaque
+var GB=[],visB=[],gKeyB={},porMunB={};
 function agrupa(nv,lista){
   var mp={};
   lista.forEach(function(m){
@@ -609,17 +682,105 @@ function agrupa(nv,lista){
       g.vgbl=null;g.efpc=null;g.efpcInst=null;}
     out.push(g);}
   return out;}
+function opcoesExpr(v){var op=[["total","Total"]];
+  if(v.hab)op.push(["hab",v.hab===1e4?"Por 10 mil habitantes":(v.hab===1e3?"Por mil habitantes":"Por habitante")]);
+  if(v.part)op.push(["part",v.partRot.charAt(0).toUpperCase()+v.partRot.slice(1)]);
+  return op;}
+function varsDoNivel(){return VARS.filter(function(v){return !v.soUF||E.nivel==="uf";});}
+function valorPct(f,pct){var a=f.vals||[];if(!a.length)return null;
+  return a[Math.min(a.length-1,Math.max(0,Math.round((a.length-1)*pct/100)))];}
+function preparaFv(G0){
+  E.fv.forEach(function(f){
+    var v=vp(f.v);
+    if(!opcoesExpr(v).some(function(o){return o[0]===f.ex;}))f.ex="total";
+    f.m=medida(v,f.ex);f.inval=!!(v.soUF&&E.nivel!=="uf");
+    f.vals=G0.map(f.m.f).filter(function(x){return x!==null&&x!==undefined&&!isNaN(x);}).sort(function(a,b){return a-b;});
+    f.lo=f.a<=0?-Infinity:valorPct(f,f.a);f.hi=f.b>=100?Infinity:valorPct(f,f.b);
+    f.passam=f.inval?G0.length:G0.filter(function(g){return passaUm(f,g);}).length;});}
+function passaUm(f,g){if(f.inval)return true;var x=f.m.f(g);
+  if(x===null||x===undefined||isNaN(x))return false;return x>=f.lo&&x<=f.hi;}
+function passaFv(g){for(var i=0;i<E.fv.length;i++)if(!passaUm(E.fv[i],g))return false;return true;}
 function recalc(){
-  porMun={};med=medida(vp(E.variavel),E.expressao);
-  vis=MUN.filter(ok);G=agrupa(E.nivel,vis);
+  med=medida(vp(E.variavel),E.expressao);
+  // 1. base: filtros da esquerda, todas as cooperativas
+  semItens=true;porMun={};
+  var G0=agrupa(E.nivel,MUN.filter(ok));
+  // 2. filtros por variável, calculados sobre a distribuição da base
+  preparaFv(G0);
+  GB=E.fv.length?G0.filter(passaFv):G0;
+  visB=[];gKeyB={};
+  GB.forEach(function(g){g.membros.forEach(function(m){visB.push(m);gKeyB[m[CM.cod]]=g;});});
+  porMunB=porMun;semItens=false;
+  // 3. seleção: áreas, cooperativas e Unimeds escolhidas uma a uma
+  if(!temSelecao()){G=GB;vis=visB;}
+  else{
+    var fica={};
+    visB.forEach(function(m){
+      if(E.nSel&&!E.selecao[chaveNivel(m,E.nivel)])return;
+      if(E.nSelCoop||E.nSelUni){
+        var achou=false;
+        if(E.nSelCoop)achou=(cpMun[m[CM.cod]]||[]).some(function(c){return E.selCoop[c._i]&&visaoOk(c);});
+        if(!achou&&E.nSelUni)achou=(uniMun[m[CM.cod]]||[]).some(function(u){return E.selUni[u[CU.reg]];});
+        if(!achou)return;}
+      fica[chaveNivel(m,E.nivel)]=1;});
+    if(E.nSelCoop){
+      // com cooperativa escolhida a conta muda: refaz só com elas
+      var membros=visB.filter(function(m){return fica[chaveNivel(m,E.nivel)];});
+      porMun={};G=agrupa(E.nivel,membros);
+    }else G=GB.filter(function(g){return fica[g.chave];});
+    vis=[];G.forEach(function(g){g.membros.forEach(function(m){vis.push(m);});});}
   gKey={};G.forEach(function(g){g.membros.forEach(function(m){gKey[m[CM.cod]]=g;});});
+  // as faixas de cor saem da base, para a cor não pular quando se seleciona
   esc=rampa();cortes=[];
-  var v=G.map(med.f).filter(function(x){return x!==null&&!isNaN(x)&&x>0;}).sort(function(a,b){return a-b;});
+  var v=GB.map(med.f).filter(function(x){return x!==null&&!isNaN(x)&&x>0;}).sort(function(a,b){return a-b;});
   if(v.length){var n=esc.length;
     if(E.corte==="quantis"){for(var i=1;i<n;i++)cortes.push(v[Math.floor(v.length*i/n)]);}
     else if(E.corte==="iguais"){var mn=v[0],mx=v[v.length-1];for(var j=1;j<n;j++)cortes.push(mn+(mx-mn)*j/n);}
     else{var lm=Math.log10(v[0]||1),lx=Math.log10(v[v.length-1]||1);for(var k2=1;k2<n;k2++)cortes.push(Math.pow(10,lm+(lx-lm)*k2/n));}}
-  kpis();barrasRail();pintaSelecao();render();}
+  kpis();barrasRail();pintaSelecao();pintaFv();pintaFvRail();render();}
+function pintaFv(){
+  var el=document.getElementById("fvLista");if(!el)return;
+  var bAdd=document.getElementById("fvAdd");
+  bAdd.disabled=E.fv.length>=3;bAdd.textContent=E.fv.length>=3?"Máximo de três filtros":"+ Adicionar filtro";
+  if(!E.fv.length){el.innerHTML='<div class="nota" style="margin-bottom:6px">Nenhum filtro. Escolha uma variável e a faixa que interessa: só as áreas dentro dela ficam no mapa e no painel inteiro.</div>';return;}
+  var PRE=[["0-20","Quinto de baixo"],["0-50","Metade de baixo"],["50-100","Metade de cima"],["80-100","Quinto de cima"]];
+  el.innerHTML=E.fv.map(function(f,i){
+    var v=vp(f.v),ff=f.m?f.m.fmt:"int";
+    return '<div class="fvRow" data-i="'+i+'">'+
+      '<div style="display:flex;gap:4px;align-items:center"><select class="fvVar">'+
+        varsDoNivel().map(function(x){return '<option value="'+x.id+'"'+(x.id===f.v?" selected":"")+'>'+x.rot+'</option>';}).join("")+
+      '</select><button class="fvDel" title="tirar este filtro">&times;</button></div>'+
+      '<select class="fvEx" style="margin-top:3px"'+(opcoesExpr(v).length===1?" disabled":"")+'>'+
+        opcoesExpr(v).map(function(o){return '<option value="'+o[0]+'"'+(o[0]===f.ex?" selected":"")+'>'+o[1]+'</option>';}).join("")+'</select>'+
+      '<div class="fvPre">'+PRE.map(function(q){return '<span class="chip'+((f.a+"-"+f.b)===q[0]?" on":"")+'" data-p="'+q[0]+'">'+q[1]+'</span>';}).join("")+'</div>'+
+      '<div class="fvSl"><span>A partir de <b class="fvLa">'+fmt(valorPct(f,f.a),ff)+'</b></span>'+
+        '<input type="range" class="fvA" min="0" max="100" step="5" value="'+f.a+'"></div>'+
+      '<div class="fvSl"><span>Até <b class="fvLb">'+fmt(valorPct(f,f.b),ff)+'</b></span>'+
+        '<input type="range" class="fvB" min="0" max="100" step="5" value="'+f.b+'"></div>'+
+      '<div class="nota" style="margin-top:3px">'+(f.inval?"Esta variável só existe por estado e fica ignorada neste nível.":
+        "<b>"+f.passam+"</b> de "+(f.vals||[]).length+" áreas com valor passam neste filtro.")+'</div></div>';}).join("");
+  Array.prototype.forEach.call(el.querySelectorAll(".fvRow"),function(row){
+    var i=+row.getAttribute("data-i"),f=E.fv[i];
+    row.querySelector(".fvVar").onchange=function(e){f.v=e.target.value;f.ex="total";f.a=50;f.b=100;recalc();};
+    row.querySelector(".fvEx").onchange=function(e){f.ex=e.target.value;recalc();};
+    row.querySelector(".fvDel").onclick=function(){E.fv.splice(i,1);recalc();};
+    Array.prototype.forEach.call(row.querySelectorAll(".fvPre .chip"),function(c){
+      c.onclick=function(){var q=c.getAttribute("data-p").split("-");f.a=+q[0];f.b=+q[1];recalc();};});
+    var sa=row.querySelector(".fvA"),sb=row.querySelector(".fvB"),la=row.querySelector(".fvLa"),lb=row.querySelector(".fvLb");
+    sa.oninput=function(){if(+sa.value>f.b-5)sa.value=f.b-5;la.textContent=fmt(valorPct(f,+sa.value),f.m.fmt);};
+    sb.oninput=function(){if(+sb.value<f.a+5)sb.value=f.a+5;lb.textContent=fmt(valorPct(f,+sb.value),f.m.fmt);};
+    sa.onchange=function(){f.a=+sa.value;recalc();};
+    sb.onchange=function(){f.b=+sb.value;recalc();};});}
+function pintaFvRail(){
+  var g2=document.getElementById("gFv");if(!g2)return;
+  if(!E.fv.length){g2.style.display="none";return;}
+  g2.style.display="block";
+  document.getElementById("fvRail").innerHTML=E.fv.map(function(f,i){
+    return '<span class="chip">'+esc2(f.m.rot)+(f.inval?", ignorado neste nível":": "+fmt(valorPct(f,f.a),f.m.fmt)+" a "+fmt(valorPct(f,f.b),f.m.fmt))+
+      ' <b data-i="'+i+'" title="tirar este filtro">&times;</b></span>';}).join("")+
+    '<div class="nota">'+GB.length+(E.nivel==="mun"?" municípios":" áreas")+' passam. Edite no painel Filtrar e selecionar, no mapa.</div>';
+  Array.prototype.forEach.call(document.querySelectorAll("#fvRail b[data-i]"),function(b){
+    b.onclick=function(){E.fv.splice(+b.getAttribute("data-i"),1);recalc();};});}
 function corDe(g,cts,pal,mm){var x=mm.f(g);
   if(x===null||isNaN(x)||x<=0)return tok("--sup2");
   var i=0;while(i<cts.length&&x>=cts[i])i++;return pal[i];}
@@ -728,17 +889,21 @@ function desenha(){
   ctx.fillStyle=tok("--sup2");ctx.fillRect(0,0,W,H);
   pc.fillStyle="#000";pc.fillRect(0,0,W,H);idx=[];
   ctx.beginPath();
-  for(var c in GEO.mun){if(!gKey[c])tr(ctx,aM(c));}
+  for(var c in GEO.mun){if(!gKeyB[c])tr(ctx,aM(c));}
   ctx.fillStyle=tok("--fora");ctx.fill();
-  var alvo=(E.pintar&&!med.soUF)?agrupa(E.pintar,vis):G, cts=cortes, pal=esc;
+  var alvo;
+  if(E.pintar&&!med.soUF){var guarda=porMun;porMun=porMunB;semItens=true;alvo=agrupa(E.pintar,visB);semItens=false;porMun=guarda;}
+  else alvo=GB;
+  var cts=cortes,pal=esc,ativa=temSelecao();
   if(E.pintar&&!med.soUF){
     var vv=alvo.map(med.f).filter(function(x){return x!==null&&!isNaN(x)&&x>0;}).sort(function(a,b){return a-b;});
     cts=[];for(var i=1;i<pal.length;i++)cts.push(vv[Math.floor(vv.length*i/pal.length)]);}
   var byCor={};
-  alvo.forEach(function(g){var k=corDe(g,cts,pal,med);
+  alvo.forEach(function(g){var k=corDe(g,cts,pal,med)+"|"+((!ativa||gKey[g.membros[0][CM.cod]])?1:0);
     g.membros.forEach(function(m){(byCor[k]=byCor[k]||[]).push(m[CM.cod]);});});
-  Object.keys(byCor).forEach(function(k){ctx.beginPath();
-    byCor[k].forEach(function(c){tr(ctx,aM(c));});ctx.fillStyle=k;ctx.fill();});
+  Object.keys(byCor).forEach(function(k){var pk2=k.split("|");ctx.beginPath();
+    byCor[k].forEach(function(c){tr(ctx,aM(c));});ctx.fillStyle=pk2[0];
+    ctx.globalAlpha=pk2[1]==="1"?1:.22;ctx.fill();ctx.globalAlpha=1;});
   // o que responde ao mouse é o que está pintado na tela, não o nível de análise
   ALVO=alvo;
   alvo.forEach(function(g){idx.push({t:"g",r:g});var id=idx.length;
@@ -748,10 +913,11 @@ function desenha(){
   ctx.strokeStyle=tok("--tinta3");ctx.lineWidth=1;ctx.globalAlpha=.55;ctx.stroke();ctx.globalAlpha=1;
   if(E.simVar){
     var mv=medida(vp(E.simVar),"total"),mx=0;
-    G.forEach(function(g){var x=mv.f(g);if(x>mx)mx=x;});
+    GB.forEach(function(g){var x=mv.f(g);if(x>mx)mx=x;});
     if(mx){var bp=(E.nivel==="mun"?18:32)*E.simTam*Math.min(1.8,Math.sqrt(V.k));
       ctx.textAlign="center";ctx.textBaseline="middle";
-      G.forEach(function(g){var x=mv.f(g);if(!x||x<=0)return;
+      GB.forEach(function(g){var x=mv.f(g);if(!x||x<=0)return;
+        var fa=(!ativa||gKey[g.membros[0][CM.cod]])?1:.25;ctx.globalAlpha=fa;
         var r=Math.sqrt(x/mx)*bp,px=pX(g.lon),py=pY(g.lat);
         if(E.simForma==="numero"){
           var t=fmt(x,mv.fmt),s=Math.max(9,Math.min(15,9+r*.22));
@@ -768,9 +934,9 @@ function desenha(){
         }else{
           if(r<1.2)r=1.2;
           ctx.beginPath();ctx.arc(px,py,r,0,6.2832);
-          ctx.fillStyle=corMarca();ctx.globalAlpha=.72;ctx.fill();ctx.globalAlpha=1;
+          ctx.fillStyle=corMarca();ctx.globalAlpha=.72*fa;ctx.fill();ctx.globalAlpha=fa;
           if(r>3){ctx.strokeStyle=tok("--sup");ctx.lineWidth=2;ctx.stroke();}}});
-      ctx.textBaseline="alphabetic";}}
+      ctx.globalAlpha=1;ctx.textBaseline="alphabetic";}}
   if(E.rot){
     // do maior para o menor, e quem não couber sem encostar no anterior não entra
     var top=alvo.slice().sort(function(a,b){return (med.f(b)||0)-(med.f(a)||0);});
@@ -779,6 +945,7 @@ function desenha(){
     var postos=[],posto=0;
     for(var iL=0;iL<top.length && postos.length<70;iL++){
       var g=top[iL],val=med.f(g);
+      if(ativa&&!gKey[g.membros[0][CM.cod]])continue;
       if(val===null||isNaN(val)||val<=0)continue;
       var t=fmt(val,med.fmt),x=pX(g.lon),y=pY(g.lat);
       if(x<-40||y<-20||x>W+40||y>H+20)continue;
@@ -791,11 +958,13 @@ function desenha(){
       ctx.lineWidth=3.5;ctx.strokeStyle=tok("--sup");ctx.strokeText(t,x,y);
       ctx.fillStyle=tok("--tinta");ctx.fillText(t,x,y);}
     ctx.textBaseline="alphabetic";}
+  if(E.nSel&&E.nSel<=40)GB.forEach(function(g){if(E.selecao[g.chave])contorno(g);});
+  else if(!E.nSel&&(E.nSelCoop||E.nSelUni)&&G.length<=40)G.forEach(function(g){contorno(g);});
   if(E.sel)contorno(E.sel);
   ctx.restore();legenda(cts,pal);}
 function legenda(cts,pal){
   var el=document.getElementById("leg");
-  var alvo=(E.pintar&&!med.soUF)?agrupa(E.pintar,vis):G;
+  var alvo=ALVO||GB;
   var v=alvo.map(med.f).filter(function(x){return x!==null&&!isNaN(x)&&x>0;}).sort(function(a,b){return a-b;});
   var h='<div class="t">'+med.rot+'</div><div class="esc">';
   pal.forEach(function(c){h+='<i style="background:'+c+'"></i>';});
@@ -803,6 +972,8 @@ function legenda(cts,pal){
   h+='<div style="font-size:10px;color:var(--tinta3);margin-top:2px">'+pal.length+' faixas por '+
      (E.corte==="quantis"?"quantis":(E.corte==="iguais"?"intervalo igual":"log"))+' · '+v.length+' áreas com valor';
   if(med.soUF)h+=' · esta variável só existe por estado';
+  if(E.fv.length)h+=' · '+E.fv.length+' filtro'+(E.fv.length>1?"s":"")+' por variável';
+  if(temSelecao())h+=' · fora da seleção fica apagado';
   h+='</div>';
   if(E.simVar)h+='<div style="font-size:10px;color:var(--tinta2);margin-top:3px">marca por cima: '+
      vp(E.simVar).rot.toLowerCase()+(E.simForma==="numero"?", escrita":", com área fiel ao valor")+'</div>';
@@ -835,7 +1006,11 @@ tela.addEventListener("mousemove",function(ev){
   if(dy+dica.offsetHeight>innerHeight)dy=innerHeight-dica.offsetHeight-8;
   dica.style.left=dx+"px";dica.style.top=dy+"px";});
 tela.addEventListener("mouseleave",function(){dica.style.display="none";});
-tela.addEventListener("click",function(ev){var a=alvoDe(ev);if(a){E.sel=a.r;detalhe(a.r);desenha();}});
+tela.addEventListener("click",function(ev){var a=alvoDe(ev);if(!a)return;
+  var g=a.r,k=g.nivel===E.nivel?g.chave:chaveNivel(g.membros[0],E.nivel);
+  // Ctrl, Shift ou Cmd + clique: soma ou tira só esta área, sem abrir o quadro
+  if(ev.ctrlKey||ev.metaKey||ev.shiftKey){marca(k);return;}
+  E.sel=g;detalhe(g);desenha();});
 tela.addEventListener("mousedown",function(ev){arr=true;ax=ev.clientX;ay=ev.clientY;tela.classList.add("arr");dica.style.display="none";});
 window.addEventListener("mouseup",function(){if(arr){arr=false;tela.classList.remove("arr");desenha();}});
 window.addEventListener("mousemove",function(ev){if(!arr)return;V.x+=ev.clientX-ax;V.y+=ev.clientY-ay;ax=ev.clientX;ay=ev.clientY;desenha();});
@@ -867,28 +1042,36 @@ function detalhe(g){
     h+='<div style="font-size:9.5px;text-transform:uppercase;letter-spacing:.1em;color:var(--tinta3);margin:8px 0 3px">Por ramo</div><div class="bars">';
     rr.forEach(function(r){h+='<div class="bar"><div class="l"><b>'+r+'</b><i>'+g.ramo[r]+
       '</i></div><div class="t"><i style="width:'+(g.ramo[r]/mx*100)+'%"></i></div></div>';});h+='</div>';}
-  var nomes=[];g.membros.forEach(function(m){coopsDo(m[CM.cod]).forEach(function(c){if(c[CC.matriz])nomes.push(c);});});
+  var nomes=[];semItens=true;
+  g.membros.forEach(function(m){coopsDo(m[CM.cod]).forEach(function(c){if(c[CC.matriz])nomes.push(c);});});
+  semItens=false;
   nomes.sort(function(a,b){return (b[CC.capital]||0)-(a[CC.capital]||0);});
   if(nomes.length){
     h+='<div style="font-size:9.5px;text-transform:uppercase;letter-spacing:.1em;color:var(--tinta3);margin:8px 0 3px">Maiores cooperativas</div>';
     nomes.slice(0,10).forEach(function(c){
-      h+='<div style="font-size:11px;padding:1.5px 0;display:flex;justify-content:space-between;gap:8px"><span>'+c[CC.nome]+
+      h+='<div style="font-size:11px;padding:1.5px 0;display:flex;justify-content:space-between;gap:8px"><span class="detCoop" data-ci="'+c._i+'" title="clique para marcar ou desmarcar esta cooperativa">'+(E.selCoop[c._i]?"&#10003; ":"")+c[CC.nome]+
         '</span><span style="color:var(--tinta2);white-space:nowrap;font-variant-numeric:tabular-nums">'+fmt((c[CC.capital]||0)*1000,"rs")+'</span></div>';});
     if(nomes.length>10)h+='<div class="nota" style="margin-top:3px">e mais '+(nomes.length-10)+', na aba Cooperativas</div>';}
   // quando o mapa está pintado num nível mais fino, a seleção continua sendo feita no nível de análise
   var kSel=g.nivel===E.nivel?g.chave:chaveNivel(g.membros[0],E.nivel);
-  h+='<button class="bt" id="prende" style="width:100%;margin-top:8px" data-k="'+esc2(kSel)+'">'+
-     (E.selecao[kSel]?"Tirar esta área da seleção":"Prender o painel"+(g.nivel===E.nivel?" nesta área":" na área de "+g.membros[0][CM.nome]))+'</button>';
+  if(g.nivel!==E.nivel)h+='<div class="nota" style="margin-top:8px">A seleção vale para a área de análise que contém '+esc2(g.membros[0][CM.nome])+'.</div>';
+  h+='<div class="par" style="margin-top:8px"><button class="bt" id="prendeSo">Selecionar só esta</button>'+
+     '<button class="bt" id="prende">'+(E.selecao[kSel]?"Tirar da seleção":"Somar à seleção")+'</button></div>'+
+     '<div class="nota" style="margin-top:4px">Atalho: Ctrl + clique na área soma ou tira sem abrir este quadro. Clique no nome de uma cooperativa para marcar só ela.</div>';
   el.innerHTML=h;
   document.getElementById("fechaDet").onclick=function(){el.style.display="none";E.sel=null;desenha();};
-  document.getElementById("prende").onclick=function(){marca(kSel);};}
+  document.getElementById("prende").onclick=function(){marca(kSel);};
+  document.getElementById("prendeSo").onclick=function(){marcaSo(kSel);};
+  Array.prototype.forEach.call(el.querySelectorAll(".detCoop"),function(sp){
+    sp.onclick=function(){marcaCoop(sp.getAttribute("data-ci"));};});}
 
 // ---------------------------------------------------------------- gráficos SVG
 function svg(w,h){return '<svg viewBox="0 0 '+w+' '+h+'" width="100%" height="'+h+'" preserveAspectRatio="xMidYMid meet" style="max-width:100%;display:block">';}
 function esc2(s){return String(s).replace(/&/g,"&amp;").replace(/</g,"&lt;");}
 function pareto(){
   var v=vp(E.pVar),m=medida(v,"total");
-  var l=G.map(function(g){return {nome:g.nome,chave:g.chave,v:m.f(g)||0};}).filter(function(x){return x.v>0;})
+  var ativaP=temSelecao();
+  var l=GB.map(function(g){return {nome:g.nome,chave:g.chave,v:m.f(g)||0,sel:!ativaP||!!gKey[g.membros[0][CM.cod]]};}).filter(function(x){return x.v>0;})
         .sort(function(a,b){return b.v-a.v;});
   if(!l.length){document.getElementById("pSvg").innerHTML='<p class="nota">Sem valor no recorte.</p>';return;}
   var tot=l.reduce(function(s,x){return s+x.v;},0),acc=0,oitenta=-1;
@@ -919,8 +1102,8 @@ function pareto(){
   d2.forEach(function(x,i){
     var cx=MP.l+passo*(i+.5),x0=cx-bw/2,yb=pyV(x.v);
     hp+='<rect class="selArea" style="cursor:pointer" data-k="'+esc2(x.chave)+'" x="'+x0.toFixed(1)+'" y="'+yb.toFixed(1)+
-      '" width="'+bw.toFixed(1)+'" height="'+Math.max(1,(HP-MP.b-yb)).toFixed(1)+'" rx="3" fill="'+tok("--barra")+'"><title>'+
-      esc2(x.nome)+": "+fmt(x.v,m.fmt)+" · "+(x.ac*100).toFixed(1).replace(".",",")+"% acumulado · clique para filtrar"+'</title></rect>';
+      '" width="'+bw.toFixed(1)+'" height="'+Math.max(1,(HP-MP.b-yb)).toFixed(1)+'" rx="3" fill="'+tok("--barra")+'" fill-opacity="'+(x.sel?1:.28)+'"><title>'+
+      esc2(x.nome)+": "+fmt(x.v,m.fmt)+" · "+(x.ac*100).toFixed(1).replace(".",",")+"% acumulado · clique seleciona, Ctrl + clique soma"+'</title></rect>';
     var yr=HP-MP.b+14;
     if(rotL)hp+='<text x="'+cx.toFixed(1)+'" y="'+yr+'" font-size="10.5" fill="'+tok("--tinta")+'" transform="rotate(-40 '+cx.toFixed(1)+' '+yr+')" text-anchor="end">'+esc2(x.nome.slice(0,22))+'</text>';
     else hp+='<text x="'+cx.toFixed(1)+'" y="'+yr+'" text-anchor="middle" font-size="10.5" fill="'+tok("--tinta")+'">'+esc2(x.nome)+'</text>';});
@@ -956,7 +1139,7 @@ function pareto(){
   var h1=svg(WP,alt);
   d2.forEach(function(x,i){var y=i*17,bw2=x.v/mx*largH;
     h1+='<text x="180" y="'+(y+12)+'" text-anchor="end" font-size="11" fill="'+tok("--tinta")+'">'+esc2(x.nome.slice(0,30))+'</text>';
-    h1+='<rect class="selArea" data-k="'+esc2(x.chave)+'" style="cursor:pointer" x="188" y="'+(y+3)+'" width="'+bw2.toFixed(1)+'" height="11" rx="3" fill="'+tok("--barra")+'"><title>'+esc2(x.nome)+": "+fmt(x.v,m.fmt)+" · clique para filtrar"+'</title></rect>';
+    h1+='<rect class="selArea" data-k="'+esc2(x.chave)+'" style="cursor:pointer" x="188" y="'+(y+3)+'" width="'+bw2.toFixed(1)+'" height="11" rx="3" fill="'+tok("--barra")+'" fill-opacity="'+(x.sel?1:.28)+'"><title>'+esc2(x.nome)+": "+fmt(x.v,m.fmt)+" · clique seleciona, Ctrl + clique soma"+'</title></rect>';
     h1+='<text x="'+(188+bw2+6).toFixed(1)+'" y="'+(y+12)+'" font-size="10.5" fill="'+tok("--tinta2")+'">'+fmt(x.v,m.fmt)+
       '  <tspan fill="'+tok("--tinta3")+'">'+(x.ac*100).toFixed(1).replace(".",",")+'% acum.</tspan></text>';});
   h1+="</svg>";
@@ -968,11 +1151,12 @@ function pareto(){
       ' primeiras com nome, valor e acumulado</span><span class="sinal"><span class="sA">+</span><span class="sB">&minus;</span></span></summary>'+
     '<div class="accb">'+h1+'</div></details>';
   Array.prototype.forEach.call(document.querySelectorAll("#pSvg .selArea"),function(r){
-    r.onclick=function(){marca(r.getAttribute("data-k"));};});}
+    r.onclick=function(ev){marcaEv(r.getAttribute("data-k"),ev);};});}
 function nomeNivel(){return {uf:"estado",intermediaria:"região intermediária",imediata:"região imediata",mun:"município"}[E.nivel];}
 function dispersao(){
   var mx2=medida(vp(E.dx),"total"),my2=medida(vp(E.dy),"total"),mt=medida(vp(E.dt),"total");
-  var pts=G.map(function(g){return {g:g,x:mx2.f(g),y:my2.f(g),t:mt.f(g)||0};})
+  var ativaD=temSelecao();
+  var pts=GB.map(function(g){return {g:g,x:mx2.f(g),y:my2.f(g),t:mt.f(g)||0,s:!ativaD||!!gKey[g.membros[0][CM.cod]]};})
     .filter(function(p){return p.x>0&&p.y>0;});
   document.getElementById("dTit").textContent=my2.rot+" contra "+mx2.rot.toLowerCase();
   if(!pts.length){document.getElementById("dSvg").innerHTML='<p class="nota">Sem pontos no recorte.</p>';return;}
@@ -1005,49 +1189,60 @@ function dispersao(){
   h+='<text x="'+(W2-M.r-4)+'" y="'+(M.t+12)+'" text-anchor="end" font-size="10.5" fill="'+tok("--tinta3")+'">quadrante superior direito: acima da mediana nos dois eixos</text>';
   pts.forEach(function(p){var r=Math.max(3,Math.sqrt(p.t/mt2)*escP);
     h+='<circle class="selArea" data-k="'+esc2(p.g.chave)+'" style="cursor:pointer" cx="'+sx(p.x).toFixed(1)+'" cy="'+sy(p.y).toFixed(1)+'" r="'+r.toFixed(1)+'" fill="'+tok("--barra")+
-      '" fill-opacity=".5" stroke="'+tok("--sup")+'" stroke-width="2"><title>'+esc2(p.g.nome)+"\n"+
+      '" fill-opacity="'+(p.s?.55:.12)+'" stroke="'+tok("--sup")+'" stroke-width="2"><title>'+esc2(p.g.nome)+"\n"+
       mx2.rot+": "+fmt(p.x,mx2.fmt)+"\n"+my2.rot+": "+fmt(p.y,my2.fmt)+"\n"+mt.rot+": "+fmt(p.t,mt.fmt)+"\nclique para filtrar"+'</title></circle>';});
-  pts.slice().sort(function(a,b){return b.t-a.t;}).slice(0,8).forEach(function(p){
+  pts.filter(function(p){return p.s;}).sort(function(a,b){return b.t-a.t;}).slice(0,8).forEach(function(p){
     h+='<text x="'+(sx(p.x)+8)+'" y="'+(sy(p.y)-8)+'" font-size="11" fill="'+tok("--tinta")+'">'+esc2(p.g.nome.slice(0,26))+'</text>';});
   h+='<text x="'+(W2/2)+'" y="'+(Hh-6)+'" text-anchor="middle" font-size="11" fill="'+tok("--tinta2")+'">'+esc2(mx2.rot)+(lx?" (log)":"")+'</text>';
   h+='<text x="16" y="'+(Hh/2)+'" transform="rotate(-90 16 '+(Hh/2)+')" text-anchor="middle" font-size="11" fill="'+tok("--tinta2")+'">'+esc2(my2.rot)+(ly?" (log)":"")+'</text></svg>';
   document.getElementById("dSvg").innerHTML=h;
   Array.prototype.forEach.call(document.querySelectorAll("#dSvg .selArea"),function(c){
-    c.onclick=function(){marca(c.getAttribute("data-k"));};});
-  document.getElementById("dSub").textContent=pts.length+" áreas. Clique num ponto para prender o painel nele. O ponto tem área fiel a "+mt.rot.toLowerCase()+
+    c.onclick=function(ev){marcaEv(c.getAttribute("data-k"),ev);};});
+  document.getElementById("dSub").textContent=pts.length+" áreas. Clique num ponto para selecionar só ele e Ctrl + clique para somar outros. O ponto tem área fiel a "+mt.rot.toLowerCase()+
     ". As linhas cinzas são as medianas: o que está no quadrante superior direito tem os dois eixos acima do meio.";}
 
 // ---------------------------------------------------------------- tabelas
 function listaCoops(){
   var out=[];
-  vis.forEach(function(m){coopsDo(m[CM.cod]).forEach(function(c){out.push({c:c,m:m});});});
+  var baseM=E.nSel?visB.filter(function(m){return E.selecao[chaveNivel(m,E.nivel)];}):visB;
+  semItens=true;
+  baseM.forEach(function(m){coopsDo(m[CM.cod]).forEach(function(c){
+    if(E.cSoMarc&&!E.selCoop[c._i])return;out.push({c:c,m:m});});});
+  semItens=false;
   var q=E.cBusca.trim().toLowerCase();
   if(q){q=q.normalize("NFD").replace(/[̀-ͯ]/g,"");
     out=out.filter(function(o){return (o.c[CC.nome]+" "+RAMOS[o.c[CC.ramo]]+" "+o.m[CM.nome])
       .normalize("NFD").replace(/[̀-ͯ]/g,"").toLowerCase().indexOf(q)>=0;});}
-  out.sort({capital:function(a,b){return (b.c[CC.capital]||0)-(a.c[CC.capital]||0);},
+  out.sort({capital:function(a,b){return (b.c[CC.matriz]?(b.c[CC.capital]||0):-1)-(a.c[CC.matriz]?(a.c[CC.capital]||0):-1);},
     nome:function(a,b){return a.c[CC.nome]<b.c[CC.nome]?-1:1;},
     ano:function(a,b){return (a.c[CC.ano]||9999)-(b.c[CC.ano]||9999);},
     ramo:function(a,b){return RAMOS[a.c[CC.ramo]]<RAMOS[b.c[CC.ramo]]?-1:1;}}[E.cOrd]);
   return out;}
 function tabCoops(){
-  var l=listaCoops(),n=Math.min(l.length,300);
-  document.getElementById("cSub").innerHTML="<b>"+l.length.toLocaleString("pt-BR")+"</b> cooperativas no recorte. Mostrando as "+n+" primeiras; o CSV traz todas.";
-  document.getElementById("cHead").innerHTML="<tr><th class='sel' title='marque para filtrar o painel'>Sel.</th><th>Cooperativa</th><th>Ramo</th><th>Município</th><th>UF</th><th class='n'>Capital social</th><th class='n'>Aberta em</th><th>Unidade</th></tr>";
-  document.getElementById("cBody").innerHTML=l.slice(0,n).map(function(o){
-    var k=chaveNivel(o.m,E.nivel);
-    return "<tr title='clique na linha ou marque a caixa para filtrar o painel por esta área' data-k=\""+esc2(k)+"\">"+
-      "<td class='sel'><input type='checkbox' class='cxSel' data-k=\""+esc2(k)+"\""+(E.selecao[k]?" checked":"")+"></td>"+
-      "<td style='cursor:pointer'>"+esc2(o.c[CC.nome])+"</td><td>"+RAMOS[o.c[CC.ramo]]+"</td><td>"+o.m[CM.nome]+"</td><td>"+o.m[CM.uf]+
-      "</td><td class='n'>"+fmt((o.c[CC.capital]||0)*1000,"rs")+"</td><td class='n'>"+(o.c[CC.ano]||"–")+
+  var l=listaCoops(),n=Math.min(l.length,300),vistos=l.slice(0,n);
+  var marcVis=vistos.filter(function(o){return E.selCoop[o.c._i];}).length;
+  document.getElementById("cSub").innerHTML="<b>"+l.length.toLocaleString("pt-BR")+"</b> cooperativas "+(E.cSoMarc?"marcadas":"no recorte")+
+    ". Mostrando as "+n+" primeiras; o CSV traz todas. "+
+    (E.nSelCoop?"<b>"+E.nSelCoop+"</b> marcada"+(E.nSelCoop>1?"s":"")+": o painel inteiro fala só dela"+(E.nSelCoop>1?"s":"")+"."
+               :"Clique numa linha ou marque a caixa para o painel inteiro falar só daquela cooperativa.");
+  document.getElementById("cHead").innerHTML="<tr><th class='sel'><input type='checkbox' id='cxTodasC' title='marcar ou desmarcar as linhas visíveis'"+
+    (n&&marcVis===n?" checked":"")+"></th><th>Cooperativa</th><th>Ramo</th><th>Município</th><th>UF</th><th class='n'>Capital social</th><th class='n'>Aberta em</th><th>Unidade</th></tr>";
+  document.getElementById("cBody").innerHTML=vistos.map(function(o){
+    var i=o.c._i,on=!!E.selCoop[i];
+    return "<tr data-i='"+i+"'"+(on?" class='marc'":"")+" title='clique para marcar ou desmarcar esta cooperativa'>"+
+      "<td class='sel'><input type='checkbox' class='cxItem'"+(on?" checked":"")+"></td>"+
+      "<td>"+esc2(o.c[CC.nome])+"</td><td>"+RAMOS[o.c[CC.ramo]]+"</td><td>"+o.m[CM.nome]+"</td><td>"+o.m[CM.uf]+
+      "</td><td class='n'"+(o.c[CC.matriz]?"":" title='o capital declarado fica na matriz e não se soma de novo na filial'")+">"+
+      (o.c[CC.matriz]?fmt((o.c[CC.capital]||0)*1000,"rs"):"<span style='color:var(--tinta3)'>na matriz</span>")+"</td><td class='n'>"+(o.c[CC.ano]||"–")+
       "</td><td>"+(o.c[CC.matriz]?"Matriz":"Filial")+"</td></tr>";}).join("");
-  fiaSelecao("#cBody");}
-function fiaSelecao(escopo){
-  Array.prototype.forEach.call(document.querySelectorAll(escopo+" .cxSel"),function(cx){
-    cx.onclick=function(ev){ev.stopPropagation();marca(cx.getAttribute("data-k"));};});
-  Array.prototype.forEach.call(document.querySelectorAll(escopo+" tr[data-k]"),function(tr2){
-    tr2.onclick=function(ev){if(ev.target&&ev.target.className==="cxSel")return;
-      var k=tr2.getAttribute("data-k");if(k)marca(k);};});}
+  fiaItens("#cBody","i",marcaCoop);
+  document.getElementById("cxTodasC").onclick=function(ev){ev.stopPropagation();var ligar=ev.target.checked;
+    vistos.forEach(function(o){var i=o.c._i;
+      if(ligar&&!E.selCoop[i]){E.selCoop[i]=1;E.nSelCoop++;}else if(!ligar&&E.selCoop[i]){delete E.selCoop[i];E.nSelCoop--;}});
+    recalc();};}
+function fiaItens(escopo,attr,fn){
+  Array.prototype.forEach.call(document.querySelectorAll(escopo+" tr[data-"+attr+"]"),function(tr2){
+    tr2.onclick=function(){fn(tr2.getAttribute("data-"+attr));};});}
 function recOp(u){return (NIP.por_operadora||{})[u[CU.reg]]||0;}
 var REGCOM={"1":"1 · Nacional","2":"2 · SP ou vários estados","3":"3 · Um estado","4":"4 · Capital de referência",
   "5":"5 · Grupo de municípios","6":"6 · Um município"};
@@ -1093,7 +1288,8 @@ function passaUni(u){
   if(E.uResult==="neg"&&!(u[CU.resultado]<0))return false;
   return true;}
 function tabUnis(){
-  var base=UNI.filter(function(u){return u[CU.codMun]&&gKey[u[CU.codMun]];});
+  var base=UNI.filter(function(u){var cod=u[CU.codMun];if(!cod||!gKeyB[cod])return false;
+    return !E.nSel||!!E.selecao[chaveNivel(porCodMun[cod],E.nivel)];});
   var posRec=posicoes(base,function(u){return u[CU.receita]||null;});
   var posRes=posicoes(base,function(u){return u[CU.resultado]===undefined?null:u[CU.resultado];});
   var posMar=posicoes(base,margemDe);
@@ -1101,6 +1297,7 @@ function tabUnis(){
   var posIds=posicoes(base,function(u){return u[CU.idss]||null;});
   var l=base.filter(function(u){
     if(!passaUni(u))return false;
+    if(E.uSoMarc&&!E.selUni[u[CU.reg]])return false;
     var q=E.uBusca.trim().toLowerCase();if(!q)return true;
     q=q.normalize("NFD").replace(/[\u0300-\u036f]/g,"");
     return (u[CU.razao]+" "+u[CU.cidade]).normalize("NFD").replace(/[\u0300-\u036f]/g,"").toLowerCase().indexOf(q)>=0;});
@@ -1118,8 +1315,11 @@ function tabUnis(){
   var filtros=[E.uRegCom,E.uSin,E.uIdss,E.uPorte,E.uIdade,E.uResult].filter(function(x){return x;}).length;
   document.getElementById("uSub").innerHTML="<b>"+l.length+"</b> operadoras Unimed"+
     (filtros?" depois de "+filtros+" filtro"+(filtros>1?"s":""):"")+", de "+base.length+" com sede no recorte e "+UNI.length+
-    " no país. Somam "+fmt(somaB,"int")+" beneficiários. As posições da tabela são calculadas dentro do recorte.";
-  document.getElementById("uHead").innerHTML="<tr><th class='sel' title='marque para filtrar o painel'>Sel.</th>"+
+    " no país. Somam "+fmt(somaB,"int")+" beneficiários. As posições da tabela são calculadas dentro do recorte. "+
+    (E.nSelUni?"<b>"+E.nSelUni+"</b> marcada"+(E.nSelUni>1?"s":"")+": o painel inteiro fala só da área-sede.":
+      "Clique numa linha ou marque a caixa para o painel falar só da área-sede daquela operadora.");
+  document.getElementById("uHead").innerHTML="<tr><th class='sel'><input type='checkbox' id='cxTodasU' title='marcar ou desmarcar as linhas visíveis'"+
+    (l.length&&l.every(function(u){return E.selUni[u[CU.reg]];})?" checked":"")+"></th>"+
     "<th>Operadora</th><th>Papel</th><th>Cidade</th><th>UF</th><th>Reg. com.</th>"+
     "<th class='n'>Carteira</th><th class='n'>% do sistema</th><th class='n'>Municípios</th>"+
     "<th class='n'>Receita 2025</th><th class='n'>Pos.</th><th class='n'>Resultado</th><th class='n'>Pos.</th>"+
@@ -1130,10 +1330,10 @@ function tabUnis(){
   document.getElementById("uBody").innerHTML=l.map(function(u){
     var r10=u[CU.benef]?recOp(u)/u[CU.benef]*10000:null;
     var mm=porCodMun[u[CU.codMun]];
-    var k=mm?chaveNivel(mm,E.nivel):"";
+    var on=!!E.selUni[u[CU.reg]];
     var neg=u[CU.resultado]<0;
-    return "<tr title='clique na linha ou marque a caixa para filtrar o painel pela área desta sede' data-k=\""+esc2(k)+"\">"+
-      "<td class='sel'><input type='checkbox' class='cxSel' data-k=\""+esc2(k)+"\""+(E.selecao[k]?" checked":"")+"></td>"+
+    return "<tr data-u='"+esc2(u[CU.reg])+"'"+(on?" class='marc'":"")+" title='clique para marcar ou desmarcar esta operadora'>"+
+      "<td class='sel'><input type='checkbox' class='cxItem'"+(on?" checked":"")+"></td>"+
       "<td style='cursor:pointer'>"+esc2(u[CU.nome])+"</td><td>"+u[CU.tipo]+"</td><td>"+u[CU.cidade]+"</td><td>"+u[CU.uf]+
       "</td><td title=\""+esc2(REGCOM_DESC[u[CU.regCom]]||"")+"\">"+(REGCOM[u[CU.regCom]]||"–")+
       "</td><td class='n'>"+fmt(u[CU.benef],"int")+"</td><td class='n'>"+fmt(pctSistDe(u),"pct")+
@@ -1148,7 +1348,11 @@ function tabUnis(){
       "</td><td class='n'>"+fmt(u[CU.pctEmp],"pct")+"</td><td class='n'>"+fmt(u[CU.pct59],"pct")+
       "</td><td class='n'>"+fmt(r10,"dec2")+"</td><td class='n'>"+(anosAns(u)===null?"–":anosAns(u))+
       "</td><td class='n'>"+fmt(u[CU.coopEst],"int")+"</td></tr>";}).join("");
-  fiaSelecao("#uBody");}
+  fiaItens("#uBody","u",marcaUni);
+  document.getElementById("cxTodasU").onclick=function(ev){ev.stopPropagation();var ligar=ev.target.checked;
+    l.forEach(function(u){var r=u[CU.reg];
+      if(ligar&&!E.selUni[r]){E.selUni[r]=1;E.nSelUni++;}else if(!ligar&&E.selUni[r]){delete E.selUni[r];E.nSelUni--;}});
+    recalc();};}
 
 // ---------------------------------------------------------------- insights
 var nCard=0;
@@ -1193,7 +1397,7 @@ function insights(){
   var IB=D.ibge||{},idadeBR=(IB.idade_pct||{}).BR||{},projBR=(IB.projecao_pop||{}).BR||{};
   var i26=idadeBR[2026]||{},i40=idadeBR[2040]||{},i60=idadeBR[2060]||{};
   var PI=D.previc_inst||{},qta=(PI.maiores||[])[0]||{};
-  var uniG2=UNI.filter(function(u){return u[CU.codMun]&&gKey[u[CU.codMun]];});
+  var uniG2=UNI.filter(function(u){return uniNoRecorte(u);});
   var benTot=uniG2.reduce(function(a,u){return a+(u[CU.benef]||0);},0);
   var pctEmp=benTot?uniG2.reduce(function(a,u){return a+(u[CU.pctEmp]||0)*(u[CU.benef]||0);},0)/benTot:null;
   var pct59=benTot?uniG2.reduce(function(a,u){return a+(u[CU.pct59]||0)*(u[CU.benef]||0);},0)/benTot:null;
@@ -1326,7 +1530,7 @@ function insights(){
 
   if(E.ins==="unimed"){
     tema("Posição de mercado");
-    var uniG=UNI.filter(function(u){return u[CU.codMun]&&gKey[u[CU.codMun]];});
+    var uniG=UNI.filter(function(u){return uniNoRecorte(u);});
     var comFin=uniG.filter(function(u){return u[CU.receita];});
     var prej=comFin.filter(function(u){return u[CU.resultado]<0;});
     var sinAlta=uniG.filter(function(u){return u[CU.sinistr]&&u[CU.sinistr]>.85;});
@@ -1547,7 +1751,7 @@ function perguntas(){
   var uniPre=(PV.top_cias||[]).filter(function(x){return /UNIMED/i.test(x.cia);})[0];
   var uniProv=(PV.top_provisao||[]).filter(function(x){return /UNIMED/i.test(x.cia);})[0];
   var sic=(PV.top_cias||[]).filter(function(x){return /SICOOB/i.test(x.cia);})[0];
-  var uniG=UNI.filter(function(u){return u[CU.codMun]&&gKey[u[CU.codMun]];});
+  var uniG=UNI.filter(function(u){return uniNoRecorte(u);});
   var comFin=uniG.filter(function(u){return u[CU.receita];});
   var prej=comFin.filter(function(u){return u[CU.resultado]<0;});
   var sinAlta=uniG.filter(function(u){return u[CU.sinistr]&&u[CU.sinistr]>.85;});
@@ -1579,7 +1783,7 @@ function perguntas(){
      "Depende do perfil. Os 427 municípios do perfil Núcleo cooperativo denso são pequenos e têm muitas cooperativas por habitante: lá o cooperativismo é a economia local. Já os 1.577 do perfil Vazio assistencial e cooperativo têm pouco de tudo e custo de entrada alto.",
      "Filtro Perfil do município"],
     ["Como eu prendo o painel numa praça só?",
-     "Clique numa barra da Concentração, num ponto da Dispersão, numa linha da tabela de Cooperativas ou numa área do mapa. A seleção fica travada e todas as abas passam a falar só dela. O bloco Seleção aparece no alto da esquerda para desfazer.",
+     "Há três jeitos. No mapa, clique na área e use Selecionar só esta, ou Ctrl + clique para somar várias. Nos gráficos, clique numa barra ou ponto seleciona só aquela área e Ctrl + clique soma. Nas tabelas, a caixa marca a cooperativa ou a Unimed da própria linha. O que ficou fora aparece apagado no mapa e nos gráficos, e o bloco Seleção, no alto da esquerda, desfaz tudo.",
      "Qualquer gráfico ou tabela"]
    ]],
    ["Tamanho e forma do mercado",[
@@ -2028,7 +2232,7 @@ function medicos(){
   }
   if(E.medSeg==="demo"){h+=demografiaIBGE();}
   if(E.medSeg==="coop"){
-    var uniG=UNI.filter(function(u){return u[CU.codMun]&&gKey[u[CU.codMun]];});
+    var uniG=UNI.filter(function(u){return uniNoRecorte(u);});
     var coopEst=uniG.reduce(function(a,u){return a+(u[CU.coopEst]||0);},0);
     var emprEst=uniG.reduce(function(a,u){return a+(u[CU.emprEst]||0);},0);
     h+='<h3>O médico cooperado</h3>';
@@ -2189,7 +2393,7 @@ function analises(){
   if(E.anSeg==="box"){
     var m=medida(vp(E.anVar),"total");
     var mp={};
-    G.forEach(function(g){var r=rotGrupo(g),v=m.f(g);
+    GB.forEach(function(g){var r=rotGrupo(g),v=m.f(g);
       if(v===null||isNaN(v))return;
       (mp[r]=mp[r]||[]).push({v:v,g:g});});
     var ordem=ORDEM_GRUPO[E.anGrupo];
@@ -2221,7 +2425,7 @@ function analises(){
       var lo=q.q1-1.5*iqr,hi=q.q3+1.5*iqr;
       var dentro=vs.filter(function(x){return x>=lo&&x<=hi;});
       var fora=mp[k].filter(function(o){return o.v<lo||o.v>hi;});
-      lin.push({rot:k,n:vs.length,q:q,
+      lin.push({rot:k,n:vs.length,q:q,todos:mp[k],
         wlo:Math.min.apply(null,dentro),whi:Math.max.apply(null,dentro),fora:fora});});
     if(lin.length<2){el.innerHTML=h+'<p class="nota">Sem valor suficiente para desenhar as caixas.</p>';return;}
     var todos=[];lin.forEach(function(l){todos.push(l.wlo,l.whi);l.fora.forEach(function(o){todos.push(o.v);});});
@@ -2254,20 +2458,24 @@ function analises(){
       g2+='<line x1="'+x0.toFixed(1)+'" y1="'+sy(l.q.med).toFixed(1)+'" x2="'+(x0+bw).toFixed(1)+'" y2="'+sy(l.q.med).toFixed(1)+
         '" stroke="'+tok("--tinta")+'" stroke-width="2.5"/>';
       g2+='<text x="'+cx.toFixed(1)+'" y="'+(sy(l.q.med)-6).toFixed(1)+'" text-anchor="middle" font-size="10.5" fill="'+tok("--tinta")+'">'+fmt(l.q.med,m.fmt)+'</text>';
+      if(temSelecao())l.todos.forEach(function(o){
+        if(!gKey[o.g.membros[0][CM.cod]]||(LOG&&!(o.v>0)))return;
+        g2+='<circle class="selArea" style="cursor:pointer" data-k="'+esc2(o.g.chave)+'" cx="'+cx.toFixed(1)+'" cy="'+sy(o.v).toFixed(1)+
+          '" r="4.5" fill="'+tok("--tinta")+'" stroke="'+tok("--sup")+'" stroke-width="1.5"><title>'+esc2(o.g.nome)+": "+fmt(o.v,m.fmt)+" · selecionada"+'</title></circle>';});
       var yr=Hh-M.b+15;
       if(rotLongo)g2+='<text x="'+cx.toFixed(1)+'" y="'+yr+'" font-size="11" fill="'+tok("--tinta")+'" transform="rotate(-35 '+cx.toFixed(1)+' '+yr+')" text-anchor="end">'+esc2(l.rot.slice(0,26))+'</text>';
       else g2+='<text x="'+cx.toFixed(1)+'" y="'+yr+'" text-anchor="middle" font-size="11.5" fill="'+tok("--tinta")+'">'+esc2(l.rot)+'</text>';
       g2+='<text x="'+cx.toFixed(1)+'" y="'+(rotLongo?Hh-8:yr+14)+'" text-anchor="middle" font-size="10" fill="'+tok("--tinta3")+'">'+l.n+' áreas</text>';});
     g2+='</svg>';
     h+=g2;
-    h+='<p class="nota">Cada ponto do gráfico é uma das '+G.length+' áreas do recorte, no nível '+nomeNivel()+
-       '. Os pontos soltos são as áreas que fogem do padrão do próprio grupo, e é clicando neles que se prende o painel naquele caso.'+
+    h+='<p class="nota">Cada ponto do gráfico é uma das '+GB.length+' áreas do recorte, no nível '+nomeNivel()+
+       '. Os pontos soltos são as áreas que fogem do padrão do próprio grupo, e clicar num deles seleciona só aquela área; Ctrl + clique soma. As áreas selecionadas aparecem como ponto escuro dentro do grupo.'+
        (LOG?' A escala está logarítmica, porque o maior valor é '+(maiorGeral/medGeral).toFixed(0)+
         ' vezes a mediana e numa escala linear as caixas ficariam todas coladas no chão. Cada marca do eixo vale dez vezes a anterior.':'')+'</p>';
   }
   if(E.anSeg==="matriz"){
     var mX=medida(vp(E.mx),"total"),mY=medida(vp(E.my),"total");
-    var pts=G.map(function(g){return {g:g,x:mX.f(g),y:mY.f(g)};})
+    var pts=GB.map(function(g){return {g:g,x:mX.f(g),y:mY.f(g)};})
       .filter(function(p){return p.x!==null&&p.y!==null&&!isNaN(p.x)&&!isNaN(p.y);});
     h+='<h3>Matriz 3 por 3: '+mY.rot.toLowerCase()+' contra '+mX.rot.toLowerCase()+'</h3>';
     h+='<p class="sub">Cada eixo é cortado nos terços. As nove caixas vão de baixo-baixo, no canto inferior esquerdo, a alto-alto no superior direito. É o desenho clássico de priorização de carteira.</p>';
@@ -2303,7 +2511,7 @@ function analises(){
   }
   if(E.anSeg==="corr"){
     var vs=VARS.filter(function(v){return !v.soUF||E.nivel==="uf";});
-    var col=vs.map(function(v){return G.map(medida(v,"total").f);});
+    var col=vs.map(function(v){return GB.map(medida(v,"total").f);});
     function corr(a,b){
       var pares=[];for(var i=0;i<a.length;i++)if(a[i]!==null&&b[i]!==null&&!isNaN(a[i])&&!isNaN(b[i]))pares.push([a[i],b[i]]);
       if(pares.length<5)return null;
@@ -2317,7 +2525,7 @@ function analises(){
       if(r!==null)pares.push({a:vs[i].rot,b:vs[j].rot,r:r});}
     pares.sort(function(x,y){return Math.abs(y.r)-Math.abs(x.r);});
     h+='<h3>O que anda junto e o que não anda</h3>';
-    h+='<p class="sub">Correlação de Pearson entre as variáveis, calculada sobre as '+G.length+' áreas do recorte. Perto de 1 as duas crescem juntas, perto de menos 1 uma cresce quando a outra cai, perto de zero não têm relação. Correlação não é causa.</p>';
+    h+='<p class="sub">Correlação de Pearson entre as variáveis, calculada sobre as '+GB.length+' áreas do recorte. Perto de 1 as duas crescem juntas, perto de menos 1 uma cresce quando a outra cai, perto de zero não têm relação. Correlação não é causa.</p>';
     function corR(r){var a=Math.min(1,Math.abs(r));
       return r>=0?"rgba(42,105,178,"+(0.15+a*0.75)+")":"rgba(235,104,52,"+(0.15+a*0.75)+")";}
     h+='<div class="mini">Os quinze pares mais fortes</div><table class="tb"><thead><tr><th>Variável</th><th>Variável</th><th class="n">r</th><th style="width:150px"></th><th>Leitura</th></tr></thead><tbody>';
@@ -2333,7 +2541,7 @@ function analises(){
     if(forte){
       h+='<div class="ins" style="margin-top:14px"><div class="selo i">Inferência</div>';
       h+='<h4>'+forte.a+' e '+forte.b+' andam praticamente juntas</h4>';
-      h+='<div class="num">r = '+forte.r.toFixed(2).replace(".",",")+'</div><div class="numleg">correlação entre as duas, nas '+G.length+' áreas do recorte</div>';
+      h+='<div class="num">r = '+forte.r.toFixed(2).replace(".",",")+'</div><div class="numleg">correlação entre as duas, nas '+GB.length+' áreas do recorte</div>';
       h+='<p class="hist">Correlação alta entre duas variáveis quase sempre quer dizer uma de duas coisas: ou uma causa a outra, ou as duas são efeito de um terceiro fator que ninguém mediu. Aqui, quase todo par forte tem população no meio: lugar com mais gente tem mais de tudo. O par que interessa de verdade é o que se mantém forte depois de dividir tudo por habitante, porque esse não é tamanho, é vocação.</p>';
       h+='<dl><dt>Na prática</dt><dd>O par mais forte do recorte tem r de '+forte.r.toFixed(2).replace(".",",")+
         (fraco?'. O mais fraco, entre '+fraco.a+' e '+fraco.b+', tem r de '+fraco.r.toFixed(2).replace(".",",")+', ou seja, são independentes.':'.')+'</dd>';
@@ -2359,7 +2567,8 @@ function comoLer(){
     '<dt>Dispersão</dt><dd>Cada ponto é uma área. Os eixos e o tamanho do ponto são escolhidos por você, e o ponto tem área fiel ao valor, não diâmetro, porque o olho compara área. As duas linhas cinzas são as medianas de cada eixo: o quadrante superior direito é quem está acima do meio nos dois.</dd>'+
     '<dt>Matriz 3 por 3</dt><dd>Cada eixo é cortado nos terços, o que dá nove caixas. Escolha dois eixos com correlação baixa, que a aba Correlação mostra: se as duas variáveis andam juntas, a matriz vira uma diagonal e não separa nada.</dd>'+
     '<dt>Correlação</dt><dd>É o coeficiente de Pearson entre cada par de variáveis, calculado sobre as áreas do recorte. Perto de 1 as duas crescem juntas, perto de menos 1 uma sobe quando a outra desce. Quase todo par forte tem população no meio: lugar com mais gente tem mais de tudo. O par que interessa é o que continua forte depois de dividir tudo por habitante.</dd>'+
-    '<dt>Seleção</dt><dd>Clique numa barra, num ponto, numa área do mapa ou marque a caixa na primeira coluna das tabelas. A área entra na seleção e o painel inteiro passa a falar só dela. O bloco Seleção no alto da esquerda desfaz.</dd>'+
+    '<dt>Seleção</dt><dd>Existem dois tipos. Seleção de área: no mapa, clique abre o detalhe com Selecionar só esta e Somar à seleção, e Ctrl + clique soma ou tira sem abrir nada; no Pareto, na dispersão e na caixa, clique seleciona só aquela área e Ctrl + clique soma. Seleção de item: nas tabelas de Cooperativas e de Unimeds, a caixa marca a linha, uma cooperativa ou uma operadora de cada vez, e o painel passa a falar só delas. Em todos os casos, o mapa e os gráficos continuam mostrando o resto apagado, para dar para somar mais. O bloco Seleção, no alto da esquerda, lista o que está marcado e desfaz.</dd>'+
+    '<dt>Filtrar e selecionar, no mapa</dt><dd>O painel da direita do mapa filtra as áreas por até três variáveis, cada uma com a faixa escolhida em percentis e o valor escrito ao lado: Quinto de cima, por exemplo, deixa só as 20% maiores. Os filtros valem para o painel inteiro e aparecem resumidos na esquerda. Áreas sem valor na variável ficam de fora. Embaixo, Selecionar por critério marca de uma vez as N maiores ou menores por qualquer variável, e Inverter seleção troca o marcado pelo não marcado.</dd>'+
     '</dl></div>';
   h+='<div class="ins"><h4>Região de comercialização da ANS</h4><p class="nota" style="margin-bottom:6px">É a área em que a operadora está autorizada a vender, pela Resolução Normativa 209 de 2009. Aparece na tabela de Unimeds e serve como filtro.</p><dl>'+
     '<dt>Região 1</dt><dd>Todo o território nacional, ou grupo de pelo menos três estados entre São Paulo, Rio de Janeiro, Minas Gerais, Rio Grande do Sul, Paraná e Bahia.</dd>'+
@@ -2461,6 +2670,8 @@ selSC.value=E.simCor;
 selSC.onchange=function(){E.simCor=selSC.value;desenha();};
 document.getElementById("rot").onchange=function(e){E.rot=e.target.checked;desenha();};
 document.getElementById("nivel").onchange=function(e){E.nivel=e.target.value;E.sel=null;
+  // a chave da área muda de nível, então a seleção de área não vale mais; a de cooperativa e Unimed continua
+  E.selecao={};E.nSel=0;
   document.getElementById("det").style.display="none";recalc();};
 document.getElementById("pVar").onchange=function(e){E.pVar=e.target.value;pareto();};
 document.getElementById("pTop").onchange=function(e){E.pTop=e.target.value;pareto();};
@@ -2490,7 +2701,7 @@ document.getElementById("limpar").onclick=function(){
   E.idade="";document.getElementById("fIdade").value="";E.situacao="";document.getElementById("fSit").value="";
   RAMOS.forEach(function(r){E.ramos[r]=true;});ESCALAS.forEach(function(x,i){E.escalas[i]=true;});
   CLUSTERS.forEach(function(c,i){E.clusters[i]=true;});
-  E.selecao={};E.nSel=0;recalc();};
+  E.fv=[];limpaSelecao();};
 Array.prototype.forEach.call(document.querySelectorAll("#visao button"),function(b){
   b.onclick=function(){E.visao=b.getAttribute("data-v");
     Array.prototype.forEach.call(document.querySelectorAll("#visao button"),function(x){x.classList.remove("on");});
@@ -2515,7 +2726,7 @@ document.getElementById("opCab").onclick=function(){
   c.style.display=v?"none":"block";
   document.getElementById("opMapa").style.width=v?"auto":"212px";
   document.getElementById("opSeta").innerHTML=v?"+":"&minus;";};
-document.getElementById("selLimpa").onclick=function(){E.selecao={};E.nSel=0;recalc();};
+document.getElementById("selLimpa").onclick=limpaSelecao;
 document.getElementById("tema").onclick=function(){
   var d=document.documentElement.getAttribute("data-theme")==="dark";
   document.documentElement.setAttribute("data-theme",d?"light":"dark");cacheBorda={};recalc();};
@@ -2526,7 +2737,7 @@ function csv(nome,cab,linhas){
 document.getElementById("cCsv").onclick=function(){
   csv("cooperativas_recorte.csv",["cooperativa","ramo","municipio","uf","capital_social","aberta_em","unidade"],
     listaCoops().map(function(o){return ['"'+o.c[CC.nome]+'"',RAMOS[o.c[CC.ramo]],'"'+o.m[CM.nome]+'"',o.m[CM.uf],
-      Math.round((o.c[CC.capital]||0)*1000),o.c[CC.ano]||"",o.c[CC.matriz]?"Matriz":"Filial"].join(";");}));};
+      o.c[CC.matriz]?Math.round((o.c[CC.capital]||0)*1000):"",o.c[CC.ano]||"",o.c[CC.matriz]?"Matriz":"Filial"].join(";");}));};
 (function(){
   var sel=document.getElementById("uRegCom");
   var regs={};UNI.forEach(function(u){if(u[CU.regCom])regs[u[CU.regCom]]=1;});
@@ -2553,6 +2764,43 @@ document.getElementById("uCsv").onclick=function(){
         Math.round(u[CU.despAdm]||0),Math.round(u[CU.despCom]||0),
         d(((u[CU.pctEmp]||0)*100).toFixed(2)),d(((u[CU.pct59]||0)*100).toFixed(2)),
         recOp(u),d(r10===null?"":r10.toFixed(2)),u[CU.coopEst],u[CU.emprEst],u[CU.email]].join(";");}));};
+// ---------------------------------------------------------------- painel Filtrar e selecionar
+(function(){
+  var tv=document.getElementById("tnVar"),te=document.getElementById("tnEx");
+  encher(tv,false);tv.value="pib";
+  function tnExpr(){var v=vp(tv.value);
+    te.innerHTML=opcoesExpr(v).map(function(o){return '<option value="'+o[0]+'">'+o[1]+'</option>';}).join("");
+    te.value=v.hab?"hab":"total";te.disabled=te.options.length===1;}
+  tnExpr();tv.onchange=tnExpr;
+  document.getElementById("tnOk").onclick=function(){
+    var v=vp(tv.value),m=medida(v,te.value||"total"),dir=document.getElementById("tnDir").value;
+    var l=GB.map(function(g){return {k:g.chave,x:m.f(g)};}).filter(function(o){return o.x!==null&&o.x!==undefined&&!isNaN(o.x);});
+    if(!l.length){alert("Essa variável não tem valor neste nível de análise.");return;}
+    l.sort(function(a,b){return dir==="maiores"?b.x-a.x:a.x-b.x;});
+    E.selecao={};E.nSel=0;
+    l.slice(0,+document.getElementById("tnN").value).forEach(function(o){E.selecao[o.k]=1;E.nSel++;});
+    fechaDet();recalc();};
+  document.getElementById("selInv").onclick=function(){
+    var novo={},n=0;GB.forEach(function(g){if(!E.selecao[g.chave]){novo[g.chave]=1;n++;}});
+    E.selecao=n===GB.length?{}:novo;E.nSel=n===GB.length?0:n;fechaDet();recalc();};
+  document.getElementById("selNada").onclick=limpaSelecao;
+  document.getElementById("fvAdd").onclick=function(){
+    if(E.fv.length>=3)return;
+    var ok2=varsDoNivel().some(function(v){return v.id===E.variavel;});
+    var v0=ok2?E.variavel:"pib";
+    E.fv.push({v:v0,ex:ok2?E.expressao:"hab",a:50,b:100});recalc();};
+  document.getElementById("fsCab").onclick=function(){
+    var c=document.getElementById("fsCorpo"),aberto=c.style.display!=="none";
+    c.style.display=aberto?"none":"block";
+    document.getElementById("fsMapa").style.width=aberto?"auto":"226px";
+    document.getElementById("fsSeta").innerHTML=aberto?"+":"&minus;";
+    document.getElementById("mapa").classList.toggle("fsAberto",!aberto);};
+  document.getElementById("anBox").addEventListener("click",function(ev){
+    var t=ev.target&&ev.target.closest?ev.target.closest(".selArea"):null;
+    if(t)marcaEv(t.getAttribute("data-k"),ev);});
+  document.getElementById("cSoMarc").onchange=function(e){E.cSoMarc=e.target.checked;tabCoops();};
+  document.getElementById("uSoMarc").onchange=function(e){E.uSoMarc=e.target.checked;tabUnis();};
+})();
 window.addEventListener("resize",function(){if(E.aba==="mapa")dim();else render();});
 expr();recalc();
 })();
