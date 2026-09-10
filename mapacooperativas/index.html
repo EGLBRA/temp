@@ -2061,6 +2061,11 @@ function demografiaIBGE(){
   h+='<div class="card2"><div style="font-size:9.5px;color:var(--tinta3);text-transform:uppercase;letter-spacing:.06em">Em 2060</div><div class="big">'+
     i60.mais60.toFixed(1).replace(".",",")+'%</div><div class="nota">população de '+fmt(pbr[2060],"int")+'</div></div>';
   h+='</div>';
+  var pico=0,vpico=0;
+  Object.keys(pbr).forEach(function(a2){if(pbr[a2]>vpico){vpico=pbr[a2];pico=+a2;}});
+  if(pico&&pico<2060){
+    h+='<p class="nota" style="margin-top:8px">A população do país para de crescer em <b>'+pico+'</b>, no pico de '+
+      fmt(vpico,"int")+' pessoas, e cai para '+fmt(pbr[2060],"int")+' em 2060. Daí em diante o envelhecimento não vem só de mais idosos: vem de menos gente nova entrando.</p>';}
   // curva de 60+ e de até 14 anos, no país
   var W2=Math.max(560,Math.floor((document.getElementById("medBox").getBoundingClientRect().width)||920));
   var Hh=300,M={l:56,r:120,t:18,b:34},larg=W2-M.l-M.r;
